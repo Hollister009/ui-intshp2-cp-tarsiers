@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Snackbar from '../Snackbar/Snackbar';
-import mailicon from '../../../assets/mailicon.png';
 import './Joinus.scss';
 
 class JoinUs extends Component {
@@ -59,7 +58,8 @@ class JoinUs extends Component {
         <form onSubmit={this.handleSubmit} className="col-4">
           <div>
             <div className="mailfield col-4">
-              <img src={mailicon} alt="mailicon" />
+              {/* <img src={mailicon} alt="mailicon" /> */}
+              <i className="far fa-envelope" />
               <input
                 type="text"
                 placeholder="type your email here"
