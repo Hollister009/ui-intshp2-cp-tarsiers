@@ -85,11 +85,17 @@
     font-size: 1em;
   }
 
-  .slider {
-    margin-top: 120px;
-  }
-
   .slider__indicator {
     width: 15px;
+  }
+
+  .slider__arrow {
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
   }
 }

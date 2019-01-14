@@ -19,7 +19,7 @@ const appConfig = {
       {
         id: 4,
         href: 'https://plus.google.com/115302417170674279390',
-        icon: 'fab fa-google-plus'
+        icon: 'fab fa-google-plus-g'
       }
     ]
   },
