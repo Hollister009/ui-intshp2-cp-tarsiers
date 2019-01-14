@@ -1,15 +1,18 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixin';
 
 .wishlist-container {
   margin-top: 20px;
   color: $color-dark;
   text-align: center;
+
   h2 {
     padding-bottom: 20px;
     font-size: 40px;
     color: $color-main;
     font-family: $main-font-bold;
     text-transform: uppercase;
+  
     span {
       color: $color-dark;
     }
@@ -17,61 +20,68 @@
 }
 
 .wishlist-block {
-  display: flex;
-  justify-content: space-around;
   width: 100%;
-  // padding-top: 50px;
   padding: 80px;
-  margin: auto;
+  margin: 0 auto;
+  @include d-flex(space-around);
+
   .item {
+    display: flex;
     width: 25%;
     transition: 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
     background-color: $color-white;
+    
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
     .item-pic img {
       width: 150px;
       padding: 5px;
       max-width: initial;
     }
+
     .item-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       margin: 0 auto;
       padding: 5px;
+      @include d-flex(center, column);
+
       b {
         margin-bottom: 20px;
         justify-content: center;
       }
     }
+
     .stars {
       display: inline-block;
       padding: 0 20px;
     }
+
     .price {
       display: inline-block;
       font-family: $main-font-bold;
       color: $color-main;
       padding-right: 10px;
     }
+
     .add-to-card {
       border: none;
       color: $color-main;
       font-size: 16px;
+
       i {
         padding-right: 5px;
       }
     }
   }
-  .item:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: $media-medium) {
   .wishlist-block {
     flex-flow: column wrap;
+    padding: 0;
+
     .item {
       margin: 10px auto;
       width: 300px;
