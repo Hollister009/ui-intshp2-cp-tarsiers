@@ -32,7 +32,7 @@
   }
 }
 
-@media (min-width: 780px) and (max-width: 1024px) {
+@media (min-width: $media-tablet) and (max-width: $media-medium) {
   .adArea {
     padding-top: 20px;
     .priceblock__price {
@@ -42,7 +42,7 @@
   }
 }
 
-@media (min-width: 475px) and (max-width: 779px) {
+@media (min-width: $media-mobile) and (max-width: $media-tablet) {
   .adArea {
     div {
       flex-direction: column;
@@ -65,7 +65,7 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 474px) {
+@media (min-width: 320px) and (max-width: $media-mobile) {
   .adArea {
     div {
       flex-direction: column;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Snackbar from '../Snackbar/Snackbar';
+import appConfig from '../../../config/appConfig';
 import mailicon from '../../../assets/mailicon.png';
 import './Joinus.scss';
 
@@ -25,9 +26,9 @@ class JoinUs extends Component {
   };
 
   showSnackbarHandler = () => {
-    this.snackbarRef.current.openSnackBar(
-      'You are registered now :) Have a great shopping!'
-    );
+    const { message } = appConfig.joinUsSnackbar;
+
+    this.snackbarRef.current.openSnackBar(message);
   };
 
   canBeSubmitted = () => {
