@@ -29,11 +29,15 @@
   form {
     div {
       @include d-flex();
-      align-items: bottom;
-      img {
-        margin: 20px 5px 0 0;
-        height: 11px;
+
+      .mailfield {
+        align-items: center;
+        .far {
+          color: $color-main;
+          padding: 0 5px;
+        }
       }
+
       input {
         border: none;
         &:focus {
@@ -147,6 +151,10 @@
       @include d-flex(flex-start, column);
       width: 100%;
       text-align: center;
+
+      p {
+        padding: 0;
+      }
     }
     form {
       div {
