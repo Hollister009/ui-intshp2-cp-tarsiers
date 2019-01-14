@@ -1,9 +1,21 @@
-const products = require('./dummy-data/products.json');
+const mongojs = require('mongojs');
+
+const db = mongojs(
+  'mongodb://admin:admin123@ds157064.mlab.com:57064/tarsiers',
+  ['products']
+);
+
 const banner = require('./dummy-data/baner.json');
 const promotions = require('./dummy-data/promotions.json');
 
 function getProducts(req, res) {
-  res.json(products);
+  db.products.find((err, products) => {
+    if (err) {
+      res.send(err);
+    }
+
+    res.json(products);
+  });
 }
 
 function getBanner(req, res) {
