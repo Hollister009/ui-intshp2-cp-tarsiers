@@ -113,6 +113,11 @@ const appConfig = {
       }
     ]
   },
+
+  joinUsSnackbar: {
+    message: 'You are registered now :) Have a great shopping!'
+  },
+
   apiResources: {
     promotions: '/api/promotions',
     products: '/api/products',
