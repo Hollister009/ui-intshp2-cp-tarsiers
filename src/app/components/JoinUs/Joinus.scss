@@ -152,6 +152,10 @@
       @include d-flex(flex-start, column);
       width: 100%;
       text-align: center;
+
+      p {
+        padding: 0;
+      }
     }
     form {
       div {
