@@ -72,6 +72,7 @@
 @media screen and (max-width: 1024px) {
   .wishlist-block {
     flex-flow: column wrap;
+    padding: 0;
     .item {
       margin: 10px auto;
       width: 300px;
