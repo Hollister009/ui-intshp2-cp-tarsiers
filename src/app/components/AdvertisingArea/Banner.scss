@@ -12,6 +12,7 @@
   margin: 0 auto;
   padding-top: 10px;
   margin-bottom: 30px;
+
   div {
     display: flex;
     flex-direction: row;
@@ -42,30 +43,7 @@
   }
 }
 
-@media (min-width: $media-mobile) and (max-width: $media-tablet) {
-  .adArea {
-    div {
-      flex-direction: column;
-      justify-items: center;
-      text-align: center;
-    }
-    .banner {
-      width: 470px;
-    }
-    .banner__image {
-      margin-left: 0;
-    }
-    .priceblock {
-      padding-left: 0;
-      border: none;
-    }
-    .priceblock__cart {
-      display: none;
-    }
-  }
-}
-
-@media (min-width: 320px) and (max-width: $media-mobile) {
+@media (min-width: $media-smallest) and (max-width: $media-tablet) {
   .adArea {
     div {
       flex-direction: column;
