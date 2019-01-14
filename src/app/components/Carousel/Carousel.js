@@ -26,20 +26,24 @@ class Carousel extends Component {
   };
 
   nextSlide = () => {
+    const {
+      translation,
+      translateStep,
+      scrollCounter,
+      width
+    } = this.carouselStyle;
+
+    const wrapperWidth = this.wrapperRef.current.offsetWidth;
+
     this.carouselStyle = {
       ...this.carouselStyle,
       translation:
-        this.carouselStyle.translation -
-        ((this.carouselStyle.width +
-          this.carouselStyle.translation -
-          this.wrapperRef.current.offsetWidth) /
-          2 <
+        translation -
+        ((width + translation - wrapperWidth) / 2 <
         this.carouselStyle.translateStep
-          ? this.carouselStyle.width +
-            this.carouselStyle.translation -
-            this.wrapperRef.current.offsetWidth
-          : this.carouselStyle.translateStep),
-      scrollCounter: this.carouselStyle.scrollCounter + 1
+          ? width + translation - wrapperWidth
+          : translateStep),
+      scrollCounter: scrollCounter + 1
     };
 
     this.setState(state => ({
