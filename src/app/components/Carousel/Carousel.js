@@ -26,33 +26,24 @@ class Carousel extends Component {
   };
 
   nextSlide = () => {
-    // console.log(
-    //   this.carouselStyle.width,
-    //   this.carouselStyle.translation,
-    //   this.wrapperRef.current.offsetWidth
-    // );
+    const {
+      translation,
+      translateStep,
+      scrollCounter,
+      width
+    } = this.carouselStyle;
 
-    // console.log(
-    //   (this.carouselStyle.width +
-    //     this.carouselStyle.translation -
-    //     this.wrapperRef.current.offsetWidth) /
-    //     2
-    // );
+    const wrapperWidth = this.wrapperRef.current.offsetWidth;
 
     this.carouselStyle = {
       ...this.carouselStyle,
       translation:
-        this.carouselStyle.translation -
-        ((this.carouselStyle.width +
-          this.carouselStyle.translation -
-          this.wrapperRef.current.offsetWidth) /
-          2 <
+        translation -
+        ((width + translation - wrapperWidth) / 2 <
         this.carouselStyle.translateStep
-          ? this.carouselStyle.width +
-            this.carouselStyle.translation -
-            this.wrapperRef.current.offsetWidth
-          : this.carouselStyle.translateStep),
-      scrollCounter: this.carouselStyle.scrollCounter + 1
+          ? width + translation - wrapperWidth
+          : translateStep),
+      scrollCounter: scrollCounter + 1
     };
 
     this.setState(state => ({
@@ -70,7 +61,9 @@ class Carousel extends Component {
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      translation: translation + translateStep,
+      translation:
+        translation +
+        (-translation / 2 < translateStep ? -translation : translateStep),
       scrollCounter: scrollCounter - 1
     };
 
@@ -84,7 +77,7 @@ class Carousel extends Component {
     };
   };
 
-  componentWillMount = () => {
+  componentDidUpdate = () => {
     const { data } = this.props;
 
     this.carouselStyleSheet = {

@@ -39,6 +39,30 @@
       "price": 200,
       "sizes": ["s", "m", "l", "xl"],
       "colors": ["#e12e3f", "#34404b", "#3ab3ff", "#2fd967"]
+    },
+    {
+      "id": 10003,
+      "src": "/images/products/running-jacket.png",
+      "title": "Reebok Track Jacket",
+      "price": 200,
+      "sizes": ["s", "m", "l", "xl"],
+      "colors": ["#e12e3f", "#34404b", "#3ab3ff", "#2fd967"]
+    },
+    {
+      "id": 1303,
+      "src": "/images/products/running-jacket.png",
+      "title": "Reebok Track Jacket",
+      "price": 200,
+      "sizes": ["s", "m", "l", "xl"],
+      "colors": ["#e12e3f", "#34404b", "#3ab3ff", "#2fd967"]
+    },
+    {
+      "id": 4003,
+      "src": "/images/products/running-jacket.png",
+      "title": "Reebok Track Jacket",
+      "price": 200,
+      "sizes": ["s", "m", "l", "xl"],
+      "colors": ["#e12e3f", "#34404b", "#3ab3ff", "#2fd967"]
     }
   ]
 }
