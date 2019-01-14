@@ -10,8 +10,8 @@ const HomePage = () => (
   <div className="slider__wrapper homepage">
     <Promotions />
     <ProductContainer />
-    <JoinUs />
     <AdvertisingArea />
+    <JoinUs />
     <WishListContainer />
   </div>
 );
