@@ -17,18 +17,18 @@ const HeaderTop = () => {
   const socialLinks = <ul>{renderLinks(links)}</ul>;
 
   return (
-    <div className="header-top">
-      <span>
-        <a href="mailto:info@shopy.com">
-          <i className="far fa-envelope">
-            <span> info@shopy.com</span>
-          </i>
-        </a>
-      </span>
-      <i className="fa fa-phone">
-        <span> 453 - 5553 - 996</span>
-      </i>
-      <div className="icons-right">{socialLinks}</div>
+    <div className="line-between">
+      <div className="container">
+        <div className="header-top">
+          <a href="mailto:info@shopy.com">
+            <i className="far fa-envelope" />
+            info@shopy.com
+          </a>
+          <i className="fa fa-phone" />
+          <span> 453 - 5553 - 996</span>
+          <div className="icons-right">{socialLinks}</div>
+        </div>
+      </div>
     </div>
   );
 };

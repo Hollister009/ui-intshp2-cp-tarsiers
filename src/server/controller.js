@@ -28,11 +28,11 @@ function getPromotions(req, res) {
 }
 
 function addToWishList(req, res) {
-  const { userId, productId } = req.body; // eslint-disable-line
+  const { userId, productId } = req.data;
 
   db.wishList.update(
     { userId: '5c3c3021e7179a7d124487f3' },
-    { $push: { wishList: productId } },
+    { $push: { wishList: 'productId' } },
     err => {
       if (err) {
         res.send(err);
@@ -44,7 +44,7 @@ function addToWishList(req, res) {
 }
 
 function getWishList(req, res) {
-  const { userId } = req.body; // eslint-disable-line
+  const { userId } = req.data;
 
   db.wishList.find({ userId: '5c3c3021e7179a7d124487f3' }, (err, wishList) => {
     //
@@ -57,7 +57,7 @@ function getWishList(req, res) {
 }
 
 function removeFromWishList(req, res) {
-  const { userId, productId } = req.body; // eslint-disable-line
+  const { userId, productId } = req.data;
 
   db.wishList.update(
     { userId: '5c3c3021e7179a7d124487f3' },

@@ -5,13 +5,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 670px;
-  height: 100px;
+  width: 60%;
+  min-height: 100px;
   background-color: $color-white;
   color: $color-dark;
   margin: 0 auto;
   padding-top: 10px;
   margin-bottom: 30px;
+
   div {
     display: flex;
     flex-direction: row;
@@ -32,13 +33,9 @@
   }
 }
 
-@media (min-width: 780px) and (max-width: 1024px) {
+@media (min-width: $media-tablet) and (max-width: $media-medium) {
   .adArea {
-    height: 130px;
     padding-top: 20px;
-    .item {
-      width: 170px;
-    }
     .priceblock__price {
       width: 100px;
       padding-right: 20px;
@@ -46,44 +43,12 @@
   }
 }
 
-@media (min-width: 475px) and (max-width: 779px) {
+@media (min-width: $media-smallest) and (max-width: $media-tablet) {
   .adArea {
-    height: 180px;
-    width: 470px;
     div {
       flex-direction: column;
       justify-items: center;
       text-align: center;
-      margin-bottom: 40px;
-    }
-    .banner {
-      width: 470px;
-    }
-    .banner__image {
-      margin-left: 0;
-    }
-    .priceblock {
-      padding-left: 0;
-      border: none;
-    }
-    .priceblock__cart {
-      display: none;
-    }
-  }
-}
-
-@media (min-width: 320px) and (max-width: 474px) {
-  .adArea {
-    height: 180px;
-    width: 320px;
-    div {
-      flex-direction: column;
-      justify-items: center;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .banner {
-      width: 470px;
     }
     .banner__image {
       margin-left: 0;

@@ -34,6 +34,10 @@
   }
 }
 
+.line-between {
+  border-bottom: 1px solid #edeff2;
+}
+
 .icons-right i {
   padding: 0 10px;
 }
@@ -61,8 +65,13 @@ img.logo {
   padding-top: 20px;
   justify-content: flex-start;
 
-  & > i::before {
+  .far,
+  .fa {
     color: $color-main;
+  }
+
+  .fa-phone {
+    padding-left: 10px;
   }
 
   i {
@@ -103,7 +112,6 @@ img.logo {
     position: absolute;
     width: 100%;
     z-index: 1;
-    opacity: 0.8;
     top: 100%;
     left: 0;
     right: 0;

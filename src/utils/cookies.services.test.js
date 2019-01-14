@@ -1,7 +1,7 @@
 import { Cookies } from 'react-cookie';
 import CookieService from './cookies.services';
 
-describe('get', () => {
+xdescribe('get', () => {
   test('should answer on GET', () => {
     const cookies = new Cookies();
     const spy = jest.spyOn(CookieService, 'get');
@@ -12,7 +12,7 @@ describe('get', () => {
   });
 });
 
-describe('set', () => {
+xdescribe('set', () => {
   test('should answer on SET', () => {
     const cookies = new Cookies();
     const spy = jest.spyOn(CookieService, 'set');
@@ -25,7 +25,7 @@ describe('set', () => {
   });
 });
 
-describe('remove', () => {
+xdescribe('remove', () => {
   test('should answer on REMOVE', () => {
     const cookies = new Cookies();
     const spy = jest.spyOn(CookieService, 'remove');

@@ -10,9 +10,10 @@ class ProductContainer extends React.Component {
   state = { products: [] };
 
   componentDidMount() {
-    HttpService.get(appConfig.apiResources.products).then(res =>
-      this.setState({ products: res })
-    );
+    HttpService.get(appConfig.apiResources.products).then(res => {
+      this.setState({ products: res });
+      console.log('res prod', res);
+    });
   }
 
   render() {

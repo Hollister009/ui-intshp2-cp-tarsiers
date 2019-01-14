@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Snackbar from '../Snackbar/Snackbar';
-import mailicon from '../../../assets/mailicon.png';
+import appConfig from '../../../config/appConfig';
 import './Joinus.scss';
 
 class JoinUs extends Component {
@@ -25,9 +25,9 @@ class JoinUs extends Component {
   };
 
   showSnackbarHandler = () => {
-    this.snackbarRef.current.openSnackBar(
-      'You are registered now :) Have a great shopping!'
-    );
+    const { message } = appConfig.joinUsSnackbar;
+
+    this.snackbarRef.current.openSnackBar(message);
   };
 
   canBeSubmitted = () => {
@@ -37,7 +37,8 @@ class JoinUs extends Component {
     return !isDisabled;
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     this.setState({ email: '' });
     const submit = !this.canBeSubmitted();
 
@@ -57,8 +58,8 @@ class JoinUs extends Component {
         </div>
         <form onSubmit={this.handleSubmit} className="col-4">
           <div>
-            <div className="mailfield col-4">
-              <img src={mailicon} alt="mailicon" />
+            <div className="mailfield">
+              <i className="far fa-envelope" />
               <input
                 type="text"
                 placeholder="type your email here"

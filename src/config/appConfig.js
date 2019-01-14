@@ -9,17 +9,22 @@ const appConfig = {
       {
         id: 2,
         href: 'https://www.linkedin.com/company/grid-dynamics',
-        icon: 'fab fa-linkedin'
+        icon: 'fab fa-linkedin-in'
       },
       {
         id: 3,
-        href: 'https://www.facebook.com/griddynamics',
-        icon: 'fab fa-facebook'
+        href: 'https://www.instagram.com/griddynamics_ua/',
+        icon: 'fab fa-instagram'
       },
       {
         id: 4,
+        href: 'https://www.facebook.com/griddynamics',
+        icon: 'fab fa-facebook-f'
+      },
+      {
+        id: 5,
         href: 'https://plus.google.com/115302417170674279390',
-        icon: 'fab fa-google-plus'
+        icon: 'fab fa-google-plus-g'
       }
     ]
   },
@@ -108,6 +113,11 @@ const appConfig = {
       }
     ]
   },
+
+  joinUsSnackbar: {
+    message: 'You are registered now :) Have a great shopping!'
+  },
+
   apiResources: {
     promotions: '/api/promotions',
     products: '/api/products',

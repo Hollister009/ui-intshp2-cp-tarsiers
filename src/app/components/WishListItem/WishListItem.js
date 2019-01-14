@@ -7,7 +7,7 @@ class WishListItem extends Component {
     this.setState(state => ({ activeItem: !state.activeItem }));
 
   render() {
-    const { img, name, price } = this.props;
+    const { src, name, price } = this.props;
     const { activeItem } = this.state;
 
     return (
@@ -16,8 +16,9 @@ class WishListItem extends Component {
         onMouseEnter={this.onHoverItem}
         onMouseLeave={this.onHoverItem}
       >
+        {' '}
         <div className="item-pic">
-          <img src={img} alt="pic" />
+          <img src={src} alt="pic" />
         </div>
         <div className="item-info">
           <b>{name}</b>
