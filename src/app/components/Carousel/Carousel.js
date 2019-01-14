@@ -26,19 +26,6 @@ class Carousel extends Component {
   };
 
   nextSlide = () => {
-    // console.log(
-    //   this.carouselStyle.width,
-    //   this.carouselStyle.translation,
-    //   this.wrapperRef.current.offsetWidth
-    // );
-
-    // console.log(
-    //   (this.carouselStyle.width +
-    //     this.carouselStyle.translation -
-    //     this.wrapperRef.current.offsetWidth) /
-    //     2
-    // );
-
     this.carouselStyle = {
       ...this.carouselStyle,
       translation:
@@ -70,7 +57,9 @@ class Carousel extends Component {
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      translation: translation + translateStep,
+      translation:
+        translation +
+        (-translation / 2 < translateStep ? -translation : translateStep),
       scrollCounter: scrollCounter - 1
     };
 
@@ -84,7 +73,7 @@ class Carousel extends Component {
     };
   };
 
-  componentWillMount = () => {
+  componentDidUpdate = () => {
     const { data } = this.props;
 
     this.carouselStyleSheet = {
