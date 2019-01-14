@@ -37,7 +37,8 @@ class JoinUs extends Component {
     return !isDisabled;
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     this.setState({ email: '' });
     const submit = !this.canBeSubmitted();
 
