@@ -6,9 +6,7 @@ import './Header.scss';
 import logo from '../../../assets/logo.png';
 
 class Header extends React.Component {
-  state = {
-    isHidden: true
-  };
+  state = { isHidden: true };
 
   navToggle = () => {
     this.setState(prevState => ({ isHidden: !prevState.isHidden }));
@@ -37,41 +35,39 @@ class Header extends React.Component {
     });
 
     return visible ? (
-      <div className="container">
-        <div className="header-main">
-          <div className="col-2">
-            <Link to="/">
-              <img src={logo} alt="logo" className="logo" />
-            </Link>
-          </div>
-          <nav className="navbar col-10">
-            <div className={!isHidden ? 'nav-toggle' : 'nav-main'}>
-              <ul className="header-links">{navItems}</ul>
-            </div>
-            <div className="header-nav-right col-3">
-              <ul className="header-links">
-                <li className="navbar-link">
-                  <a href="/">
-                    <i className="fa fa-search" />
-                  </a>
-                </li>
-                <li className="navbar-link">
-                  <a href="/">
-                    <i className="fa fa-user" />
-                  </a>
-                </li>
-                <li className="navbar-link">
-                  <a href="/">
-                    <i className="fas fa-shopping-basket" />
-                  </a>
-                </li>
-                <button type="button" className="menu" onClick={this.navToggle}>
-                  <i className="fas fa-bars" />
-                </button>
-              </ul>
-            </div>
-          </nav>
+      <div className="header-main container">
+        <div className="header-logo col-2">
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
         </div>
+        <nav className="navbar col-10">
+          <div className={!isHidden ? 'nav-toggle' : 'nav-main'}>
+            <ul className="header-links">{navItems}</ul>
+          </div>
+          <div className="header-nav-right col-3">
+            <ul className="header-links">
+              <li className="navbar-link">
+                <a href="/">
+                  <i className="fa fa-search" />
+                </a>
+              </li>
+              <li className="navbar-link">
+                <a href="/">
+                  <i className="fa fa-user" />
+                </a>
+              </li>
+              <li className="navbar-link">
+                <a href="/">
+                  <i className="fas fa-shopping-basket" />
+                </a>
+              </li>
+              <button type="button" className="menu" onClick={this.navToggle}>
+                <i className="fas fa-bars" />
+              </button>
+            </ul>
+          </div>
+        </nav>
       </div>
     ) : null;
   }

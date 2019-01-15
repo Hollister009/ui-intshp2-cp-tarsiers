@@ -43,7 +43,7 @@ button {
 
 .container {
   width: 100%;
-  max-width: $container-width;
+  max-width: $media-large;
   margin: 0 auto;
   @media screen and(max-width: $media-large) {
     width: 95%;

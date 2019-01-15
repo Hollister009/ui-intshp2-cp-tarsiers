@@ -18,16 +18,14 @@ const HeaderTop = () => {
 
   return (
     <div className="line-between">
-      <div className="container">
-        <div className="header-top">
-          <a href="mailto:info@shopy.com">
-            <i className="far fa-envelope" />
-            info@shopy.com
-          </a>
-          <i className="fa fa-phone" />
-          <span> 453 - 5553 - 996</span>
-          <div className="icons-right">{socialLinks}</div>
-        </div>
+      <div className="header-top container">
+        <a href="mailto:info@shopy.com">
+          <i className="far fa-envelope" />
+          info@shopy.com
+        </a>
+        <i className="fa fa-phone" />
+        <span> 453 - 5553 - 996</span>
+        <div className="icons-right">{socialLinks}</div>
       </div>
     </div>
   );
