@@ -3,19 +3,21 @@ import './_carousel.scss';
 import ProductItem from '../ProductItem/ProductItem';
 
 class Carousel extends Component {
-  carouselStyle = {
-    translation: 0,
-    scrollCounter: 0
-  };
-
-  carouselStyleSheet = {
-    transform: null
-  };
-
   constructor(props) {
     super(props);
     this.state = {};
     this.wrapperRef = React.createRef();
+    this.isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
+    this.carouselStyle = {
+      translation: 0,
+      scrollCounter: 0
+    };
+
+    this.carouselStyleSheet = {
+      transform: null,
+      overflow: this.isTouchDevice ? 'auto' : 'hidden'
+    };
   }
 
   updateTranslateStep = value => {
@@ -87,13 +89,42 @@ class Carousel extends Component {
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      width: data.length * 300 - 30
+      width: data.length * 300 - 30,
+      visibleItems: Math.ceil(
+        this.wrapperRef.current.offsetWidth / this.carouselStyle.translateStep
+      )
     };
   };
 
-  render() {
+  renderButtons() {
+    const { translation, scrollCounter, visibleItems } = this.carouselStyle;
     const { data, itemsPerView } = this.props;
-    const { translation, scrollCounter } = this.carouselStyle;
+
+    return this.isTouchDevice || data.length <= itemsPerView ? null : (
+      <>
+        <button
+          type="button"
+          className="carousel--button carousel--button-prev"
+          onClick={this.prevSlide}
+          disabled={translation === 0}
+        >
+          <i className="fas fa-angle-left" />
+        </button>
+
+        <button
+          type="button"
+          className="carousel--button carousel--button-next"
+          onClick={this.nextSlide}
+          disabled={data.length - scrollCounter === visibleItems}
+        >
+          <i className="fas fa-angle-right" />
+        </button>
+      </>
+    );
+  }
+
+  render() {
+    const { data } = this.props;
 
     return (
       <div className="carousel--wrapper" ref={this.wrapperRef}>
@@ -106,22 +137,7 @@ class Carousel extends Component {
             />
           ))}
         </div>
-        <button
-          type="button"
-          className="carousel--button carousel--button-prev"
-          onClick={this.prevSlide}
-          disabled={translation === 0}
-        >
-          <i className="fas fa-angle-left" />
-        </button>
-        <button
-          type="button"
-          className="carousel--button carousel--button-next"
-          onClick={this.nextSlide}
-          disabled={data.length - scrollCounter === itemsPerView}
-        >
-          <i className="fas fa-angle-right" />
-        </button>
+        {this.renderButtons()}
       </div>
     );
   }
