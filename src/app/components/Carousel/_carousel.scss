@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .carousel {
-  overflow-x: hidden;
+  overflow-x: auto;
   display: flex;
   flex-direction: row;
   transition: 0.7s;
@@ -44,12 +44,12 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .carousel {
-    overflow-x: auto;
-    transform: none;
-  }
-  .carousel--button {
-    display: none;
-  }
-}
+// @media only screen and (max-width: 768px) {
+//   .carousel {
+//     overflow-x: auto;
+//     transform: none;
+//   }
+//   .carousel--button {
+//     display: none;
+//   }
+// }
