@@ -11,7 +11,7 @@
   color: $color-dark;
   margin: 0 auto;
   padding-top: 10px;
-  margin-bottom: 120px;
+  margin-bottom: 80px;
 
   div {
     display: flex;
@@ -27,6 +27,11 @@
   }
   .priceblock {
     padding-left: 20px;
+    align-items: baseline;
+  }
+  .priceblock__cart {
+    width: 28px;
+    height: auto;
   }
   .priceblock__price {
     width: 180px;
