@@ -117,11 +117,44 @@ const appConfig = {
   joinUsSnackbar: {
     message: 'You are registered now :) Have a great shopping!'
   },
-
   apiResources: {
     promotions: '/api/promotions',
     products: '/api/products',
     baner: '/api/baner'
+  },
+  promotions: {
+    slides: [
+      {
+        id: 0,
+        img:
+          'https://res.cloudinary.com/so/image/upload/v1547645865/slides/female.png',
+        alt: 'Shopy',
+        link: {
+          href: 'http://www.shopy.com.py/',
+          isOrigin: false
+        }
+      },
+      {
+        id: 1,
+        img:
+          'https://res.cloudinary.com/so/image/upload/v1547645865/slides/girl.jpg',
+        alt: 'H&M',
+        link: {
+          href: 'https://www.hm.com/ua/',
+          isOrigin: false
+        }
+      },
+      {
+        id: 2,
+        img:
+          'https://res.cloudinary.com/so/image/upload/v1547645865/slides/couple.jpg',
+        alt: 'Mafia',
+        link: {
+          href: 'http://www.themafiastore.com/',
+          isOrigin: false
+        }
+      }
+    ]
   }
 };
 
