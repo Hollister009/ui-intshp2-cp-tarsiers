@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Content from './components/Content/Content';
 import HttpService from '../utils/http.service';
+import { getProducts } from './actions';
+
 import '../styles/index.scss';
 
 class App extends Component {
   componentDidMount() {
-    HttpService.get('/api/products').then(res =>
-      this.setState({ products: res }, () => {
-        console.log('state', this.state);
-      })
-    );
+    const { dispatch } = this.props;
+
+    HttpService.get('/api/products').then(res => dispatch(getProducts(res)));
   }
 
   render() {
