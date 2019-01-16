@@ -15,6 +15,17 @@
 
   &--active {
     display: block;
+    animation: fadeIn 1s linear;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   }
 }
 
@@ -28,6 +39,7 @@
   padding: 10px;
   background: transparent;
   border: none;
+  z-index: 1;
 
   &:focus {
     outline: 0;
@@ -43,6 +55,10 @@
 
   &--right {
     right: 32px;
+  }
+
+  .fa-2x {
+    font-size: 3em;
   }
 }
 
