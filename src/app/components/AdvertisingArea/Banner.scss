@@ -61,9 +61,16 @@
     .priceblock {
       padding-left: 0;
       border: none;
+      align-self: center;
+      position: relative;
+      right: 23px;
     }
     .priceblock__cart {
       display: none;
+    }
+    .priceblock__price {
+      position: relative;
+      right: 23px;
     }
   }
 }

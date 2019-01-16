@@ -19,12 +19,12 @@ const HeaderTop = () => {
   return (
     <div className="line-between">
       <div className="header-top container">
-        <a href="mailto:info@shopy.com">
+        <a href="mailto: info@shopy.com">
           <i className="far fa-envelope" />
-          info@shopy.com
+          {appConfig.header.mail}
         </a>
         <i className="fa fa-phone" />
-        <span> 453 - 5553 - 996</span>
+        <span>{appConfig.header.phone}</span>
         <div className="icons-right">{socialLinks}</div>
       </div>
     </div>

@@ -26,7 +26,9 @@ const appConfig = {
         href: 'https://plus.google.com/115302417170674279390',
         icon: 'fab fa-google-plus-g'
       }
-    ]
+    ],
+    mail: 'info@shopy.com',
+    phone: '453 - 5553 - 996'
   },
 
   footer: {
