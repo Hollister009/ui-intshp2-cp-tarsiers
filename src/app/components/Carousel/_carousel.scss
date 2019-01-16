@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .carousel {
-  overflow-x: hidden;
+  overflow-x: auto;
   display: flex;
   flex-direction: row;
   transition: 0.7s;
@@ -41,15 +41,5 @@
       font-size: 50px;
       color: $color-main;
     }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .carousel {
-    overflow-x: auto;
-    transform: none;
-  }
-  .carousel--button {
-    display: none;
   }
 }

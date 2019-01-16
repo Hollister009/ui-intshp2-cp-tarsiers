@@ -4,19 +4,21 @@ import '../WishListContainer/WishListContainer.scss';
 import ProductItem from '../ProductItem/ProductItem';
 
 class Carousel extends Component {
-  carouselStyle = {
-    translation: 0,
-    scrollCounter: 0
-  };
-
-  carouselStyleSheet = {
-    transform: null
-  };
-
   constructor(props) {
     super(props);
     this.state = {};
     this.wrapperRef = React.createRef();
+    this.isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
+    this.carouselStyle = {
+      translation: 0,
+      scrollCounter: 0
+    };
+
+    this.carouselStyleSheet = {
+      transform: null,
+      overflow: this.isTouchDevice ? 'auto' : 'hidden'
+    };
   }
 
   updateTranslateStep = value => {
@@ -83,12 +85,15 @@ class Carousel extends Component {
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
-      width: `${data.length * 300 - 30}px`
+      width: `${data.length * this.carouselStyle.translateStep - 30}px`
     };
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      width: data.length * 300 - 30
+      width: data.length * this.carouselStyle.translateStep - 30,
+      visibleItems: Math.ceil(
+        this.wrapperRef.current.offsetWidth / this.carouselStyle.translateStep
+      )
     };
   };
 
@@ -112,6 +117,13 @@ class Carousel extends Component {
               />
             ))}
         </div>
+
+  renderButtons() {
+    const { translation, scrollCounter, visibleItems } = this.carouselStyle;
+    const { data, itemsPerView } = this.props;
+
+    return this.isTouchDevice || data.length <= itemsPerView ? null : (
+      <>
         <button
           type="button"
           className="carousel--button carousel--button-prev"
@@ -120,14 +132,34 @@ class Carousel extends Component {
         >
           <i className="fas fa-angle-left" />
         </button>
+
         <button
           type="button"
           className="carousel--button carousel--button-next"
           onClick={this.nextSlide}
-          disabled={data.length - scrollCounter === itemsPerView}
+          disabled={data.length - scrollCounter === visibleItems}
         >
           <i className="fas fa-angle-right" />
         </button>
+      </>
+    );
+  }
+
+  render() {
+    const { data } = this.props;
+
+    return (
+      <div className="carousel--wrapper" ref={this.wrapperRef}>
+        <div className="carousel" style={this.carouselStyleSheet}>
+          {data.map(el => (
+            <ProductItem
+              key={el.id}
+              updateTranslateStep={this.updateTranslateStep}
+              data={el}
+            />
+          ))}
+        </div>
+        {this.renderButtons()}
       </div>
     );
   }
