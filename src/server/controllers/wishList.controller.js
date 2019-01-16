@@ -15,15 +15,17 @@ function getWishList(req, res) {
         res.send(err);
       }
 
-      const { wishList } = response;
+      res.json(response);
 
-      db.products.find({ _id: { $in: wishList } }, (error, products) => {
-        if (error) {
-          res.send(err);
-        }
+      // const { wishList } = response;
 
-        res.json(products);
-      });
+      // db.products.find({ _id: { $in: wishList } }, (error, products) => {
+      //   if (error) {
+      //     res.send(err);
+      //   }
+
+      //   res.json(products);
+      // });
     }
   );
 }
@@ -60,8 +62,4 @@ function removeFromWishList(req, res) {
   );
 }
 
-module.exports = {
-  getWishList,
-  addToWishList,
-  removeFromWishList
-};
+module.exports = { getWishList, addToWishList, removeFromWishList };

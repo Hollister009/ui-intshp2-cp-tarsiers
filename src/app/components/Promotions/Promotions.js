@@ -10,8 +10,8 @@ export default class Promotions extends Component {
   }
 
   componentDidMount = () => {
-    HttpService.get(appConfig.apiResources.promotions).then(myJson => {
-      this.setState({ slides: myJson.slides });
+    HttpService.get(appConfig.apiResources.promotions).then(res => {
+      this.setState({ slides: res.data.slides });
     });
   };
 

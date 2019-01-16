@@ -8,14 +8,12 @@ import './Banner.scss';
 export default class AdvertisingArea extends React.Component {
   constructor() {
     super();
-    this.state = {
-      htmlSnipet: ''
-    };
+    this.state = { htmlSnipet: '' };
   }
 
   componentDidMount() {
     HttpService.get(appConfig.apiResources.baner).then(response => {
-      const clean = mySanitize(response.htmlSnipet);
+      const clean = mySanitize(response.data.htmlSnipet);
 
       this.setState({ htmlSnipet: clean });
     });
