@@ -12,7 +12,7 @@ import styles from '../ProductContainer/ProductContainer.module.scss';
 class WishListContainer extends React.Component {
   state = { products: [] };
 
-  componentWillMount() {
+  componentDidMount() {
     HttpService.get(appConfig.apiResources.products).then(res =>
       this.setState({ products: [...res] })
     );

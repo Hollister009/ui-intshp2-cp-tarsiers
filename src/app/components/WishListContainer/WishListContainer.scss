@@ -37,8 +37,8 @@
     }
 
     .item-pic img {
+      padding: 36px;
       width: 150px;
-      padding: 5px;
       max-width: initial;
     }
 
@@ -77,14 +77,17 @@
   }
 }
 
-// @media screen and (max-width: $media-medium) {
-//   .wishlist-block {
-//     flex-flow: column wrap;
-//     padding: 0;
+@media screen and (max-width: $media-mobile) {
+  .wishlist-block {
+    padding: 0;
 
-//     .item {
-//       margin: 10px auto;
-//       width: 300px;
-//     }
-//   }
-// }
+    .item {
+      flex-flow: column;
+      min-width: 200px;
+
+      img {
+        margin: 0 auto;
+      }
+    }
+  }
+}

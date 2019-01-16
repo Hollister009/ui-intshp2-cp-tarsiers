@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './_carousel.scss';
+import './Carousel.scss';
 import '../WishListContainer/WishListContainer.scss';
 import ProductItem from '../ProductItem/ProductItem';
 
@@ -12,7 +12,8 @@ class Carousel extends Component {
 
     this.carouselStyle = {
       translation: 0,
-      scrollCounter: 0
+      scrollCounter: 0,
+      doubleSideMargin: 30
     };
 
     this.carouselStyleSheet = {
@@ -85,12 +86,15 @@ class Carousel extends Component {
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
-      width: `${data.length * this.carouselStyle.translateStep - 30}px`
+      width: `${data.length * this.carouselStyle.translateStep -
+        this.carouselStyle.doubleSideMargin}px`
     };
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      width: data.length * this.carouselStyle.translateStep - 30,
+      width:
+        data.length * this.carouselStyle.translateStep -
+        this.carouselStyle.doubleSideMargin,
       visibleItems: Math.ceil(
         this.wrapperRef.current.offsetWidth / this.carouselStyle.translateStep
       )
