@@ -102,14 +102,15 @@ class Carousel extends Component {
           className={extended ? 'carousel' : 'wishlist-block'}
           style={this.carouselStyleSheet}
         >
-          {data.map(el => (
-            <ProductItem
-              extended={extended}
-              key={el._id}
-              updateTranslateStep={this.updateTranslateStep}
-              data={el}
-            />
-          ))}
+          {data &&
+            data.map(el => (
+              <ProductItem
+                extended={extended}
+                key={el._id}
+                updateTranslateStep={this.updateTranslateStep}
+                data={el}
+              />
+            ))}
         </div>
         <button
           type="button"

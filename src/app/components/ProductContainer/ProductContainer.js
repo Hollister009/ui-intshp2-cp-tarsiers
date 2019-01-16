@@ -11,7 +11,7 @@ class ProductContainer extends React.Component {
 
   componentWillMount() {
     HttpService.get(appConfig.apiResources.products).then(res =>
-      this.setState({ products: [...res] })
+      this.setState({ products: res })
     );
   }
 

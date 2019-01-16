@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { DisplayFront, DisplayDetails } from './ProductDisplay';
+import HttpService from '../../../utils/http.service';
+import appConfig from '../../../config/appConfig';
 import styles from './ProductItem.module.scss';
 import '../WishListContainer/WishListContainer.scss';
 
@@ -19,7 +21,10 @@ class ProductItem extends Component {
 
   clickHandle = (e, id) => {
     e.preventDefault();
-    console.log(id);
+
+    HttpService.post(appConfig.apiResources.wishList, { productId: id }).then(
+      res => console.log('res', res)
+    );
   };
 
   componentDidMount = () => {

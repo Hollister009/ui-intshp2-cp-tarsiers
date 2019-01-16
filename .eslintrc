@@ -48,6 +48,7 @@
         "prev": ["const", "let"],
         "next": ["const", "let"]
       }
-    ]
+    ],
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   }
 }
