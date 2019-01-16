@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './_carousel.scss';
+import '../WishListContainer/WishListContainer.scss';
 import ProductItem from '../ProductItem/ProductItem';
 
 class Carousel extends Component {
@@ -95,6 +96,27 @@ class Carousel extends Component {
       )
     };
   };
+
+  render() {
+    const { data, itemsPerView, extended } = this.props;
+    const { translation, scrollCounter } = this.carouselStyle;
+
+    return (
+      <div className="carousel--wrapper" ref={this.wrapperRef}>
+        <div
+          className={extended ? 'carousel' : 'wishlist-block'}
+          style={this.carouselStyleSheet}
+        >
+          {data &&
+            data.map(el => (
+              <ProductItem
+                extended={extended}
+                key={el._id}
+                updateTranslateStep={this.updateTranslateStep}
+                data={el}
+              />
+            ))}
+        </div>
 
   renderButtons() {
     const { translation, scrollCounter, visibleItems } = this.carouselStyle;
