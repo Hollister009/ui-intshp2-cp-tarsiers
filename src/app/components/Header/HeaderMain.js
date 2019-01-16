@@ -1,11 +1,10 @@
-import { connect } from 'react-redux';
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
 import logo from '../../../assets/logo.png';
 
-class Header extends React.Component {
+class HeaderMain extends Component {
   state = { isHidden: true };
 
   navToggle = () => {
@@ -14,8 +13,6 @@ class Header extends React.Component {
 
   render() {
     const { isHidden } = this.state;
-    const { headerFooterVisibility } = this.props;
-    const visible = headerFooterVisibility.value;
     const navLinks = [
       { id: 0, val: 'Home', link: '/' },
       { id: 1, val: 'Products', link: '/products' },
@@ -34,7 +31,7 @@ class Header extends React.Component {
       );
     });
 
-    return visible ? (
+    return (
       <div className="header-main container">
         <div className="header-logo col-2">
           <Link to="/">
@@ -69,10 +66,8 @@ class Header extends React.Component {
           </div>
         </nav>
       </div>
-    ) : null;
+    );
   }
 }
 
-const mapStateToProps = state => ({ ...state });
-
-export default connect(mapStateToProps)(Header);
+export default HeaderMain;

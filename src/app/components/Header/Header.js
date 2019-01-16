@@ -5,12 +5,19 @@ import './Header.scss';
 import HeaderTop from './HeaderTop';
 import HeaderMain from './HeaderMain';
 
-const Header = () => (
-  <header className="header">
-    <HeaderTop />
-    <HeaderMain />
-  </header>
-);
+const Header = props => {
+  const { headerFooterVisibility } = props;
+  const visible = headerFooterVisibility.value;
+
+  return (
+    visible && (
+      <header className="header">
+        <HeaderTop />
+        <HeaderMain />
+      </header>
+    )
+  );
+};
 
 const mapStateToProps = state => ({ ...state });
 
