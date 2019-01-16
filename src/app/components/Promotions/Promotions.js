@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Slider from '../Slideshow/sliderComponents/Slider';
-import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 
 export default class Promotions extends Component {
@@ -10,9 +9,7 @@ export default class Promotions extends Component {
   }
 
   componentDidMount = () => {
-    HttpService.get(appConfig.apiResources.promotions).then(myJson => {
-      this.setState({ slides: myJson.slides });
-    });
+    this.setState({ slides: [...appConfig.promotions.slides] });
   };
 
   get isLoaded() {
