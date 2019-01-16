@@ -100,7 +100,7 @@ class Carousel extends Component {
         <div className="carousel" style={this.carouselStyleSheet}>
           {data.map(el => (
             <ProductItem
-              key={el.id}
+              key={el._id}
               updateTranslateStep={this.updateTranslateStep}
               data={el}
             />
