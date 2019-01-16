@@ -14,23 +14,26 @@
     @include d-flex();
 
     .far,
-    .fa {
+    .fab {
       color: $color-main;
+      padding-right: 10px;
     }
 
-    .fa-phone {
+    .fa-skype {
       padding-left: 10px;
     }
 
-    i {
-      padding-right: 10px;
-      & > span {
-        font-family: $main-font-regular;
-      }
-    }
     .icons-right {
       margin-left: auto;
-      @include d-flex();
+
+      ul {
+        @include d-flex();
+      }
+
+      i {
+        padding: 0 10px;
+        color: inherit;
+      }
     }
 
     span {
@@ -74,19 +77,12 @@
   border-bottom: 1px solid $color-light-2;
 }
 
-.icons-right i {
-  padding: 0 10px;
-}
-
 .navbar {
   @include d-flex();
 }
 
 .menu {
   display: none;
-}
-
-.header-top {
 }
 
 @media screen and (max-width: $media-tablet) {

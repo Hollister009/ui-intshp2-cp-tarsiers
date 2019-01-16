@@ -1,5 +1,6 @@
 const appConfig = {
   header: {
+    contacts: { email: 'info@shopy.com', phone: '453 - 5553 - 996' },
     links: [
       {
         id: 1,
@@ -26,55 +27,82 @@ const appConfig = {
         href: 'https://plus.google.com/115302417170674279390',
         icon: 'fab fa-google-plus-g'
       }
+    ],
+    pages: [
+      { id: 6, value: 'Home', href: '/' },
+      { id: 7, value: 'Products', href: '/products' },
+      { id: 8, value: 'Hot Deals', href: '/hot-deals' },
+      { id: 9, value: 'About', href: '/about' },
+      { id: 10, value: 'Contact', href: '/contacts' }
+    ],
+    options: [
+      {
+        id: 11,
+        icon: 'fa fa-search',
+        href: '/',
+        desc: 'search'
+      },
+      {
+        id: 12,
+        icon: 'fa fa-user',
+        href: '/',
+        desc: 'user'
+      },
+      {
+        id: 13,
+        icon: 'fas fa-shopping-basket',
+        href: '/',
+        desc: 'cart'
+      }
     ]
   },
 
   footer: {
     links: [
       {
-        id: 10,
+        id: 14,
         value: 'about us',
         href: 'https://www.google.com',
         isOrigin: false
       },
       {
-        id: 23,
+        id: 15,
         value: 'our products',
         href: '/products',
         isOrigin: true
       },
       {
-        id: 36,
+        id: 16,
         value: 'join us',
         href: '/',
         isOrigin: true
       },
       {
-        id: 11,
+        id: 17,
         value: 'contact us',
         href: '/',
         isOrigin: true
       },
       {
-        id: 24,
+        id: 18,
         value: 'terms and conditions',
         href: '/',
         isOrigin: true
       },
       {
-        id: 37,
+        id: 19,
         value: 'live support',
         href: '/',
         isOrigin: true
       },
       {
-        id: 12,
+        id: 20,
         value: 'support',
         href: '/',
         isOrigin: true
       },
       {
-        id: 25,
+        id: 21,
         value: 'our privacy',
         href: '/',
         isOrigin: true
@@ -82,31 +110,31 @@ const appConfig = {
     ],
     payments: [
       {
-        id: 8,
+        id: 22,
         value: 'amex',
         href: 'https://www.americanexpress.com/',
         isOrigin: false
       },
       {
-        id: 9,
+        id: 23,
         value: 'discover',
         href: 'https://www.discover.com/',
         isOrigin: false
       },
       {
-        id: 10,
+        id: 24,
         value: 'visa',
         href: 'https://usa.visa.com/',
         isOrigin: false
       },
       {
-        id: 11,
+        id: 25,
         value: 'mastercard',
         href: 'https://www.mastercard.us',
         isOrigin: false
       },
       {
-        id: 12,
+        id: 26,
         value: 'credit',
         href: 'https://www.paypal.com',
         isOrigin: false

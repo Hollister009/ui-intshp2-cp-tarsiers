@@ -14,9 +14,17 @@ const Footer = props => {
     list.map(link => {
       const { id, value, href, isOrigin } = link;
       const linkType = isOrigin ? (
-        <RouterLink href={href} value={value} />
+        // <RouterLink href={href} value={value} />
+        <RouterLink href={href}>
+          &bull;&nbsp;
+          {value}
+        </RouterLink>
       ) : (
-        <ExternalLink href={href} value={value} />
+        // <ExternalLink href={href} value={value} />
+        <ExternalLink href={href}>
+          &bull;&nbsp;
+          {value}
+        </ExternalLink>
       );
 
       return <li key={id}>{linkType}</li>;
