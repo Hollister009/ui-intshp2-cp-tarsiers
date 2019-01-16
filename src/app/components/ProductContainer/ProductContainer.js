@@ -18,7 +18,7 @@ class ProductContainer extends React.Component {
   render() {
     const { products } = this.state;
     const titleArr = this.title.split(' ');
-    console.log('response' + this.state.products);
+
     return (
       <section className={`${styles.products} container`}>
         <div className={styles.products_heading}>

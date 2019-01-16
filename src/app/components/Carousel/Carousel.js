@@ -136,7 +136,7 @@ class Carousel extends Component {
           style={this.carouselStyleSheet}
         >
           {data &&
-            data.map((el, index) => (
+            data.map(el => (
               <ProductItem
                 extended={extended}
                 key={el._id}
