@@ -101,9 +101,7 @@ class Carousel extends Component {
     const { translation, scrollCounter, visibleItems } = this.carouselStyle;
     const { data } = this.props;
 
-    // || data.length <= itemsPerView
-
-    return this.isTouchDevice ? null : (
+    return this.isTouchDevice || visibleItems >= data.length ? null : (
       <>
         <button
           type="button"
