@@ -5,33 +5,32 @@
   margin-top: 20px;
   color: $color-dark;
   text-align: center;
+}
 
-  h2 {
-    padding-bottom: 20px;
-    font-size: 40px;
-    color: $color-main;
-    font-family: $main-font-bold;
-    text-transform: uppercase;
-  
-    span {
-      color: $color-dark;
-    }
+.wishlist-title {
+  padding-bottom: 20px;
+  font-size: 40px;
+  color: $color-main;
+  font-family: $main-font-bold;
+  text-transform: uppercase;
+  span {
+    color: $color-dark;
   }
 }
 
 .wishlist-block {
-  width: 100%;
-  padding: 80px;
   margin: 0 auto;
+  width: 1470px;
   @include d-flex(space-around);
-
+  transition: 0.3s;
   .item {
+    margin: 0 10px;
     display: flex;
-    width: 25%;
+    width: 270px;
     transition: 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: $color-white;
-    
+
     &:hover {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
