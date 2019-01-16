@@ -1,13 +1,27 @@
 const express = require('express');
-const controller = require('./controller');
 
 const router = express.Router();
 
-router.get('/api/products', controller.getProducts);
+const productsController = require('./controllers/products.controller');
+const wishListController = require('./controllers/wishList.controller');
+const cartListController = require('./controllers/cart.controller');
+const controller = require('./controller');
+
+router.get('/api/products', productsController.getProducts);
 router.get('/api/baner', controller.getBanner);
 router.get('/api/promotions', controller.getPromotions);
-router.post('/api/wishList', controller.addToWishList);
-router.put('/api/wishList', controller.removeFromWishList);
+
+router.get('/api/wish-list', wishListController.getWishList);
+router.post('/api/add-to-wish-list', wishListController.addToWishList);
+router.post(
+  '/api/remove-from-wish-list',
+  wishListController.removeFromWishList
+);
+
+router.get('/api/cart', cartListController.getCartList);
+router.post('/api/add-to-cart', cartListController.addToCartList);
+router.post('/api/remove-from-cart', cartListController.removeFromCartList);
+
 router.get('*', controller.notFound);
 
 module.exports = router;
