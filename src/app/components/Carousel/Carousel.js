@@ -97,32 +97,13 @@ class Carousel extends Component {
     };
   };
 
-  render() {
-    const { data, itemsPerView, extended } = this.props;
-    const { translation, scrollCounter } = this.carouselStyle;
-
-    return (
-      <div className="carousel--wrapper" ref={this.wrapperRef}>
-        <div
-          className={extended ? 'carousel' : 'wishlist-block'}
-          style={this.carouselStyleSheet}
-        >
-          {data &&
-            data.map(el => (
-              <ProductItem
-                extended={extended}
-                key={el._id}
-                updateTranslateStep={this.updateTranslateStep}
-                data={el}
-              />
-            ))}
-        </div>
-
   renderButtons() {
     const { translation, scrollCounter, visibleItems } = this.carouselStyle;
-    const { data, itemsPerView } = this.props;
+    const { data } = this.props;
 
-    return this.isTouchDevice || data.length <= itemsPerView ? null : (
+    // || data.length <= itemsPerView
+
+    return this.isTouchDevice ? null : (
       <>
         <button
           type="button"
@@ -146,18 +127,23 @@ class Carousel extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, extended } = this.props;
 
     return (
       <div className="carousel--wrapper" ref={this.wrapperRef}>
-        <div className="carousel" style={this.carouselStyleSheet}>
-          {data.map(el => (
-            <ProductItem
-              key={el.id}
-              updateTranslateStep={this.updateTranslateStep}
-              data={el}
-            />
-          ))}
+        <div
+          className={extended ? 'carousel' : 'wishlist-block'}
+          style={this.carouselStyleSheet}
+        >
+          {data &&
+            data.map((el, index) => (
+              <ProductItem
+                extended={extended}
+                key={el._id}
+                updateTranslateStep={this.updateTranslateStep}
+                data={el}
+              />
+            ))}
         </div>
         {this.renderButtons()}
       </div>
