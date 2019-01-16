@@ -2,7 +2,8 @@
 @import '../../../styles/variables';
 
 .slider-container {
-  @include d-flex(center, column);
+  max-width: 1540px;
+  margin: 0 auto;
 }
 
 .slider {
