@@ -84,12 +84,12 @@ class Carousel extends Component {
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
-      width: `${data.length * 300 - 30}px`
+      width: `${data.length * this.wrapperRef.current.offsetWidth - 30}px`
     };
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      width: data.length * 300 - 30,
+      width: data.length * this.wrapperRef.current.offsetWidth - 30,
       visibleItems: Math.ceil(
         this.wrapperRef.current.offsetWidth / this.carouselStyle.translateStep
       )
