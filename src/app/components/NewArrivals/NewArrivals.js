@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import Carousel from '../Carousel/Carousel';
-import styles from './ProductContainer.module.scss';
+import styles from './NewArrivals.module.scss';
 
-class ProductContainer extends Component {
+class NewArrivals extends Component {
   title = 'New Arrivals';
 
   render() {
@@ -26,7 +25,7 @@ class ProductContainer extends Component {
             </p>
           </div>
           <div className={styles.products_list}>
-            <Carousel itemsPerView={4} data={products.products} />
+            <Carousel itemsPerView={4} data={products} />
           </div>
         </section>
       )
@@ -34,6 +33,4 @@ class ProductContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({ ...state });
-
-export default connect(mapStateToProps)(ProductContainer);
+export default NewArrivals;

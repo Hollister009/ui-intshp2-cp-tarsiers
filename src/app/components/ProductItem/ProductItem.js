@@ -3,7 +3,7 @@ import { DisplayFront, DisplayDetails } from './ProductDisplay';
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 import styles from './ProductItem.module.scss';
-import '../WishListContainer/WishListContainer.scss';
+import '../WishList/WishListContainer.scss';
 
 class ProductItem extends Component {
   constructor(props) {

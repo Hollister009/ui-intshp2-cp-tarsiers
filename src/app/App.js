@@ -14,9 +14,9 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    HttpService.get('/api/products').then(res =>
-      dispatch(getProducts(res.data))
-    );
+    HttpService.get('/api/products')
+      .then(res => dispatch(getProducts(res.data)))
+      .catch(error => console.log(error));
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './_carousel.scss';
-import '../WishListContainer/WishListContainer.scss';
+import '../WishList/WishListContainer.scss';
 import ProductItem from '../ProductItem/ProductItem';
 
 class Carousel extends Component {
@@ -10,10 +10,7 @@ class Carousel extends Component {
     this.wrapperRef = React.createRef();
     this.isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
-    this.carouselStyle = {
-      translation: 0,
-      scrollCounter: 0
-    };
+    this.carouselStyle = { translation: 0, scrollCounter: 0 };
 
     this.carouselStyleSheet = {
       transform: null,
@@ -22,10 +19,7 @@ class Carousel extends Component {
   }
 
   updateTranslateStep = value => {
-    this.carouselStyle = {
-      ...this.carouselStyle,
-      translateStep: value
-    };
+    this.carouselStyle = { ...this.carouselStyle, translateStep: value };
   };
 
   nextSlide = () => {
@@ -49,9 +43,7 @@ class Carousel extends Component {
       scrollCounter: scrollCounter + 1
     };
 
-    this.setState(state => ({
-      ...state
-    }));
+    this.setState(state => ({ ...state }));
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
@@ -70,9 +62,7 @@ class Carousel extends Component {
       scrollCounter: scrollCounter - 1
     };
 
-    this.setState(state => ({
-      ...state
-    }));
+    this.setState(state => ({ ...state }));
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,

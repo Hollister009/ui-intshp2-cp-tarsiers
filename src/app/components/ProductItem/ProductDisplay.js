@@ -20,8 +20,8 @@ const DisplayDetails = props => {
     title,
     sizes,
     colors,
-    addToWishList,
-    removeFromWishList
+    addToWishList
+    // removeFromWishList
   } = props;
   const colorPins = colors.map(color => (
     <div key={color} style={{ backgroundColor: `${color}` }} />
