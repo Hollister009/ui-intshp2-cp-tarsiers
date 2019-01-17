@@ -14,7 +14,15 @@ const DisplayFront = props => {
 };
 
 const DisplayDetails = props => {
-  const { _id, src, title, sizes, colors, clickHandler } = props;
+  const {
+    _id,
+    src,
+    title,
+    sizes,
+    colors,
+    addToWishList,
+    removeFromWishList
+  } = props;
   const colorPins = colors.map(color => (
     <div key={color} style={{ backgroundColor: `${color}` }} />
   ));
@@ -36,7 +44,7 @@ const DisplayDetails = props => {
         </button>
         <button
           type="button"
-          onClick={e => clickHandler(e, _id)}
+          onClick={e => addToWishList(e, _id)}
           title="Add to wish-list"
         >
           <i className="fas fa-heart" />

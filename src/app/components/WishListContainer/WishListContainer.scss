@@ -5,33 +5,33 @@
   margin-top: 20px;
   color: $color-dark;
   text-align: center;
+}
 
-  h2 {
-    padding-bottom: 20px;
-    font-size: 40px;
-    color: $color-main;
-    font-family: $main-font-bold;
-    text-transform: uppercase;
-  
-    span {
-      color: $color-dark;
-    }
+.wishlist-title {
+  padding-bottom: 20px;
+  font-size: 40px;
+  color: $color-main;
+  font-family: $main-font-bold;
+  text-transform: uppercase;
+  span {
+    color: $color-dark;
   }
 }
 
 .wishlist-block {
-  width: 100%;
-  padding: 80px;
-  margin: 0 auto;
   @include d-flex(space-around);
-
+  justify-content: unset;
+  transition: 0.7s;
   .item {
+    margin: 0 15px;
     display: flex;
-    width: 25%;
-    transition: 0.3s;
+    min-width: 370px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: $color-white;
-    
+
+    &:first-child {
+      margin: 0 15px 0 0;
+    }
     &:hover {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
@@ -77,14 +77,13 @@
   }
 }
 
-@media screen and (max-width: $media-medium) {
-  .wishlist-block {
-    flex-flow: column wrap;
-    padding: 0;
-
-    .item {
-      margin: 10px auto;
-      width: 300px;
-    }
-  }
-}
+// @media screen and (max-width: $media-medium) {
+//   .wishlist-block {
+//     overflow-x: scroll;
+//     margin: auto
+// }
+//     .item {
+//       margin: 10px auto;
+//      overflow-x: scroll;
+//   }
+// }
