@@ -99,38 +99,40 @@ export default class Slider extends Component {
     const stopCheck = isStopped ? null : this.activate;
 
     return (
-      <div
-        className="slider"
-        onMouseEnter={this.deactivate}
-        onMouseLeave={stopCheck}
-      >
-        <SliderLeftArrow onClick={() => this.handleClickLeft()} />
+      <div className="slider-container">
+        <div
+          className="slider"
+          onMouseEnter={this.deactivate}
+          onMouseLeave={stopCheck}
+        >
+          <SliderLeftArrow onClick={() => this.handleClickLeft()} />
 
-        <ul className="slider__slides">
-          {slides.map((slide, id) => (
-            <Slide
-              key={slide.id}
-              index={id}
-              activeIndex={activeIndex}
-              slide={slide}
-              isLink={isLink}
-            />
-          ))}
-        </ul>
+          <ul className="slider__slides">
+            {slides.map((slide, id) => (
+              <Slide
+                key={slide.id}
+                index={id}
+                activeIndex={activeIndex}
+                slide={slide}
+                isLink={isLink}
+              />
+            ))}
+          </ul>
 
-        <SliderRightArrow onClick={() => this.handleClickRight()} />
+          <SliderRightArrow onClick={() => this.handleClickRight()} />
 
-        <ul className="slider__indicators">
-          {slides.map((slide, id) => (
-            <SliderIndicator
-              key={slide.id}
-              index={id}
-              activeIndex={activeIndex}
-              isActive={activeIndex === id}
-              onClick={() => this.handleClickIndicator(id)}
-            />
-          ))}
-        </ul>
+          <ul className="slider__indicators">
+            {slides.map((slide, id) => (
+              <SliderIndicator
+                key={slide.id}
+                index={id}
+                activeIndex={activeIndex}
+                isActive={activeIndex === id}
+                onClick={() => this.handleClickIndicator(id)}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }
