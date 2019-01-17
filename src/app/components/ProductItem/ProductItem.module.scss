@@ -79,3 +79,16 @@
     }
   }
 }
+
+@media screen and (max-width: $media-mobile) {
+  .product_card {
+    height: 260px;
+    min-width: 200px;
+    img {
+      padding: 0 50px;
+    }
+    h4 {
+      margin: 0;
+    }
+  }
+}
