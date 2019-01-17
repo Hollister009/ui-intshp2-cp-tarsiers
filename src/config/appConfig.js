@@ -148,7 +148,8 @@ const appConfig = {
   apiResources: {
     promotions: '/api/promotions',
     products: '/api/products',
-    baner: '/api/baner'
+    baner: '/api/baner',
+    wishList: '/api/wishList'
   },
   promotions: {
     slides: [

@@ -1,10 +1,5 @@
-const products = require('./dummy-data/products.json');
 const banner = require('./dummy-data/baner.json');
 const promotions = require('./dummy-data/promotions.json');
-
-function getProducts(req, res) {
-  res.json(products);
-}
 
 function getBanner(req, res) {
   res.json(banner);
@@ -19,7 +14,6 @@ function notFound(req, res) {
 }
 
 module.exports = {
-  getProducts,
   getBanner,
   getPromotions,
   notFound

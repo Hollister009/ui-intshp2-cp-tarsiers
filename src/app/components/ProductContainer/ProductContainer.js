@@ -9,9 +9,9 @@ class ProductContainer extends React.Component {
 
   state = { products: [] };
 
-  componentWillMount() {
+  componentDidMount() {
     HttpService.get(appConfig.apiResources.products).then(res =>
-      this.setState({ products: [...res.products] })
+      this.setState({ products: res })
     );
   }
 
@@ -33,7 +33,7 @@ class ProductContainer extends React.Component {
           </p>
         </div>
         <div className={styles.products_list}>
-          <Carousel itemsPerView={4} data={products} />
+          <Carousel itemsPerView={4} extended data={products} />
         </div>
       </section>
     );

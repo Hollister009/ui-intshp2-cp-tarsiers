@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import './_carousel.scss';
+import './Carousel.scss';
+import '../WishListContainer/WishListContainer.scss';
 import ProductItem from '../ProductItem/ProductItem';
 
 class Carousel extends Component {
-  carouselStyle = {
-    translation: 0,
-    scrollCounter: 0
-  };
-
-  carouselStyleSheet = {
-    transform: null
-  };
-
   constructor(props) {
     super(props);
     this.state = {};
     this.wrapperRef = React.createRef();
+    this.isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
+    this.carouselStyle = {
+      translation: 0,
+      scrollCounter: 0,
+      doubleSideMargin: 30
+    };
+
+    this.carouselStyleSheet = {
+      transform: null,
+      overflow: this.isTouchDevice ? 'auto' : 'hidden'
+    };
   }
 
   updateTranslateStep = value => {
@@ -82,30 +86,27 @@ class Carousel extends Component {
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
-      width: `${data.length * 300 - 30}px`
+      width: `${data.length * this.carouselStyle.translateStep -
+        this.carouselStyle.doubleSideMargin}px`
     };
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      width: data.length * 300 - 30
+      width:
+        data.length * this.carouselStyle.translateStep -
+        this.carouselStyle.doubleSideMargin,
+      visibleItems: Math.ceil(
+        this.wrapperRef.current.offsetWidth / this.carouselStyle.translateStep
+      )
     };
   };
 
-  render() {
-    const { data, itemsPerView } = this.props;
-    const { translation, scrollCounter } = this.carouselStyle;
+  renderButtons() {
+    const { translation, scrollCounter, visibleItems } = this.carouselStyle;
+    const { data } = this.props;
 
-    return (
-      <div className="carousel--wrapper" ref={this.wrapperRef}>
-        <div className="carousel" style={this.carouselStyleSheet}>
-          {data.map(el => (
-            <ProductItem
-              key={el.id}
-              updateTranslateStep={this.updateTranslateStep}
-              data={el}
-            />
-          ))}
-        </div>
+    return this.isTouchDevice || visibleItems >= data.length ? null : (
+      <>
         <button
           type="button"
           className="carousel--button carousel--button-prev"
@@ -114,14 +115,39 @@ class Carousel extends Component {
         >
           <i className="fas fa-angle-left" />
         </button>
+
         <button
           type="button"
           className="carousel--button carousel--button-next"
           onClick={this.nextSlide}
-          disabled={data.length - scrollCounter === itemsPerView}
+          disabled={data.length - scrollCounter === visibleItems}
         >
           <i className="fas fa-angle-right" />
         </button>
+      </>
+    );
+  }
+
+  render() {
+    const { data, extended } = this.props;
+
+    return (
+      <div className="carousel--wrapper" ref={this.wrapperRef}>
+        <div
+          className={extended ? 'carousel' : 'wishlist-block'}
+          style={this.carouselStyleSheet}
+        >
+          {data &&
+            data.map(el => (
+              <ProductItem
+                extended={extended}
+                key={el._id}
+                updateTranslateStep={this.updateTranslateStep}
+                data={el}
+              />
+            ))}
+        </div>
+        {this.renderButtons()}
       </div>
     );
   }
