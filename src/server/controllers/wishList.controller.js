@@ -14,16 +14,14 @@ function getWishList(req, res) {
       if (err) {
         res.send(err);
       }
+      res.json(response);
 
-      const { wishList } = response;
+      // const { wishList } = response;
 
-      db.products.find({ _id: { $in: wishList } }, (error, products) => {
-        if (error) {
-          res.send(err);
-        }
-
-        res.json(products);
-      });
+      // db.products.find({ _id: { $in: wishList } }, (error, products) => {
+      //   if (error) {
+      //     res.send(err);
+      //   }
     }
   );
 }

@@ -19,12 +19,18 @@ class ProductItem extends Component {
 
   showDetails = () => this.setState({ showDetails: true });
 
-  clickHandle = (e, id) => {
+  addToWishList = (e, id) => {
     e.preventDefault();
+    HttpService.post(appConfig.apiResources.addToWishList, {
+      productId: id
+    }).then(res => console.log('res add 2 wl', res));
+  };
 
-    HttpService.post(appConfig.apiResources.wishList, { productId: id }).then(
-      res => console.log('res', res)
-    );
+  removeFromWishList = (e, id) => {
+    e.preventDefault();
+    HttpService.post(appConfig.apiResources.removeFromWishList, {
+      productId: id
+    }).then(res => console.log('res del from wl', res));
   };
 
   componentDidMount = () => {
@@ -37,7 +43,11 @@ class ProductItem extends Component {
     const { data, extended } = this.props;
     const { showDetails, activeItem } = this.state;
     const cardView = showDetails ? (
-      <DisplayDetails {...data} clickHandler={this.clickHandle} />
+      <DisplayDetails
+        {...data}
+        addToWishList={this.addToWishList}
+        removeFromWishList={this.removeFromWishList}
+      />
     ) : (
       <DisplayFront {...data} />
     );

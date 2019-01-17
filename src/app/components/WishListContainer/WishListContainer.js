@@ -6,9 +6,6 @@ import './WishListContainer.scss';
 import Carousel from '../Carousel/Carousel';
 import styles from '../ProductContainer/ProductContainer.module.scss';
 
-// localStorage.clear();
-// localStorage.setItem('products', JSON.stringify(products));
-
 class WishListContainer extends React.Component {
   state = { products: [] };
 

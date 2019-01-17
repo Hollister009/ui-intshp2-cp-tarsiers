@@ -79,12 +79,11 @@
 
 // @media screen and (max-width: $media-medium) {
 //   .wishlist-block {
-//     flex-flow: column wrap;
-//     padding: 0;
-
+//     overflow-x: scroll;
+//     margin: auto
+// }
 //     .item {
 //       margin: 10px auto;
-//       width: 300px;
-//     }
+//      overflow-x: scroll;
 //   }
 // }
