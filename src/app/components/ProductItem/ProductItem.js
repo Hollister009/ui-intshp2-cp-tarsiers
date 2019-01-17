@@ -8,12 +8,9 @@ import '../WishList/WishListContainer.scss';
 class ProductItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { showDetails: false, activeItem: false };
+    this.state = { showDetails: false };
     this.itemRef = React.createRef();
   }
-
-  onHoverItem = () =>
-    this.setState(state => ({ activeItem: !state.activeItem }));
 
   showFront = () => this.setState({ showDetails: false });
 
@@ -41,7 +38,7 @@ class ProductItem extends Component {
 
   render() {
     const { data, extended } = this.props;
-    const { showDetails, activeItem } = this.state;
+    const { showDetails } = this.state;
     const cardView = showDetails ? (
       <DisplayDetails
         {...data}
@@ -65,15 +62,15 @@ class ProductItem extends Component {
       <div
         ref={this.itemRef}
         className="item"
-        onMouseEnter={this.onHoverItem}
-        onMouseLeave={this.onHoverItem}
+        onMouseEnter={this.showDetails}
+        onMouseLeave={this.showFront}
       >
         <div className="item-pic">
           <img src={data.src} alt="pic" />
         </div>
         <div className="item-info">
           <b>{data.title}</b>
-          {activeItem ? (
+          {showDetails ? (
             <div>
               <button type="button" className="add-to-card">
                 <i className="fas fa-shopping-cart" />
