@@ -1,51 +1,44 @@
 import React from 'react';
-import WishListItem from '../WishListItem/WishListItem';
 
+import HttpService from '../../../utils/http.service';
+import appConfig from '../../../config/appConfig';
 import './WishListContainer.scss';
+import Carousel from '../Carousel/Carousel';
+import styles from '../ProductContainer/ProductContainer.module.scss';
 
-const products = [
-  {
-    id: '1',
-    name: 'Nike jacket',
-    manufacturer: 'nike',
-    price: '100',
-    img: 'https://chokodesign.com/img/600/600x700_quantum-kid.jpg'
-  },
-  {
-    id: 2,
-    name: 'Adidas jacket',
-    manufacturer: 'adidas',
-    price: '100',
-    img: 'https://chokodesign.com/img/600/600x700_quantum-kid.jpg'
-  },
-  {
-    id: 3,
-    name: 'The north force',
-    manufacturer: 'nforce',
-    price: '200',
-    img: 'https://chokodesign.com/img/600/600x700_quantum-kid.jpg'
+// localStorage.clear();
+// localStorage.setItem('products', JSON.stringify(products));
+
+class WishListContainer extends React.Component {
+  state = { products: [] };
+
+  componentDidMount() {
+    HttpService.get(appConfig.apiResources.products).then(res =>
+      this.setState({ products: [...res] })
+    );
   }
-];
 
-localStorage.clear();
-localStorage.setItem('products', JSON.stringify(products));
+  render() {
+    const { products } = this.state;
 
-const WishListContainer = () => {
-  const wishList = JSON.parse(localStorage.getItem('products'));
-  const Items = wishList
-    ? wishList.map(item => <WishListItem key={item.id} {...item} />)
-    : null;
-
-  return wishList ? (
-    <div className="wishlist-container">
-      <h2 className="wishlist-title">
-        Wish
-        <span> List</span>
-      </h2>
-      <p>Lorem ipsum dolor sit amet here goes important text</p>
-      <div className="wishlist-block">{Items}</div>
-    </div>
-  ) : null;
-};
+    return (
+      <section className={`${styles.products} container`}>
+        <h2 className="wishlist-title">
+          Wish
+          <span> List</span>
+        </h2>
+        <div className={styles.products_heading}>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry
+          </p>
+        </div>
+        <div className={styles.products_list}>
+          <Carousel itemsPerView={3} data={products} />
+        </div>
+      </section>
+    );
+  }
+}
 
 export default WishListContainer;
