@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Slider from '../Slideshow/sliderComponents/Slider';
 import appConfig from '../../../config/appConfig';
+import Spinner from '../Spinner/Spinner';
+
+import './Promotions.scss';
 
 export default class Promotions extends Component {
   constructor(props) {
@@ -9,7 +12,10 @@ export default class Promotions extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({ slides: [...appConfig.promotions.slides] });
+    setTimeout(
+      () => this.setState({ slides: [...appConfig.promotions.slides] }),
+      1500
+    );
   };
 
   get isLoaded() {
@@ -21,6 +27,14 @@ export default class Promotions extends Component {
   render() {
     const { slides } = this.state;
 
-    return this.isLoaded ? <Slider slides={slides} /> : null;
+    return this.isLoaded ? (
+      <div className="promotions-container">
+        <Slider slides={slides} />
+      </div>
+    ) : (
+      <div className="promotions-container">
+        <Spinner />
+      </div>
+    );
   }
 }

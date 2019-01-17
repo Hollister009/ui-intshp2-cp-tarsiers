@@ -1,0 +1,8 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.promotions-container {
+  @include d-flex(center);
+
+  min-height: 500px;
+}
