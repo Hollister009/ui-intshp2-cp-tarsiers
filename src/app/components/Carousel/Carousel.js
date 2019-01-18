@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './Carousel.scss';
 import '../WishListContainer/WishListContainer.scss';
-import ProductItem from '../ProductItem/ProductItem';
 
 class Carousel extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.carouselRef = React.createRef();
     this.wrapperRef = React.createRef();
     this.isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
@@ -17,34 +17,28 @@ class Carousel extends Component {
     };
 
     this.carouselStyleSheet = {
-      transform: null,
-      overflow: this.isTouchDevice ? 'auto' : 'hidden'
+      transform: null
+    };
+
+    this.wrapperStyle = {
+      overflowX: this.isTouchDevice ? 'scroll' : 'hidden'
     };
   }
 
-  updateTranslateStep = value => {
-    this.carouselStyle = {
-      ...this.carouselStyle,
-      translateStep: value
-    };
-  };
-
   nextSlide = () => {
     const {
-      translation,
       translateStep,
+      translation,
       scrollCounter,
       width
     } = this.carouselStyle;
-
     const wrapperWidth = this.wrapperRef.current.offsetWidth;
 
     this.carouselStyle = {
       ...this.carouselStyle,
       translation:
         translation -
-        ((width + translation - wrapperWidth) / 2 <
-        this.carouselStyle.translateStep
+        ((width + translation - wrapperWidth) / 2 < translateStep
           ? width + translation - wrapperWidth
           : translateStep),
       scrollCounter: scrollCounter + 1
@@ -61,7 +55,7 @@ class Carousel extends Component {
   };
 
   prevSlide = () => {
-    const { translation, translateStep, scrollCounter } = this.carouselStyle;
+    const { translateStep, translation, scrollCounter } = this.carouselStyle;
 
     this.carouselStyle = {
       ...this.carouselStyle,
@@ -83,20 +77,22 @@ class Carousel extends Component {
 
   componentDidUpdate = () => {
     const { data } = this.props;
+    const { translateStep } = this.carouselStyle;
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
-      width: `${data.length * this.carouselStyle.translateStep -
-        this.carouselStyle.doubleSideMargin}px`
+      width: `${this.carouselRef.current.scrollWidth}px`
     };
 
     this.carouselStyle = {
       ...this.carouselStyle,
-      width:
-        data.length * this.carouselStyle.translateStep -
-        this.carouselStyle.doubleSideMargin,
+      width: this.carouselRef.current.scrollWidth,
+      translateStep:
+        (this.carouselRef.current.scrollWidth +
+          this.carouselStyle.doubleSideMargin) /
+        data.length,
       visibleItems: Math.ceil(
-        this.wrapperRef.current.offsetWidth / this.carouselStyle.translateStep
+        this.wrapperRef.current.offsetWidth / translateStep
       )
     };
   };
@@ -129,23 +125,20 @@ class Carousel extends Component {
   }
 
   render() {
-    const { data, extended } = this.props;
+    const { extended, children } = this.props;
 
     return (
-      <div className="carousel--wrapper" ref={this.wrapperRef}>
+      <div
+        className="carousel--wrapper"
+        style={this.wrapperStyle}
+        ref={this.wrapperRef}
+      >
         <div
           className={extended ? 'carousel' : 'wishlist-block'}
           style={this.carouselStyleSheet}
+          ref={this.carouselRef}
         >
-          {data &&
-            data.map(el => (
-              <ProductItem
-                extended={extended}
-                key={el._id}
-                updateTranslateStep={this.updateTranslateStep}
-                data={el}
-              />
-            ))}
+          {children}
         </div>
         {this.renderButtons()}
       </div>
