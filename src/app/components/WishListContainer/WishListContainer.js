@@ -5,21 +5,27 @@ import appConfig from '../../../config/appConfig';
 import './WishListContainer.scss';
 import Carousel from '../Carousel/Carousel';
 import styles from '../ProductContainer/ProductContainer.module.scss';
-
+import ProductItem from '../ProductItem/ProductItem';
 // localStorage.clear();
 // localStorage.setItem('products', JSON.stringify(products));
 
 class WishListContainer extends React.Component {
-  state = { products: [] };
+  state = { products: [], extended: false };
 
   componentDidMount() {
     HttpService.get(appConfig.apiResources.products).then(res =>
-      this.setState({ products: [...res] })
+      this.setState({ products: res })
     );
   }
 
   render() {
-    const { products } = this.state;
+    const { products, extended, translateStep } = this.state;
+
+    const list =
+      products &&
+      products.map(el => (
+        <ProductItem extended={extended} key={el._id} data={el} />
+      ));
 
     return (
       <section className={`${styles.products} container`}>
@@ -34,7 +40,9 @@ class WishListContainer extends React.Component {
           </p>
         </div>
         <div className={styles.products_list}>
-          <Carousel itemsPerView={3} data={products} />
+          <Carousel data={products} translateStep={translateStep}>
+            {list}
+          </Carousel>
         </div>
       </section>
     );

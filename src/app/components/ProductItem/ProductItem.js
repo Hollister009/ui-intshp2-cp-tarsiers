@@ -27,12 +27,6 @@ class ProductItem extends Component {
     );
   };
 
-  componentDidMount = () => {
-    const { updateTranslateStep } = this.props;
-
-    updateTranslateStep(this.itemRef.current.offsetWidth + 30);
-  };
-
   render() {
     const { data, extended } = this.props;
     const { showDetails, activeItem } = this.state;

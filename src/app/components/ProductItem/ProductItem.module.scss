@@ -38,6 +38,7 @@
   }
 
   button {
+    background-color: transparent;
     border: none;
     font-size: 22px;
     color: inherit;
@@ -82,13 +83,17 @@
 
 @media screen and (max-width: $media-mobile) {
   .product_card {
-    height: 260px;
-    min-width: 200px;
+    height: 330px;
+    min-width: 240px;
     img {
-      padding: 0 50px;
+      height: auto;
+      width: 150px;
     }
     h4 {
       margin: 0;
+    }
+    .img_small {
+      padding: none;
     }
   }
 }
