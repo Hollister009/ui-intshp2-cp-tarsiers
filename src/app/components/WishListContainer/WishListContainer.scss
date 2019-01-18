@@ -19,6 +19,7 @@
 }
 
 .wishlist-block {
+  // width: fit-content;
   @include d-flex(space-around);
   justify-content: unset;
   transition: 0.7s;

@@ -3,11 +3,12 @@ import styles from './ProductContainer.module.scss';
 import Carousel from '../Carousel/Carousel';
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
+import ProductItem from '../ProductItem/ProductItem';
 
 class ProductContainer extends React.Component {
   title = 'New Arrivals';
 
-  state = { products: [] };
+  state = { products: [], extended: true };
 
   componentDidMount() {
     HttpService.get(appConfig.apiResources.products).then(res =>
@@ -15,9 +16,26 @@ class ProductContainer extends React.Component {
     );
   }
 
+  updateTranslateStep = value => {
+    this.setState({
+      translateStep: value
+    });
+  };
+
   render() {
-    const { products } = this.state;
+    const { products, extended, translateStep } = this.state;
     const titleArr = this.title.split(' ');
+
+    const list =
+      products &&
+      products.map(el => (
+        <ProductItem
+          extended={extended}
+          key={el._id}
+          updateTranslateStep={this.updateTranslateStep}
+          data={el}
+        />
+      ));
 
     return (
       <section className={`${styles.products} container`}>
@@ -33,7 +51,14 @@ class ProductContainer extends React.Component {
           </p>
         </div>
         <div className={styles.products_list}>
-          <Carousel itemsPerView={4} extended data={products} />
+          <Carousel
+            itemsPerView={4}
+            data={products}
+            translateStep={translateStep}
+            extended
+          >
+            {list}
+          </Carousel>
         </div>
       </section>
     );
