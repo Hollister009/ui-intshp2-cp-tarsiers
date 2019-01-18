@@ -21,7 +21,7 @@ class Carousel extends Component {
     };
 
     this.wrapperStyle = {
-      'overflow-x': this.isTouchDevice ? 'scroll' : 'hidden'
+      overflowX: this.isTouchDevice ? 'scroll' : 'hidden'
     };
   }
 

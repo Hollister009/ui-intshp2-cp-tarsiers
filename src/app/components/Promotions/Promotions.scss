@@ -1,0 +1,6 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.promotions-container {
+  @include d-flex(center);
+}
