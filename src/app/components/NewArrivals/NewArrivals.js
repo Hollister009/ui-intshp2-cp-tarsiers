@@ -1,11 +1,13 @@
-import React from 'react';
-import styles from './ProductContainer.module.scss';
-import Carousel from '../Carousel/Carousel';
+import React, { Component } from 'react';
+
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
-import ProductItem from '../ProductItem/ProductItem';
+import Carousel from '../Carousel/Carousel';
+import ProductItem from '../../shared/ProductItem/ProductItem';
 
-class ProductContainer extends React.Component {
+import styles from './NewArrivals.scss';
+
+class ProductContainer extends Component {
   title = 'New Arrivals';
 
   state = { products: [], extended: true };

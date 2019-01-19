@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Carousel.scss';
-import '../WishListContainer/WishListContainer.scss';
+import '../WishList/WishList.scss';
 
 class Carousel extends Component {
   constructor(props) {

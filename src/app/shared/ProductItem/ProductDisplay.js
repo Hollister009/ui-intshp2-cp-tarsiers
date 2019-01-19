@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProductItem.module.scss';
+import styles from './ProductItem.scss';
 
 const DisplayFront = props => {
   const { src, title, price } = props;
