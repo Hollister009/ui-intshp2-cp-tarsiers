@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Slider from '../Slideshow/sliderComponents/Slider';
 import appConfig from '../../../config/appConfig';
-import Spinner from '../Spinner/Spinner';
+import Slider from '../Slideshow/sliderComponents/Slider';
+import Spinner from '../../shared/Spinner';
 
 import './Promotions.scss';
 

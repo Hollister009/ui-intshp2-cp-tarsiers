@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { DisplayFront, DisplayDetails } from './ProductDisplay';
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
-import styles from './ProductItem.module.scss';
-import '../WishListContainer/WishListContainer.scss';
+import styles from './ProductItem.scss';
 
 class ProductItem extends Component {
   constructor(props) {

@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
-import './WishListContainer.scss';
 import Carousel from '../Carousel/Carousel';
-import styles from '../ProductContainer/ProductContainer.module.scss';
-import ProductItem from '../ProductItem/ProductItem';
-// localStorage.clear();
-// localStorage.setItem('products', JSON.stringify(products));
+import ProductItem from '../../shared/ProductItem/ProductItem';
+import styles from '../NewArrivals/NewArrivals.scss';
+import './WishList.scss';
 
-class WishListContainer extends React.Component {
+class WishListContainer extends Component {
   state = { products: [], extended: false };
 
   componentDidMount() {

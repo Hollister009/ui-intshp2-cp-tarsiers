@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../../actions';
+import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
 
-class My404Component extends Component {
+class Page404 extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
@@ -22,4 +22,4 @@ class My404Component extends Component {
 
 const mapStateToProps = state => ({ ...state });
 
-export default connect(mapStateToProps)(My404Component);
+export default connect(mapStateToProps)(Page404);

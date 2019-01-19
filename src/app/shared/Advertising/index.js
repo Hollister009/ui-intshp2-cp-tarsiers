@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
-import Dynamic from './Dynamic';
 import mySanitize from '../../../utils/sanitizer';
-import './Banner.scss';
 
-export default class AdvertisingArea extends React.Component {
+import Dynamic from './Dynamic';
+import './Advertising.scss';
+
+export default class AdvertisingArea extends Component {
   constructor() {
     super();
     this.state = {
