@@ -2,10 +2,25 @@
 @import '../../../styles/mixin';
 
 .product-item {
+  span {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 18px 0;
+  }
+
+  h4 {
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   &--full {
+    width: 270px;
     min-width: 270px;
-    height: 365px;
-    max-height: 365px;
+    height: 370px;
+    min-height: 370px;
     margin-bottom: 30px;
     padding: 30px 0;
     margin: 0 15px;
@@ -27,15 +42,8 @@
     }
 
     h4 {
-      font-size: 18px;
       margin-top: 30px;
-    }
-
-    span {
-      display: inline-block;
-      font-size: 18px;
-      font-weight: 700;
-      padding: 18px 0;
+      padding: 0 5px;
     }
 
     button {
@@ -63,7 +71,7 @@
       margin-top: 30px;
     }
 
-    &__img_small {
+    &__img-small {
       width: 70px;
       height: 87px;
     }
@@ -84,10 +92,12 @@
 
   &--small {
     margin: 0 15px;
-    display: flex;
+    width: 370px;
     min-width: 370px;
+    min-height: 160px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: $color-white;
+    @include d-flex(flex-start);
 
     &:first-child {
       margin: 0 15px 0 0;
@@ -96,41 +106,56 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
-    .item-pic img {
+    img {
       padding: 36px;
       width: 150px;
       max-width: initial;
     }
 
-    .item-info {
-      margin: 0 auto;
-      padding: 5px;
-      @include d-flex(center, column);
+    &__info {
+      padding: 20px;
+      overflow: hidden;
+      margin-top: 25px;
+      position: relative;
+      width: 100%;
+      text-align: left;
 
-      b {
-        margin-bottom: 20px;
-        justify-content: center;
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 1px;
+        height: 70px;
+        left: 0;
+        background: $color-light-1;
       }
     }
 
-    .stars {
-      display: inline-block;
-      padding: 0 20px;
-    }
+    .info-group {
+      margin-left: auto;
+      @include d-flex() {
+        align-items: center;
+      }
 
-    .price {
-      display: inline-block;
-      font-family: $main-font-bold;
-      color: $color-main;
-      padding-right: 10px;
+      .rating {
+        display: inline-block;
+        padding: 18px;
+        padding-left: 0;
+      }
+
+      .price {
+        padding-right: 18px;
+      }
     }
 
     .add-to-card {
       border: none;
+      background: transparent;
       color: $color-main;
       font-size: 16px;
+      margin-top: 20px;
 
-      i {
+      & > i {
         padding-right: 5px;
       }
     }
@@ -138,18 +163,42 @@
 }
 
 @media screen and (max-width: $media-mobile) {
-  .product-item--full {
-    height: 330px;
-    min-width: 240px;
-    img {
-      height: auto;
-      width: 150px;
+  .product-item {
+    &--full {
+      width: 240px;
+      min-width: 240px;
+      height: 350px;
+      min-height: 350px;
+
+      &__img {
+        height: auto;
+        width: 150px;
+      }
+
+      h4 {
+        margin-top: 10px;
+      }
     }
-    h4 {
-      margin: 0;
-    }
-    &__img_small {
-      padding: none;
+
+    &--small {
+      width: 220px;
+      min-width: 220px;
+      min-height: 300px;
+      flex-direction: column;
+
+      & > img {
+        margin: 0 auto;
+      }
+
+      &__info {
+        margin-top: 0;
+      }
+
+      .info-group {
+        .rating {
+          padding: 18px;
+        }
+      }
     }
   }
 }

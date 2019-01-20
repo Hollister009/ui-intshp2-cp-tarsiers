@@ -9,9 +9,7 @@ import './Advertising.scss';
 export default class AdvertisingArea extends Component {
   constructor() {
     super();
-    this.state = {
-      htmlSnipet: ''
-    };
+    this.state = { htmlSnipet: '' };
   }
 
   componentDidMount() {
@@ -26,9 +24,9 @@ export default class AdvertisingArea extends Component {
     const mySnipet = this.state;
 
     return (
-      <div className="adArea">
+      <section className="advert">
         <Dynamic html={mySnipet.htmlSnipet} />
-      </div>
+      </section>
     );
   }
 }

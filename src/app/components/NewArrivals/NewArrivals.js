@@ -10,7 +10,7 @@ import './NewArrivals.scss';
 const CN = 'new-arrivals';
 const title = 'New Arrivals';
 
-class ProductContainer extends Component {
+class NewArrivals extends Component {
   state = { products: [], extended: true };
 
   componentDidMount() {
@@ -19,25 +19,14 @@ class ProductContainer extends Component {
     );
   }
 
-  // updateTranslateStep = value => {
-  //   this.setState({
-  //     translateStep: value
-  //   });
-  // };
-
   render() {
-    const { products, extended, translateStep } = this.state;
+    const { products, extended } = this.state;
     const titleArr = title.split(' ');
 
     const list =
       products &&
       products.map(el => (
-        <ProductItem
-          extended={extended}
-          key={el._id}
-          // updateTranslateStep={this.updateTranslateStep}
-          data={el}
-        />
+        <ProductItem extended={extended} key={el._id} data={el} />
       ));
 
     return (
@@ -54,12 +43,7 @@ class ProductContainer extends Component {
           </p>
         </div>
         <div className={`${CN}__display`}>
-          <Carousel
-            itemsPerView={4}
-            data={products}
-            translateStep={translateStep}
-            extended
-          >
+          <Carousel data={products} extended>
             {list}
           </Carousel>
         </div>
@@ -68,4 +52,4 @@ class ProductContainer extends Component {
   }
 }
 
-export default ProductContainer;
+export default NewArrivals;

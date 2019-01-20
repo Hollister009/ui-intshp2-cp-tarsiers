@@ -1,11 +1,9 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixin';
 
-.adArea {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.advert {
   width: 60%;
+  min-width: 450px;
   min-height: 100px;
   background-color: $color-white;
   color: $color-dark;
@@ -38,8 +36,8 @@
   }
 }
 
-@media (min-width: $media-tablet) and (max-width: $media-medium) {
-  .adArea {
+@media screen and (min-width: $media-tablet) and (max-width: $media-medium) {
+  .advert {
     padding-top: 20px;
     .priceblock__price {
       width: 100px;
@@ -48,8 +46,8 @@
   }
 }
 
-@media (min-width: $media-smallest) and (max-width: $media-tablet) {
-  .adArea {
+@media screen and (min-width: $media-smallest) and (max-width: $media-tablet) {
+  .advert {
     div {
       flex-direction: column;
       justify-items: center;
@@ -72,5 +70,11 @@
       position: relative;
       right: 23px;
     }
+  }
+}
+
+@media screen and (max-width: $media-mobile) {
+  .advert {
+    min-width: 95%;
   }
 }

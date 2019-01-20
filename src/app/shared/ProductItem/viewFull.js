@@ -7,7 +7,7 @@ const ViewFrontFull = props => {
 
   return (
     <React.Fragment>
-      <img src={src} alt="" />
+      <img className={`${CN}__img`} src={src} alt="" />
       <h4>{title}</h4>
       <span className="highlighted">{`${price} $`}</span>
     </React.Fragment>
@@ -23,7 +23,7 @@ const ViewDetailsFull = props => {
 
   return (
     <React.Fragment>
-      <img className={`${CN}__img_small`} src={src} alt="" />
+      <img className={`${CN}__img-small`} src={src} alt="" />
       <h4 className="highlighted">{title}</h4>
       <div className={`${CN}__sizes`}>{`sizes : ${allSizesArr.join(' ')}`}</div>
       <div className={`${CN}__swatches`}>{colorPins}</div>
