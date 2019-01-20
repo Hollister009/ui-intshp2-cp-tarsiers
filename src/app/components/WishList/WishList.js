@@ -5,13 +5,13 @@ import appConfig from '../../../config/appConfig';
 import Carousel from '../../shared/Carousel';
 import ProductItem from '../../shared/ProductItem';
 
-import './NewArrivals.scss';
+import './WishList.scss';
 
-const CN = 'new-arrivals';
-const title = 'New Arrivals';
+const CN = 'whishlist';
+const title = 'Best sales';
 
-class NewArrivals extends Component {
-  state = { products: [], extended: true };
+class WishList extends Component {
+  state = { products: [] };
 
   componentDidMount() {
     HttpService.get(appConfig.apiResources.products).then(res =>
@@ -20,14 +20,11 @@ class NewArrivals extends Component {
   }
 
   render() {
-    const { products, extended } = this.state;
+    const { products } = this.state;
     const titleArr = title.split(' ');
 
     const list =
-      products &&
-      products.map(el => (
-        <ProductItem extended={extended} key={el._id} data={el} />
-      ));
+      products && products.map(el => <ProductItem key={el._id} data={el} />);
 
     return (
       <section className={`${CN} container`}>
@@ -43,13 +40,11 @@ class NewArrivals extends Component {
           </p>
         </div>
         <div className={`${CN}__display`}>
-          <Carousel data={products} extended>
-            {list}
-          </Carousel>
+          <Carousel data={products}>{list}</Carousel>
         </div>
       </section>
     );
   }
 }
 
-export default NewArrivals;
+export default WishList;

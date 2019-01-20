@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.spinner {
+  background-color: $color-light-1;
+  position: relative;
+  padding: 20%;
+}
+
+.fa-sun {
+  @include abs-center;
+
+  animation: spin 4s infinite linear;
+  font-size: xx-large;
+  color: $color-main;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

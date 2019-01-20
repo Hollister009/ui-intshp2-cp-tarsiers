@@ -4,9 +4,7 @@ import './Snackbar.scss';
 export default class Snackbar extends PureComponent {
   message = '';
 
-  state = {
-    isActive: false
-  };
+  state = { isActive: false };
 
   openSnackBar = (message = 'Something went wrong...') => {
     this.message = message;

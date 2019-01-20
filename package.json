@@ -9,7 +9,6 @@
     "babel-core": "^7.0.0-bridge.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-    "enzyme-adapter-react-16": "^1.7.1",
     "express": "^4.16.4",
     "mongojs": "^2.6.0",
     "prop-types": "^15.6.2",
@@ -53,6 +52,8 @@
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^23.6.0",
     "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-to-json": "^3.3.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
     "gh-pages": "^2.0.1",
@@ -79,20 +80,23 @@
   },
   "jest": {
     "setupFiles": [
-      "./setupTest.js"
+      "<rootDir>/.utils/setupTest.js"
     ],
     "transform": {
       "^.+\\.js$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform"
     },
     "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|gif|png|mp4|mkv|avi|webm|swf|wav|mid)$": "<rootDir>/filemock/file.stub.js"
+      "^.+\\.(jpg|jpeg|gif|png|mp4|mkv|avi|webm|swf|wav|mid)$": "<rootDir>/.utils/file.stub.js"
     },
     "transformIgnorePatterns": [
       "./node_modules/"
     ],
     "moduleFileExtensions": [
       "js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ]
   }
 }

@@ -15,17 +15,15 @@ function getWishList(req, res) {
         res.send(err);
       }
 
-      res.json(response);
+      const { wishList } = response;
 
-      // const { wishList } = response;
+      db.products.find({ _id: { $in: wishList } }, (error, products) => {
+        if (error) {
+          res.send(err);
+        }
 
-      // db.products.find({ _id: { $in: wishList } }, (error, products) => {
-      //   if (error) {
-      //     res.send(err);
-      //   }
-
-      //   res.json(products);
-      // });
+        res.json(products);
+      });
     }
   );
 }
