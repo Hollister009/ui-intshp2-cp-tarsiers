@@ -80,7 +80,7 @@
   },
   "jest": {
     "setupFiles": [
-      "./setupTest.js"
+      "./.utils/setupTest.js"
     ],
     "transform": {
       "^.+\\.js$": "babel-jest",

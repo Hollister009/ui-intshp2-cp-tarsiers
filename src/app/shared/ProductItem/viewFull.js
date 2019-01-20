@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './ProductItem.scss';
 
-const DisplayFront = props => {
+const CN = 'product-item--full';
+
+const ViewFrontFull = props => {
   const { src, title, price } = props;
 
   return (
@@ -13,7 +14,7 @@ const DisplayFront = props => {
   );
 };
 
-const DisplayDetails = props => {
+const ViewDetailsFull = props => {
   const { _id, src, title, sizes, colors, clickHandler } = props;
   const colorPins = colors.map(color => (
     <div key={color} style={{ backgroundColor: `${color}` }} />
@@ -22,10 +23,10 @@ const DisplayDetails = props => {
 
   return (
     <React.Fragment>
-      <img className={styles.img_small} src={src} alt="" />
+      <img className={`${CN}__img_small`} src={src} alt="" />
       <h4 className="highlighted">{title}</h4>
-      <div className={styles.sizes}>{`sizes : ${allSizesArr.join(' ')}`}</div>
-      <div className={styles.color_circle}>{colorPins}</div>
+      <div className={`${CN}__sizes`}>{`sizes : ${allSizesArr.join(' ')}`}</div>
+      <div className={`${CN}__swatches`}>{colorPins}</div>
       <hr className="separate" />
       <div className="social_buttons">
         <button type="button" title="Share with others">
@@ -46,4 +47,4 @@ const DisplayDetails = props => {
   );
 };
 
-export { DisplayFront, DisplayDetails };
+export { ViewFrontFull, ViewDetailsFull };

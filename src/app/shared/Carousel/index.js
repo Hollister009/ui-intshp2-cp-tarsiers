@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Carousel.scss';
-import '../WishList/WishList.scss';
 
 class Carousel extends Component {
   constructor(props) {
@@ -105,7 +104,7 @@ class Carousel extends Component {
       <>
         <button
           type="button"
-          className="carousel--button carousel--button-prev"
+          className="carousel__button carousel__button--prev"
           onClick={this.prevSlide}
           disabled={translation === 0}
         >
@@ -114,7 +113,7 @@ class Carousel extends Component {
 
         <button
           type="button"
-          className="carousel--button carousel--button-next"
+          className="carousel__button carousel__button--next"
           onClick={this.nextSlide}
           disabled={data.length - scrollCounter === visibleItems}
         >
@@ -129,12 +128,12 @@ class Carousel extends Component {
 
     return (
       <div
-        className="carousel--wrapper"
+        className="carousel__wrapper"
         style={this.wrapperStyle}
         ref={this.wrapperRef}
       >
         <div
-          className={extended ? 'carousel' : 'wishlist-block'}
+          className={extended ? 'carousel' : 'wishlist__block'}
           style={this.carouselStyleSheet}
           ref={this.carouselRef}
         >
