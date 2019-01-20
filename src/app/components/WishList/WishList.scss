@@ -3,6 +3,7 @@
 
 .whishlist {
   margin-top: 20px;
+  margin-bottom: 120px;
   color: $color-dark;
   text-align: center;
   background-color: $color-light-1;
@@ -13,11 +14,5 @@
     @include d-flex() {
       align-items: center;
     }
-  }
-
-  &__block {
-    @include d-flex(space-around);
-    justify-content: unset;
-    transition: 0.7s;
   }
 }

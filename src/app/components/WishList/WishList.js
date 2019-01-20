@@ -8,7 +8,7 @@ import ProductItem from '../../shared/ProductItem';
 import './WishList.scss';
 
 const CN = 'whishlist';
-const title = 'Whish List';
+const title = 'Best sales';
 
 class WishList extends Component {
   state = { products: [], extended: false };
@@ -20,7 +20,7 @@ class WishList extends Component {
   }
 
   render() {
-    const { products, extended, translateStep } = this.state;
+    const { products, extended } = this.state;
     const titleArr = title.split(' ');
 
     const list =
@@ -43,9 +43,7 @@ class WishList extends Component {
           </p>
         </div>
         <div className={`${CN}__display`}>
-          <Carousel data={products} translateStep={translateStep}>
-            {list}
-          </Carousel>
+          <Carousel data={products}>{list}</Carousel>
         </div>
       </section>
     );

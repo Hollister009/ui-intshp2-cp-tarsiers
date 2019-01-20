@@ -6,6 +6,8 @@ import { ViewFrontFull, ViewDetailsFull } from './viewFull';
 import { ViewCartSmall, ViewInfoSmall } from './viewSmall';
 import './ProductItem.scss';
 
+const CN = 'product-item';
+
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -28,11 +30,12 @@ class ProductItem extends Component {
   render() {
     const { showDetails } = this.state;
     const { data, extended } = this.props;
+    const { src, title, price } = data;
 
     return extended ? (
       <div
         ref={this.itemRef}
-        className="product-item--full"
+        className={`${CN} ${CN}--full`}
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
       >
@@ -45,14 +48,15 @@ class ProductItem extends Component {
     ) : (
       <div
         ref={this.itemRef}
-        className="product-item--small"
+        className={`${CN} ${CN}--small`}
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
       >
+        <img src={src} alt="" />
         {showDetails ? (
-          <ViewCartSmall {...data} />
+          <ViewCartSmall title={title} />
         ) : (
-          <ViewInfoSmall {...data} />
+          <ViewInfoSmall title={title} price={price} />
         )}
       </div>
     );

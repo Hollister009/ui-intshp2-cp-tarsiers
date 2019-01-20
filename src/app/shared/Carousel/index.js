@@ -15,13 +15,9 @@ class Carousel extends Component {
       doubleSideMargin: 30
     };
 
-    this.carouselStyleSheet = {
-      transform: null
-    };
+    this.carouselStyleSheet = { transform: null };
 
-    this.wrapperStyle = {
-      overflowX: this.isTouchDevice ? 'scroll' : 'hidden'
-    };
+    this.wrapperStyle = { overflowX: this.isTouchDevice ? 'scroll' : 'hidden' };
   }
 
   nextSlide = () => {
@@ -43,9 +39,7 @@ class Carousel extends Component {
       scrollCounter: scrollCounter + 1
     };
 
-    this.setState(state => ({
-      ...state
-    }));
+    this.setState(state => ({ ...state }));
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
@@ -64,9 +58,7 @@ class Carousel extends Component {
       scrollCounter: scrollCounter - 1
     };
 
-    this.setState(state => ({
-      ...state
-    }));
+    this.setState(state => ({ ...state }));
 
     this.carouselStyleSheet = {
       ...this.carouselStyleSheet,
@@ -101,7 +93,7 @@ class Carousel extends Component {
     const { data } = this.props;
 
     return this.isTouchDevice || visibleItems >= data.length ? null : (
-      <>
+      <React.Fragment>
         <button
           type="button"
           className="carousel__button carousel__button--prev"
@@ -110,7 +102,6 @@ class Carousel extends Component {
         >
           <i className="fas fa-angle-left" />
         </button>
-
         <button
           type="button"
           className="carousel__button carousel__button--next"
@@ -119,12 +110,12 @@ class Carousel extends Component {
         >
           <i className="fas fa-angle-right" />
         </button>
-      </>
+      </React.Fragment>
     );
   }
 
   render() {
-    const { extended, children } = this.props;
+    const { children } = this.props;
 
     return (
       <div
@@ -133,7 +124,7 @@ class Carousel extends Component {
         ref={this.wrapperRef}
       >
         <div
-          className={extended ? 'carousel' : 'wishlist__block'}
+          className="carousel"
           style={this.carouselStyleSheet}
           ref={this.carouselRef}
         >

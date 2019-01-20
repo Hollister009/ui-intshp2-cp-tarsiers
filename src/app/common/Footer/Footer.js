@@ -33,7 +33,7 @@ const Footer = props => {
   const footerPayments = <ul>{renderLinks(payments)}</ul>;
 
   return visible ? (
-    <footer className="footer">
+    <footer className="footer mt-120">
       <div className="container">
         <nav className="footer__block row">
           <div className="footer__copyright col-3">
