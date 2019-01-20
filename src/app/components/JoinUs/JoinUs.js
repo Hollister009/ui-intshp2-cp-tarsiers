@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Snackbar from '../Snackbar/Snackbar';
 import appConfig from '../../../config/appConfig';
 import './JoinUs.scss';

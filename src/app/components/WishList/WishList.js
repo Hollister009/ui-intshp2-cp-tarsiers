@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
-import Carousel from '../Carousel/Carousel';
-import ProductItem from '../../shared/ProductItem/ProductItem';
-import styles from '../NewArrivals/NewArrivals.scss';
+import Carousel from '../../shared/Carousel';
+import ProductItem from '../../shared/ProductItem';
+
 import './WishList.scss';
 
-class WishListContainer extends Component {
+const CN = 'whishlist';
+const title = 'Whish List';
+
+class WishList extends Component {
   state = { products: [], extended: false };
 
   componentDidMount() {
@@ -18,6 +21,7 @@ class WishListContainer extends Component {
 
   render() {
     const { products, extended, translateStep } = this.state;
+    const titleArr = title.split(' ');
 
     const list =
       products &&
@@ -26,18 +30,19 @@ class WishListContainer extends Component {
       ));
 
     return (
-      <section className={`${styles.products} container`}>
-        <h2 className="wishlist-title">
-          Wish
-          <span> List</span>
-        </h2>
-        <div className={styles.products_heading}>
+      <section className={`${CN} container`}>
+        <div className="section_heading">
+          <h2>
+            <span className="highlighted">{titleArr[0]}</span>
+            &nbsp;
+            {titleArr[1]}
+          </h2>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry
           </p>
         </div>
-        <div className={styles.products_list}>
+        <div className={`${CN}__display`}>
           <Carousel data={products} translateStep={translateStep}>
             {list}
           </Carousel>
@@ -47,4 +52,4 @@ class WishListContainer extends Component {
   }
 }
 
-export default WishListContainer;
+export default WishList;

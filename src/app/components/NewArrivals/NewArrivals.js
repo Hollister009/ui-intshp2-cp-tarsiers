@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
-import Carousel from '../Carousel/Carousel';
-import ProductItem from '../../shared/ProductItem/ProductItem';
+import Carousel from '../../shared/Carousel';
+import ProductItem from '../../shared/ProductItem';
 
-import styles from './NewArrivals.scss';
+import './NewArrivals.scss';
+
+const CN = 'new-arrivals';
+const title = 'New Arrivals';
 
 class ProductContainer extends Component {
-  title = 'New Arrivals';
-
   state = { products: [], extended: true };
 
   componentDidMount() {
@@ -18,15 +19,15 @@ class ProductContainer extends Component {
     );
   }
 
-  updateTranslateStep = value => {
-    this.setState({
-      translateStep: value
-    });
-  };
+  // updateTranslateStep = value => {
+  //   this.setState({
+  //     translateStep: value
+  //   });
+  // };
 
   render() {
     const { products, extended, translateStep } = this.state;
-    const titleArr = this.title.split(' ');
+    const titleArr = title.split(' ');
 
     const list =
       products &&
@@ -34,14 +35,14 @@ class ProductContainer extends Component {
         <ProductItem
           extended={extended}
           key={el._id}
-          updateTranslateStep={this.updateTranslateStep}
+          // updateTranslateStep={this.updateTranslateStep}
           data={el}
         />
       ));
 
     return (
-      <section className={`${styles.products} container`}>
-        <div className={styles.products_heading}>
+      <section className={`${CN} container`}>
+        <div className="section_heading">
           <h2>
             <span className="highlighted">{titleArr[0]}</span>
             &nbsp;
@@ -52,7 +53,7 @@ class ProductContainer extends Component {
             industry
           </p>
         </div>
-        <div className={styles.products_list}>
+        <div className={`${CN}__display`}>
           <Carousel
             itemsPerView={4}
             data={products}
