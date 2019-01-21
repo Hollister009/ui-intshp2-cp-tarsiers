@@ -1,0 +1,20 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.whishlist {
+  padding-top: 60px;
+  padding-bottom: 120px;
+  color: $color-dark;
+  text-align: center;
+  margin: 0 auto;
+  max-width: $media-large;
+  background-color: $color-light-1;
+
+  &__display {
+    margin: 0 auto;
+    text-align: center;
+    @include d-flex() {
+      align-items: center;
+    }
+  }
+}

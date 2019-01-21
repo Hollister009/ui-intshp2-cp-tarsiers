@@ -5,7 +5,7 @@ import HttpService from './http.service';
 const mockUrl = '';
 const mockData = {};
 
-xdescribe('get', () => {
+describe('get', () => {
   test('should answer on GET', () => {
     const spy = jest.spyOn(axios, 'get');
 
@@ -14,7 +14,7 @@ xdescribe('get', () => {
   });
 });
 
-xdescribe('post', () => {
+describe('post', () => {
   test('should answer on POST', () => {
     const spy = jest.spyOn(axios, 'post');
 
@@ -23,7 +23,7 @@ xdescribe('post', () => {
   });
 });
 
-xdescribe('delete', () => {
+describe('delete', () => {
   test('should answer on DELETE', () => {
     const spy = jest.spyOn(HttpService, 'delete');
 
@@ -32,7 +32,7 @@ xdescribe('delete', () => {
   });
 });
 
-xdescribe('patch', () => {
+describe('patch', () => {
   test('should answer on PATCH', () => {
     const spy = jest.spyOn(HttpService, 'patch');
 
@@ -41,7 +41,7 @@ xdescribe('patch', () => {
   });
 });
 
-xdescribe('put', () => {
+describe('put', () => {
   test('should answer on PUT', () => {
     const spy = jest.spyOn(HttpService, 'put');
 
@@ -50,7 +50,7 @@ xdescribe('put', () => {
   });
 });
 
-xdescribe('create', () => {
+describe('create', () => {
   test('should answer on CREATE', () => {
     const spy = jest.spyOn(HttpService, 'create');
 

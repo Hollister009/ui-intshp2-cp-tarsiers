@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Slider from '../Slideshow/sliderComponents/Slider';
-import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
+import Slider from '../Slideshow/sliderComponents/Slider';
+import Spinner from '../../shared/Spinner';
 
 export default class Promotions extends Component {
   constructor(props) {
@@ -10,9 +10,10 @@ export default class Promotions extends Component {
   }
 
   componentDidMount = () => {
-    HttpService.get(appConfig.apiResources.promotions).then(myJson => {
-      this.setState({ slides: myJson.slides });
-    });
+    setTimeout(
+      () => this.setState({ slides: [...appConfig.promotions.slides] }),
+      1500
+    );
   };
 
   get isLoaded() {
@@ -24,6 +25,10 @@ export default class Promotions extends Component {
   render() {
     const { slides } = this.state;
 
-    return this.isLoaded ? <Slider slides={slides} /> : null;
+    return (
+      <section className="promotions">
+        {this.isLoaded ? <Slider slides={slides} /> : <Spinner />}
+      </section>
+    );
   }
 }
