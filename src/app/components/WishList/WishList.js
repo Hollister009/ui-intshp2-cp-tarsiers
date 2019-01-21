@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import HttpService from '../../../utils/http.service';
-import appConfig from '../../../config/appConfig';
+// import HttpService from '../../../utils/http.service';
+// import appConfig from '../../../config/appConfig';
 import Carousel from '../../shared/Carousel';
 import ProductItem from '../../shared/ProductItem';
 
@@ -10,17 +10,10 @@ import './WishList.scss';
 const CN = 'whishlist';
 const title = 'Best sales';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class WishList extends Component {
-  state = { products: [] };
-
-  componentDidMount() {
-    HttpService.get(appConfig.apiResources.products).then(res =>
-      this.setState({ products: res.data })
-    );
-  }
-
   render() {
-    const { products } = this.state;
+    const { products } = this.props;
     const titleArr = title.split(' ');
 
     const list =

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import HttpService from '../../../utils/http.service';
-import appConfig from '../../../config/appConfig';
 import Carousel from '../../shared/Carousel';
 import ProductItem from '../../shared/ProductItem';
 
@@ -11,16 +9,11 @@ const CN = 'new-arrivals';
 const title = 'New Arrivals';
 
 class NewArrivals extends Component {
-  state = { products: [], extended: true };
-
-  componentDidMount() {
-    HttpService.get(appConfig.apiResources.products).then(res =>
-      this.setState({ products: res.data })
-    );
-  }
+  state = { extended: true };
 
   render() {
-    const { products, extended } = this.state;
+    const { products } = this.props;
+    const { extended } = this.state;
     const titleArr = title.split(' ');
 
     const list =
