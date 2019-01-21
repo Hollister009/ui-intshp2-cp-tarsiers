@@ -1,0 +1,14 @@
+.section_heading {
+  margin-bottom: 80px;
+
+  h2 {
+    font-size: 36px;
+    font-family: $main-font-bold;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: $color-grey-1;
+    line-height: 2;
+  }
+}
