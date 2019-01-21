@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// import HttpService from '../../../utils/http.service';
-// import appConfig from '../../../config/appConfig';
 import Carousel from '../../shared/Carousel';
 import ProductItem from '../../shared/ProductItem';
 
