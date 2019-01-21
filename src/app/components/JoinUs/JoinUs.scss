@@ -30,12 +30,11 @@
     }
   }
 
-  &__subscribe {
-    fieldset {
-      border: none;
-      @include d-flex();
-    }
+  &__fieldset {
+    @include d-flex();
+  }
 
+  &__subscribe {
     .mailfield {
       width: 200px;
       @include d-flex(center) {
@@ -155,11 +154,11 @@
   .joinus {
     padding: 10px;
 
-    &__subscribe {
-      fieldset {
-        justify-content: center;
-      }
+    &__fieldset {
+      justify-content: center;
+    }
 
+    &__subscribe {
       input,
       .mailfield {
         width: 150px;

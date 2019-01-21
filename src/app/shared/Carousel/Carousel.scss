@@ -41,5 +41,11 @@
         color: $color-main;
       }
     }
+
+    &:disabled {
+      & > i {
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
   }
 }

@@ -30,7 +30,7 @@ class WishList extends Component {
       ));
 
     return (
-      <section className={`${CN} container`}>
+      <section className={`${CN}`}>
         <div className="section_heading">
           <h2>
             <span className="highlighted">{titleArr[0]}</span>
