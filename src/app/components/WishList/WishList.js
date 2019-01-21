@@ -27,7 +27,7 @@ class WishList extends Component {
       products && products.map(el => <ProductItem key={el._id} data={el} />);
 
     return (
-      <section className={`${CN} container`}>
+      <section className={`${CN}`}>
         <div className="section_heading">
           <h2>
             <span className="highlighted">{titleArr[0]}</span>

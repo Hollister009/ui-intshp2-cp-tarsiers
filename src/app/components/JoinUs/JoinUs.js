@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Snackbar from '../Snackbar/Snackbar';
 import appConfig from '../../../config/appConfig';
-import './styles.scss';
+import './JoinUs.scss';
 
 class JoinUs extends Component {
   snackbarRef = React.createRef();
@@ -58,7 +58,7 @@ class JoinUs extends Component {
           <p>join us now to get all news and special offers</p>
         </div>
         <form className="joinus__subscribe col-4" onSubmit={this.handleSubmit}>
-          <fieldset>
+          <div className="joinus__fieldset">
             <label htmlFor="email" className="mailfield">
               <i className="far fa-envelope" />
               <input
@@ -78,7 +78,7 @@ class JoinUs extends Component {
               join us
             </button>
             <Snackbar ref={this.snackbarRef} />
-          </fieldset>
+          </div>
           <p className={!isDisabled || !email ? 'msg' : 'msg showerror'}>
             {error}
           </p>
