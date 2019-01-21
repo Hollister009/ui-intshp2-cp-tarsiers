@@ -102,6 +102,7 @@ class Carousel extends Component {
         >
           <i className="fas fa-angle-left" />
         </button>
+
         <button
           type="button"
           className="carousel__button carousel__button--next"
