@@ -1,0 +1,40 @@
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+
+.product_list__page {
+  @include d-flex(unset);
+}
+
+.filterContainer {
+  border: 2px solid black;
+  width: 25%;
+}
+
+.products {
+  @include d-flex(unset, column);
+
+  margin: 0 15px;
+}
+.product_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin: 30px 0;
+}
+
+.product-item--full {
+  margin: 0;
+}
+
+.dots {
+  @include d-flex(center);
+
+  background-color: $color-white;
+  padding: 17px;
+
+  .fas {
+    padding: 3px;
+    color: $color-main;
+    font-size: 14px;
+  }
+}

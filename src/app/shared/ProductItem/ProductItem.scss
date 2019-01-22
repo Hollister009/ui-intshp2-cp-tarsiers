@@ -29,14 +29,6 @@
     background-color: $color-white;
     box-shadow: 0 0 10px rgba($color-dark, 0.2);
 
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
     img {
       margin: 0 auto;
     }
