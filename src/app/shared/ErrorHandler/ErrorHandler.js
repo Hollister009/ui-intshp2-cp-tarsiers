@@ -2,11 +2,11 @@ import React from 'react';
 
 class ErrorHandler extends React.Component {
   state = {
-    hasError: null,
-    errorMsg: ''
+    hasError: false
   };
 
   componentDidCatch(error, info) {
+    console.log('Error Handler: ', error);
     this.setState({ hasError: true, errorMsg: info });
   }
 
@@ -15,7 +15,7 @@ class ErrorHandler extends React.Component {
     const { children } = this.props;
 
     if (hasError) {
-      console.log('Error Handler: ', hasError && errorMsg.componentStack);
+      console.log('Error Handler: ', hasError && errorMsg);
     }
     return children;
   }
