@@ -5,24 +5,30 @@ import appConfig from '../../../config/appConfig';
 
 import './ProductList.scss';
 
-const Dots = () => (
-  <div className="dots">
-    <i className="fas fa-circle" />
-    <i className="fas fa-circle" />
-    <i className="fas fa-circle" />
-  </div>
-);
+let lastScrollY = 0;
 
 export default class ProductList extends Component {
-  state = {
-    products: []
-  };
+  state = { products: [] };
+
+  heightRef = React.createRef();
 
   componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
     HttpService.get(appConfig.apiResources.products).then(res =>
       this.setState({ products: res })
     );
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    lastScrollY = window.scrollY;
+    window.requestAnimationFrame(() => {
+      this.heightRef.current.style.top = `${lastScrollY}px`;
+    });
+  };
 
   render() {
     const { products } = this.state;
@@ -34,12 +40,22 @@ export default class ProductList extends Component {
       <div className="container">
         <div className="product_list__page">
           <div className="filterContainer" />
-          <div className="products">
+          <div className="products" ref={this.heightRef}>
             <div className="product_list">{list}</div>
-            <Dots />
+            <button type="button">
+              <Dots />
+            </button>
           </div>
         </div>
       </div>
     );
   }
 }
+
+const Dots = () => (
+  <div className="dots">
+    <i className="fas fa-circle" />
+    <i className="fas fa-circle" />
+    <i className="fas fa-circle" />
+  </div>
+);

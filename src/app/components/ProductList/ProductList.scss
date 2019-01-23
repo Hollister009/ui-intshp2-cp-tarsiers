@@ -8,12 +8,13 @@
 .filterContainer {
   border: 2px solid black;
   width: 25%;
+  margin: 30px 0;
 }
 
 .products {
   @include d-flex(unset, column);
 
-  margin: 0 15px;
+  margin: 0 30px;
 }
 .product_list {
   display: grid;
@@ -37,4 +38,8 @@
     color: $color-main;
     font-size: 14px;
   }
+}
+
+.hide {
+  display: none;
 }
