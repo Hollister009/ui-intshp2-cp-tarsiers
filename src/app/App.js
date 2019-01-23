@@ -5,13 +5,16 @@ import Header from './common/Header/Header';
 import Footer from './common/Footer/Footer';
 import Content from './common/Content';
 import '../styles/index.scss';
+import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
 
 const App = () => (
   <Router>
     <HashRouter>
       <>
         <Header />
-        <Content className="content" />
+        <ErrorHandler>
+          <Content className="content" />
+        </ErrorHandler>
         <Footer />
       </>
     </HashRouter>
