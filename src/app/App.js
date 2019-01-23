@@ -8,7 +8,7 @@ import { getProducts } from './actions';
 import Header from './common/Header/Header';
 import Footer from './common/Footer/Footer';
 import Content from './common/Content';
-
+import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
 import '../styles/index.scss';
 
 const { products } = appConfig.apiResources;
@@ -28,7 +28,9 @@ class App extends Component {
         <HashRouter>
           <>
             <Header />
-            <Content className="content" />
+            <ErrorHandler>
+              <Content className="content" />
+            </ErrorHandler>
             <Footer />
           </>
         </HashRouter>
