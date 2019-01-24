@@ -4,21 +4,25 @@ import { connect } from 'react-redux';
 
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
-import { getProducts } from './actions';
+
 import Header from './common/Header/Header';
 import Footer from './common/Footer/Footer';
 import Content from './common/Content';
 
 import '../styles/index.scss';
 
-const { products } = appConfig.apiResources;
+const { products, wishlist } = appConfig.apiResources;
 
 class App extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { getProductsItems, getWishListItems } = this.props;
 
     HttpService.get(products)
-      .then(res => dispatch(getProducts(res.data)))
+      .then(res => getProductsItems(res.data))
+      .catch(error => console.log(error));
+
+    HttpService.get(wishlist)
+      .then(res => getWishListItems(res.data))
       .catch(error => console.log(error));
   }
 

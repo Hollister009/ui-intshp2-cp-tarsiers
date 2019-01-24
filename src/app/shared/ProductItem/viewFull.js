@@ -15,7 +15,7 @@ const ViewFrontFull = props => {
 };
 
 const ViewDetailsFull = props => {
-  const { _id, src, title, sizes, colors, clickHandler } = props;
+  const { _id, src, title, sizes, colors, clickHandler, wished } = props;
   const colorPins = colors.map(color => (
     <div key={color} style={{ backgroundColor: `${color}` }} />
   ));
@@ -40,11 +40,13 @@ const ViewDetailsFull = props => {
           onClick={e => clickHandler(e, _id)}
           title="Add to wish-list"
         >
-          <i className="fas fa-heart" />
+          <i className={wished ? 'fas fa-heart highlighted' : 'fas fa-heart'} />
         </button>
       </div>
     </React.Fragment>
   );
 };
+
+ViewDetailsFull.defaultProps = { wished: false };
 
 export { ViewFrontFull, ViewDetailsFull };

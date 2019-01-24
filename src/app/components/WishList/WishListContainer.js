@@ -1,17 +1,10 @@
 import { connect } from 'react-redux';
-import { getWishList } from '../../actions';
 import WishList from './WishList';
 
 const mapStateToProps = state => ({
-  whishlist: state.whishlist.whishlist,
-  products: state.products.products
+  whishlist: state.whishlist.whishlist
 });
-const mapDispatchToProps = dispatch => ({
-  getWhishListItems: data => dispatch(getWishList(data))
-});
-const WhishListContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WishList);
+
+const WhishListContainer = connect(mapStateToProps)(WishList);
 
 export default WhishListContainer;

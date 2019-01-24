@@ -29,14 +29,6 @@
     background-color: $color-white;
     box-shadow: 0 0 10px rgba($color-dark, 0.2);
 
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
     img {
       margin: 0 auto;
     }
@@ -100,9 +92,6 @@
     background-color: $color-white;
     @include d-flex(flex-start);
 
-    &:first-child {
-      margin: 0 15px 0 0;
-    }
     &:hover {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }

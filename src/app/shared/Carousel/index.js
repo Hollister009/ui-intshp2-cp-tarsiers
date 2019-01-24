@@ -15,7 +15,7 @@ class Carousel extends Component {
       doubleSideMargin: 30
     };
 
-    this.carouselStyleSheet = { transform: null };
+    this.carouselStyleSheet = { transform: null, width: null };
 
     this.wrapperStyle = { overflowX: this.isTouchDevice ? 'scroll' : 'hidden' };
   }
@@ -136,5 +136,7 @@ class Carousel extends Component {
     );
   }
 }
+
+Carousel.defaultProps = { data: [] };
 
 export default Carousel;
