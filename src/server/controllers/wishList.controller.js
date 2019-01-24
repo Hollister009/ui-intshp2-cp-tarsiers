@@ -60,8 +60,4 @@ function removeFromWishList(req, res) {
   );
 }
 
-module.exports = {
-  getWishList,
-  addToWishList,
-  removeFromWishList
-};
+module.exports = { getWishList, addToWishList, removeFromWishList };

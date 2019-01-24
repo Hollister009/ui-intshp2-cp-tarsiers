@@ -1,17 +1,17 @@
 import React from 'react';
 import Promotions from '../components/Promotions/Promotions';
-import NewArrivals from '../components/NewArrivals/NewArrivals';
+import NewArrivalsContainer from '../components/NewArrivals/NewArrivalsContainer';
 import AdvertisingArea from '../shared/Advertising';
 import JoinUs from '../components/JoinUs/JoinUs';
-import WishList from '../components/WishList/WishList';
+import WishListContainer from '../components/WishList/WishListContainer';
 
 const HomePage = () => (
   <>
     <Promotions />
-    <NewArrivals />
+    <NewArrivalsContainer />
     <AdvertisingArea />
-    <WishList />
     <JoinUs />
+    <WishListContainer />
   </>
 );
 
