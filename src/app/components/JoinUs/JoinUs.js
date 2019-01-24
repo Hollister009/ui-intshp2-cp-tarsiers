@@ -72,7 +72,6 @@ class JoinUs extends Component {
             </label>
             <button
               disabled={isDisabled}
-              id="subscribe"
               onClick={this.showSnackbarHandler}
               type="submit"
             >
