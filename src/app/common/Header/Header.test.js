@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import HeaderTop from './HeaderTop';
 import HeaderMain from './HeaderMain';
 
-const links = [];
-const contacts = [];
+const links = ['link1', 'link2'];
+const contacts = ['contact1', 'contact2'];
 
 describe('<HeaderTop />', () => {
   it('should render links and contacts', () => {
@@ -14,8 +14,8 @@ describe('<HeaderTop />', () => {
   });
 });
 
-const pages = [];
-const options = [];
+const pages = ['page1', 'page2'];
+const options = ['option1', 'option2'];
 
 describe('<HeaderMain />', () => {
   it('should change the toggle pages and options', () => {
