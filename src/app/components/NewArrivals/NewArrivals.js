@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Carousel from '../../shared/Carousel';
-import ProductItem from '../../shared/ProductItem/ProductItem';
+import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 
 import './NewArrivals.scss';
 
@@ -17,7 +17,7 @@ const NewArrivals = props => {
   const list =
     products &&
     products.map(el => (
-      <ProductItem extended={extended} key={el._id} data={el} />
+      <ProductItemContainer extended={extended} key={el._id} data={el} />
     ));
 
   return (

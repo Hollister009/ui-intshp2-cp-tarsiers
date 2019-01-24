@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import { addToWishList, removeFromWishList } from '../../actions';
 import ProductItem from './ProductItem';
 
-const mapStateToProps = state => ({ whishlist: state.whishlist.whishlist });
+const mapStateToProps = state => ({ wishlist: state.wishlist.wishlist });
 const mapDispatchToProps = dispatch => ({
-  addToWishList: data => dispatch(addToWishList(data)),
-  removeFromWishList: data => dispatch(removeFromWishList(data))
+  addToWishListItem: data => dispatch(addToWishList(data)),
+  removeFromWishListItem: data => dispatch(removeFromWishList(data))
 });
 
 const ProductItemContainer = connect(

@@ -4,7 +4,7 @@ import App from './App';
 
 const mapStateToProps = state => ({
   products: state.products.products,
-  whishlist: state.whishlist.whishlist
+  wishlist: state.wishlist.wishlist
 });
 
 const mapDispatchToProps = dispatch => ({

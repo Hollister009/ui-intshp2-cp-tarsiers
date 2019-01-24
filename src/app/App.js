@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -22,7 +23,8 @@ class App extends Component {
       .catch(error => console.log(error));
 
     HttpService.get(wishlist)
-      .then(res => getWishListItems(res.data))
+      .then(res => res.data.map(item => item._id))
+      .then(item => getWishListItems(item))
       .catch(error => console.log(error));
   }
 

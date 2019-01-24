@@ -1,19 +1,22 @@
+/* eslint-disable object-curly-newline */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import Carousel from '../../shared/Carousel';
-import ProductItem from '../../shared/ProductItem/ProductItem';
+import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 
 import './WishList.scss';
 
-const CN = 'whishlist';
+const CN = 'wishlist';
 const title = 'Best sales';
 
 const WishList = props => {
-  const { wishlist } = props;
+  const { products, wishlist } = props;
   const titleArr = title.split(' ');
+  const filteredProducts = products.filter(item => wishlist.includes(item._id));
 
   const list =
-    wishlist && wishlist.map(el => <ProductItem key={el._id} data={el} />);
+    !!wishlist.length &&
+    filteredProducts.map(el => <ProductItemContainer key={el._id} data={el} />);
 
   return (
     <section className={`${CN}`}>
@@ -29,28 +32,32 @@ const WishList = props => {
         </p>
       </div>
       <div className={`${CN}__display`}>
-        <Carousel data={wishlist}>{list}</Carousel>
+        <Carousel data={filteredProducts}>{list}</Carousel>
       </div>
     </section>
   );
 };
 
 WishList.propTypes = {
-  wishlist: PropTypes.arrayOf(PropTypes.object)
+  products: PropTypes.arrayOf(PropTypes.object),
+  wishlist: PropTypes.arrayOf(PropTypes.string)
 };
 
+/**
+ * For the test purpose fake data
+ */
 WishList.defaultProps = {
-  // For the sake of test purpose assign one item
-  wishlist: [
+  products: [
     {
-      _id: 9000,
+      _id: '5c473090e7179a544940dfec',
       src: '/images/products/running-jacket.png',
       title: 'Reebok Track Jacket',
       price: 100,
       sizes: ['s', 'm', 'l', 'xl'],
       colors: ['#e12e3f', '#34404b', '#3ab3ff', '#2fd967']
     }
-  ]
+  ],
+  wishlist: ['5c473090e7179a544940dfec']
 };
 
 export default WishList;
