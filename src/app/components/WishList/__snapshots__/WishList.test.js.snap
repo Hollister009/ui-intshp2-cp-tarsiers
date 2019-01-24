@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WishList /> should match its snapshot 1`] = `
+<section
+  className="whishlist"
+>
+  <div
+    className="section_heading"
+  >
+    <h2>
+      <span
+        className="highlighted"
+      >
+        Best
+      </span>
+       
+      sales
+    </h2>
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry
+    </p>
+  </div>
+  <div
+    className="whishlist__display"
+  >
+    <Carousel
+      data={Array []}
+    />
+  </div>
+</section>
+`;
