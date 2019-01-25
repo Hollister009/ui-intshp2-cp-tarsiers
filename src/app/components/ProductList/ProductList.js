@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import HttpService from '../../../utils/http.service';
 import ProductItem from '../../shared/ProductItem';
-import appConfig from '../../../config/appConfig';
 
 import './ProductList.scss';
 
