@@ -14,7 +14,7 @@ export default class AdvertisingArea extends Component {
 
   componentDidMount() {
     HttpService.get(appConfig.apiResources.baner).then(response => {
-      const clean = mySanitize(response.htmlSnipet);
+      const clean = mySanitize(response.data.htmlSnipet);
 
       this.setState({ htmlSnipet: clean });
     });
