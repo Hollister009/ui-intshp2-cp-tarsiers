@@ -3,7 +3,7 @@ import './FilterArea.scss';
 import Brands from './Brands';
 import Sizes from './Sizes';
 import Categories from './Categories';
-import PriceRange from './PriceRange';
+import PriceFilter from './PriceFilter';
 
 class FilterArea extends Component {
   constructor(props) {
@@ -17,15 +17,21 @@ class FilterArea extends Component {
       addSize,
       removeSize,
       addBrand,
-      removeBrand
+      removeBrand,
+      getFilteredProducts,
+      filter
     } = this.props;
 
     console.log(this.props);
 
     return (
-      <div>
-        <Categories setCategory={setCategory} />
-        <PriceRange />
+      <div className="container">
+        <Categories
+          setCategory={setCategory}
+          getFilteredProducts={getFilteredProducts}
+          filter={filter}
+        />
+        <PriceFilter />
         <Sizes addSize={addSize} removeSize={removeSize} />
         <Brands addBrand={addBrand} removeBrand={removeBrand} />
       </div>

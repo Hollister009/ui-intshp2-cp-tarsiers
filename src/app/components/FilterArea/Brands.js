@@ -18,26 +18,33 @@ class Brands extends Component {
 
   render() {
     return (
-      <div className="field-block">
+      <div className="filter-block">
         <h3>Brands</h3>
-        <label className="filter-area-container">
+        <label htmlFor="brand-reebok" className="filter-option-container">
           Reebok
-          <input type="checkbox" onChange={e => this.onChange(e, 'reebok')} />
+          <input
+            id="brand-reebok"
+            type="checkbox"
+            onChange={e => this.onChange(e, 'Reebok')}
+          />
           <span className="checkmark" />
         </label>
-        <label className="filter-area-container">
+        <label htmlFor="brand-adidas" className="filter-option-container">
           Adidas
-          <input type="checkbox" onChange={e => this.onChange(e, 'adidas')} />
+          <input
+            id="brand-adidas"
+            type="checkbox"
+            onChange={e => this.onChange(e, 'Adidas')}
+          />
           <span className="checkmark" />
         </label>
-        <label className="filter-area-container">
+        <label htmlFor="brand-nike" className="filter-option-container">
           Nike
-          <input type="checkbox" onChange={e => this.onChange(e, 'nike')} />
-          <span className="checkmark" />
-        </label>
-        <label className="filter-area-container">
-          Active
-          <input type="checkbox" onChange={e => this.onChange(e, 'active')} />
+          <input
+            id="brand-nike"
+            type="checkbox"
+            onChange={e => this.onChange(e, 'Nike')}
+          />
           <span className="checkmark" />
         </label>
       </div>

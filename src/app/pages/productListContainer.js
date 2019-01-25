@@ -5,8 +5,8 @@ import {
   removeSize,
   addBrand,
   removeBrand
-} from '../../actions/filterActions';
-import FilterArea from './FilterArea';
+} from '../actions/filterActions';
+import ProductsListPage from './productList';
 
 const mapStateToProps = state => ({
   whishlist: state.whishlist.whishlist,
@@ -23,6 +23,6 @@ const mapDispatchToProps = dispatch => ({
 const WhishListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(FilterArea);
+)(ProductsListPage);
 
 export default WhishListContainer;
