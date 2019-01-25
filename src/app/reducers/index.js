@@ -4,11 +4,13 @@ import headerFooterVisibility from './headerFooterVisibility';
 import products from './products';
 import whishlist from './whishlist';
 import filter from './filter';
+import filteredProducts from './filteredProducts';
 
 export default combineReducers({
   counter,
   headerFooterVisibility,
   products,
   whishlist,
-  filter
+  filter,
+  filteredProducts
 });

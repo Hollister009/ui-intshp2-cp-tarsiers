@@ -2,7 +2,7 @@
 import React from 'react';
 import HttpService from '../../utils/http.service';
 import FilterAreaContainer from '../components/FilterArea/FilterAreaContainer';
-import ProductList from '../components/ProductList/ProductList';
+import ProductListContainer from '../components/ProductList/ProductListContainer';
 
 const ProductsListPage = () => {
   const getFilteredProducts = (sizes, brands, category) => {
@@ -18,7 +18,7 @@ const ProductsListPage = () => {
   return (
     <div>
       <FilterAreaContainer getFilteredProducts={getFilteredProducts} />
-      <ProductList />
+      <ProductListContainer />
     </div>
   );
 };

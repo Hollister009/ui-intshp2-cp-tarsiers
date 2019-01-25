@@ -8,15 +8,13 @@ import './ProductList.scss';
 let lastScrollY = 0;
 
 export default class ProductList extends Component {
-  state = { products: [] };
-
   heightRef = React.createRef();
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    HttpService.get(appConfig.apiResources.products).then(res =>
-      this.setState({ products: res })
-    );
+    // HttpService.get(appConfig.apiResources.products).then(res =>
+    //   this.setState({ products: res })
+    // );
   }
 
   componentWillUnmount() {
@@ -31,7 +29,8 @@ export default class ProductList extends Component {
   };
 
   render() {
-    const { products } = this.state;
+    console.log(this.props);
+    const { products } = this.props;
     const list =
       products &&
       products.map(el => <ProductItem key={el._id} data={el} extended />);
