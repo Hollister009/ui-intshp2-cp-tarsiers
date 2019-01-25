@@ -25,9 +25,9 @@ class Carousel extends Component {
       translateStep,
       translation,
       scrollCounter,
-      width
+      width,
+      wrapperWidth
     } = this.carouselStyle;
-    const wrapperWidth = this.wrapperRef.current.offsetWidth;
 
     this.carouselStyle = {
       ...this.carouselStyle,
@@ -70,10 +70,9 @@ class Carousel extends Component {
     const { data } = this.props;
     const { translateStep } = this.carouselStyle;
 
-    this.carouselStyleSheet = {
-      ...this.carouselStyleSheet,
-      width: `${this.carouselRef.current.scrollWidth}px`
-    };
+    // this.carouselStyleSheet = {
+    //   ...this.carouselStyleSheet
+    // }
 
     this.carouselStyle = {
       ...this.carouselStyle,
@@ -84,15 +83,33 @@ class Carousel extends Component {
         data.length,
       visibleItems: Math.ceil(
         this.wrapperRef.current.offsetWidth / translateStep
-      )
+      ),
+      wrapperWidth: this.wrapperRef.current.offsetWidth
     };
   };
 
   renderButtons() {
-    const { translation, scrollCounter, visibleItems } = this.carouselStyle;
+    const {
+      translation,
+      scrollCounter,
+      visibleItems,
+      width,
+      wrapperWidth
+    } = this.carouselStyle;
     const { data } = this.props;
 
-    return this.isTouchDevice || visibleItems >= data.length ? null : (
+    console.log(
+      'width',
+      width,
+      'wrapper',
+      wrapperWidth,
+      'type widt',
+      typeof width
+    );
+
+    // if (width === 0) return null;
+    // || width <= wrapperWidth
+    return this.isTouchDevice ? null : (
       <React.Fragment>
         <button
           type="button"
