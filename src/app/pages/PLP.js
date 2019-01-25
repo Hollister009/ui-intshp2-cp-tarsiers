@@ -16,7 +16,7 @@ const ProductsListPage = () => {
   };
 
   return (
-    <div>
+    <div className="plp-page container">
       <FilterAreaContainer getFilteredProducts={getFilteredProducts} />
       <ProductListContainer />
     </div>

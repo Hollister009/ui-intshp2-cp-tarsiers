@@ -36,7 +36,6 @@ export default class ProductList extends Component {
     return (
       <div className="container">
         <div className="product_list__page">
-          <div className="filterContainer" />
           <div className="products" ref={this.heightRef}>
             <div className="product_list">{list}</div>
             <button type="button">

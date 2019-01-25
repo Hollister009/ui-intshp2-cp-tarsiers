@@ -54,3 +54,7 @@ button {
     width: 90%;
   }
 }
+
+.plp-page {
+  @include d-flex();
+}
