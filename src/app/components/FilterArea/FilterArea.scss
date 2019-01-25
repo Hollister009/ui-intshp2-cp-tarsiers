@@ -1,6 +1,6 @@
 @import '../../../styles/variables';
 
-.field-block {
+.filter-block {
   height: 270px;
   width: 300px;
   background-color: #fff;
@@ -12,8 +12,28 @@
     color: $color-main;
     margin-bottom: 40px;
   }
+
+  button {
+    display: block;
+    appearance: none;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  a {
+    display: block;
+  }
+
+  a:active {
+    color: $color-main;
+  }
 }
-.filter-area-container {
+
+.filter-option-container {
   display: block;
   position: relative;
   padding-left: 35px;

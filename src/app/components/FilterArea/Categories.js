@@ -1,16 +1,34 @@
 import React from 'react';
 
 const Categories = props => {
-  const { setCategory } = props;
+  const { setCategory, getFilteredProducts } = props;
+
+  const setCategories = (e, category) => {
+    e.preventDefault();
+    const { sizes, brands } = props.filter;
+
+    // console.log('categories cl ', sizes, brands, category);
+    setCategory(category);
+
+    getFilteredProducts(sizes, brands, category);
+  };
 
   return (
-    <div className="field-block">
+    <div className="filter-block">
       <h3>Categories</h3>
       <ul>
-        <li onClick={() => setCategory('men')}>Men</li>
-        <li onClick={() => setCategory('women')}>Women</li>
-        <li onClick={() => setCategory('children')}>Children </li>
-        <li onClick={() => setCategory('hotDeals')}>Hot Deals</li>
+        <a href="null" onClick={e => setCategories(e, 'male')}>
+          Men
+        </a>
+        <a href="null" onClick={e => setCategories(e, 'female')}>
+          Women
+        </a>
+        <a href="null" onClick={e => setCategories(e, 'kids')}>
+          Children
+        </a>
+        <a href="null" onClick={e => setCategories(e, 'available')}>
+          Available
+        </a>
       </ul>
     </div>
   );

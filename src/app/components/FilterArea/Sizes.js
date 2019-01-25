@@ -8,7 +8,6 @@ class Sizes extends Component {
 
   onChange(e, payload) {
     const { addSize, removeSize } = this.props;
-    console.log('checked : ', e.target.checked);
 
     if (e.target.checked) {
       addSize(payload);
@@ -19,26 +18,42 @@ class Sizes extends Component {
 
   render() {
     return (
-      <div className="field-block">
+      <div className="filter-block">
         <h3>Size</h3>
-        <label className="filter-area-container">
+        <label htmlFor="size-small" className="filter-option-container">
           Small
-          <input type="checkbox" onChange={e => this.onChange(e, 'small')} />
+          <input
+            id="size-small"
+            type="checkbox"
+            onChange={e => this.onChange(e, 's')}
+          />
           <span className="checkmark" />
         </label>
-        <label className="filter-area-container">
+        <label htmlFor="size-medium" className="filter-option-container">
           Medium
-          <input type="checkbox" onChange={e => this.onChange(e, 'medium')} />
+          <input
+            id="size-medium"
+            type="checkbox"
+            onChange={e => this.onChange(e, 'm')}
+          />
           <span className="checkmark" />
         </label>
-        <label className="filter-area-container">
+        <label htmlFor="size-large" className="filter-option-container">
           Large
-          <input type="checkbox" onChange={e => this.onChange(e, 'large')} />
+          <input
+            id="size-large"
+            type="checkbox"
+            onChange={e => this.onChange(e, 'l')}
+          />
           <span className="checkmark" />
         </label>
-        <label className="filter-area-container">
+        <label htmlFor="size-xlarge" className="filter-option-container">
           X-Large
-          <input type="checkbox" onChange={e => this.onChange(e, 'xLarge')} />
+          <input
+            id="size-xlarge"
+            type="checkbox"
+            onChange={e => this.onChange(e, 'xl')}
+          />
           <span className="checkmark" />
         </label>
       </div>
