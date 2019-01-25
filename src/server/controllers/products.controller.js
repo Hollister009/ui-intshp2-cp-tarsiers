@@ -5,7 +5,7 @@ const db = mongojs(
   ['products']
 );
 
-exports.getProducts = (req, res) =>
+const getProducts = (req, res) =>
   // eslint-disable-next-line
   db.products.find((err, products) => {
     if (err) {
@@ -14,3 +14,11 @@ exports.getProducts = (req, res) =>
 
     res.json(products);
   });
+
+const getFilteredProducts = (req, res) => {
+  console.log('req', req.query);
+
+  res.status(200).send();
+};
+
+module.exports = { getProducts, getFilteredProducts };

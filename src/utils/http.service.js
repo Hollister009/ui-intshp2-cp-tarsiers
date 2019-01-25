@@ -9,11 +9,11 @@ class HttpService {
     };
   }
 
-  get(url) {
+  get(url, options) {
     const source = baseUrl + url;
 
     return axios
-      .get(source)
+      .get(source, options)
       .then(response => response)
       .catch(error => Promise.reject(error));
   }
