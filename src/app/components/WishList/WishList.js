@@ -7,7 +7,8 @@ import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer'
 import './WishList.scss';
 
 const CN = 'wishlist';
-const title = 'Best sales';
+const title = 'Wish list';
+const message = 'Currently your wishlist is empty. Add products to it first';
 
 const WishList = props => {
   const { products, wishlist } = props;
@@ -26,10 +27,7 @@ const WishList = props => {
           &nbsp;
           {titleArr[1]}
         </h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry
-        </p>
+        {!wishlist.length ? <p>{message}</p> : ''}
       </div>
       <div className={`${CN}__display`}>
         <Carousel data={filteredProducts}>{list}</Carousel>
@@ -43,21 +41,9 @@ WishList.propTypes = {
   wishlist: PropTypes.arrayOf(PropTypes.string)
 };
 
-/**
- * For the test purpose fake data
- */
 WishList.defaultProps = {
-  products: [
-    {
-      _id: '5c473090e7179a544940dfec',
-      src: '/images/products/running-jacket.png',
-      title: 'Reebok Track Jacket',
-      price: 100,
-      sizes: ['s', 'm', 'l', 'xl'],
-      colors: ['#e12e3f', '#34404b', '#3ab3ff', '#2fd967']
-    }
-  ],
-  wishlist: ['5c473090e7179a544940dfec']
+  products: [],
+  wishlist: []
 };
 
 export default WishList;

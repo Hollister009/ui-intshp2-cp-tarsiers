@@ -28,24 +28,18 @@ class ProductItem extends Component {
     data: {}
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { showDetails: false, inWishList: null };
-    this.itemRef = React.createRef();
-  }
+  state = { showDetails: false };
 
   showFront = () => this.setState({ showDetails: false });
 
   showDetails = () => this.setState({ showDetails: true });
 
   addToWishList = id => {
-    const { addToWishListItem } = this.props;
-    const { inWishList } = this.state;
+    const { addToWishListItem, isAddedtoWishList } = this.props;
 
-    // HttpService.post(addToWishList, id)
     HttpService.post(addToWishList, { productId: id })
       .then(res => {
-        if (res.status === 200 && !inWishList) {
+        if (res.status === 200 && !isAddedtoWishList) {
           addToWishListItem(id);
         }
       })
@@ -57,7 +51,6 @@ class ProductItem extends Component {
   removeFromWishList = id => {
     const { removeFromWishListItem } = this.props;
 
-    // HttpService.post(removeFromWishList, id)
     HttpService.post(removeFromWishList, { productId: id })
       .then(res => {
         if (res.status === 200) {
@@ -70,19 +63,18 @@ class ProductItem extends Component {
 
   toggleWishList = (e, id) => {
     e.preventDefault();
-    let { inWishList } = this.state;
+    const { isAddedtoWishList } = this.props;
 
-    this.setState({ inWishList: !inWishList }, () => {
-      inWishList = !inWishList;
-      const cb = inWishList ? this.addToWishList : this.removeFromWishList;
+    const cb = !isAddedtoWishList
+      ? this.addToWishList
+      : this.removeFromWishList;
 
-      cb(id);
-    });
+    cb(id);
   };
 
   render() {
-    const { showDetails, inWishList } = this.state;
-    const { data, extended } = this.props;
+    const { showDetails } = this.state;
+    const { data, extended, isAddedtoWishList } = this.props;
     const { src, title, price } = data;
 
     return extended ? (
@@ -96,7 +88,7 @@ class ProductItem extends Component {
           <ViewDetailsFull
             {...data}
             clickHandler={this.toggleWishList}
-            wished={inWishList}
+            wished={isAddedtoWishList}
           />
         ) : (
           <ViewFrontFull {...data} />

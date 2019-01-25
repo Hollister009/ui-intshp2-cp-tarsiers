@@ -10,14 +10,20 @@ const CN = 'new-arrivals';
 const title = 'New Arrivals';
 
 const NewArrivals = props => {
-  const { products } = props;
+  const { products, wishlist } = props;
   const extended = true;
   const titleArr = title.split(' ');
+  const isAddedtoWishList = id => wishlist.includes(id);
 
   const list =
     products &&
     products.map(el => (
-      <ProductItemContainer extended={extended} key={el._id} data={el} />
+      <ProductItemContainer
+        isAddedtoWishList={isAddedtoWishList(el._id)}
+        extended={extended}
+        key={el._id}
+        data={el}
+      />
     ));
 
   return (
