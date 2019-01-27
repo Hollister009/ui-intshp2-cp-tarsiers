@@ -1,21 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import HttpService from '../../utils/http.service';
+import FilterAreaContainer from '../components/FilterArea/FilterAreaContainer';
 
-const ProductsListPage = ({ match }) => (
-  <div>
-    <h2>Choose your product</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/1`}>Product 1</Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/2`}>Product 2</Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/3`}>Product 3</Link>
-      </li>
-    </ul>
-  </div>
-);
+const ProductsListPage = () => {
+  const getFilteredProducts = (sizes, brands, category) => {
+    const params = { sizes, brands, category };
+
+    HttpService.get('/api/filtered-products', { params }).then(res =>
+      console.log('res', res)
+    );
+
+    console.log('product list', sizes, brands, category);
+  };
+
+  return (
+    <div>
+      <FilterAreaContainer getFilteredProducts={getFilteredProducts} />
+    </div>
+  );
+};
 
 export default ProductsListPage;

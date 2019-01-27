@@ -25,9 +25,9 @@ class Carousel extends Component {
       translateStep,
       translation,
       scrollCounter,
-      width
+      width,
+      wrapperWidth
     } = this.carouselStyle;
-    const wrapperWidth = this.wrapperRef.current.offsetWidth;
 
     this.carouselStyle = {
       ...this.carouselStyle,
@@ -66,6 +66,18 @@ class Carousel extends Component {
     };
   };
 
+  componentDidMount = () => {
+    const { data } = this.props;
+
+    this.carouselStyle = {
+      ...this.carouselStyle,
+      translateStep:
+        (this.carouselRef.current.scrollWidth +
+          this.carouselStyle.doubleSideMargin) /
+        data.length
+    };
+  };
+
   componentDidUpdate = () => {
     const { data } = this.props;
     const { translateStep } = this.carouselStyle;
@@ -78,6 +90,7 @@ class Carousel extends Component {
     this.carouselStyle = {
       ...this.carouselStyle,
       width: this.carouselRef.current.scrollWidth,
+      wrapperWidth: this.wrapperRef.current.offsetWidth,
       translateStep:
         (this.carouselRef.current.scrollWidth +
           this.carouselStyle.doubleSideMargin) /
