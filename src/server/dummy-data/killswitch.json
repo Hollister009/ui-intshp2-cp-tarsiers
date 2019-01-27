@@ -1,0 +1,6 @@
+{
+  "flags": [
+    { "name": "showComponent", "isActive": true },
+    { "name": "hideComponent", "isActive": false }
+  ]
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Flags } from 'react-feature-flags';
 import Promotions from '../components/Promotions/Promotions';
 import NewArrivalsContainer from '../components/NewArrivals/NewArrivalsContainer';
 import AdvertisingArea from '../shared/Advertising';
@@ -11,7 +12,9 @@ const HomePage = () => (
     <NewArrivalsContainer />
     <AdvertisingArea />
     <JoinUs />
-    <WishListContainer />
+    <Flags authorizedFlags={['showComponent']}>
+      <WishListContainer />
+    </Flags>
   </>
 );
 

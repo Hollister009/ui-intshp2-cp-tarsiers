@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { FlagsProvider } from 'react-feature-flags';
 
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
@@ -14,25 +15,39 @@ import '../styles/index.scss';
 const { products } = appConfig.apiResources;
 
 class App extends Component {
+  constructor() {
+    super();
+    // this.flags = null;
+    this.state = {
+      featureFlags: []
+    };
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
 
     HttpService.get(products)
       .then(res => dispatch(getProducts(res.data)))
       .catch(error => console.log(error));
+
+    HttpService.get(appConfig.apiResources.killswitch).then(response => {
+      this.setState({ featureFlags: response.data.flags });
+    });
   }
 
   render() {
     return (
-      <Router>
-        <HashRouter>
-          <>
-            <Header />
-            <Content className="content" />
-            <Footer />
-          </>
-        </HashRouter>
-      </Router>
+      <FlagsProvider value={this.state.featureFlags}>
+        <Router>
+          <HashRouter>
+            <>
+              <Header />
+              <Content className="content" />
+              <Footer />
+            </>
+          </HashRouter>
+        </Router>
+      </FlagsProvider>
     );
   }
 }

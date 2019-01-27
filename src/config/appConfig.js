@@ -151,7 +151,8 @@ const appConfig = {
     baner: '/api/baner',
     wishlist: '/api/wish-list',
     addToWishList: '/api/add-to-wish-list',
-    removeFromWishList: '/api/remove-from-wish-list'
+    removeFromWishList: '/api/remove-from-wish-list',
+    killswitch: '/api/killswitch'
   },
   promotions: {
     slides: [
