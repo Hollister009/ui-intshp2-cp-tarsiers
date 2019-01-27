@@ -41,11 +41,10 @@ class ProductItem extends Component {
       .then(res => {
         if (res.status === 200 && !isAddedtoWishList) {
           addToWishListItem(id);
+          console.log(`Added to the WishList: ${id}`);
         }
       })
       .catch(error => console.log(error));
-    addToWishListItem(id);
-    console.log(`Added to the WishList: ${id}`);
   };
 
   removeFromWishList = id => {
@@ -55,10 +54,10 @@ class ProductItem extends Component {
       .then(res => {
         if (res.status === 200) {
           removeFromWishListItem(id);
+          console.log(`Removed from the WishList: ${id}`);
         }
       })
       .catch(error => console.log(error));
-    console.log(`Removed from the WishList: ${id}`);
   };
 
   toggleWishList = (e, id) => {

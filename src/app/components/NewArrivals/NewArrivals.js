@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import Carousel from '../../shared/Carousel';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 
-import './NewArrivals.scss';
+import styles from './NewArrivals.module.scss';
 
-const CN = 'new-arrivals';
 const title = 'New Arrivals';
 
 const NewArrivals = props => {
@@ -27,7 +26,7 @@ const NewArrivals = props => {
     ));
 
   return (
-    <section className={`${CN}`}>
+    <section className={styles.arrivals}>
       <div className="section_heading">
         <h2>
           <span className="highlighted">{titleArr[0]}</span>
@@ -39,7 +38,7 @@ const NewArrivals = props => {
           industry
         </p>
       </div>
-      <div className={`${CN}__display`}>
+      <div className={styles.arrivals__display}>
         <Carousel data={products} extended>
           {list}
         </Carousel>
