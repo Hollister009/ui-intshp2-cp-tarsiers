@@ -36,6 +36,7 @@ class App extends Component {
   }
 
   render() {
+    // const { flags } = this.state.featureFlags;
     return (
       <FlagsProvider value={this.state.featureFlags}>
         <Router>
