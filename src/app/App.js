@@ -17,7 +17,6 @@ const { products } = appConfig.apiResources;
 class App extends Component {
   constructor() {
     super();
-    // this.flags = null;
     this.state = {
       featureFlags: []
     };
@@ -36,9 +35,9 @@ class App extends Component {
   }
 
   render() {
-    // const { flags } = this.state.featureFlags;
+    const flags = this.state.featureFlags;
     return (
-      <FlagsProvider value={this.state.featureFlags}>
+      <FlagsProvider value={flags}>
         <Router>
           <HashRouter>
             <>
