@@ -21,9 +21,7 @@ const ViewFrontFull = props => {
 };
 
 class ViewDetailsFull extends Component {
-  state = {
-    heartDisabled: false
-  };
+  state = { heartDisabled: false };
 
   static defaultProps = { wished: false };
 
@@ -74,15 +72,15 @@ class ViewDetailsFull extends Component {
     const colorPins = colors.map(color => (
       <div key={color} style={{ backgroundColor: `${color}` }} />
     ));
-    const allSizesArr = sizes.map((size, i) => (i !== 0 ? `- ${size}` : size));
+    const allSizes = sizes
+      .map((size, i) => (i !== 0 ? `- ${size}` : size))
+      .join(' ');
 
     return (
       <React.Fragment>
         <img className={`${CN}__img-small`} src={src} alt="" />
         <h4 className="highlighted">{title}</h4>
-        <div className={`${CN}__sizes`}>{`sizes : ${allSizesArr.join(
-          ' '
-        )}`}</div>
+        <div className={`${CN}__sizes`}>{`sizes : ${allSizes}`}</div>
         <div className={`${CN}__swatches`}>{colorPins}</div>
         <hr className="separate" />
         <div className="social_buttons">
