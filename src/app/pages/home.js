@@ -8,11 +8,19 @@ import WishListContainer from '../components/WishList/WishListContainer';
 
 const HomePage = () => (
   <>
-    <Promotions />
-    <NewArrivalsContainer />
-    <AdvertisingArea />
-    <JoinUs />
-    <Flags authorizedFlags={['showComponent']}>
+    <Flags authorizedFlags={['showPromotions']}>
+      <Promotions />
+    </Flags>
+    <Flags authorizedFlags={['showNewArrivals']}>
+      <NewArrivalsContainer />
+    </Flags>
+    <Flags authorizedFlags={['showAdvertisingArea']}>
+      <AdvertisingArea />
+    </Flags>
+    <Flags authorizedFlags={['showJoinUs']}>
+      <JoinUs />
+    </Flags>
+    <Flags authorizedFlags={['showWishlist']}>
       <WishListContainer />
     </Flags>
   </>

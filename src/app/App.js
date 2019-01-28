@@ -31,6 +31,7 @@ class App extends Component {
 
     HttpService.get(appConfig.apiResources.killswitch).then(response => {
       this.setState({ featureFlags: response.data.flags });
+      console.log(response);
     });
   }
 
