@@ -92,6 +92,7 @@ class ViewDetailsFull extends Component {
           </button>
           <button
             type="button"
+            className="btn-heart"
             onClick={e => this.toggleWishList(e, _id)}
             title="Add to wish-list"
             disabled={heartDisabled}

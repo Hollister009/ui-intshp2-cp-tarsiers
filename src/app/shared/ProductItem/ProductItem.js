@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
 
-import productType from '../../types';
+import productType from '../../../types';
 import { ViewFrontFull, ViewDetailsFull } from './viewFull';
 import { ViewCartSmall, ViewInfoSmall } from './viewSmall';
 import './ProductItem.scss';
@@ -12,6 +12,7 @@ const CN = 'product-item';
 class ProductItem extends Component {
   static propTypes = {
     extended: bool,
+    isAddedtoWishList: bool,
 
     /**
      * data - productType shape
@@ -21,6 +22,7 @@ class ProductItem extends Component {
 
   static defaultProps = {
     extended: false,
+    isAddedtoWishList: false,
     data: {}
   };
 
