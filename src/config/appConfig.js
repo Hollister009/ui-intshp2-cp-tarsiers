@@ -153,6 +153,12 @@ const appConfig = {
     addToWishList: '/api/add-to-wish-list',
     removeFromWishList: '/api/remove-from-wish-list'
   },
+  filter: {
+    price: {
+      max: 1000,
+      min: 0
+    }
+  },
   promotions: {
     slides: [
       {
