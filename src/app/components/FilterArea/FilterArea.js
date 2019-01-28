@@ -22,10 +22,8 @@ class FilterArea extends Component {
       filter
     } = this.props;
 
-    console.log(this.props);
-
     return (
-      <div className="container">
+      <div>
         <Categories
           setCategory={setCategory}
           getFilteredProducts={getFilteredProducts}

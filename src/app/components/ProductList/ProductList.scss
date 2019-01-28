@@ -5,22 +5,16 @@
   @include d-flex(unset);
 }
 
-.filterContainer {
-  border: 2px solid black;
-  width: 25%;
-  margin: 30px 0;
-}
-
 .products {
   @include d-flex(unset, column);
 
-  margin: 0 30px;
+  margin-left: 30px;
 }
 .product_list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 30px;
   margin: 30px 0;
+  grid-gap: 30px;
 }
 
 .product-item--full {
@@ -33,7 +27,7 @@
   background-color: $color-white;
   padding: 17px;
 
-  .fas {
+  i {
     padding: 3px;
     color: $color-main;
     font-size: 14px;

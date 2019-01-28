@@ -1,8 +1,9 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixin';
 
 .filter-block {
   height: 270px;
-  width: 300px;
+  width: 270px;
   background-color: #fff;
   margin: 30px 0;
   padding: 42px;
@@ -162,4 +163,13 @@ input[type='text'] {
   width: 45px;
   height: 25px;
   padding: 10px;
+}
+
+.price-fields {
+  @include d-flex();
+}
+
+.price-form {
+  @include d-flex();
+  align-items: center;
 }
