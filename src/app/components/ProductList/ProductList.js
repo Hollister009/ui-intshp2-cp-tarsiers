@@ -27,9 +27,9 @@ export default class ProductList extends Component {
 
   render() {
     const { products } = this.props;
+    const prod = products.slice(0, 9);
     const list =
-      products &&
-      products.map(el => <ProductItem key={el._id} data={el} extended />);
+      prod && prod.map(el => <ProductItem key={el._id} data={el} extended />);
 
     return (
       <div>

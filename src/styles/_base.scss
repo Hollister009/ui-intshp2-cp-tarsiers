@@ -55,6 +55,8 @@ button {
   }
 }
 
-.plp-page {
+.products_filters {
   @include d-flex();
+
+  margin-bottom: 120px;
 }

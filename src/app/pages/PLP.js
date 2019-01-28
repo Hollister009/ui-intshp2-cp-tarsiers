@@ -3,6 +3,7 @@ import React from 'react';
 import HttpService from '../../utils/http.service';
 import FilterAreaContainer from '../components/FilterArea/FilterAreaContainer';
 import ProductListContainer from '../components/ProductList/ProductListContainer';
+import JoinUs from '../components/JoinUs/JoinUs';
 
 const ProductsListPage = () => {
   const getFilteredProducts = (sizes, brands, category) => {
@@ -16,9 +17,12 @@ const ProductsListPage = () => {
   };
 
   return (
-    <div className="plp-page container">
-      <FilterAreaContainer getFilteredProducts={getFilteredProducts} />
-      <ProductListContainer />
+    <div className="container">
+      <div className="products_filters">
+        <FilterAreaContainer getFilteredProducts={getFilteredProducts} />
+        <ProductListContainer />
+      </div>
+      <JoinUs />
     </div>
   );
 };

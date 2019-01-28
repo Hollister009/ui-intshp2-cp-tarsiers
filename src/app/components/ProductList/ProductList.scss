@@ -15,10 +15,9 @@
   grid-template-columns: 1fr 1fr 1fr;
   margin: 30px 0;
   grid-gap: 30px;
-}
-
-.product-item--full {
-  margin: 0;
+  .product-item--full {
+    margin: 0;
+  }
 }
 
 .dots {
