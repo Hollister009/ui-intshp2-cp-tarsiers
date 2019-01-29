@@ -6,7 +6,7 @@ const db = mongojs(
 );
 
 const getProducts = (req, res) =>
-  // eslint-disable-next-line
+  // eslint-disable-next-line array-callback-return
   db.products.find((err, products) => {
     if (err) {
       res.send(err);
@@ -17,8 +17,26 @@ const getProducts = (req, res) =>
 
 const getFilteredProducts = (req, res) => {
   console.log('req', req.query);
+  const { sizes, brands, category, price, available } = req.query;
 
-  res.status(200).send();
+  db.products.find(
+    {
+      $and: [
+        { brand: { $in: brands } },
+        { category },
+        { sizes: { $in: sizes } },
+        { price: { $gte: JSON.parse(price).min, $lte: JSON.parse(price).max } },
+        { available }
+      ]
+    },
+    (err, products) => {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json(products);
+    }
+  );
 };
 
 module.exports = { getProducts, getFilteredProducts };

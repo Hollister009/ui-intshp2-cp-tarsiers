@@ -15,7 +15,7 @@ const initialState = {
   sizes: [],
   brands: [],
   price: { min: appConfig.filter.price.min, max: appConfig.filter.price.max },
-  available: false
+  available: null
 };
 
 export default (state = initialState, action) => {
