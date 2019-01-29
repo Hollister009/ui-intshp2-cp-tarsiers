@@ -60,9 +60,7 @@ class ViewDetailsFull extends Component {
     const cb = !wished ? this.addItem : this.removeItem;
 
     this.setState({ heartDisabled: true }, () => {
-      setTimeout(() => {
-        cb(id);
-      }, 1000);
+      cb(id);
     });
   };
 
