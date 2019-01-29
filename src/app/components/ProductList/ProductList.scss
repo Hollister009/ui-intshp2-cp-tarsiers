@@ -17,6 +17,17 @@
   grid-gap: 30px;
   .product-item--full {
     margin: 0;
+    animation: fadeIn 2s;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   }
 }
 

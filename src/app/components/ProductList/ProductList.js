@@ -1,42 +1,53 @@
 import React, { Component } from 'react';
 import ProductItem from '../../shared/ProductItem';
+import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
 
-let lastScrollY = 0;
-
 export default class ProductList extends Component {
-  heightRef = React.createRef();
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-    // HttpService.get(appConfig.apiResources.products).then(res =>
-    //   this.setState({ products: res })
-    // );
+  constructor(props) {
+    super(props);
+    this.state = {
+      skip: 0,
+      limit: 9
+    };
+    this.heightRef = React.createRef();
+    this.final = [];
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  handleScroll = () => {
-    lastScrollY = window.scrollY;
-    window.requestAnimationFrame(() => {
-      this.heightRef.current.style.top = `${lastScrollY}px`;
-    });
+  handleClick = () => {
+    this.setState(state => ({
+      skip: state.skip === 0 ? state.limit : state.skip + state.limit,
+      limit: 3
+    }));
   };
 
   render() {
     const { products } = this.props;
-    const prod = products.slice(0, 9);
+    const { skip, limit } = this.state;
+    const part = products.slice(skip, skip + limit);
+
+    this.final = this.final.concat(part);
+
     const list =
-      prod && prod.map(el => <ProductItem key={el._id} data={el} extended />);
+      this.final &&
+      this.final.map(el => <ProductItem key={el._id} data={el} extended />);
+
+    const setClass = list.length >= products.length ? 'hide' : '';
 
     return (
       <div>
         <div className="product_list__page">
           <div className="products" ref={this.heightRef}>
-            <div className="product_list">{list}</div>
-            <button type="button">
+            {list.length === 0 ? (
+              <Spinner />
+            ) : (
+              <div className="product_list">{list}</div>
+            )}
+            <button
+              type="button"
+              onClick={this.handleClick}
+              className={setClass}
+            >
               <Dots />
             </button>
           </div>
