@@ -8,17 +8,35 @@ export default class ProductList extends Component {
     super(props);
     this.state = {
       skip: 0,
-      limit: 9
+      limit: 6
     };
     this.heightRef = React.createRef();
+    this.productHeight = React.createRef();
     this.final = [];
   }
 
-  handleClick = () => {
-    this.setState(state => ({
-      skip: state.skip === 0 ? state.limit : state.skip + state.limit,
-      limit: 3
-    }));
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleScroll);
+  };
+
+  handleScroll = () => {
+    const scrollHeigh = this.productHeight.current.offsetHeight
+      ? this.productHeight.current.offsetHeight
+      : 770;
+
+    if (window.scrollY >= scrollHeigh - 386) {
+      this.setState(state => ({
+        skip: state.skip === 0 ? state.limit : state.skip + state.limit,
+        limit: 3
+      }));
+    }
+    console.log(this.productHeight.current.offsetHeight);
+  };
+
+  handleClick = () => {};
+
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.handleScroll);
   };
 
   render() {
@@ -43,7 +61,9 @@ export default class ProductList extends Component {
                 <Spinner />
               </div>
             ) : (
-              <div className="product_list">{list}</div>
+              <div className="product_list" ref={this.productHeight}>
+                {list}
+              </div>
             )}
             <button
               type="button"
