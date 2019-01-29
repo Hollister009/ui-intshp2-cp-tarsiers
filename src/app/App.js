@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
 import { getProducts } from './actions';
-import Header from './common/Header/Header';
-import Footer from './common/Footer/Footer';
+import Header from './common/Header/HeaderContainer';
+import Footer from './common/Footer/FooterContainer';
+
 import Content from './common/Content';
 import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
 import '../styles/index.scss';

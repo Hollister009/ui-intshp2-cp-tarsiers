@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import { Footer } from './Footer';
+import Footer from './Footer';
 
 jest.mock('react-router-dom');
 describe('<Footer />', () => {

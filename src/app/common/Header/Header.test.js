@@ -1,23 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import HeaderTop from './HeaderTop';
-import HeaderMain from './HeaderMain';
+import { shallow, mount } from 'enzyme';
+import Header from './Header';
 
-const links = ['link1', 'link2'];
-const contacts = ['contact1', 'contact2'];
-const pages = ['page1', 'page2'];
-const options = ['option1', 'option2'];
+jest.mock('react-router-dom');
+describe('<Header />', () => {
+  let props;
 
-describe('Header components', () => {
-  it('should render links and contacts', () => {
-    const wrapper = shallow(<HeaderTop links={links} contacts={contacts} />);
-
-    expect(wrapper.props());
+  beforeEach(() => {
+    props = {
+      headerFooterVisibility: { value: true }
+    };
   });
 
-  it('should change the toggle pages and options', () => {
-    const wrapper = shallow(<HeaderMain pages={pages} options={options} />);
+  it('should match its snapshot', () => {
+    const shallowWrapper = shallow(<Header {...props} />);
 
-    expect(wrapper.props());
+    expect(shallowWrapper).toMatchSnapshot();
+  });
+
+  it('should able to render all child components', () => {
+    const wrapper = mount(<Header {...props} />);
+
+    expect(wrapper).toBeDefined();
+  });
+
+  it('should be able to render based on props', () => {
+    const wrapper = mount(<Header {...props} />);
+
+    expect(wrapper.prop('headerFooterVisibility').value).toBe(true);
+    wrapper.setProps({ headerFooterVisibility: { value: false } });
+    expect(wrapper.prop('headerFooterVisibility').value).toBe(false);
   });
 });
