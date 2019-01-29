@@ -39,7 +39,9 @@ export default class ProductList extends Component {
         <div className="product_list__page">
           <div className="products" ref={this.heightRef}>
             {list.length === 0 ? (
-              <Spinner />
+              <div className="spin-position">
+                <Spinner />
+              </div>
             ) : (
               <div className="product_list">{list}</div>
             )}
