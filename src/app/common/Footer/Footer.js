@@ -6,7 +6,7 @@ import logo from '../../../assets/logo.png';
 import appConfig from '../../../config/appConfig';
 import './Footer.scss';
 
-const Footer = props => {
+export const Footer = props => {
   const { headerFooterVisibility } = props;
   const visible = headerFooterVisibility.value;
 

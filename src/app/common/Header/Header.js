@@ -9,12 +9,12 @@ import appConfig from '../../../config/appConfig';
 const Header = props => {
   const { headerFooterVisibility } = props;
   const visible = headerFooterVisibility.value;
-  const { contacts, links, pages, options, key } = appConfig.header;
+  const { contacts, links, pages, options } = appConfig.header;
 
   return (
     visible && (
       <header className="header">
-        <HeaderTop contacts={contacts} links={links} key={key} />
+        <HeaderTop contacts={contacts} links={links} />
         <HeaderMain pages={pages} options={options} />
       </header>
     )

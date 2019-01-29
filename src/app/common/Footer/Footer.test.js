@@ -1,19 +1,29 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Footer from './Footer';
+import { shallow, mount } from 'enzyme';
 
+import { Footer } from './Footer';
+
+jest.mock('react-router-dom');
 describe('<Footer />', () => {
-  it('should match its snapshot', () => {
-    const wrapper = shallow(<Footer />);
+  let props;
 
-    expect(wrapper).toMatchSnapshot();
+  beforeEach(() => {
+    props = {
+      headerFooterVisibility: { value: true }
+    };
   });
-});
 
-describe('<Footer />', () => {
-  it('should have headerFooterVisibility prop', () => {
-    const wrapper = shallow(<Footer />);
+  it('should match its snapshot', () => {
+    const shallowWrapper = shallow(<Footer {...props} />);
 
-    expect(wrapper.find({ prop: 'headerFooterVisibility' }));
+    expect(shallowWrapper).toMatchSnapshot();
+  });
+
+  it('should be able to render based on props', () => {
+    const wrapper = mount(<Footer {...props} />);
+
+    expect(wrapper.prop('headerFooterVisibility').value).toBe(true);
+    wrapper.setProps({ headerFooterVisibility: { value: false } });
+    expect(wrapper.prop('headerFooterVisibility').value).toBe(false);
   });
 });
