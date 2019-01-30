@@ -178,6 +178,10 @@ const appConfig = {
         link: { href: 'http://www.themafiastore.com/', isOrigin: false }
       }
     ]
+  },
+  killswitch: {
+    wishlist: 'showWishlist',
+    advertising: 'showAdvertisingArea'
   }
 };
 

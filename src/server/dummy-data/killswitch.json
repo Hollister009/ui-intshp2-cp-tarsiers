@@ -1,9 +1,6 @@
 {
   "flags": [
-    { "name": "showPromotions", "isActive": true },
-    { "name": "showNewArrivals", "isActive": true },
     { "name": "showAdvertisingArea", "isActive": true },
-    { "name": "showJoinUs", "isActive": true },
     { "name": "showWishlist", "isActive": true }
   ]
 }

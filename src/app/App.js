@@ -36,22 +36,23 @@ class App extends Component {
   }
 
   render() {
-    const fFlags = this.state;
-    const flags = fFlags.featureFlags;
+    const { featureFlags } = this.state;
 
-    return (
-      <FlagsProvider value={flags}>
-        <Router>
-          <HashRouter>
-            <>
-              <Header />
-              <Content className="content" />
-              <Footer />
-            </>
-          </HashRouter>
-        </Router>
-      </FlagsProvider>
-    );
+    if (featureFlags) {
+      return (
+        <FlagsProvider value={featureFlags}>
+          <Router>
+            <HashRouter>
+              <>
+                <Header />
+                <Content className="content" />
+                <Footer />
+              </>
+            </HashRouter>
+          </Router>
+        </FlagsProvider>
+      );
+    }
   }
 }
 

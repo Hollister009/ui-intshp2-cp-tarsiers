@@ -1,4 +1,5 @@
 import React from 'react';
+import appConfig from '../../config/appConfig';
 import { Flags } from 'react-feature-flags';
 import Promotions from '../components/Promotions/Promotions';
 import NewArrivalsContainer from '../components/NewArrivals/NewArrivalsContainer';
@@ -8,19 +9,13 @@ import WishListContainer from '../components/WishList/WishListContainer';
 
 const HomePage = () => (
   <>
-    <Flags authorizedFlags={['showPromotions']}>
-      <Promotions />
-    </Flags>
-    <Flags authorizedFlags={['showNewArrivals']}>
-      <NewArrivalsContainer />
-    </Flags>
-    <Flags authorizedFlags={['showAdvertisingArea']}>
+    <Promotions />
+    <NewArrivalsContainer />
+    <Flags authorizedFlags={[appConfig.killswitch.advertising]}>
       <AdvertisingArea />
     </Flags>
-    <Flags authorizedFlags={['showJoinUs']}>
-      <JoinUs />
-    </Flags>
-    <Flags authorizedFlags={['showWishlist']}>
+    <JoinUs />
+    <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
       <WishListContainer />
     </Flags>
   </>
