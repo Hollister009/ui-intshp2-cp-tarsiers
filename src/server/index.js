@@ -7,6 +7,15 @@ const router = require('./router');
 
 const app = express();
 
+function clientErrorHandler(err, req, res, next) {
+  if (req.xhr) {
+    res.status(500).send({ error: 'Something failed!' });
+  } else {
+    next(err);
+  }
+}
+
+app.use(clientErrorHandler);
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 // parse application/x-www-form-urlencoded

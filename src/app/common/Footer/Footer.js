@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { RouterLink, ExternalLink } from '../Links';
 import logo from '../../../assets/logo.png';
@@ -53,6 +52,4 @@ const Footer = props => {
   ) : null;
 };
 
-const mapStateToProps = state => ({ ...state });
-
-export default connect(mapStateToProps)(Footer);
+export default Footer;

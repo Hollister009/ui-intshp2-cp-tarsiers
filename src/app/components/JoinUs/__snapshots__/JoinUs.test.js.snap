@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<JoinUs /> should match its snapshot 1`] = `
+<section
+  className="joinus container"
+>
+  <div
+    className="joinus__info col-6"
+  >
+    <h2>
+      news letter
+    </h2>
+    <p>
+      join us now to get all news and special offers
+    </p>
+  </div>
+  <form
+    className="joinus__subscribe col-4"
+    onSubmit={[Function]}
+  >
+    <div
+      className="joinus__fieldset"
+    >
+      <label
+        className="mailfield"
+        htmlFor="email"
+      >
+        <i
+          className="far fa-envelope"
+        />
+        <input
+          id="email"
+          onChange={[Function]}
+          placeholder="type your email here"
+          required={true}
+          type="email"
+          value=""
+        />
+      </label>
+      <button
+        disabled={true}
+        onClick={[Function]}
+        type="submit"
+      >
+        join us
+      </button>
+      <Snackbar />
+    </div>
+    <p
+      className="msg"
+    >
+      * Please enter valid e-mail: sample@samle.com!
+    </p>
+  </form>
+</section>
+`;
