@@ -52,19 +52,18 @@ class App extends Component {
           </Router>
         </FlagsProvider>
       );
-    } else {
-      return (
-        <Router>
-          <HashRouter>
-            <>
-              <Header />
-              <Content className="content" />
-              <Footer />
-            </>
-          </HashRouter>
-        </Router>
-      );
     }
+    return (
+      <Router>
+        <HashRouter>
+          <>
+            <Header />
+            <Content className="content" />
+            <Footer />
+          </>
+        </HashRouter>
+      </Router>
+    );
   }
 }
 
