@@ -11,7 +11,6 @@ export default class ProductList extends Component {
       limit: 6
     };
     this.heightRef = React.createRef();
-    this.productHeight = React.createRef();
     this.final = [];
   }
 
@@ -20,17 +19,15 @@ export default class ProductList extends Component {
   };
 
   handleScroll = () => {
-    const scrollHeigh = this.productHeight.current.offsetHeight
-      ? this.productHeight.current.offsetHeight
-      : 770;
+    const scrollHeight = this.heightRef.current.offsetHeight;
+    const trashHole = 500;
 
-    if (window.scrollY >= scrollHeigh - 386) {
+    if (window.scrollY >= scrollHeight - trashHole) {
       this.setState(state => ({
         skip: state.skip === 0 ? state.limit : state.skip + state.limit,
         limit: 3
       }));
     }
-    console.log(this.productHeight.current.offsetHeight);
   };
 
   handleClick = () => {};
@@ -61,9 +58,7 @@ export default class ProductList extends Component {
                 <Spinner />
               </div>
             ) : (
-              <div className="product_list" ref={this.productHeight}>
-                {list}
-              </div>
+              <div className="product_list">{list}</div>
             )}
             <button
               type="button"
