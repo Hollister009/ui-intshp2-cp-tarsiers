@@ -3,9 +3,13 @@ import { shallow, mount } from 'enzyme';
 import Slider from './Slider';
 import Images from './Slides';
 
-const props = { slides: [], activeIndex: 0, isStopped: false };
-
 describe('<Slider />', () => {
+  let props;
+
+  beforeEach(() => {
+    props = { slides: [], activeIndex: 0, isStopped: false };
+  })
+
   it('should match its snapshot', () => {
     const wrapper = shallow(<Slider {...props} />);
 
