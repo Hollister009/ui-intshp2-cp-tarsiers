@@ -1,6 +1,7 @@
 import React from 'react';
-import appConfig from '../../config/appConfig';
 import { Flags } from 'react-feature-flags';
+
+import appConfig from '../../config/appConfig';
 import Promotions from '../components/Promotions/Promotions';
 import NewArrivalsContainer from '../components/NewArrivals/NewArrivalsContainer';
 import AdvertisingArea from '../shared/Advertising';
