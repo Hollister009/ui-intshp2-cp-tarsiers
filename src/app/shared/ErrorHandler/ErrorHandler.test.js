@@ -9,9 +9,7 @@ describe('<ErrorHandler />', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
-});
 
-describe('When no JS errors are caught in a child component', () => {
   it('should render the child component', () => {
     const wrapper = shallow(
       <ErrorHandler>
@@ -21,10 +19,20 @@ describe('When no JS errors are caught in a child component', () => {
 
     expect(wrapper.find('Spinner').exists()).toBeTruthy();
   });
-});
 
-it('should renders without crashing', () => {
-  const props = { hasError: false };
+  it('should catch errors with componentDidCatch', () => {
+    const wrapper = shallow(
+      <ErrorHandler>
+        <Spinner />
+      </ErrorHandler>
+    );
+    const instance = wrapper.instance();
+    const spy = jest.spyOn(instance, 'componentDidCatch');
 
-  expect(shallow(<ErrorHandler {...props} />).length).toEqual(1);
+    instance.testFunc = () => {
+      throw new Error('test error message');
+    };
+    wrapper.find(Spinner).simulateError(new Error('test error message'));
+    expect(spy).toHaveBeenCalled();
+  });
 });
