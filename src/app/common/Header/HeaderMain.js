@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { RouterLink } from '../Links';
 
 import './Header.scss';

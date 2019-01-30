@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorHandler /> should match its snapshot 1`] = `""`;

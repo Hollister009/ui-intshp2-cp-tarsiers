@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductItem /> should match its snapshot 1`] = `
+<div
+  className="product-item product-item--small"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <img
+    alt=""
+  />
+  <ViewInfoSmall />
+</div>
+`;

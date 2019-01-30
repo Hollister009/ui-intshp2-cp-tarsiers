@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
 
-import Header from './common/Header/Header';
-import Footer from './common/Footer/Footer';
+import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
+import Header from './common/Header/HeaderContainer';
+import Footer from './common/Footer/FooterContainer';
 import Content from './common/Content';
 
 import '../styles/index.scss';
@@ -34,7 +34,9 @@ class App extends Component {
         <HashRouter>
           <>
             <Header />
-            <Content className="content" />
+            <ErrorHandler>
+              <Content className="content" />
+            </ErrorHandler>
             <Footer />
           </>
         </HashRouter>
@@ -42,7 +44,3 @@ class App extends Component {
     );
   }
 }
-
-const mapStateToProps = state => ({ ...state });
-
-export default connect(mapStateToProps)(App);

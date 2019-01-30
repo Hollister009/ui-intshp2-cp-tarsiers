@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> should match its snapshot 1`] = `
+<footer
+  className="footer mt-120"
+>
+  <div
+    className="container"
+  >
+    <nav
+      className="footer__block row"
+    >
+      <div
+        className="footer__copyright col-3"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <span>
+          Shopy © 2018
+        </span>
+      </div>
+      <div
+        className="footer__links col-6"
+      >
+        <ul>
+          <li
+            key="14"
+          >
+            <ExternalLink
+              href="https://www.google.com"
+            >
+              • 
+              about us
+            </ExternalLink>
+          </li>
+          <li
+            key="15"
+          >
+            <RouterLink
+              href="/products"
+            >
+              • 
+              our products
+            </RouterLink>
+          </li>
+          <li
+            key="16"
+          >
+            <RouterLink
+              href="/"
+            >
+              • 
+              join us
+            </RouterLink>
+          </li>
+          <li
+            key="17"
+          >
+            <RouterLink
+              href="/"
+            >
+              • 
+              contact us
+            </RouterLink>
+          </li>
+          <li
+            key="18"
+          >
+            <RouterLink
+              href="/"
+            >
+              • 
+              terms and conditions
+            </RouterLink>
+          </li>
+          <li
+            key="19"
+          >
+            <RouterLink
+              href="/"
+            >
+              • 
+              live support
+            </RouterLink>
+          </li>
+          <li
+            key="20"
+          >
+            <RouterLink
+              href="/"
+            >
+              • 
+              support
+            </RouterLink>
+          </li>
+          <li
+            key="21"
+          >
+            <RouterLink
+              href="/"
+            >
+              • 
+              our privacy
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
+      <div
+        className="footer__payments col-2"
+      >
+        <div
+          className="payments-wrap"
+        >
+          <p>
+            Payment Methods
+          </p>
+          <ul>
+            <li
+              key="22"
+            >
+              <ExternalLink
+                href="https://www.americanexpress.com/"
+              >
+                • 
+                amex
+              </ExternalLink>
+            </li>
+            <li
+              key="23"
+            >
+              <ExternalLink
+                href="https://www.discover.com/"
+              >
+                • 
+                discover
+              </ExternalLink>
+            </li>
+            <li
+              key="24"
+            >
+              <ExternalLink
+                href="https://usa.visa.com/"
+              >
+                • 
+                visa
+              </ExternalLink>
+            </li>
+            <li
+              key="25"
+            >
+              <ExternalLink
+                href="https://www.mastercard.us"
+              >
+                • 
+                mastercard
+              </ExternalLink>
+            </li>
+            <li
+              key="26"
+            >
+              <ExternalLink
+                href="https://www.paypal.com"
+              >
+                • 
+                credit
+              </ExternalLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</footer>
+`;
