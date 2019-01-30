@@ -6,12 +6,10 @@ import './ProductList.scss';
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      skip: 0,
-      limit: 6
-    };
-    this.heightRef = React.createRef();
+    this.state = { skip: 0, limit: 6, isButtonVisible: false };
+    this.scrollRef = React.createRef();
     this.final = [];
+    this.setClass = 'hide';
   }
 
   componentDidMount = () => {
@@ -19,18 +17,31 @@ export default class ProductList extends Component {
   };
 
   handleScroll = () => {
-    const scrollHeight = this.heightRef.current.offsetHeight;
+    const scrollHeight = this.scrollRef.current.offsetHeight;
     const trashHole = 500;
 
     if (window.scrollY >= scrollHeight - trashHole) {
-      this.setState(state => ({
-        skip: state.skip === 0 ? state.limit : state.skip + state.limit,
-        limit: 3
-      }));
+      const { skip, limit } = this.state;
+      const skipped = skip === 0 ? limit : skip + limit;
+
+      if (this.final.length >= 15) {
+        this.setState({ isButtonVisible: true, limit: 0, skip: skipped });
+        window.removeEventListener('scroll', this.handleScroll);
+      } else {
+        this.setState({
+          skip: skipped,
+          limit: 3
+        });
+      }
     }
   };
 
-  handleClick = () => {};
+  handleClick = () => {
+    this.setState(state => ({
+      skip: state.skip === 0 ? state.limit : state.skip + state.limit,
+      limit: 3
+    }));
+  };
 
   componentWillUnmount = () => {
     window.removeEventListener('scroll', this.handleScroll);
@@ -38,7 +49,7 @@ export default class ProductList extends Component {
 
   render() {
     const { products } = this.props;
-    const { skip, limit } = this.state;
+    const { skip, limit, isButtonVisible } = this.state;
     const part = products.slice(skip, skip + limit);
 
     this.final = this.final.concat(part);
@@ -47,12 +58,10 @@ export default class ProductList extends Component {
       this.final &&
       this.final.map(el => <ProductItem key={el._id} data={el} extended />);
 
-    const setClass = list.length >= products.length ? 'hide' : '';
-
     return (
       <div>
         <div className="product_list__page">
-          <div className="products" ref={this.heightRef}>
+          <div className="products" ref={this.scrollRef}>
             {list.length === 0 ? (
               <div className="spin-position">
                 <Spinner />
@@ -62,8 +71,12 @@ export default class ProductList extends Component {
             )}
             <button
               type="button"
+              className={
+                isButtonVisible && products.length > this.final.length
+                  ? ''
+                  : 'hide'
+              }
               onClick={this.handleClick}
-              className={setClass}
             >
               <Dots />
             </button>
