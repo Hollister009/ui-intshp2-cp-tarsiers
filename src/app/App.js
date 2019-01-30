@@ -14,7 +14,7 @@ import '../styles/index.scss';
 
 const { products, wishlist } = appConfig.apiResources;
 
-class App extends Component {
+export default class App extends Component {
   componentDidMount() {
     const { getProductsItems, getWishListItems } = this.props;
 
