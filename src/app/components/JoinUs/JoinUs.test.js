@@ -17,12 +17,4 @@ describe('<JoinUs />', () => {
     wrapper.setProps({ onChange: 'handleEmailChange' });
     expect(wrapper.props().onChange).toBe('handleEmailChange');
   });
-
-  it('should handle  input changes', () => {
-    const props = {};
-    const wrapper = mount(<JoinUs {...props} />);
-
-    wrapper.setProps({ onChange: 'handleEmailChange' });
-    expect(wrapper.props().onChange).toBe('handleEmailChange');
-  });
 });
