@@ -16,27 +16,29 @@ const getProducts = (req, res) =>
   });
 
 const getFilteredProducts = (req, res) => {
-  console.log('req', req.query);
   const { sizes, brands, category, price, available } = req.query;
 
-  db.products.find(
-    {
+  const brandQuery = brands ? { brand: { $in: brands } } : {};
+  const sizesQuery = sizes ? { sizes: { $in: sizes } } : {};
+  const availableQuery = available ? { available: true } : {};
+
+  db.products
+    .find({
       $and: [
-        { brand: { $in: brands } },
+        brandQuery,
+        sizesQuery,
         { category },
-        { sizes: { $in: sizes } },
         { price: { $gte: JSON.parse(price).min, $lte: JSON.parse(price).max } },
-        { available }
+        availableQuery
       ]
-    },
-    (err, products) => {
+    })
+    .skip(2)
+    .limit(5, (err, products) => {
       if (err) {
         res.send(err);
       }
-
       res.json(products);
-    }
-  );
+    });
 };
 
 module.exports = { getProducts, getFilteredProducts };
