@@ -37,10 +37,13 @@ export default class ProductList extends Component {
   };
 
   handleClick = () => {
-    this.setState(state => ({
-      skip: state.skip === 0 ? state.limit : state.skip + state.limit,
+    const { skip, limit } = this.state;
+    const skipped = skip === 0 ? limit : skip + limit;
+
+    this.setState({
+      skip: skipped,
       limit: 3
-    }));
+    });
   };
 
   componentWillUnmount = () => {
