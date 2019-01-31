@@ -17,9 +17,7 @@ const { products } = appConfig.apiResources;
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      featureFlags: []
-    };
+    this.state = { featureFlags: [], isFlagsReady: false };
   }
 
   componentDidMount() {
@@ -29,41 +27,30 @@ class App extends Component {
       .then(res => dispatch(getProducts(res.data)))
       .catch(error => console.log(error));
 
-    HttpService.get(appConfig.apiResources.killswitch).then(response => {
-      this.setState({ featureFlags: response.data.flags });
-      console.log(response);
-    });
+    HttpService.get(appConfig.apiResources.killswitch)
+      .then(response => {
+        this.setState({ featureFlags: response.data.flags });
+        console.log('flags', response.data.flags);
+      })
+      .finally(() => this.setState({ isFlagsReady: true }));
   }
 
   render() {
-    const { featureFlags } = this.state;
+    const { featureFlags, isFlagsReady } = this.state;
 
-    if (featureFlags) {
-      return (
-        <FlagsProvider value={featureFlags}>
-          <Router>
-            <HashRouter>
-              <>
-                <Header />
-                <Content className="content" />
-                <Footer />
-              </>
-            </HashRouter>
-          </Router>
-        </FlagsProvider>
-      );
-    }
-    return (
-      <Router>
-        <HashRouter>
-          <>
-            <Header />
-            <Content className="content" />
-            <Footer />
-          </>
-        </HashRouter>
-      </Router>
-    );
+    return isFlagsReady ? (
+      <FlagsProvider value={featureFlags}>
+        <Router>
+          <HashRouter>
+            <>
+              <Header />
+              <Content className="content" />
+              <Footer />
+            </>
+          </HashRouter>
+        </Router>
+      </FlagsProvider>
+    ) : null;
   }
 }
 
