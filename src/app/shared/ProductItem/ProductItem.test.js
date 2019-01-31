@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
 import ProductItem from './ProductItem';
 
+jest.mock('../../actions');
 const products = require('../../../mocks/products.json');
 
-xdescribe('<ProductItem />', () => {
+describe('<ProductItem />', () => {
   let props;
   let extended;
 
@@ -15,67 +15,48 @@ xdescribe('<ProductItem />', () => {
   });
 
   it('should match its snapshot', () => {
-    const shallowWrapper = shallow(<ProductItem {...props} />);
+    const wrapper = shallow(<ProductItem {...props} extended={extended} />);
 
-    expect(shallowWrapper).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
-  xdescribe('<viewSmall />', () => {
-    it('should be able to render <ViewCartSmall />', () => {
-      const wrapper = shallow(<ProductItem {...props} />);
-      const instance = wrapper.instance();
+  it('should be able to render <ViewCartSmall />', () => {
+    const wrapper = shallow(<ProductItem {...props} />);
+    const instance = wrapper.instance();
 
-      instance.showFront();
-      expect(wrapper.state('showDetails')).toBe(false);
-    });
-
-    it('should be able to render <ViewInfoSmall />', () => {
-      const wrapper = shallow(<ProductItem {...props} />);
-      const instance = wrapper.instance();
-
-      instance.showDetails();
-      expect(wrapper.state('showDetails')).toBe(true);
-    });
-
-    it('should render <ViewInfoSmall /> if showDetails is true', () => {
-      const wrapper = mount(<ProductItem {...props} />);
-
-      wrapper.setState({ showDetails: true });
-      expect(wrapper.state('showDetails')).toBe(true);
-    });
+    instance.showFront();
+    expect(wrapper.state('showDetails')).toBe(false);
   });
 
-  xdescribe('<viewFull>', () => {
-    it('should be able to render <ViewFrontFull />', () => {
-      const wrapper = shallow(<ProductItem {...props} extended={extended} />);
-      const instance = wrapper.instance();
+  it('should be able to render <ViewInfoSmall />', () => {
+    const wrapper = shallow(<ProductItem {...props} />);
+    const instance = wrapper.instance();
 
-      instance.showFront();
-      expect(wrapper.state('showDetails')).toBe(false);
-    });
+    instance.showDetails();
+    expect(wrapper.state('showDetails')).toBe(true);
+  });
 
-    it('should be able to render <ViewDetailsFull />', () => {
-      const wrapper = shallow(<ProductItem {...props} extended={extended} />);
-      const instance = wrapper.instance();
+  it('should render <ViewInfoSmall /> if showDetails is true', () => {
+    const wrapper = mount(<ProductItem {...props} />);
 
-      instance.showDetails();
-      expect(wrapper.state('showDetails')).toBe(true);
-    });
+    wrapper.setState({ showDetails: true });
+    expect(wrapper.state('showDetails')).toBe(true);
+  });
 
-    it('should render <ViewDetailsFull /> if showDetails is true', () => {
-      const wrapper = mount(<ProductItem {...props} extended={extended} />);
+  it('should be able to render <ViewFrontFull />', () => {
+    const wrapper = shallow(<ProductItem {...props} extended={extended} />);
+    const instance = wrapper.instance();
 
-      wrapper.setState({ showDetails: true });
-      expect(wrapper.state('showDetails')).toBe(true);
-    });
+    instance.showFront();
+    expect(wrapper.state('showDetails')).toBe(false);
+  });
 
-    it('should handle click on wishlist button', () => {
-      const wrapper = mount(<ProductItem {...props} extended={extended} />);
+  it('should render <ViewFrontFull /> when item is not available', () => {
+    props = { data: products[0] };
+    const wrapper = mount(<ProductItem {...props} extended={extended} />);
+    const instance = wrapper.instance();
 
-      wrapper.setProps({ isAddedtoWishList: true });
-      wrapper.setState({ showDetails: true });
-      wrapper.update();
-      wrapper.find('.btn-heart').simulate('click');
-    });
+    instance.showFront();
+    expect(wrapper.state('showDetails')).toBe(false);
   });
 });

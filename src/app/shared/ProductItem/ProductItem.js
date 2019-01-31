@@ -9,6 +9,50 @@ import './ProductItem.scss';
 
 const CN = 'product-item';
 
+const ViewFrontFull = props => {
+  const { src, title, price } = props;
+
+  return (
+    <React.Fragment>
+      <img className={`${CN}__img`} src={src} alt="" />
+      <h4>{title}</h4>
+      <span className="highlighted">{`${price} $`}</span>
+    </React.Fragment>
+  );
+};
+
+const ViewCartSmall = props => {
+  const { title } = props;
+
+  return (
+    <div className="product-item--small__info">
+      <h4>{title}</h4>
+      <button type="button" className="add-to-card">
+        <i className="fas fa-shopping-cart" />
+        add to cart
+      </button>
+    </div>
+  );
+};
+
+const ViewInfoSmall = props => {
+  const { title, price } = props;
+
+  return (
+    <div className="product-item--small__info">
+      <h4>{title}</h4>
+      <div className="info-group">
+        <div className="rating">
+          <i className="fa fa-star" />
+          <i className="fa fa-star" />
+          <i className="fa fa-star" />
+        </div>
+        <span className="highlighted price">{`${price} $`}</span>
+      </div>
+    </div>
+  );
+};
+
 class ProductItem extends Component {
   static propTypes = {
     /**
@@ -83,49 +127,5 @@ class ProductItem extends Component {
     );
   }
 }
-
-const ViewFrontFull = props => {
-  const { src, title, price } = props;
-
-  return (
-    <React.Fragment>
-      <img className={`${CN}__img`} src={src} alt="" />
-      <h4>{title}</h4>
-      <span className="highlighted">{`${price} $`}</span>
-    </React.Fragment>
-  );
-};
-
-const ViewCartSmall = props => {
-  const { title } = props;
-
-  return (
-    <div className="product-item--small__info">
-      <h4>{title}</h4>
-      <button type="button" className="add-to-card">
-        <i className="fas fa-shopping-cart" />
-        add to cart
-      </button>
-    </div>
-  );
-};
-
-const ViewInfoSmall = props => {
-  const { title, price } = props;
-
-  return (
-    <div className="product-item--small__info">
-      <h4>{title}</h4>
-      <div className="info-group">
-        <div className="rating">
-          <i className="fa fa-star" />
-          <i className="fa fa-star" />
-          <i className="fa fa-star" />
-        </div>
-        <span className="highlighted price">{`${price} $`}</span>
-      </div>
-    </div>
-  );
-};
 
 export default ProductItem;
