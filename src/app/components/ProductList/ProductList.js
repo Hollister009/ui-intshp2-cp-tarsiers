@@ -19,7 +19,9 @@ export default class ProductList extends Component {
   };
 
   componentDidUpdate = () => {
-    console.log('fooltered', this.props.filteredItems);
+    const { filteredItems } = this.props;
+
+    console.log('fooltered', filteredItems);
   };
 
   handleScroll = () => {
