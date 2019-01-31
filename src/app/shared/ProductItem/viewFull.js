@@ -1,4 +1,7 @@
 import React from 'react';
+import { Flags } from 'react-feature-flags';
+
+import appConfig from '../../../config/appConfig';
 
 const CN = 'product-item--full';
 
@@ -35,13 +38,15 @@ const ViewDetailsFull = props => {
         <button type="button" title="Add to shopping-cart">
           <i className="fas fa-shopping-cart" />
         </button>
-        <button
-          type="button"
-          onClick={e => clickHandler(e, _id)}
-          title="Add to wish-list"
-        >
-          <i className="fas fa-heart" />
-        </button>
+        <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
+          <button
+            type="button"
+            onClick={e => clickHandler(e, _id)}
+            title="Add to wish-list"
+          >
+            <i className="fas fa-heart" />
+          </button>
+        </Flags>
       </div>
     </React.Fragment>
   );
