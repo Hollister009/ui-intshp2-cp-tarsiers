@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getFiltered } from '../../actions';
+import { updateFiltered } from '../../actions';
 import ProductList from './ProductList';
 
 const mapStateToProps = state => ({
@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
   filteredItems: state.filteredProducts.items
 });
 const mapDispatchToProps = dispatch => ({
-  getFiltered: data => dispatch(getFiltered(data))
+  getFiltered: data => dispatch(updateFiltered(data))
 });
 const ProductListContainer = connect(
   mapStateToProps,

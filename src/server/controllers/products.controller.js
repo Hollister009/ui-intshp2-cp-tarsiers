@@ -16,12 +16,14 @@ const getProducts = (req, res) =>
   });
 
 const getFilteredProducts = (req, res) => {
-  const { sizes, brands, category, price, available } = req.query;
+  const { sizes, brands, category, price, available, skip, limit } = req.query;
 
   const brandQuery = brands ? { brand: { $in: brands } } : {};
   const sizesQuery = sizes ? { sizes: { $in: sizes } } : {};
   const availableQuery = available ? { available: true } : {};
 
+  console.log('reqqvere', req.query);
+  console.log('skip', skip);
   db.products
     .find({
       $and: [
@@ -32,8 +34,8 @@ const getFilteredProducts = (req, res) => {
         availableQuery
       ]
     })
-    .skip(2)
-    .limit(5, (err, products) => {
+    .skip(skip)
+    .limit(limit, (err, products) => {
       if (err) {
         res.send(err);
       }

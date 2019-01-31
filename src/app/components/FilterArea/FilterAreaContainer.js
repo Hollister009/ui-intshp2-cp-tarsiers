@@ -9,6 +9,7 @@ import {
   updateMaxPrice,
   toggleAvailability
 } from '../../actions/filterActions';
+import { updateFiltered } from '../../actions/index';
 import FilterArea from './FilterArea';
 
 const mapStateToProps = state => ({
@@ -24,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
   removeBrand: data => dispatch(removeBrand(data)),
   updateMinPrice: data => dispatch(updateMinPrice(data)),
   updateMaxPrice: data => dispatch(updateMaxPrice(data)),
-  toggleAvailability: () => dispatch(toggleAvailability())
+  toggleAvailability: () => dispatch(toggleAvailability()),
+  updateFiltered: data => dispatch(updateFiltered(data))
 });
 const FilterAreaContainer = connect(
   mapStateToProps,

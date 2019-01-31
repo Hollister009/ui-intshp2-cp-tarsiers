@@ -13,14 +13,20 @@ export default class ProductList extends Component {
   }
 
   componentDidMount = () => {
+    // const { getFiltered } = this.props;
+
     window.addEventListener('scroll', this.handleScroll);
+  };
+
+  componentDidUpdate = () => {
+    console.log('fooltered', this.props.filteredItems);
   };
 
   handleScroll = () => {
     const scrollHeight = this.scrollRef.current.offsetHeight;
-    const trashHole = 500;
+    const trashHold = 500;
 
-    if (window.scrollY >= scrollHeight - trashHole) {
+    if (window.scrollY >= scrollHeight - trashHold) {
       const { skip, limit } = this.state;
       const skipped = skip === 0 ? limit : skip + limit;
 

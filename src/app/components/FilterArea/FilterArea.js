@@ -22,7 +22,8 @@ class FilterArea extends Component {
       filter,
       updateMinPrice,
       updateMaxPrice,
-      toggleAvailability
+      toggleAvailability,
+      updateFiltered
     } = this.props;
 
     return (
@@ -32,6 +33,7 @@ class FilterArea extends Component {
           getFilteredProducts={getFilteredProducts}
           filter={filter}
           toggleAvailability={toggleAvailability}
+          updateFiltered={updateFiltered}
         />
         <PriceFilter
           updateMinPrice={updateMinPrice}

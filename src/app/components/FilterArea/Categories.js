@@ -1,7 +1,12 @@
 import React from 'react';
 
 const Categories = props => {
-  const { setCategory, getFilteredProducts, toggleAvailability } = props;
+  const {
+    setCategory,
+    getFilteredProducts,
+    toggleAvailability,
+    updateFiltered
+  } = props;
 
   const setCategories = (e, category) => {
     e.preventDefault();
@@ -10,7 +15,15 @@ const Categories = props => {
     // console.log('categories cl ', sizes, brands, category);
     setCategory(category);
 
-    getFilteredProducts(sizes, brands, category, price, available);
+    getFilteredProducts(
+      sizes,
+      brands,
+      category,
+      price,
+      available,
+      0,
+      1000
+    ).then(res => updateFiltered(res.data));
   };
 
   return (
