@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from '../pages/home';
 import Page404 from '../pages/page404';
-import ProductListPage from '../pages/productList';
-import ProductDetailsPage from '../pages/productDetails';
+import ProductListPage from '../pages/PLP';
+import ProductDetailsPage from '../pages/PDP';
 
 const RouteSchema = () => (
   <main className="main">

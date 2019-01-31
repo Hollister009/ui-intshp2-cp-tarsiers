@@ -9,7 +9,7 @@ import {
 import FilterArea from './FilterArea';
 
 const mapStateToProps = state => ({
-  whishlist: state.whishlist.whishlist,
+  wishlist: state.wishlist.wishlist,
   products: state.products.products,
   filter: state.filter
 });
@@ -20,9 +20,9 @@ const mapDispatchToProps = dispatch => ({
   addBrand: data => dispatch(addBrand(data)),
   removeBrand: data => dispatch(removeBrand(data))
 });
-const WhishListContainer = connect(
+const FilterAreaContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(FilterArea);
 
-export default WhishListContainer;
+export default FilterAreaContainer;

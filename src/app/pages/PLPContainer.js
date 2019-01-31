@@ -6,7 +6,7 @@ import {
   addBrand,
   removeBrand
 } from '../actions/filterActions';
-import ProductsListPage from './productList';
+import ProductsListPage from './PLP';
 
 const mapStateToProps = state => ({
   whishlist: state.whishlist.whishlist,
@@ -20,9 +20,9 @@ const mapDispatchToProps = dispatch => ({
   addBrand: data => dispatch(addBrand(data)),
   removeBrand: data => dispatch(removeBrand(data))
 });
-const WhishListContainer = connect(
+const PLPContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductsListPage);
 
-export default WhishListContainer;
+export default PLPContainer;
