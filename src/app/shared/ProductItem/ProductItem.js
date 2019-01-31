@@ -3,27 +3,26 @@ import React, { Component } from 'react';
 import { bool } from 'prop-types';
 
 import productType from '../../../types';
-import { ViewFrontFull, ViewDetailsFull } from './viewFull';
-import { ViewCartSmall, ViewInfoSmall } from './viewSmall';
+import MaxItemDetails from './MaxItemDetails';
+
 import './ProductItem.scss';
 
 const CN = 'product-item';
 
 class ProductItem extends Component {
   static propTypes = {
-    extended: bool,
-    isAddedtoWishList: bool,
-
     /**
      * data - productType shape
      */
-    data: productType
+    data: productType,
+    extended: bool,
+    isAddedtoWishList: bool
   };
 
   static defaultProps = {
     extended: false,
     isAddedtoWishList: false,
-    data: {}
+    data: null
   };
 
   state = { showDetails: false };
@@ -50,8 +49,8 @@ class ProductItem extends Component {
         onMouseLeave={this.showFront}
       >
         {showDetails ? (
-          <ViewDetailsFull
-            {...data}
+          <MaxItemDetails
+            data={data}
             addToWishListItem={addToWishListItem}
             removeFromWishListItem={removeFromWishListItem}
             wished={isAddedtoWishList}
@@ -76,5 +75,49 @@ class ProductItem extends Component {
     );
   }
 }
+
+const ViewFrontFull = props => {
+  const { src, title, price } = props;
+
+  return (
+    <React.Fragment>
+      <img className={`${CN}__img`} src={src} alt="" />
+      <h4>{title}</h4>
+      <span className="highlighted">{`${price} $`}</span>
+    </React.Fragment>
+  );
+};
+
+const ViewCartSmall = props => {
+  const { title } = props;
+
+  return (
+    <div className="product-item--small__info">
+      <h4>{title}</h4>
+      <button type="button" className="add-to-card">
+        <i className="fas fa-shopping-cart" />
+        add to cart
+      </button>
+    </div>
+  );
+};
+
+const ViewInfoSmall = props => {
+  const { title, price } = props;
+
+  return (
+    <div className="product-item--small__info">
+      <h4>{title}</h4>
+      <div className="info-group">
+        <div className="rating">
+          <i className="fa fa-star" />
+          <i className="fa fa-star" />
+          <i className="fa fa-star" />
+        </div>
+        <span className="highlighted price">{`${price} $`}</span>
+      </div>
+    </div>
+  );
+};
 
 export default ProductItem;
