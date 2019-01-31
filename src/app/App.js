@@ -6,10 +6,11 @@ import { FlagsProvider } from 'react-feature-flags';
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
 import { getProducts } from './actions';
-import Header from './common/Header/Header';
-import Footer from './common/Footer/Footer';
-import Content from './common/Content';
+import Header from './common/Header/HeaderContainer';
+import Footer from './common/Footer/FooterContainer';
 
+import Content from './common/Content';
+import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
 import '../styles/index.scss';
 
 const { products } = appConfig.apiResources;
@@ -44,7 +45,9 @@ class App extends Component {
           <HashRouter>
             <>
               <Header />
-              <Content className="content" />
+              <ErrorHandler>
+                <Content className="content" />
+              </ErrorHandler>
               <Footer />
             </>
           </HashRouter>
