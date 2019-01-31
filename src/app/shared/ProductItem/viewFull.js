@@ -35,8 +35,8 @@ class ViewDetailsFull extends Component {
           console.log(`Added to the WishList: ${id}`);
         }
       })
-      .then(this.setState({ heartDisabled: false }))
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .finally(this.setState({ heartDisabled: false }));
   };
 
   removeItem = id => {
@@ -49,8 +49,8 @@ class ViewDetailsFull extends Component {
           console.log(`Removed from the WishList: ${id}`);
         }
       })
-      .then(this.setState({ heartDisabled: false }))
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .finally(this.setState({ heartDisabled: false }));
   };
 
   toggleWishList = (e, id) => {
