@@ -1,76 +1,74 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
+import appConfig from '../../../config/appConfig';
 
 class PriceFilter extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      currentMinValue: 0,
-      currentMaxValue: 800,
-      minValue: 0,
-      maxValue: 1000
+      minRangeValue: appConfig.filter.price.min,
+      maxRangeValue: appConfig.filter.price.max
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(e, min) {
-    const { currentMaxValue, currentMinValue } = this.state;
-    const inputValue = e.target.value;
+    const { minValue, maxValue, updateMinPrice, updateMaxPrice } = this.props;
+    let inputValue = parseInt(e.target.value, 10);
+    const { minRangeValue, maxRangeValue } = this.state;
+
+    if (+inputValue !== inputValue) return;
+
+    if (inputValue < minRangeValue) {
+      inputValue = minRangeValue;
+    } else if (inputValue > maxRangeValue) {
+      inputValue = maxRangeValue;
+    }
 
     if (min) {
-      if (parseInt(inputValue, 10) < parseInt(currentMaxValue, 10)) {
-        this.setState({ currentMinValue: inputValue });
+      if (parseInt(inputValue, 10) < parseInt(maxValue, 10)) {
+        updateMinPrice(inputValue);
       } else {
-        this.setState({ currentMinValue: currentMaxValue });
+        updateMinPrice(inputValue);
+        updateMaxPrice(inputValue);
       }
-    } else if (parseInt(inputValue, 10) > parseInt(currentMinValue, 10)) {
-      this.setState({ currentMaxValue: inputValue });
+    } else if (parseInt(inputValue, 10) > parseInt(minValue, 10)) {
+      updateMaxPrice(inputValue);
     } else {
-      this.setState({ currentMaxValue: currentMinValue });
+      updateMaxPrice(inputValue);
+      updateMinPrice(inputValue);
     }
   }
 
   handleTextInputChange(e, min) {
-    const { maxValue, minValue } = this.state;
-    const inputValue = e.target.value;
-
-    if (min) {
-      if (
-        parseInt(inputValue, 10) >= parseInt(minValue, 10) &&
-        parseInt(inputValue, 10) <= parseInt(maxValue, 10)
-      ) {
-        this.setState({ currentMinValue: e.target.value });
-      }
-    } else if (
-      parseInt(inputValue, 10) <= parseInt(maxValue, 10) &&
-      parseInt(inputValue, 10) >= parseInt(minValue, 10)
-    ) {
-      this.setState({ currentMaxValue: e.target.value });
-    }
+    this.handleInputChange(e, min);
+    e.target.value = '';
   }
 
   render() {
-    const { currentMaxValue, currentMinValue, minValue, maxValue } = this.state;
+    const { minRangeValue, maxRangeValue } = this.state;
+    const { minValue, maxValue } = this.props;
 
     return (
-      <div className="filter-block">
+      <div className="filter-block filter__price-filter">
         <h3>Price filter </h3>
         <section className="range-slider">
           <span className="rangeValues">
-            ${currentMinValue}- ${currentMaxValue}
+            ${minValue} - ${maxValue}
           </span>
           <input
-            value={currentMinValue}
-            min={minValue}
-            max={maxValue}
+            value={minValue}
+            min={minRangeValue}
+            max={maxRangeValue}
             step="5"
             type="range"
             onChange={e => this.handleInputChange(e, true)}
           />
           <input
-            value={currentMaxValue}
-            min={minValue}
-            max={maxValue}
+            value={maxValue}
+            min={minRangeValue}
+            max={maxRangeValue}
             step="5"
             type="range"
             onChange={e => this.handleInputChange(e)}
@@ -82,7 +80,7 @@ class PriceFilter extends Component {
             <input
               id="price-from"
               type="text"
-              onBlur={e => this.handleTextInputChange(e, true)}
+              onBlur={e => this.handleInputChange(e, true)}
             />
           </label>
           <label htmlFor="price-to">
@@ -90,7 +88,7 @@ class PriceFilter extends Component {
             <input
               id="price-to"
               type="text"
-              onBlur={e => this.handleTextInputChange(e)}
+              onBlur={e => this.handleInputChange(e)}
             />
           </label>
         </div>
