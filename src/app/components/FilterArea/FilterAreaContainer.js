@@ -4,7 +4,10 @@ import {
   addSize,
   removeSize,
   addBrand,
-  removeBrand
+  removeBrand,
+  updateMinPrice,
+  updateMaxPrice,
+  toggleAvailability
 } from '../../actions/filterActions';
 import FilterArea from './FilterArea';
 
@@ -18,11 +21,14 @@ const mapDispatchToProps = dispatch => ({
   addSize: data => dispatch(addSize(data)),
   removeSize: data => dispatch(removeSize(data)),
   addBrand: data => dispatch(addBrand(data)),
-  removeBrand: data => dispatch(removeBrand(data))
+  removeBrand: data => dispatch(removeBrand(data)),
+  updateMinPrice: data => dispatch(updateMinPrice(data)),
+  updateMaxPrice: data => dispatch(updateMaxPrice(data)),
+  toggleAvailability: () => dispatch(toggleAvailability())
 });
-const WhishListContainer = connect(
+const FilterAreaContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(FilterArea);
 
-export default WhishListContainer;
+export default FilterAreaContainer;
