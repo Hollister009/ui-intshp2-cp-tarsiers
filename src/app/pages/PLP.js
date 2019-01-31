@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import HttpService from '../../utils/http.service';
 import FilterAreaContainer from '../components/FilterArea/FilterAreaContainer';

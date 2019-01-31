@@ -33,7 +33,6 @@ export default class App extends Component {
     HttpService.get(appConfig.apiResources.killswitch)
       .then(response => {
         this.setState({ featureFlags: response.data.flags });
-        console.log('flags', response.data.flags);
       })
       .finally(() => this.setState({ isFlagsReady: true }));
   }
