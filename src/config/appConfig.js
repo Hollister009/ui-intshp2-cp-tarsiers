@@ -154,6 +154,12 @@ const appConfig = {
     removeFromWishList: '/api/remove-from-wish-list',
     killswitch: '/api/killswitch'
   },
+  filter: {
+    price: {
+      max: 1000,
+      min: 0
+    }
+  },
   promotions: {
     slides: [
       {
