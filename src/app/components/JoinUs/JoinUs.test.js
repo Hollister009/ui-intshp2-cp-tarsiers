@@ -17,11 +17,28 @@ describe('<JoinUs />', () => {
     expect(wrapper.state().email).toBe(evt.target.value);
   });
 
-  xit('should be able to call showSnackbarHandler with message', () => {
+  it('should be able to call showSnackbarHandler', () => {
     const wrapper = mount(<JoinUs />);
-    // const spy = jest.spyOn(wrapper.instance(), 'showSnackbarHandler');
+    const instance = wrapper.instance();
 
-    wrapper.find('[type="submit"]').simulate('click');
-    expect(wrapper.ref('snackbarRef'));
+    instance.snackbarRef.current.openSnackBar = jest.fn();
+    wrapper.update();
+    const ref = instance.snackbarRef.current.openSnackBar;
+
+    instance.showSnackbarHandler();
+    expect(ref).toBeCalled();
+  });
+
+  it('should be able to call handleSubmit', () => {
+    const evt = { preventDefault() {} };
+    const wrapper = shallow(<JoinUs />);
+    const instance = wrapper.instance();
+
+    wrapper.setState({ email: 'not@email' });
+    wrapper.update();
+
+    expect(wrapper.state().email).toBe('not@email');
+    instance.handleSubmit(evt);
+    expect(wrapper.state().email).toBe('');
   });
 });
