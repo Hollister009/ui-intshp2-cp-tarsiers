@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
+import { Flags } from 'react-feature-flags';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
@@ -88,17 +89,19 @@ class ViewDetailsFull extends Component {
           <button type="button" title="Add to shopping-cart">
             <i className="fas fa-shopping-cart" />
           </button>
-          <button
-            type="button"
-            className="btn-heart"
-            onClick={e => this.toggleWishList(e, _id)}
-            title="Add to wish-list"
-            disabled={heartDisabled}
-          >
-            <i
-              className={wished ? 'fas fa-heart highlighted' : 'fas fa-heart'}
-            />
-          </button>
+          <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
+            <button
+              type="button"
+              className="btn-heart"
+              onClick={e => this.toggleWishList(e, _id)}
+              title="Add to wish-list"
+              disabled={heartDisabled}
+            >
+              <i
+                className={wished ? 'fas fa-heart highlighted' : 'fas fa-heart'}
+              />
+            </button>
+          </Flags>
         </div>
       </React.Fragment>
     );
