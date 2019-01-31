@@ -8,7 +8,11 @@ exports[`<ProductItem /> should match its snapshot 1`] = `
 >
   <img
     alt=""
+    src="https://res.cloudinary.com/so/image/upload/v1548069124/products/cycling%20tshirt/blue.jpg"
   />
-  <ViewInfoSmall />
+  <ViewInfoSmall
+    price={150}
+    title="Columbia Cycling T-shirt"
+  />
 </div>
 `;

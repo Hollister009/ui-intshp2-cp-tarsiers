@@ -1,31 +1,33 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { FlagsProvider } from 'react-feature-flags';
 
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
-import { getProducts } from './actions';
+
+import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
 import Header from './common/Header/HeaderContainer';
 import Footer from './common/Footer/FooterContainer';
-
 import Content from './common/Content';
-import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
+
 import '../styles/index.scss';
 
-const { products } = appConfig.apiResources;
+const { products, wishlist } = appConfig.apiResources;
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = { featureFlags: [], isFlagsReady: false };
-  }
+export default class App extends Component {
+  state = { featureFlags: [], isFlagsReady: false };
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { getProductsItems, getWishListItems } = this.props;
 
     HttpService.get(products)
-      .then(res => dispatch(getProducts(res.data)))
+      .then(res => getProductsItems(res.data))
+      .catch(error => console.log(error));
+
+    HttpService.get(wishlist)
+      .then(res => res.data.map(item => item._id))
+      .then(item => getWishListItems(item))
       .catch(error => console.log(error));
 
     HttpService.get(appConfig.apiResources.killswitch)
@@ -56,7 +58,3 @@ class App extends Component {
     ) : null;
   }
 }
-
-const mapStateToProps = state => ({ ...state });
-
-export default connect(mapStateToProps)(App);

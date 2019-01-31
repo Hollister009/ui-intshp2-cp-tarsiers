@@ -5,7 +5,7 @@ const baseUrl = 'http://localhost:3300';
 class HttpService {
   constructor() {
     window.onerror = (message, file, line) => {
-      console.log(message, file, line);
+      console.log(message, file, line); // eslint-disable-line no-console
     };
   }
 
