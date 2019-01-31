@@ -8,7 +8,7 @@ describe('<Slider />', () => {
 
   beforeEach(() => {
     props = { slides: [], activeIndex: 0, isStopped: false };
-  })
+  });
 
   it('should match its snapshot', () => {
     const wrapper = shallow(<Slider {...props} />);

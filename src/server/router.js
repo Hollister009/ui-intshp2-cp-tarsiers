@@ -11,8 +11,7 @@ router.get('/api/products', productsController.getProducts);
 router.get('/api/filtered-products', productsController.getFilteredProducts);
 router.get('/api/baner', controller.getBanner);
 router.get('/api/promotions', controller.getPromotions);
-
-router.get('/api/wish-list', wishListController.getWishList);
+router.get('/api/killswitch', controller.getKillswitch);
 router.post('/api/add-to-wish-list', wishListController.addToWishList);
 router.post(
   '/api/remove-from-wish-list',
