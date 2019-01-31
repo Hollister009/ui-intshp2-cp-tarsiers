@@ -50,6 +50,11 @@
         margin: 0 25px;
       }
 
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
       &:hover,
       &:focus {
         color: $color-main;
@@ -93,9 +98,6 @@
     background-color: $color-white;
     @include d-flex(flex-start);
 
-    &:first-child {
-      margin: 0 15px 0 0;
-    }
     &:hover {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }

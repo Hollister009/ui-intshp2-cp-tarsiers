@@ -2,7 +2,7 @@
 
 exports[`<WishList /> should match its snapshot 1`] = `
 <section
-  className="whishlist"
+  className="wishlist"
 >
   <div
     className="section_heading"
@@ -11,17 +11,17 @@ exports[`<WishList /> should match its snapshot 1`] = `
       <span
         className="highlighted"
       >
-        Best
+        Wish
       </span>
        
-      sales
+      list
     </h2>
     <p>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry
+      Currently your wishlist is empty. Add products to it first
     </p>
   </div>
   <div
-    className="whishlist__display"
+    className="wishlist__display"
   >
     <Carousel
       data={Array []}
