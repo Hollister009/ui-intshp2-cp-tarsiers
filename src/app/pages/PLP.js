@@ -6,14 +6,14 @@ import ProductListContainer from '../components/ProductList/ProductListContainer
 import JoinUs from '../components/JoinUs/JoinUs';
 
 const ProductsListPage = () => {
-  const getFilteredProducts = (sizes, brands, category) => {
-    const params = { sizes, brands, category };
+  const getFilteredProducts = (sizes, brands, category, price, available) => {
+    const params = { sizes, brands, category, price, available };
 
     HttpService.get('/api/filtered-products', { params }).then(res =>
       console.log('res', res)
     );
 
-    console.log('product list', sizes, brands, category);
+    console.log('product list', sizes, brands, category, price, available);
   };
 
   return (

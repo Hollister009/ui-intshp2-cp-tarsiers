@@ -19,7 +19,10 @@ class FilterArea extends Component {
       addBrand,
       removeBrand,
       getFilteredProducts,
-      filter
+      filter,
+      updateMinPrice,
+      updateMaxPrice,
+      toggleAvailability
     } = this.props;
 
     return (
@@ -28,8 +31,14 @@ class FilterArea extends Component {
           setCategory={setCategory}
           getFilteredProducts={getFilteredProducts}
           filter={filter}
+          toggleAvailability={toggleAvailability}
         />
-        <PriceFilter />
+        <PriceFilter
+          updateMinPrice={updateMinPrice}
+          updateMaxPrice={updateMaxPrice}
+          minValue={filter.price.min}
+          maxValue={filter.price.max}
+        />
         <Sizes addSize={addSize} removeSize={removeSize} />
         <Brands addBrand={addBrand} removeBrand={removeBrand} />
       </div>

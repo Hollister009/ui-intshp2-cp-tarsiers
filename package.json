@@ -11,6 +11,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongojs": "^2.6.0",
+    "nodemon": "^1.18.9",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-cookie": "^3.0.8",
@@ -27,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "start-server": "node src/server/index.js",
+    "start-server": "nodemon node src/server/index.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "tdd": "jest --watch",
