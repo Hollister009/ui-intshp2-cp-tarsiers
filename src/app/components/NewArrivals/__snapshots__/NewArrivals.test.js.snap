@@ -2,7 +2,7 @@
 
 exports[`<NewArrivals /> should match its snapshot 1`] = `
 <section
-  className="new-arrivals"
+  className="arrivals"
 >
   <div
     className="section_heading"
@@ -21,7 +21,7 @@ exports[`<NewArrivals /> should match its snapshot 1`] = `
     </p>
   </div>
   <div
-    className="new-arrivals__display"
+    className="arrivals__display"
   >
     <Carousel
       data={Array []}

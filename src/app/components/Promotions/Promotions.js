@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import appConfig from '../../../config/appConfig';
-import Slider from '../Slideshow/sliderComponents/Slider';
+import Slider from '../Slideshow/Slider';
 import Spinner from '../../shared/Spinner';
 
 export default class Promotions extends Component {
