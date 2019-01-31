@@ -40,21 +40,29 @@ class ProductItem extends Component {
       addToWishListItem,
       removeFromWishListItem
     } = this.props;
-    const { src, title, price } = data;
+    const { available, src, title, price } = data;
+
+    const fullItem = showDetails ? (
+      <MaxItemDetails
+        data={data}
+        addToWishListItem={addToWishListItem}
+        removeFromWishListItem={removeFromWishListItem}
+        wished={isAddedtoWishList}
+      />
+    ) : (
+      <ViewFrontFull src={src} title={title} price={price} />
+    );
 
     return extended ? (
       <div
-        className={`${CN} ${CN}--full`}
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
+        className={
+          available ? `${CN} ${CN}--full` : `${CN} ${CN}--full not-available`
+        }
       >
-        {showDetails ? (
-          <MaxItemDetails
-            data={data}
-            addToWishListItem={addToWishListItem}
-            removeFromWishListItem={removeFromWishListItem}
-            wished={isAddedtoWishList}
-          />
+        {available ? (
+          fullItem
         ) : (
           <ViewFrontFull src={src} title={title} price={price} />
         )}
