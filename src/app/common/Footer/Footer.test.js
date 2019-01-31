@@ -14,9 +14,9 @@ describe('<Footer />', () => {
   });
 
   it('should match its snapshot', () => {
-    const shallowWrapper = shallow(<Footer {...props} />);
+    const wrapper = shallow(<Footer {...props} />);
 
-    expect(shallowWrapper).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('should be able to render based on props', () => {

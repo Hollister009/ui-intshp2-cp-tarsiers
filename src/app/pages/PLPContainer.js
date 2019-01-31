@@ -9,7 +9,7 @@ import {
   updateMaxPrice,
   toggleAvailability
 } from '../actions/filterActions';
-import ProductsListPage from './productList';
+import ProductsListPage from './PLP';
 
 const mapStateToProps = state => ({
   whishlist: state.whishlist.whishlist,

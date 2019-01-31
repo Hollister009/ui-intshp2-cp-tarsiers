@@ -12,7 +12,7 @@ import {
 import FilterArea from './FilterArea';
 
 const mapStateToProps = state => ({
-  whishlist: state.whishlist.whishlist,
+  wishlist: state.wishlist.wishlist,
   products: state.products.products,
   filter: state.filter
 });
