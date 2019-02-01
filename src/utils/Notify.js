@@ -7,7 +7,7 @@ import {
 } from 'react-redux-notify';
 
 class NotifyService {
-  mySuccessNotification = {
+  success = {
     message: 'Success!',
     type: NOTIFICATION_TYPE_SUCCESS,
     duration: 2000,
@@ -15,7 +15,7 @@ class NotifyService {
     icon: <i className="fa fa-check" />
   };
 
-  myWarningNotification = {
+  warning = {
     message: 'Warning!',
     type: NOTIFICATION_TYPE_WARNING,
     duration: 2000,
@@ -23,7 +23,7 @@ class NotifyService {
     icon: <i className="fa fa-check" />
   };
 
-  myErrorNotification = {
+  error = {
     message: 'Error!',
     type: NOTIFICATION_TYPE_ERROR,
     duration: 2000,
@@ -31,7 +31,7 @@ class NotifyService {
     icon: <i className="fa fa-check" />
   };
 
-  myInfoNotification = {
+  info = {
     message: 'Info!',
     type: NOTIFICATION_TYPE_INFO,
     duration: 2000,
