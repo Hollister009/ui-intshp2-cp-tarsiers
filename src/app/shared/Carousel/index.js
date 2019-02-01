@@ -82,10 +82,7 @@ class Carousel extends Component {
     const { data } = this.props;
     const { translateStep } = this.carouselStyle;
 
-    this.carouselStyleSheet = {
-      ...this.carouselStyleSheet,
-      width: `${this.carouselRef.current.scrollWidth}px`
-    };
+    console.log(this.carouselRef.current.scrollWidth);
 
     this.carouselStyle = {
       ...this.carouselStyle,
@@ -99,12 +96,17 @@ class Carousel extends Component {
         this.wrapperRef.current.offsetWidth / translateStep
       )
     };
+
+    this.carouselStyleSheet = {
+      width: this.carouselStyle.width
+    };
   };
 
   renderButtons() {
     const { translation, scrollCounter, visibleItems } = this.carouselStyle;
     const { data } = this.props;
 
+    console.log('dl', data.length, 'vi', visibleItems, 'sc', scrollCounter);
     return this.isTouchDevice || visibleItems >= data.length ? null : (
       <React.Fragment>
         <button
@@ -120,7 +122,7 @@ class Carousel extends Component {
           type="button"
           className="carousel__button carousel__button--next"
           onClick={this.nextSlide}
-          disabled={data.length - scrollCounter === visibleItems}
+          disabled={data.length - visibleItems === scrollCounter}
         >
           <i className="fas fa-angle-right" />
         </button>
