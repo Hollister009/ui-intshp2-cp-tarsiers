@@ -195,3 +195,72 @@ section.range-slider {
   @include d-flex();
   align-items: center;
 }
+
+.drop-filters {
+  display: none;
+}
+
+@media screen and (max-width: $media-large) {
+  .products_filters {
+    justify-content: space-evenly;
+  }
+
+  .filter-area {
+    position: sticky;
+    top: 30px;
+  }
+}
+
+@media screen and (max-width: $media-medium) {
+  .products_filters {
+    flex-direction: column;
+  }
+  .filter-area {
+    @include d-flex();
+
+    .filter-block {
+      padding: 30px;
+    }
+
+    .filter__price-filter {
+      height: unset;
+    }
+  }
+}
+
+@media screen and (max-width: $media-tablet) {
+  .products_filters {
+    flex-direction: column;
+  }
+  .filter-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px 0;
+
+    .filter-block {
+      padding: 30px;
+      margin: 15px;
+    }
+
+    .filter__price-filter {
+      height: unset;
+    }
+  }
+}
+
+@media screen and (max-width: 631px) {
+  .hide {
+    display: none;
+  }
+
+  .drop-filters {
+    display: block;
+    margin: 30px auto;
+    background: none;
+
+    i {
+      font-size: 45px;
+    }
+  }
+}

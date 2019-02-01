@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductItem from '../../shared/ProductItem';
+import ProductItem from '../../shared/ProductItem/ProductItem';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
 
@@ -18,9 +18,9 @@ export default class ProductList extends Component {
 
   handleScroll = () => {
     const scrollHeight = this.scrollRef.current.offsetHeight;
-    const trashHole = 500;
+    const threshold = 500;
 
-    if (window.scrollY >= scrollHeight - trashHole) {
+    if (window.scrollY >= scrollHeight - threshold) {
       const { skip, limit } = this.state;
       const skipped = skip === 0 ? limit : skip + limit;
 
