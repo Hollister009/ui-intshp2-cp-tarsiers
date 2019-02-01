@@ -6,6 +6,6 @@ const mapStateToProps = state => ({
   wishlist: state.wishlist.wishlist
 });
 
-const wishlistContainer = connect(mapStateToProps)(WishList);
+const WishlistContainer = connect(mapStateToProps)(WishList);
 
-export default wishlistContainer;
+export default WishlistContainer;
