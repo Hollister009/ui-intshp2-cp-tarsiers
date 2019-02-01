@@ -8,38 +8,77 @@ export default class ProductList extends Component {
     super(props);
     this.state = { skip: 0, limit: 6, isButtonVisible: false };
     this.scrollRef = React.createRef();
-    this.final = [];
+    this.scrollSet = false;
     this.setClass = 'hide';
   }
 
-  componentDidMount = () => {
-    // const { getFiltered } = this.props;
+  componentDidMount() {
+    this.scroll = this.throttled(500, this.handleScroll.bind(this));
+  }
 
-    window.addEventListener('scroll', this.handleScroll);
+  shouldComponentUpdate = (nextProps, nextState) => {
+    const { filteredItems } = this.props;
+    const { isButtonVisible } = this.state;
+
+    return (
+      filteredItems !== nextProps.filteredItems ||
+      isButtonVisible !== nextState.isButtonVisible
+    );
+  };
+
+  throttled = (delay, fn) => {
+    let lastCall = 0;
+
+    return function kek(...args) {
+      const now = new Date().getTime();
+
+      if (now - lastCall < delay) {
+        return;
+      }
+      lastCall = now;
+      // eslint-disable-next-line consistent-return
+      return fn(...args);
+    };
   };
 
   componentDidUpdate = () => {
-    const { filteredItems } = this.props;
-
-    console.log('fooltered', filteredItems);
+    if (!this.scrollSet) {
+      window.addEventListener('scroll', this.scroll);
+      this.scrollSet = true;
+    }
   };
 
   handleScroll = () => {
+    const {
+      updateSkip,
+      updateLimit,
+      filteredItems,
+      addItemsToFiltered,
+      getFilteredProducts,
+      filter
+    } = this.props;
+
+    const { sizes, brands, category, price, available, skip, limit } = filter;
+
+    const params = { sizes, brands, category, price, available, skip, limit };
     const scrollHeight = this.scrollRef.current.offsetHeight;
     const trashHold = 500;
 
     if (window.scrollY >= scrollHeight - trashHold) {
-      const { skip, limit } = this.state;
       const skipped = skip === 0 ? limit : skip + limit;
 
-      if (this.final.length >= 15) {
-        this.setState({ isButtonVisible: true, limit: 0, skip: skipped });
-        window.removeEventListener('scroll', this.handleScroll);
+      if (filteredItems.length >= 15) {
+        this.setState({ isButtonVisible: true });
+        window.removeEventListener('scroll', this.scroll);
       } else {
-        this.setState({
-          skip: skipped,
-          limit: 3
-        });
+        updateLimit(3);
+        updateSkip(skipped);
+        params.limit = 3;
+        params.skip = skipped;
+
+        getFilteredProducts({ params }).then(res =>
+          addItemsToFiltered(res.data)
+        );
       }
     }
   };
@@ -55,38 +94,28 @@ export default class ProductList extends Component {
   };
 
   componentWillUnmount = () => {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.scroll);
   };
 
   render() {
-    const { products } = this.props;
-    const { skip, limit, isButtonVisible } = this.state;
-    const part = products.slice(skip, skip + limit);
+    const { filteredItems } = this.props;
 
-    this.final = this.final.concat(part);
-
+    if (!filteredItems.length) {
+      return <Spinner />;
+    }
+    const { isButtonVisible } = this.state;
     const list =
-      this.final &&
-      this.final.map(el => <ProductItem key={el._id} data={el} extended />);
+      filteredItems &&
+      filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
 
     return (
       <div>
         <div className="product_list__page">
           <div className="products" ref={this.scrollRef}>
-            {list.length === 0 ? (
-              <div className="spin-position">
-                <Spinner />
-              </div>
-            ) : (
-              <div className="product_list">{list}</div>
-            )}
+            <div className="product_list">{list}</div>
             <button
               type="button"
-              className={
-                isButtonVisible && products.length > this.final.length
-                  ? ''
-                  : 'hide'
-              }
+              className={isButtonVisible ? '' : 'hide'}
               onClick={this.handleClick}
             >
               <Dots />

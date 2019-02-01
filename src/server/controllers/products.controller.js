@@ -22,8 +22,6 @@ const getFilteredProducts = (req, res) => {
   const sizesQuery = sizes ? { sizes: { $in: sizes } } : {};
   const availableQuery = available ? { available: true } : {};
 
-  console.log('reqqvere', req.query);
-  console.log('skip', skip);
   db.products
     .find({
       $and: [
@@ -34,8 +32,8 @@ const getFilteredProducts = (req, res) => {
         availableQuery
       ]
     })
-    .skip(skip)
-    .limit(limit, (err, products) => {
+    .skip(parseInt(skip, 10))
+    .limit(parseInt(limit, 10), (err, products) => {
       if (err) {
         res.send(err);
       }

@@ -6,7 +6,9 @@ import {
   REMOVE_BRAND,
   UPDATE_MIN_PRICE,
   UPDATE_MAX_PRICE,
-  TOGGLE_AVAILABILITY
+  TOGGLE_AVAILABILITY,
+  UPDATE_LIMIT,
+  UPDATE_SKIP
 } from '../actions/filterActions';
 import appConfig from '../../config/appConfig';
 
@@ -15,7 +17,9 @@ const initialState = {
   sizes: [],
   brands: [],
   price: { min: appConfig.filter.price.min, max: appConfig.filter.price.max },
-  available: null
+  available: null,
+  skip: 0,
+  limit: 6
 };
 
 export default (state = initialState, action) => {
@@ -50,6 +54,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         available: !state.available
+      };
+    case UPDATE_LIMIT:
+      return {
+        ...state,
+        limit: action.payload
+      };
+    case UPDATE_SKIP:
+      return {
+        ...state,
+        skip: action.payload
       };
     default:
       return state;

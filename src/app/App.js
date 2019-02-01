@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
-import { getProducts } from './actions';
+import { getProducts, updateFiltered } from './actions';
 import Header from './common/Header/HeaderContainer';
 import Footer from './common/Footer/FooterContainer';
 
@@ -19,7 +19,10 @@ class App extends Component {
     const { dispatch } = this.props;
 
     HttpService.get(products)
-      .then(res => dispatch(getProducts(res.data)))
+      .then(res => {
+        dispatch(getProducts(res.data));
+        dispatch(updateFiltered(res.data));
+      })
       .catch(error => console.log(error));
   }
 
