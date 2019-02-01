@@ -5,16 +5,16 @@ const baseUrl = 'http://localhost:3300';
 class HttpService {
   constructor() {
     window.onerror = (message, file, line) => {
-      console.log(message, file, line);
+      console.log(message, file, line); // eslint-disable-line no-console
     };
   }
 
-  get(url) {
+  get(url, options) {
     const source = baseUrl + url;
 
     return axios
-      .get(source)
-      .then(response => response.data)
+      .get(source, options)
+      .then(response => response)
       .catch(error => Promise.reject(error));
   }
 
@@ -23,7 +23,7 @@ class HttpService {
 
     return axios
       .post(source, data)
-      .then(response => response.data)
+      .then(response => response)
       .catch(error => Promise.reject(error));
   }
 
@@ -32,7 +32,7 @@ class HttpService {
 
     return axios
       .put(source, data)
-      .then(response => response.data)
+      .then(response => response)
       .catch(error => Promise.reject(error));
   }
 
@@ -41,7 +41,7 @@ class HttpService {
 
     return axios
       .patch(source, data)
-      .then(response => response.data)
+      .then(response => response)
       .catch(error => Promise.reject(error));
   }
 
@@ -50,7 +50,7 @@ class HttpService {
 
     return axios
       .delete(source)
-      .then(response => response.data)
+      .then(response => response)
       .catch(error => Promise.reject(error));
   }
 

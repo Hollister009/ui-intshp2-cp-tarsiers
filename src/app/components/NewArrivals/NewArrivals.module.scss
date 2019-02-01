@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.arrivals {
+  background-color: $color-light-1;
+  color: $color-dark;
+  padding: 80px 0;
+  max-width: $media-large;
+  margin: 0 auto;
+  text-align: center;
+
+  &__display {
+    margin: 0 auto;
+    text-align: center;
+    @include d-flex() {
+      align-items: center;
+    }
+  }
+}

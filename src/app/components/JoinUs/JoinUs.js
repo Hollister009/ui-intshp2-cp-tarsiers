@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
 import Snackbar from '../Snackbar/Snackbar';
 import appConfig from '../../../config/appConfig';
-import './Joinus.scss';
+import './JoinUs.scss';
 
 class JoinUs extends Component {
   snackbarRef = React.createRef();
@@ -51,23 +52,24 @@ class JoinUs extends Component {
     const error = '* Please enter valid e-mail: sample@samle.com!';
 
     return (
-      <div className="joinus container">
-        <div className="joinus-info col-6">
-          <h2>NEWS LETTER</h2>
+      <section className="joinus container">
+        <div className="joinus__info col-6">
+          <h2>news letter</h2>
           <p>join us now to get all news and special offers</p>
         </div>
-        <form onSubmit={this.handleSubmit} className="col-4">
-          <div>
-            <div className="mailfield">
+        <form className="joinus__subscribe col-4" onSubmit={this.handleSubmit}>
+          <div className="joinus__fieldset">
+            <label htmlFor="email" className="mailfield">
               <i className="far fa-envelope" />
               <input
-                type="text"
+                id="email"
+                type="email"
                 placeholder="type your email here"
                 value={email}
                 required
                 onChange={this.handleEmailChange}
               />
-            </div>
+            </label>
             <button
               disabled={isDisabled}
               onClick={this.showSnackbarHandler}
@@ -77,9 +79,11 @@ class JoinUs extends Component {
             </button>
             <Snackbar ref={this.snackbarRef} />
           </div>
-          <p className={!isDisabled || !email ? '' : 'showerror'}>{error}</p>
+          <p className={!isDisabled || !email ? 'msg' : 'msg showerror'}>
+            {error}
+          </p>
         </form>
-      </div>
+      </section>
     );
   }
 }

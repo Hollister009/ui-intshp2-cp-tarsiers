@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Slider from '../Slideshow/sliderComponents/Slider';
 import appConfig from '../../../config/appConfig';
-import Spinner from '../Spinner/Spinner';
-
-import './Promotions.scss';
+import Slider from '../Slideshow/Slider';
+import Spinner from '../../shared/Spinner';
 
 export default class Promotions extends Component {
   constructor(props) {
@@ -27,14 +25,10 @@ export default class Promotions extends Component {
   render() {
     const { slides } = this.state;
 
-    return this.isLoaded ? (
-      <div className="promotions-container">
-        <Slider slides={slides} />
-      </div>
-    ) : (
-      <div className="promotions-container">
-        <Spinner />
-      </div>
+    return (
+      <section className="promotions">
+        {this.isLoaded ? <Slider slides={slides} /> : <Spinner />}
+      </section>
     );
   }
 }

@@ -8,8 +8,10 @@ const cartListController = require('./controllers/cart.controller');
 const controller = require('./controller');
 
 router.get('/api/products', productsController.getProducts);
+router.get('/api/filtered-products', productsController.getFilteredProducts);
 router.get('/api/baner', controller.getBanner);
 router.get('/api/promotions', controller.getPromotions);
+router.get('/api/killswitch', controller.getKillswitch);
 
 router.get('/api/wish-list', wishListController.getWishList);
 router.post('/api/add-to-wish-list', wishListController.addToWishList);

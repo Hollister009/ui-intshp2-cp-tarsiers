@@ -11,10 +11,12 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongojs": "^2.6.0",
+    "nodemon": "^1.18.9",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-cookie": "^3.0.8",
     "react-dom": "^16.7.0",
+    "react-feature-flags": "^1.0.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.3",
@@ -26,8 +28,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "start-server": "node src/server/index.js",
+    "start-server": "nodemon node src/server/index.js",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "tdd": "jest --watch",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -76,27 +79,6 @@
     "*.{js,json,css,scss,md}": [
       "prettier --write",
       "git add"
-    ]
-  },
-  "jest": {
-    "setupFiles": [
-      "./setupTest.js"
-    ],
-    "transform": {
-      "^.+\\.js$": "babel-jest",
-      ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform"
-    },
-    "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|gif|png|mp4|mkv|avi|webm|swf|wav|mid)$": "<rootDir>/filemock/file.stub.js"
-    },
-    "transformIgnorePatterns": [
-      "./node_modules/"
-    ],
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
     ]
   }
 }
