@@ -1,16 +1,29 @@
 import React from 'react';
 
 const Categories = props => {
-  const { setCategory, getFilteredProducts, toggleAvailability } = props;
+  const {
+    setCategory,
+    getFilteredProducts,
+    toggleAvailability,
+    updateFiltered,
+    updateSkip,
+    updateLimit
+  } = props;
 
   const setCategories = (e, category) => {
     e.preventDefault();
     const { sizes, brands, price, available } = props.filter;
 
-    // console.log('categories cl ', sizes, brands, category);
     setCategory(category);
+    updateSkip(0);
+    updateLimit(6);
 
-    getFilteredProducts(sizes, brands, category, price, available);
+    const { skip, limit } = props.filter;
+    const params = { sizes, brands, category, price, available, skip, limit };
+
+    params.skip = 0;
+    params.limit = 6;
+    getFilteredProducts({ params }).then(res => updateFiltered(res.data));
   };
 
   return (

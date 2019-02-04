@@ -74,8 +74,8 @@ class PriceFilter extends Component {
             onChange={e => this.handleInputChange(e)}
           />
         </section>
-        <div className="">
-          <label htmlFor="price-from">
+        <div className="price-fields">
+          <label htmlFor="price-from" className="price-form">
             From
             <input
               id="price-from"
@@ -83,7 +83,7 @@ class PriceFilter extends Component {
               onBlur={e => this.handleInputChange(e, true)}
             />
           </label>
-          <label htmlFor="price-to">
+          <label htmlFor="price-to" className="price-form">
             To
             <input
               id="price-to"
