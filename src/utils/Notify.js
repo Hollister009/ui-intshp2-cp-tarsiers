@@ -1,4 +1,6 @@
 import React from 'react';
+import 'react-redux-notify/dist/ReactReduxNotify.css';
+
 import {
   NOTIFICATION_TYPE_SUCCESS,
   NOTIFICATION_TYPE_WARNING,

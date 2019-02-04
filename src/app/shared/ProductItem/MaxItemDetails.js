@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Flags } from 'react-feature-flags';
 import PropTypes from 'prop-types';
 import { createNotification, Notify } from 'react-redux-notify';
-import 'react-redux-notify/dist/ReactReduxNotify.css';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
