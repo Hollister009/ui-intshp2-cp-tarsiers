@@ -82,8 +82,6 @@ class Carousel extends Component {
     const { data } = this.props;
     const { translateStep } = this.carouselStyle;
 
-    console.log(this.carouselRef.current.scrollWidth);
-
     this.carouselStyle = {
       ...this.carouselStyle,
       width: this.carouselRef.current.scrollWidth,
@@ -105,28 +103,30 @@ class Carousel extends Component {
   renderButtons() {
     const { translation, scrollCounter, visibleItems } = this.carouselStyle;
     const { data } = this.props;
+    const shouldHideButtons = this.isTouchDevice || visibleItems >= data.length;
 
-    console.log('dl', data.length, 'vi', visibleItems, 'sc', scrollCounter);
-    return this.isTouchDevice || visibleItems >= data.length ? null : (
-      <React.Fragment>
-        <button
-          type="button"
-          className="carousel__button carousel__button--prev"
-          onClick={this.prevSlide}
-          disabled={translation === 0}
-        >
-          <i className="fas fa-angle-left" />
-        </button>
+    return (
+      shouldHideButtons || (
+        <React.Fragment>
+          <button
+            type="button"
+            className="carousel__button carousel__button--prev"
+            onClick={this.prevSlide}
+            disabled={translation === 0}
+          >
+            <i className="fas fa-angle-left" />
+          </button>
 
-        <button
-          type="button"
-          className="carousel__button carousel__button--next"
-          onClick={this.nextSlide}
-          disabled={data.length - visibleItems === scrollCounter}
-        >
-          <i className="fas fa-angle-right" />
-        </button>
-      </React.Fragment>
+          <button
+            type="button"
+            className="carousel__button carousel__button--next"
+            onClick={this.nextSlide}
+            disabled={data.length - visibleItems === scrollCounter}
+          >
+            <i className="fas fa-angle-right" />
+          </button>
+        </React.Fragment>
+      )
     );
   }
 
