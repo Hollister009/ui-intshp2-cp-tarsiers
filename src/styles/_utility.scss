@@ -30,3 +30,21 @@
   border: 0;
   border-top: 1px solid #f2f4f7;
 }
+
+.not-available {
+  cursor: not-allowed;
+  filter: grayscale(20%);
+  position: relative;
+  &::before {
+    content: 'out of stock';
+    position: absolute;
+    top: 45%;
+    right: 5%;
+    font-size: 34px;
+    font-weight: 700;
+    color: rgba($color-alert, 0.6);
+    text-transform: uppercase;
+    transform: rotate(15deg);
+    text-shadow: -1px -1px 0 rgba($color-grey-2, 0.4);
+  }
+}

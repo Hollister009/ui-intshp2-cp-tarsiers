@@ -22,6 +22,28 @@ class FilterArea extends Component {
     }));
   };
 
+  applyChanges = () => {
+    const {
+      getFilteredProducts,
+      updateFiltered,
+      updateSkip,
+      updateLimit
+    } = this.props;
+
+    const { filter } = this.props;
+    const { sizes, brands, price, available, category } = filter;
+
+    updateSkip(0);
+    updateLimit(6);
+
+    const { skip, limit } = filter;
+    const params = { sizes, brands, price, available, skip, limit, category };
+
+    params.skip = 0;
+    params.limit = 6;
+    getFilteredProducts({ params }).then(res => updateFiltered(res.data));
+  };
+
   updateDimensions = () => {
     if (window.innerWidth < 632) {
       this.setState({ isFilterHidden: true });
@@ -47,7 +69,10 @@ class FilterArea extends Component {
       filter,
       updateMinPrice,
       updateMaxPrice,
-      toggleAvailability
+      toggleAvailability,
+      updateFiltered,
+      updateLimit,
+      updateSkip
     } = this.props;
 
     const filterClass = isFilterHidden ? 'filter-area hide' : 'filter-area';
@@ -67,6 +92,9 @@ class FilterArea extends Component {
             getFilteredProducts={getFilteredProducts}
             filter={filter}
             toggleAvailability={toggleAvailability}
+            updateFiltered={updateFiltered}
+            updateSkip={updateSkip}
+            updateLimit={updateLimit}
           />
           <PriceFilter
             updateMinPrice={updateMinPrice}
@@ -76,6 +104,13 @@ class FilterArea extends Component {
           />
           <Sizes addSize={addSize} removeSize={removeSize} />
           <Brands addBrand={addBrand} removeBrand={removeBrand} />
+          <button
+            type="button"
+            onClick={this.applyChanges}
+            className="apply-changes-button filter-block"
+          >
+            Apply changes
+          </button>
         </div>
       </div>
     );

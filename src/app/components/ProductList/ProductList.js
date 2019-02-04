@@ -6,79 +6,144 @@ import './ProductList.scss';
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.state = { skip: 0, limit: 6, isButtonVisible: false };
+    this.state = { showButton: false };
     this.scrollRef = React.createRef();
-    this.final = [];
+    this.scrollSet = false;
     this.setClass = 'hide';
   }
 
-  componentDidMount = () => {
-    window.addEventListener('scroll', this.handleScroll);
+  componentDidMount() {
+    this.scroll = this.throttled(500, this.handleScroll.bind(this));
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    const { filteredItems } = this.props;
+    const { showButton } = this.state;
+
+    return (
+      filteredItems !== nextProps.filteredItems ||
+      showButton !== nextState.showButton
+    );
+  };
+
+  throttled = (delay, fn) => {
+    let lastCall = 0;
+
+    return function kek(...args) {
+      const now = new Date().getTime();
+
+      if (now - lastCall < delay) {
+        return;
+      }
+      lastCall = now;
+      // eslint-disable-next-line consistent-return
+      return fn(...args);
+    };
+  };
+
+  componentDidUpdate = prevProps => {
+    const { filteredItems } = this.props;
+    const { showButton } = this.state;
+
+    if (prevProps.filteredItems.length > filteredItems.length) {
+      this.setState({ showButton: false });
+      this.scrollSet = false;
+    } else if (filteredItems.length >= 12 && !showButton) {
+      this.setState({ showButton: true });
+    }
+
+    if (!this.scrollSet) {
+      window.addEventListener('scroll', this.scroll);
+      this.scrollSet = true;
+    }
   };
 
   handleScroll = () => {
+    const {
+      updateSkip,
+      updateLimit,
+      filteredItems,
+      addItemsToFiltered,
+      getFilteredProducts,
+      filter
+    } = this.props;
+
+    const { sizes, brands, category, price, available, skip, limit } = filter;
+
+    const params = { sizes, brands, category, price, available, skip, limit };
     const scrollHeight = this.scrollRef.current.offsetHeight;
-    const threshold = 500;
+    const threshold = 450;
 
     if (window.scrollY >= scrollHeight - threshold) {
-      const { skip, limit } = this.state;
       const skipped = skip === 0 ? limit : skip + limit;
 
-      if (this.final.length >= 15) {
-        this.setState({ isButtonVisible: true, limit: 0, skip: skipped });
-        window.removeEventListener('scroll', this.handleScroll);
+      if (filteredItems.length >= 12) {
+        this.scrollSet = false;
+        window.removeEventListener('scroll', this.scroll);
+        this.setState({ showButton: true });
       } else {
-        this.setState({
-          skip: skipped,
-          limit: 3
+        updateLimit(3);
+        updateSkip(skipped);
+        params.limit = 3;
+        params.skip = skipped;
+
+        getFilteredProducts({ params }).then(res => {
+          addItemsToFiltered(res.data);
         });
       }
     }
   };
 
   handleClick = () => {
-    const { skip, limit } = this.state;
+    const {
+      updateSkip,
+      updateLimit,
+      addItemsToFiltered,
+      getFilteredProducts,
+      filter
+    } = this.props;
+
+    const { sizes, brands, category, price, available, skip, limit } = filter;
+
+    const params = { sizes, brands, category, price, available, skip, limit };
+
     const skipped = skip === 0 ? limit : skip + limit;
 
-    this.setState({
-      skip: skipped,
-      limit: 3
-    });
+    updateLimit(3);
+    updateSkip(skipped);
+    params.limit = 3;
+    params.skip = skipped;
+
+    getFilteredProducts({ params }).then(res => addItemsToFiltered(res.data));
   };
 
   componentWillUnmount = () => {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.scroll);
   };
 
   render() {
-    const { products } = this.props;
-    const { skip, limit, isButtonVisible } = this.state;
-    const part = products.slice(skip, skip + limit);
+    const { filteredItems } = this.props;
 
-    this.final = this.final.concat(part);
-
+    if (!filteredItems.length) {
+      return (
+        <div className="spin-position">
+          <Spinner />
+        </div>
+      );
+    }
+    const { showButton } = this.state;
     const list =
-      this.final &&
-      this.final.map(el => <ProductItem key={el._id} data={el} extended />);
+      filteredItems &&
+      filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
 
     return (
       <div>
         <div className="product_list__page">
           <div className="products" ref={this.scrollRef}>
-            {list.length === 0 ? (
-              <div className="spin-position">
-                <Spinner />
-              </div>
-            ) : (
-              <div className="product_list">{list}</div>
-            )}
+            <div className="product_list">{list}</div>
             <button
               type="button"
-              className={
-                isButtonVisible && products.length > this.final.length
-                  ? ''
-                  : 'hide'
-              }
+              className={showButton ? '' : 'hide'}
               onClick={this.handleClick}
             >
               <Dots />

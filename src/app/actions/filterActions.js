@@ -6,6 +6,8 @@ export const REMOVE_BRAND = 'REMOVE_BRAND';
 export const UPDATE_MIN_PRICE = 'UPDATE_MIN_PRICE';
 export const UPDATE_MAX_PRICE = 'UPDATE_MAX_PRICE';
 export const TOGGLE_AVAILABILITY = 'TOGGLE_AVAILABILITY';
+export const UPDATE_SKIP = 'UPDATE_SKIP';
+export const UPDATE_LIMIT = 'UPDATE_LIMIT';
 
 export const setCategory = payload => ({
   type: SET_CATEGORY,
@@ -34,6 +36,16 @@ export const removeBrand = payload => ({
 
 export const updateMinPrice = payload => ({
   type: UPDATE_MIN_PRICE,
+  payload
+});
+
+export const updateSkip = payload => ({
+  type: UPDATE_SKIP,
+  payload
+});
+
+export const updateLimit = payload => ({
+  type: UPDATE_LIMIT,
   payload
 });
 

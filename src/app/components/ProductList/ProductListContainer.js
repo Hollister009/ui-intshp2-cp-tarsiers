@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
-import { getFiltered } from '../../actions';
+import { updateFiltered, addItemsToFiltered } from '../../actions';
+import { updateSkip, updateLimit } from '../../actions/filterActions';
 import ProductList from './ProductList';
 
 const mapStateToProps = state => ({
   products: state.products.products,
-  filteredItems: state.filteredProducts.items
+  filteredItems: state.filteredProducts.items,
+  filter: state.filter
 });
 const mapDispatchToProps = dispatch => ({
-  getFiltered: data => dispatch(getFiltered(data))
+  updateFiltered: data => dispatch(updateFiltered(data)),
+  updateSkip: data => dispatch(updateSkip(data)),
+  updateLimit: data => dispatch(updateLimit(data)),
+  addItemsToFiltered: data => dispatch(addItemsToFiltered(data))
 });
 const ProductListContainer = connect(
   mapStateToProps,
