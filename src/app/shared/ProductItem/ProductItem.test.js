@@ -1,36 +1,62 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import ProductItem from './index';
+import { shallow, mount } from 'enzyme';
+import ProductItem from './ProductItem';
+
+jest.mock('../../actions');
+const products = require('../../../mocks/products.json');
 
 describe('<ProductItem />', () => {
   let props;
+  let extended;
 
   beforeEach(() => {
-    props = {
-      showDetails: false,
-      data: [],
-      extended: false,
-      src: '',
-      title: '',
-      price: ''
-    };
+    extended = true;
+    props = { data: products[1] };
   });
 
   it('should match its snapshot', () => {
-    const wrapper = shallow(<ProductItem {...props} />);
+    const wrapper = shallow(<ProductItem {...props} extended={extended} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should renders without crashing', () => {
-    expect(shallow(<ProductItem {...props} />).length).toEqual(1);
+  it('should be able to render <ViewCartSmall />', () => {
+    const wrapper = shallow(<ProductItem {...props} />);
+    const instance = wrapper.instance();
+
+    instance.showFront();
+    expect(wrapper.state('showDetails')).toBe(false);
   });
 
-  it('should show Details on hover', () => {
+  it('should be able to render <ViewInfoSmall />', () => {
     const wrapper = shallow(<ProductItem {...props} />);
+    const instance = wrapper.instance();
 
-    expect(wrapper.state('showDetails')).toBe(false);
-    wrapper.simulate('mouseenter');
+    instance.showDetails();
     expect(wrapper.state('showDetails')).toBe(true);
+  });
+
+  it('should render <ViewInfoSmall /> if showDetails is true', () => {
+    const wrapper = mount(<ProductItem {...props} />);
+
+    wrapper.setState({ showDetails: true });
+    expect(wrapper.state('showDetails')).toBe(true);
+  });
+
+  it('should be able to render <ViewFrontFull />', () => {
+    const wrapper = shallow(<ProductItem {...props} extended={extended} />);
+    const instance = wrapper.instance();
+
+    instance.showFront();
+    expect(wrapper.state('showDetails')).toBe(false);
+  });
+
+  it('should render <ViewFrontFull /> when item is not available', () => {
+    props = { data: products[0] };
+    const wrapper = mount(<ProductItem {...props} extended={extended} />);
+    const instance = wrapper.instance();
+
+    instance.showFront();
+    expect(wrapper.state('showDetails')).toBe(false);
   });
 });

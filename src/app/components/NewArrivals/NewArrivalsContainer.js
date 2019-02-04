@@ -1,18 +1,11 @@
 import { connect } from 'react-redux';
-import { getProducts, getWishList } from '../../actions';
 import NewArrivals from './NewArrivals';
 
 const mapStateToProps = state => ({
-  whishlist: state.whishlist.whishlist,
-  products: state.products.products
+  products: state.products.products,
+  wishlist: state.wishlist.wishlist
 });
-const mapDispatchToProps = dispatch => ({
-  getWhishListItems: data => dispatch(getWishList(data)),
-  getProductsItems: data => dispatch(getProducts(data))
-});
-const NewArrivalsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewArrivals);
+
+const NewArrivalsContainer = connect(mapStateToProps)(NewArrivals);
 
 export default NewArrivalsContainer;

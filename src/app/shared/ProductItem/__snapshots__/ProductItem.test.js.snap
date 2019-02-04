@@ -2,13 +2,14 @@
 
 exports[`<ProductItem /> should match its snapshot 1`] = `
 <div
-  className="product-item product-item--small"
+  className="product-item product-item--full"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <img
-    alt=""
+  <ViewFrontFull
+    price={150}
+    src="https://res.cloudinary.com/so/image/upload/v1548069124/products/cycling%20tshirt/blue.jpg"
+    title="Columbia Cycling T-shirt"
   />
-  <ViewInfoSmall />
 </div>
 `;

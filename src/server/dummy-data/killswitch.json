@@ -1,0 +1,6 @@
+{
+  "flags": [
+    { "name": "showAdvertisingArea", "isActive": true },
+    { "name": "showWishlist", "isActive": true }
+  ]
+}

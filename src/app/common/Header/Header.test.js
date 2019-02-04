@@ -13,9 +13,9 @@ describe('<Header />', () => {
   });
 
   it('should match its snapshot', () => {
-    const shallowWrapper = shallow(<Header {...props} />);
+    const wrapper = shallow(<Header {...props} />);
 
-    expect(shallowWrapper).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('should able to render all child components', () => {

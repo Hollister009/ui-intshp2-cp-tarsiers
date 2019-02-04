@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ProductItem from '../../shared/ProductItem';
+import ProductItem from '../../shared/ProductItem/ProductItem';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
 
 export default class ProductList extends Component {
   constructor(props) {
     super(props);
-    this.state = { skip: 0, limit: 6, isButtonVisible: false };
+    this.state = { showButton: false };
     this.scrollRef = React.createRef();
     this.scrollSet = false;
     this.setClass = 'hide';
@@ -18,11 +18,11 @@ export default class ProductList extends Component {
 
   shouldComponentUpdate = (nextProps, nextState) => {
     const { filteredItems } = this.props;
-    const { isButtonVisible } = this.state;
+    const { showButton } = this.state;
 
     return (
       filteredItems !== nextProps.filteredItems ||
-      isButtonVisible !== nextState.isButtonVisible
+      showButton !== nextState.showButton
     );
   };
 
@@ -41,8 +41,20 @@ export default class ProductList extends Component {
     };
   };
 
-  componentDidUpdate = () => {
+  componentDidUpdate = prevProps => {
+    console.log('set', this.scrollSet);
+    const { filteredItems } = this.props;
+    const { showButton } = this.state;
+
+    if (prevProps.filteredItems.length > filteredItems.length) {
+      this.setState({ showButton: false });
+      this.scrollSet = false;
+    } else if (filteredItems.length >= 12 && !showButton) {
+      this.setState({ showButton: true });
+    }
+
     if (!this.scrollSet) {
+      console.log('added');
       window.addEventListener('scroll', this.scroll);
       this.scrollSet = true;
     }
@@ -62,38 +74,53 @@ export default class ProductList extends Component {
 
     const params = { sizes, brands, category, price, available, skip, limit };
     const scrollHeight = this.scrollRef.current.offsetHeight;
-    const trashHold = 500;
+    const threshold = 450;
 
-    if (window.scrollY >= scrollHeight - trashHold) {
+    if (window.scrollY >= scrollHeight - threshold) {
       const skipped = skip === 0 ? limit : skip + limit;
 
-      if (filteredItems.length >= 15) {
-        this.setState({ isButtonVisible: true });
+      if (filteredItems.length >= 12) {
+        this.scrollSet = false;
         window.removeEventListener('scroll', this.scroll);
+        this.setState({ showButton: true });
       } else {
         updateLimit(3);
         updateSkip(skipped);
         params.limit = 3;
         params.skip = skipped;
 
-        getFilteredProducts({ params }).then(res =>
-          addItemsToFiltered(res.data)
-        );
+        getFilteredProducts({ params }).then(res => {
+          addItemsToFiltered(res.data);
+        });
       }
     }
   };
 
   handleClick = () => {
-    const { skip, limit } = this.state;
+    const {
+      updateSkip,
+      updateLimit,
+      addItemsToFiltered,
+      getFilteredProducts,
+      filter
+    } = this.props;
+
+    const { sizes, brands, category, price, available, skip, limit } = filter;
+
+    const params = { sizes, brands, category, price, available, skip, limit };
+
     const skipped = skip === 0 ? limit : skip + limit;
 
-    this.setState({
-      skip: skipped,
-      limit: 3
-    });
+    updateLimit(3);
+    updateSkip(skipped);
+    params.limit = 3;
+    params.skip = skipped;
+
+    getFilteredProducts({ params }).then(res => addItemsToFiltered(res.data));
   };
 
   componentWillUnmount = () => {
+    console.log('removed');
     window.removeEventListener('scroll', this.scroll);
   };
 
@@ -103,7 +130,7 @@ export default class ProductList extends Component {
     if (!filteredItems.length) {
       return <Spinner />;
     }
-    const { isButtonVisible } = this.state;
+    const { showButton } = this.state;
     const list =
       filteredItems &&
       filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
@@ -115,7 +142,7 @@ export default class ProductList extends Component {
             <div className="product_list">{list}</div>
             <button
               type="button"
-              className={isButtonVisible ? '' : 'hide'}
+              className={showButton ? '' : 'hide'}
               onClick={this.handleClick}
             >
               <Dots />
