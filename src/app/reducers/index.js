@@ -5,6 +5,7 @@ import headerFooterVisibility from './headerFooterVisibility';
 import products from './products';
 import wishlist from './wishlist';
 import filter from './filter';
+import filteredProducts from './filteredProducts';
 
 export default combineReducers({
   counter,
@@ -12,5 +13,6 @@ export default combineReducers({
   products,
   wishlist,
   filter,
-  notifications: notifyReducer
+  notifications: notifyReducer,
+  filteredProducts
 });

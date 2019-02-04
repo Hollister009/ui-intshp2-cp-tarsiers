@@ -16,8 +16,9 @@ const getProducts = (req, res) =>
   });
 
 const getFilteredProducts = (req, res) => {
-  const { sizes, brands, category, price, available } = req.query;
+  const { sizes, brands, category, price, available, skip, limit } = req.query;
 
+  const categoryQuery = category ? { category } : {};
   const brandQuery = brands ? { brand: { $in: brands } } : {};
   const sizesQuery = sizes ? { sizes: { $in: sizes } } : {};
   const availableQuery = available ? { available: true } : {};
@@ -27,13 +28,14 @@ const getFilteredProducts = (req, res) => {
       $and: [
         brandQuery,
         sizesQuery,
-        { category },
+        // { category },
+        categoryQuery,
         { price: { $gte: JSON.parse(price).min, $lte: JSON.parse(price).max } },
         availableQuery
       ]
     })
-    .skip(2)
-    .limit(5, (err, products) => {
+    .skip(parseInt(skip, 10))
+    .limit(parseInt(limit, 10), (err, products) => {
       if (err) {
         res.send(err);
       }

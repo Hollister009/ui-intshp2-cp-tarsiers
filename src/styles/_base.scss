@@ -40,6 +40,7 @@ ul {
 button {
   cursor: pointer;
   outline: none;
+  border: none;
 }
 
 .container {
@@ -52,4 +53,10 @@ button {
   @media screen and(max-width: $media-mobile) {
     width: 90%;
   }
+}
+
+.products_filters {
+  @include d-flex();
+
+  margin-bottom: 120px;
 }
