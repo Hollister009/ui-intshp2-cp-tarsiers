@@ -103,10 +103,10 @@ class Carousel extends Component {
   renderButtons() {
     const { translation, scrollCounter, visibleItems } = this.carouselStyle;
     const { data } = this.props;
-    const shouldHideButtons = this.isTouchDevice || visibleItems >= data.length;
+    const shouldShowButtons = !this.isTouchDevice && visibleItems < data.length;
 
     return (
-      shouldHideButtons || (
+      shouldShowButtons && (
         <React.Fragment>
           <button
             type="button"
