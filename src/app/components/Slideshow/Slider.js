@@ -103,7 +103,7 @@ export default class Slider extends Component {
     const stopCheck = isStopped ? null : this.activate;
 
     return (
-      <div className="slider-container">
+      <div className="slider_container">
         <div
           className="slider"
           onMouseEnter={this.deactivate}

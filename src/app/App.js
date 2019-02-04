@@ -19,10 +19,13 @@ export default class App extends Component {
   state = { featureFlags: [], isFlagsReady: false };
 
   componentDidMount() {
-    const { getProductsItems, getWishListItems } = this.props;
+    const { getProductsItems, getWishListItems, updateFiltered } = this.props;
 
     HttpService.get(products)
-      .then(res => getProductsItems(res.data))
+      .then(res => {
+        getProductsItems(res.data);
+        updateFiltered(res.data.slice(0, 6));
+      })
       .catch(error => console.log(error));
 
     HttpService.get(wishlist)
