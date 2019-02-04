@@ -82,11 +82,6 @@ class Carousel extends Component {
     const { data } = this.props;
     const { translateStep } = this.carouselStyle;
 
-    this.carouselStyleSheet = {
-      ...this.carouselStyleSheet,
-      width: `${this.carouselRef.current.scrollWidth}px`
-    };
-
     this.carouselStyle = {
       ...this.carouselStyle,
       width: this.carouselRef.current.scrollWidth,
@@ -99,32 +94,39 @@ class Carousel extends Component {
         this.wrapperRef.current.offsetWidth / translateStep
       )
     };
+
+    this.carouselStyleSheet = {
+      width: this.carouselStyle.width
+    };
   };
 
   renderButtons() {
     const { translation, scrollCounter, visibleItems } = this.carouselStyle;
     const { data } = this.props;
+    const shouldShowButtons = !this.isTouchDevice && visibleItems < data.length;
 
-    return this.isTouchDevice || visibleItems >= data.length ? null : (
-      <React.Fragment>
-        <button
-          type="button"
-          className="carousel__button carousel__button--prev"
-          onClick={this.prevSlide}
-          disabled={translation === 0}
-        >
-          <i className="fas fa-angle-left" />
-        </button>
+    return (
+      shouldShowButtons && (
+        <React.Fragment>
+          <button
+            type="button"
+            className="carousel__button carousel__button--prev"
+            onClick={this.prevSlide}
+            disabled={translation === 0}
+          >
+            <i className="fas fa-angle-left" />
+          </button>
 
-        <button
-          type="button"
-          className="carousel__button carousel__button--next"
-          onClick={this.nextSlide}
-          disabled={data.length - scrollCounter === visibleItems}
-        >
-          <i className="fas fa-angle-right" />
-        </button>
-      </React.Fragment>
+          <button
+            type="button"
+            className="carousel__button carousel__button--next"
+            onClick={this.nextSlide}
+            disabled={data.length - visibleItems === scrollCounter}
+          >
+            <i className="fas fa-angle-right" />
+          </button>
+        </React.Fragment>
+      )
     );
   }
 
