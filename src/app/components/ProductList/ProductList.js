@@ -42,7 +42,6 @@ export default class ProductList extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    console.log('set', this.scrollSet);
     const { filteredItems } = this.props;
     const { showButton } = this.state;
 
@@ -54,7 +53,6 @@ export default class ProductList extends Component {
     }
 
     if (!this.scrollSet) {
-      console.log('added');
       window.addEventListener('scroll', this.scroll);
       this.scrollSet = true;
     }
@@ -120,7 +118,6 @@ export default class ProductList extends Component {
   };
 
   componentWillUnmount = () => {
-    console.log('removed');
     window.removeEventListener('scroll', this.scroll);
   };
 
@@ -128,7 +125,11 @@ export default class ProductList extends Component {
     const { filteredItems } = this.props;
 
     if (!filteredItems.length) {
-      return <Spinner />;
+      return (
+        <div className="spin-position">
+          <Spinner />
+        </div>
+      );
     }
     const { showButton } = this.state;
     const list =
