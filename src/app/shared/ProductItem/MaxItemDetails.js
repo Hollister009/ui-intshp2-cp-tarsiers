@@ -1,11 +1,15 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Flags } from 'react-feature-flags';
 import PropTypes from 'prop-types';
+import { createNotification, Notify } from 'react-redux-notify';
+import 'react-redux-notify/dist/ReactReduxNotify.css';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 import productType from '../../../types';
+import NotifyService from '../../../utils/Notify';
 
 const { addToWishList, removeFromWishList } = appConfig.apiResources;
 
@@ -31,6 +35,12 @@ class MaxItemDetails extends Component {
 
     this.setState({ image: data.src });
   }
+
+  handleClick = () => {
+    const { createNotification } = this.props;
+
+    createNotification(NotifyService.success);
+  };
 
   addItem = id => {
     const { addToWishListItem, wished } = this.props;
@@ -114,7 +124,12 @@ class MaxItemDetails extends Component {
             <button type="button" title="Share with others">
               <i className="fas fa-share-alt" />
             </button>
-            <button type="button" title="Add to shopping-cart">
+            <Notify position={NotifyService.position.topRight} />
+            <button
+              type="button"
+              title="Add to shopping-cart"
+              onClick={this.handleClick.bind(this)}
+            >
               <i className="fas fa-shopping-cart" />
             </button>
             <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
@@ -139,4 +154,13 @@ class MaxItemDetails extends Component {
   }
 }
 
-export default MaxItemDetails;
+const mapDispatchToProps = dispatch => ({
+  createNotification: config => {
+    dispatch(createNotification(config));
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MaxItemDetails);
