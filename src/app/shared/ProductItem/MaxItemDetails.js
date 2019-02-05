@@ -8,7 +8,7 @@ import { createNotification, Notify } from 'react-redux-notify';
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 import productType from '../../../types';
-import NotifyService from '../../../utils/Notify';
+import NotifyService from '../../../utils/notify';
 
 const { addToWishList, removeFromWishList } = appConfig.apiResources;
 
@@ -35,10 +35,16 @@ class MaxItemDetails extends Component {
     this.setState({ image: data.src });
   }
 
-  handleClick = () => {
+  addNote = () => {
     const { createNotification } = this.props;
 
     createNotification(NotifyService.success);
+  };
+
+  handleRemoveNote = () => {
+    const { createNotification } = this.props;
+
+    createNotification(NotifyService.info);
   };
 
   addItem = id => {
@@ -127,7 +133,7 @@ class MaxItemDetails extends Component {
             <button
               type="button"
               title="Add to shopping-cart"
-              onClick={this.handleClick.bind(this)}
+              onClick={this.handleRemoveNote.bind(this)}
             >
               <i className="fas fa-shopping-cart" />
             </button>
@@ -136,6 +142,7 @@ class MaxItemDetails extends Component {
                 type="button"
                 className="btn-heart"
                 onClick={e => this.toggleWishList(e, _id)}
+                // onClick={this.addNote}
                 title="Add to wish-list"
                 disabled={heartDisabled}
               >
