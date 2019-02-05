@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { SliderLeftArrow, SliderRightArrow } from './Arrows';
-import SliderIndicator from './Indicators';
-import Slide from './Slides';
 
-import '../Slider.scss';
+import {
+  SliderLeftArrow,
+  SliderRightArrow,
+  SliderIndicator
+} from './SliderParts';
+import Slide from './Slide';
+
+import './Slider.scss';
 
 export default class Slider extends Component {
   constructor(props) {
@@ -99,7 +103,7 @@ export default class Slider extends Component {
     const stopCheck = isStopped ? null : this.activate;
 
     return (
-      <div className="slider-container">
+      <div className="slider_container">
         <div
           className="slider"
           onMouseEnter={this.deactivate}

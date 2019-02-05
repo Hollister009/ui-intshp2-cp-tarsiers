@@ -4,9 +4,8 @@ import { PropTypes } from 'prop-types';
 import Carousel from '../../shared/Carousel';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 
-import './WishList.scss';
+import styles from './WishList.module.scss';
 
-const CN = 'wishlist';
 const title = 'Wish list';
 const message = 'Currently your wishlist is empty. Add products to it first';
 
@@ -20,7 +19,7 @@ const WishList = props => {
     filteredProducts.map(el => <ProductItemContainer key={el._id} data={el} />);
 
   return (
-    <section className={`${CN}`}>
+    <section className={styles.wishlist}>
       <div className="section_heading">
         <h2>
           <span className="highlighted">{titleArr[0]}</span>
@@ -29,7 +28,7 @@ const WishList = props => {
         </h2>
         {!wishlist.length ? <p>{message}</p> : ''}
       </div>
-      <div className={`${CN}__display`}>
+      <div className={styles.wishlist__display}>
         <Carousel data={filteredProducts}>{list}</Carousel>
       </div>
     </section>

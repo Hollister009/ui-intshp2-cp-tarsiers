@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NewArrivals /> should match its snapshot 1`] = `
+<section
+  className="arrivals"
+>
+  <div
+    className="section_heading"
+  >
+    <h2>
+      <span
+        className="highlighted"
+      >
+        New
+      </span>
+       
+      Arrivals
+    </h2>
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry
+    </p>
+  </div>
+  <div
+    className="arrivals__display"
+  >
+    <Carousel
+      data={Array []}
+      extended={true}
+    />
+  </div>
+</section>
+`;

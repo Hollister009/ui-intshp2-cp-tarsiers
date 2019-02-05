@@ -66,17 +66,26 @@ class Carousel extends Component {
     };
   };
 
+  componentDidMount = () => {
+    const { data } = this.props;
+
+    this.carouselStyle = {
+      ...this.carouselStyle,
+      translateStep:
+        (this.carouselRef.current.scrollWidth +
+          this.carouselStyle.doubleSideMargin) /
+        data.length
+    };
+  };
+
   componentDidUpdate = () => {
     const { data } = this.props;
     const { translateStep } = this.carouselStyle;
 
-    // this.carouselStyleSheet = {
-    //   ...this.carouselStyleSheet
-    // }
-
     this.carouselStyle = {
       ...this.carouselStyle,
       width: this.carouselRef.current.scrollWidth,
+      wrapperWidth: this.wrapperRef.current.offsetWidth,
       translateStep:
         (this.carouselRef.current.scrollWidth +
           this.carouselStyle.doubleSideMargin) /
@@ -85,6 +94,10 @@ class Carousel extends Component {
         this.wrapperRef.current.offsetWidth / translateStep
       ),
       wrapperWidth: this.wrapperRef.current.offsetWidth
+    };
+
+    this.carouselStyleSheet = {
+      width: this.carouselStyle.width
     };
   };
 
@@ -97,38 +110,30 @@ class Carousel extends Component {
       wrapperWidth
     } = this.carouselStyle;
     const { data } = this.props;
+    const shouldShowButtons = !this.isTouchDevice && visibleItems < data.length;
 
-    console.log(
-      'width',
-      width,
-      'wrapper',
-      wrapperWidth,
-      'type widt',
-      typeof width
-    );
+    return (
+      shouldShowButtons && (
+        <React.Fragment>
+          <button
+            type="button"
+            className="carousel__button carousel__button--prev"
+            onClick={this.prevSlide}
+            disabled={translation === 0}
+          >
+            <i className="fas fa-angle-left" />
+          </button>
 
-    // if (width === 0) return null;
-    // || width <= wrapperWidth
-    return this.isTouchDevice ? null : (
-      <React.Fragment>
-        <button
-          type="button"
-          className="carousel__button carousel__button--prev"
-          onClick={this.prevSlide}
-          disabled={translation === 0}
-        >
-          <i className="fas fa-angle-left" />
-        </button>
-
-        <button
-          type="button"
-          className="carousel__button carousel__button--next"
-          onClick={this.nextSlide}
-          disabled={data.length - scrollCounter === visibleItems}
-        >
-          <i className="fas fa-angle-right" />
-        </button>
-      </React.Fragment>
+          <button
+            type="button"
+            className="carousel__button carousel__button--next"
+            onClick={this.nextSlide}
+            disabled={data.length - visibleItems === scrollCounter}
+          >
+            <i className="fas fa-angle-right" />
+          </button>
+        </React.Fragment>
+      )
     );
   }
 

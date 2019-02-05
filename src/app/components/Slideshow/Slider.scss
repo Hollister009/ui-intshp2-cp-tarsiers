@@ -1,7 +1,7 @@
 @import '../../../styles/mixin';
 @import '../../../styles/variables';
 
-.slider-container {
+.slider_container {
   max-width: 1540px;
   margin: 0 auto;
 }
@@ -57,7 +57,7 @@
     right: 32px;
   }
 
-  .fa-2x {
+  span {
     font-size: 3em;
   }
 }
@@ -98,7 +98,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .fa-2x {
+  span {
     font-size: 1em;
   }
 

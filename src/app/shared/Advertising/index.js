@@ -24,7 +24,7 @@ export default class AdvertisingArea extends Component {
     const mySnipet = this.state;
 
     return (
-      <section className="advert">
+      <section className="advert container">
         <Dynamic html={mySnipet.htmlSnipet} />
       </section>
     );

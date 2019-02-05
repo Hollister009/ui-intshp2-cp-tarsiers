@@ -8,7 +8,7 @@ const SliderIndicator = props => {
       <button
         className={
           index === activeIndex
-            ? 'slider__indicator slider__indicator--active'
+            ? 'slider__indicator slider__indicator__active'
             : 'slider__indicator'
         }
         onClick={onClick}

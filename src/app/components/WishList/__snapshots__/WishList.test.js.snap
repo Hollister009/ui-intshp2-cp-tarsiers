@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WishList /> should match its snapshot 1`] = `
+<section
+  className="wishlist"
+>
+  <div
+    className="section_heading"
+  >
+    <h2>
+      <span
+        className="highlighted"
+      >
+        Wish
+      </span>
+       
+      list
+    </h2>
+    <p>
+      Currently your wishlist is empty. Add products to it first
+    </p>
+  </div>
+  <div
+    className="wishlist__display"
+  >
+    <Carousel
+      data={Array []}
+    />
+  </div>
+</section>
+`;

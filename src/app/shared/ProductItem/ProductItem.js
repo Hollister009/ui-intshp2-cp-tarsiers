@@ -1,31 +1,72 @@
-/* eslint-disable no-console */
 /* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
 
-import productType from '../../types';
-import HttpService from '../../../utils/http.service';
-import appConfig from '../../../config/appConfig';
-import { ViewFrontFull, ViewDetailsFull } from './viewFull';
-import { ViewCartSmall, ViewInfoSmall } from './viewSmall';
+import productType from '../../../types';
+import MaxItemDetails from './MaxItemDetails';
+
 import './ProductItem.scss';
 
 const CN = 'product-item';
-const { addToWishList, removeFromWishList } = appConfig.apiResources;
+
+const ViewFrontFull = props => {
+  const { src, title, price } = props;
+
+  return (
+    <React.Fragment>
+      <img className={`${CN}__img`} src={src} alt="" />
+      <h4>{title}</h4>
+      <span className="highlighted">{`${price} $`}</span>
+    </React.Fragment>
+  );
+};
+
+const ViewCartSmall = props => {
+  const { title } = props;
+
+  return (
+    <div className="product-item--small__info">
+      <h4>{title}</h4>
+      <button type="button" className="add-to-card">
+        <i className="fas fa-shopping-cart" />
+        add to cart
+      </button>
+    </div>
+  );
+};
+
+const ViewInfoSmall = props => {
+  const { title, price } = props;
+
+  return (
+    <div className="product-item--small__info">
+      <h4>{title}</h4>
+      <div className="info-group">
+        <div className="rating">
+          <i className="fa fa-star" />
+          <i className="fa fa-star" />
+          <i className="fa fa-star" />
+        </div>
+        <span className="highlighted price">{`${price} $`}</span>
+      </div>
+    </div>
+  );
+};
 
 class ProductItem extends Component {
   static propTypes = {
-    extended: bool,
-
     /**
      * data - productType shape
      */
-    data: productType
+    data: productType,
+    extended: bool,
+    isAddedtoWishList: bool
   };
 
   static defaultProps = {
     extended: false,
-    data: {}
+    isAddedtoWishList: false,
+    data: null
   };
 
   state = { showDetails: false };
@@ -34,69 +75,44 @@ class ProductItem extends Component {
 
   showDetails = () => this.setState({ showDetails: true });
 
-  addToWishList = id => {
-    const { addToWishListItem, isAddedtoWishList } = this.props;
-
-    HttpService.post(addToWishList, { productId: id })
-      .then(res => {
-        if (res.status === 200 && !isAddedtoWishList) {
-          addToWishListItem(id);
-        }
-      })
-      .catch(error => console.log(error));
-    addToWishListItem(id);
-    console.log(`Added to the WishList: ${id}`);
-  };
-
-  removeFromWishList = id => {
-    const { removeFromWishListItem } = this.props;
-
-    HttpService.post(removeFromWishList, { productId: id })
-      .then(res => {
-        if (res.status === 200) {
-          removeFromWishListItem(id);
-        }
-      })
-      .catch(error => console.log(error));
-    console.log(`Removed from the WishList: ${id}`);
-  };
-
-  toggleWishList = (e, id) => {
-    e.preventDefault();
-    const { isAddedtoWishList } = this.props;
-
-    const cb = !isAddedtoWishList
-      ? this.addToWishList
-      : this.removeFromWishList;
-
-    cb(id);
-  };
-
   render() {
     const { showDetails } = this.state;
-    const { data, extended, isAddedtoWishList } = this.props;
-    const { src, title, price } = data;
+    const {
+      data,
+      extended,
+      isAddedtoWishList,
+      addToWishListItem,
+      removeFromWishListItem
+    } = this.props;
+    const { available, src, title, price } = data;
+
+    const fullItem = showDetails ? (
+      <MaxItemDetails
+        data={data}
+        addToWishListItem={addToWishListItem}
+        removeFromWishListItem={removeFromWishListItem}
+        wished={isAddedtoWishList}
+      />
+    ) : (
+      <ViewFrontFull src={src} title={title} price={price} />
+    );
 
     return extended ? (
       <div
-        ref={this.itemRef}
-        className={`${CN} ${CN}--full`}
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
+        className={
+          available ? `${CN} ${CN}--full` : `${CN} ${CN}--full not-available`
+        }
       >
-        {showDetails ? (
-          <ViewDetailsFull
-            {...data}
-            clickHandler={this.toggleWishList}
-            wished={isAddedtoWishList}
-          />
+        {available ? (
+          fullItem
         ) : (
-          <ViewFrontFull {...data} />
+          <ViewFrontFull src={src} title={title} price={price} />
         )}
       </div>
     ) : (
       <div
-        ref={this.itemRef}
         className={`${CN} ${CN}--small`}
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
