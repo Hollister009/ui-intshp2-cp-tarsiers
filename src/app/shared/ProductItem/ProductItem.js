@@ -1,9 +1,12 @@
 /* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { bool } from 'prop-types';
+import { createNotification, Notify } from 'react-redux-notify';
 
 import productType from '../../../types';
 import MaxItemDetails from './MaxItemDetails';
+import NotifyService from '../../../utils/notify';
 
 import './ProductItem.scss';
 
@@ -21,19 +24,47 @@ const ViewFrontFull = props => {
   );
 };
 
+// handleClick() {
+//   const { createNotification } = this.props;
+
+//   createNotification(NotifyService.info);
+// }
+
+const handleClick = props => {
+  const { createNotification } = props;
+
+  createNotification(NotifyService.info);
+  console.log('click');
+};
+
 const ViewCartSmall = props => {
   const { title } = props;
+
+  // class ViewCartSmall extends Comment {
+  //   handleClick() {
+  //     const { createNotification } = this.props;
+
+  //     createNotification(NotifyService.info);
+  //   }
+
+  //   constructor(props) {
+  //     super(props);
+  //     this.state = { title: this.title };
+  //   }
+  // render() {
 
   return (
     <div className="product-item--small__info">
       <h4>{title}</h4>
-      <button type="button" className="add-to-card">
+      <Notify position={NotifyService.position.topRight} />
+      <button type="button" className="add-to-card" onClick={handleClick}>
         <i className="fas fa-shopping-cart" />
         add to cart
       </button>
     </div>
   );
 };
+// }
 
 const ViewInfoSmall = props => {
   const { title, price } = props;
@@ -128,4 +159,13 @@ class ProductItem extends Component {
   }
 }
 
-export default ProductItem;
+const mapDispatchToProps = dispatch => ({
+  createNotification: config => {
+    dispatch(createNotification(config));
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(ProductItem);
