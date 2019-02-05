@@ -1,0 +1,111 @@
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+
+.product-details {
+  @include d-flex();
+}
+
+.images {
+  width: 40%;
+}
+
+.product-description {
+  @include d-flex(inherit, column);
+}
+
+.product-text {
+  @include d-flex(inherit, column);
+
+  .product-header {
+    color: $color-main;
+    font-family: $main-font-bold;
+    font-size: 52px;
+    text-transform: uppercase;
+  }
+
+  .product-subheader {
+    color: $color-dark;
+    font-family: $main-font-regular;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .product-info {
+    color: $color-dark;
+    font-family: $main-font-regular;
+    font-size: 16px;
+  }
+}
+
+p {
+  font-size: 18px;
+  font-family: $main-font-regular;
+  font-weight: 400;
+}
+
+.size-quantity {
+  @include d-flex();
+
+  border-top: 2px solid $color-light-2;
+  border-bottom: 2px solid $color-light-2;
+
+  .p-size {
+    @include d-flex();
+
+    .sizes {
+      @include d-flex();
+
+      a {
+        color: $color-dark;
+        font-size: 18px;
+        text-decoration: none;
+
+        &:hover {
+          animation: 0.5s scale;
+          color: $color-main;
+
+          @keyframes scale {
+            from {
+              transform: scale(1);
+            }
+            to {
+              transform: scale(1.1);
+            }
+          }
+        }
+
+        &:focus {
+          color: $color-main;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .p-quantity {
+    @include d-flex();
+
+    .quantity {
+      @include d-flex();
+
+      span {
+        color: $color-main;
+      }
+    }
+  }
+}
+
+.order-section {
+  @include d-flex();
+
+  .order-buttons {
+    @include d-flex();
+
+    .order-now {
+      color: $color-white;
+      background-color: $color-main;
+      border-radius: 25%;
+      padding: 20px;
+    }
+  }
+}
