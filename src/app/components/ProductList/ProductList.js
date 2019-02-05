@@ -13,6 +13,8 @@ export default class ProductList extends Component {
   }
 
   componentDidMount() {
+    this.forceUpdate();
+
     this.scroll = this.throttled(500, this.handleScroll.bind(this));
   }
 

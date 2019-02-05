@@ -67,38 +67,40 @@ class Carousel extends Component {
   };
 
   componentDidMount = () => {
+    this.forceUpdate();
     const { data } = this.props;
 
-    this.carouselStyle = {
-      ...this.carouselStyle,
-      translateStep:
-        (this.carouselRef.current.scrollWidth +
-          this.carouselStyle.doubleSideMargin) /
-        data.length
-    };
+    // this.carouselStyle = {
+    //   ...this.carouselStyle,
+    //   translateStep:
+    //     (this.carouselRef.current.scrollWidth +
+    //       this.carouselStyle.doubleSideMargin) /
+    //     data.length
+    // };
   };
 
   componentDidUpdate = () => {
     const { data } = this.props;
     const { translateStep } = this.carouselStyle;
 
-    this.carouselStyle = {
-      ...this.carouselStyle,
-      width: this.carouselRef.current.scrollWidth,
-      wrapperWidth: this.wrapperRef.current.offsetWidth,
-      translateStep:
-        (this.carouselRef.current.scrollWidth +
-          this.carouselStyle.doubleSideMargin) /
-        data.length,
-      visibleItems: Math.ceil(
-        this.wrapperRef.current.offsetWidth / translateStep
-      ),
-      wrapperWidth: this.wrapperRef.current.offsetWidth
-    };
+    if (data.length) {
+      this.carouselStyle = {
+        ...this.carouselStyle,
+        width: this.carouselRef.current.scrollWidth,
+        wrapperWidth: this.wrapperRef.current.offsetWidth,
+        translateStep:
+          (this.carouselRef.current.scrollWidth +
+            this.carouselStyle.doubleSideMargin) /
+          data.length,
+        visibleItems: Math.ceil(
+          this.wrapperRef.current.offsetWidth / translateStep
+        )
+      };
 
-    this.carouselStyleSheet = {
-      width: this.carouselStyle.width
-    };
+      this.carouselStyleSheet = {
+        width: this.carouselStyle.width
+      };
+    }
   };
 
   renderButtons() {
@@ -109,38 +111,42 @@ class Carousel extends Component {
       width,
       wrapperWidth
     } = this.carouselStyle;
+
     const { data } = this.props;
-    const shouldShowButtons = !this.isTouchDevice && visibleItems < data.length;
 
     return (
-      shouldShowButtons && (
-        <React.Fragment>
-          <button
-            type="button"
-            className="carousel__button carousel__button--prev"
-            onClick={this.prevSlide}
-            disabled={translation === 0}
-          >
-            <i className="fas fa-angle-left" />
-          </button>
+      <React.Fragment>
+        <button
+          type="button"
+          className="carousel__button carousel__button--prev"
+          onClick={this.prevSlide}
+          disabled={translation === 0}
+        >
+          <i className="fas fa-angle-left" />
+        </button>
 
-          <button
-            type="button"
-            className="carousel__button carousel__button--next"
-            onClick={this.nextSlide}
-            disabled={data.length - visibleItems === scrollCounter}
-          >
-            <i className="fas fa-angle-right" />
-          </button>
-        </React.Fragment>
-      )
+        <button
+          type="button"
+          className="carousel__button carousel__button--next"
+          onClick={this.nextSlide}
+          disabled={data.length - visibleItems === scrollCounter}
+        >
+          <i className="fas fa-angle-right" />
+        </button>
+      </React.Fragment>
     );
   }
 
   render() {
     const { children } = this.props;
+    const { visibleItems } = this.carouselStyle;
 
-    return (
+    const { data } = this.props;
+    const shouldShowButtons = !this.isTouchDevice && visibleItems < data.length;
+
+    console.log('should show butt', shouldShowButtons);
+
+    return !data.length ? null : (
       <div
         className="carousel__wrapper"
         style={this.wrapperStyle}
@@ -153,7 +159,7 @@ class Carousel extends Component {
         >
           {children}
         </div>
-        {this.renderButtons()}
+        {shouldShowButtons ? this.renderButtons() : null}
       </div>
     );
   }
