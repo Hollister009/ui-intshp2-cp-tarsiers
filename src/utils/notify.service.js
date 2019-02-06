@@ -10,17 +10,17 @@ import {
 
 class NotifyService {
   added = {
-    message: 'Added to cart!',
+    message: 'Added to wishlist!',
     type: NOTIFICATION_TYPE_SUCCESS,
-    duration: 2000,
+    duration: 800,
     canDismiss: true,
     icon: <i className="fa fa-check" />
   };
 
   removed = {
-    message: 'Removed from cart!',
+    message: 'Removed from wishlist!',
     type: NOTIFICATION_TYPE_WARNING,
-    duration: 2000,
+    duration: 800,
     canDismiss: true,
     icon: <i className="fa fa-check" />
   };
@@ -28,15 +28,15 @@ class NotifyService {
   error = {
     message: 'Error!',
     type: NOTIFICATION_TYPE_ERROR,
-    duration: 2000,
+    duration: 800,
     canDismiss: true,
     icon: <i className="fa fa-check" />
   };
 
-  info = {
-    message: 'Info!',
+  cart = {
+    message: 'Added to cart!',
     type: NOTIFICATION_TYPE_INFO,
-    duration: 2000,
+    duration: 800,
     canDismiss: true,
     icon: <i className="fa fa-check" />
   };

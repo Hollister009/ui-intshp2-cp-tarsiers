@@ -29,7 +29,7 @@ const ViewCartSmall = props => {
     const { createNotification } = props;
 
     e.preventDefault();
-    createNotification(NotifyService.removed);
+    createNotification(NotifyService.cart);
   };
 
   return (

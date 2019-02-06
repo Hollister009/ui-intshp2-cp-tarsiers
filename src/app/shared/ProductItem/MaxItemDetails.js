@@ -35,7 +35,7 @@ class MaxItemDetails extends Component {
   }
 
   addItem = id => {
-    const { addToWishListItem, wished } = this.props;
+    const { addToWishListItem, wished, createNotification } = this.props;
 
     HttpService.post(addToWishList, { productId: id })
       .then(res => {
@@ -46,10 +46,12 @@ class MaxItemDetails extends Component {
       })
       .catch(error => console.log(error))
       .finally(this.setState({ heartDisabled: false }));
+
+    createNotification(NotifyService.added);
   };
 
   removeItem = id => {
-    const { removeFromWishListItem } = this.props;
+    const { removeFromWishListItem, createNotification } = this.props;
 
     HttpService.post(removeFromWishList, { productId: id })
       .then(res => {
@@ -60,6 +62,8 @@ class MaxItemDetails extends Component {
       })
       .catch(error => console.log(error))
       .finally(this.setState({ heartDisabled: false }));
+
+    createNotification(NotifyService.removed);
   };
 
   toggleSwatch = (e, colors) => {
@@ -84,9 +88,8 @@ class MaxItemDetails extends Component {
       </span>
     ));
 
-  toggleWishListNoted = (e, id) => {
+  toggleWishList = (e, id) => {
     const { wished } = this.props;
-    const { createNotification } = this.props;
 
     e.preventDefault();
     const cb = !wished ? this.addItem : this.removeItem;
@@ -94,7 +97,12 @@ class MaxItemDetails extends Component {
     this.setState({ heartDisabled: true }, () => {
       cb(id);
     });
-    createNotification(NotifyService.added);
+  };
+
+  cartNote = () => {
+    const { createNotification } = this.props;
+
+    createNotification(NotifyService.cart);
   };
 
   render() {
@@ -119,14 +127,18 @@ class MaxItemDetails extends Component {
               <i className="fas fa-share-alt" />
             </button>
             <Notify position={NotifyService.position.topRight} />
-            <button type="button" title="Add to shopping-cart">
+            <button
+              type="button"
+              title="Add to shopping-cart"
+              onClick={this.cartNote}
+            >
               <i className="fas fa-shopping-cart" />
             </button>
             <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
               <button
                 type="button"
                 className="btn-heart"
-                onClick={e => this.toggleWishListNoted(e, _id)}
+                onClick={e => this.toggleWishList(e, _id)}
                 title="Add to wish-list"
                 disabled={heartDisabled}
               >
