@@ -8,7 +8,6 @@ import './ProductDescription.scss';
 export default class ProductDescription extends Component {
   constructor(props) {
     super(props);
-    this.size = '';
     this.state = { quantity: 0 };
   }
 
