@@ -9,16 +9,16 @@ import {
 } from 'react-redux-notify';
 
 class NotifyService {
-  success = {
-    message: 'Success!',
+  added = {
+    message: 'Added to cart!',
     type: NOTIFICATION_TYPE_SUCCESS,
     duration: 2000,
     canDismiss: true,
     icon: <i className="fa fa-check" />
   };
 
-  warning = {
-    message: 'Warning!',
+  removed = {
+    message: 'Removed from cart!',
     type: NOTIFICATION_TYPE_WARNING,
     duration: 2000,
     canDismiss: true,

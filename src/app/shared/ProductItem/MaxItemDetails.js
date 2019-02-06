@@ -1,14 +1,13 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Flags } from 'react-feature-flags';
 import PropTypes from 'prop-types';
-import { createNotification, Notify } from 'react-redux-notify';
+import { Notify } from 'react-redux-notify';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 import productType from '../../../types';
-import NotifyService from '../../../utils/notify';
+import NotifyService from '../../../utils/notify.service';
 
 const { addToWishList, removeFromWishList } = appConfig.apiResources;
 
@@ -95,7 +94,7 @@ class MaxItemDetails extends Component {
     this.setState({ heartDisabled: true }, () => {
       cb(id);
     });
-    createNotification(NotifyService.success);
+    createNotification(NotifyService.added);
   };
 
   render() {
@@ -145,13 +144,4 @@ class MaxItemDetails extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  createNotification: config => {
-    dispatch(createNotification(config));
-  }
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(MaxItemDetails);
+export default MaxItemDetails;

@@ -1,12 +1,10 @@
-/* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { bool } from 'prop-types';
-import { createNotification, Notify } from 'react-redux-notify';
+import { Notify } from 'react-redux-notify';
 
 import productType from '../../../types';
+import NotifyService from '../../../utils/notify.service';
 import MaxItemDetails from './MaxItemDetails';
-import NotifyService from '../../../utils/notify';
 
 import './ProductItem.scss';
 
@@ -24,47 +22,31 @@ const ViewFrontFull = props => {
   );
 };
 
-// handleClick() {
-//   const { createNotification } = this.props;
-
-//   createNotification(NotifyService.info);
-// }
-
-const handleClick = props => {
-  const { createNotification } = props;
-
-  createNotification(NotifyService.info);
-  console.log('click');
-};
-
 const ViewCartSmall = props => {
   const { title } = props;
 
-  // class ViewCartSmall extends Comment {
-  //   handleClick() {
-  //     const { createNotification } = this.props;
+  const handleClick = e => {
+    const { createNotification } = props;
 
-  //     createNotification(NotifyService.info);
-  //   }
-
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = { title: this.title };
-  //   }
-  // render() {
+    e.preventDefault();
+    createNotification(NotifyService.removed);
+  };
 
   return (
     <div className="product-item--small__info">
       <h4>{title}</h4>
       <Notify position={NotifyService.position.topRight} />
-      <button type="button" className="add-to-card" onClick={handleClick}>
+      <button
+        type="button"
+        className="add-to-card"
+        onClick={e => handleClick(e)}
+      >
         <i className="fas fa-shopping-cart" />
         add to cart
       </button>
     </div>
   );
 };
-// }
 
 const ViewInfoSmall = props => {
   const { title, price } = props;
@@ -113,7 +95,8 @@ class ProductItem extends Component {
       extended,
       isAddedtoWishList,
       addToWishListItem,
-      removeFromWishListItem
+      removeFromWishListItem,
+      createNotification
     } = this.props;
     const { available, src, title, price } = data;
 
@@ -123,6 +106,7 @@ class ProductItem extends Component {
         addToWishListItem={addToWishListItem}
         removeFromWishListItem={removeFromWishListItem}
         wished={isAddedtoWishList}
+        createNotification={createNotification}
       />
     ) : (
       <ViewFrontFull src={src} title={title} price={price} />
@@ -150,7 +134,10 @@ class ProductItem extends Component {
       >
         <img src={src} alt="" />
         {showDetails ? (
-          <ViewCartSmall title={title} />
+          <ViewCartSmall
+            title={title}
+            createNotification={createNotification}
+          />
         ) : (
           <ViewInfoSmall title={title} price={price} />
         )}
@@ -159,13 +146,4 @@ class ProductItem extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  createNotification: config => {
-    dispatch(createNotification(config));
-  }
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(ProductItem);
+export default ProductItem;
