@@ -11,8 +11,6 @@ export default class ProductDescription extends Component {
     this.state = { quantity: 0 };
   }
 
-  componentDidMount = () => {};
-
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
   };
