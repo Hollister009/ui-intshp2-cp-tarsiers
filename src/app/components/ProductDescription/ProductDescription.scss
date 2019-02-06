@@ -1,16 +1,24 @@
 @import '../../../styles/mixin';
 @import '../../../styles/variables';
 
+p {
+  font-size: 18px;
+  font-family: $main-font-regular;
+  font-weight: 400;
+}
+
 .product-details {
-  @include d-flex();
+  @include d-flex(center);
 }
 
 .images {
-  width: 40%;
+  width: 70%;
 }
 
 .product-description {
   @include d-flex(inherit, column);
+
+  margin: 100px 40px 0 40px;
 }
 
 .product-text {
@@ -21,6 +29,7 @@
     font-family: $main-font-bold;
     font-size: 52px;
     text-transform: uppercase;
+    line-height: 45px;
   }
 
   .product-subheader {
@@ -28,19 +37,16 @@
     font-family: $main-font-regular;
     font-weight: 400;
     font-size: 18px;
+    margin: 30px 0 15px 0;
   }
 
   .product-info {
     color: $color-dark;
     font-family: $main-font-regular;
     font-size: 16px;
+    line-height: 30px;
+    margin: 15px 0 30px 0;
   }
-}
-
-p {
-  font-size: 18px;
-  font-family: $main-font-regular;
-  font-weight: 400;
 }
 
 .size-quantity {
@@ -48,6 +54,11 @@ p {
 
   border-top: 2px solid $color-light-2;
   border-bottom: 2px solid $color-light-2;
+  padding: 30px 0;
+
+  .choose {
+    margin-right: 20px;
+  }
 
   .p-size {
     @include d-flex();
@@ -55,13 +66,15 @@ p {
     .sizes {
       @include d-flex();
 
-      a {
+      .size {
         color: $color-dark;
         font-size: 18px;
         text-decoration: none;
+        padding: 0 5px;
+        text-transform: uppercase;
 
         &:hover {
-          animation: 0.5s scale;
+          animation: 0.5s scale forwards;
           color: $color-main;
 
           @keyframes scale {
@@ -74,7 +87,7 @@ p {
           }
         }
 
-        &:focus {
+        &:focus-within {
           color: $color-main;
           font-size: 18px;
         }
@@ -88,6 +101,14 @@ p {
     .quantity {
       @include d-flex();
 
+      align-items: start;
+
+      button {
+        background: none;
+        font-size: 18px;
+        padding: 0 10px;
+      }
+
       span {
         color: $color-main;
       }
@@ -98,14 +119,39 @@ p {
 .order-section {
   @include d-flex();
 
+  padding: 30px 0;
+  align-items: center;
+
+  .price {
+    font-weight: bold;
+  }
+
   .order-buttons {
     @include d-flex();
+
+    align-items: center;
+
+    button {
+      background: none;
+      padding: 0 10px;
+      color: $color-dark;
+      font-size: 18px;
+
+      &:hover {
+        color: $color-main;
+      }
+    }
 
     .order-now {
       color: $color-white;
       background-color: $color-main;
-      border-radius: 25%;
-      padding: 20px;
+      border-radius: 30px;
+      padding: 20px 30px;
+      font-size: 16px;
+
+      &:hover {
+        background-color: $color-dark;
+      }
     }
   }
 }

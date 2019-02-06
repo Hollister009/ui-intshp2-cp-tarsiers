@@ -1,9 +1,12 @@
 import React from 'react';
-import ProductDetails from '../components/ProductDetails/ProductDetails';
+import ProductDetailsContainer from '../components/ProductDetails/ProductDetailsContainer';
 
-const ProductDetailsPage = () => (
-  <div className="container">
-    <ProductDetails />
+const ProductDetailsPage = ({ match }) => (
+  <div>
+    <h3>{match.params.productId}</h3>
+    <div className="container">
+      <ProductDetailsContainer id={match.params.productId} />
+    </div>
   </div>
 );
 

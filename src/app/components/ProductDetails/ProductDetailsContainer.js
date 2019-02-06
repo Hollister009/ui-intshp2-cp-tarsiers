@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { addToCart } from '../../actions';
-import ProductDescription from './ProductDescription';
+import ProductDetails from './ProductDetails';
 
 const mapStateToProps = state => ({
   products: state.products.products
@@ -8,9 +8,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addToCart: data => dispatch(addToCart(data))
 });
-const ProductDescriptionContainer = connect(
+const ProductDetailsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductDescription);
+)(ProductDetails);
 
-export default ProductDescriptionContainer;
+export default ProductDetailsContainer;
