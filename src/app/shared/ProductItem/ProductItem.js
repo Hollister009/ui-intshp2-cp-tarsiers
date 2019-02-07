@@ -1,7 +1,6 @@
 /* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import productType from '../../../types';
 import MaxItemDetails from './MaxItemDetails';
