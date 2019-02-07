@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductDescription from '../ProductDescription/ProductDescription';
+import ImgPreview from './ImgPreview';
 
 const ProductDetails = props => {
   const { id, products } = props;
@@ -9,6 +10,7 @@ const ProductDetails = props => {
   return (
     <div className="container">
       <ProductDescription item={item} />
+      <ImgPreview item={item} />
     </div>
   );
 };
