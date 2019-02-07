@@ -28,7 +28,6 @@ const getFilteredProducts = (req, res) => {
       $and: [
         brandQuery,
         sizesQuery,
-        { category },
         categoryQuery,
         { price: { $gte: JSON.parse(price).min, $lte: JSON.parse(price).max } },
         availableQuery
