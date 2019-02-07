@@ -73,7 +73,12 @@ export default class ProductList extends Component {
     const { sizes, brands, category, price, available, skip, limit } = filter;
 
     const params = { sizes, brands, category, price, available, skip, limit };
-    const scrollHeight = this.scrollRef.current.offsetHeight;
+
+    let scrollHeight;
+
+    if (filteredItems.length) {
+      scrollHeight = this.scrollRef.current.offsetHeight;
+    }
     const threshold = 450;
 
     if (window.scrollY >= scrollHeight - threshold) {
@@ -135,7 +140,7 @@ export default class ProductList extends Component {
     }
     const { showButton } = this.state;
     const list =
-      filteredItems &&
+      filteredItems.length &&
       filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
 
     return (
