@@ -107,7 +107,7 @@ class MaxItemDetails extends Component {
       data && (
         <React.Fragment>
           <Link to={`/products/${_id}`}>
-            <img className={`${CN}__img-small`} src={image} alt="" />
+            <img className={`${CN}__img-small`} src={image} alt={data.title} />
             <h4 className="highlighted">{title}</h4>
           </Link>
           <div className={`${CN}__sizes`}>{`sizes : ${allSizes}`}</div>

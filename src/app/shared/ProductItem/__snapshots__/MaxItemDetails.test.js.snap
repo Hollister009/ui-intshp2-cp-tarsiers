@@ -7,7 +7,7 @@ exports[`<MaxItemDetails /> should match its snapshot 1`] = `
     to="/products/5c473090e7179a544940dfec"
   >
     <img
-      alt=""
+      alt="Reebok Track Jacket"
       className="product-item--full__img-small"
       src="https://res.cloudinary.com/so/image/upload/v1548069002/products/reebok%20jacket/red.jpg"
     />

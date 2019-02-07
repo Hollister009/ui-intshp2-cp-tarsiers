@@ -14,7 +14,7 @@ const ViewFrontFull = props => {
 
   return (
     <React.Fragment>
-      <img className={`${CN}__img`} src={src} alt="" />
+      <img className={`${CN}__img`} src={src} alt={title} />
       <h4>{title}</h4>
       <span className="highlighted">{`${price} $`}</span>
     </React.Fragment>
