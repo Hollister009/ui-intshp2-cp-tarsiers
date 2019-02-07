@@ -4,9 +4,13 @@ import './Carousel.scss';
 class Carousel extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { buttonsVisibility: false };
+
     this.carouselRef = React.createRef();
+    this.prevButtonRef = React.createRef();
+    this.nextButtonRef = React.createRef();
     this.wrapperRef = React.createRef();
+
     this.isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
     this.carouselStyle = {
@@ -14,11 +18,27 @@ class Carousel extends Component {
       scrollCounter: 0,
       doubleSideMargin: 30
     };
-
     this.carouselStyleSheet = { transform: null, width: null };
-
     this.wrapperStyle = { overflowX: this.isTouchDevice ? 'scroll' : 'hidden' };
+
+    this.updateButtonsAppearance = this.updateButtonsAppearance.bind(this);
   }
+
+  updateButtonsAppearance = () => {
+    if (this.carouselStyle.translation === 0) {
+      this.prevButtonRef.current.setAttribute('disabled', true);
+    } else {
+      this.prevButtonRef.current.removeAttribute('disabled');
+    }
+    if (
+      this.carouselStyle.width - this.carouselStyle.wrapperWidth <=
+      -this.carouselStyle.translation
+    ) {
+      this.nextButtonRef.current.setAttribute('disabled', true);
+    } else {
+      this.nextButtonRef.current.removeAttribute('disabled');
+    }
+  };
 
   nextSlide = () => {
     const {
@@ -39,49 +59,39 @@ class Carousel extends Component {
       scrollCounter: scrollCounter + 1
     };
 
-    this.setState(state => ({ ...state }));
+    this.carouselRef.current.style.transform = `translate(${
+      this.carouselStyle.translation
+    }px)`;
 
-    this.carouselStyleSheet = {
-      ...this.carouselStyleSheet,
-      transform: `translate(${this.carouselStyle.translation}px)`
-    };
+    this.updateButtonsAppearance();
   };
 
   prevSlide = () => {
-    const { translateStep, translation, scrollCounter } = this.carouselStyle;
+    const { translateStep, translation } = this.carouselStyle;
 
     this.carouselStyle = {
       ...this.carouselStyle,
       translation:
         translation +
-        (-translation / 2 < translateStep ? -translation : translateStep),
-      scrollCounter: scrollCounter - 1
+        (-translation / 2 < translateStep ? -translation : translateStep)
     };
 
-    this.setState(state => ({ ...state }));
+    this.carouselRef.current.style.transform = `translate(${
+      this.carouselStyle.translation
+    }px)`;
 
-    this.carouselStyleSheet = {
-      ...this.carouselStyleSheet,
-      transform: `translate(${this.carouselStyle.translation}px)`
-    };
+    this.updateButtonsAppearance();
   };
 
   componentDidMount = () => {
     this.forceUpdate();
-    const { data } = this.props;
-
-    // this.carouselStyle = {
-    //   ...this.carouselStyle,
-    //   translateStep:
-    //     (this.carouselRef.current.scrollWidth +
-    //       this.carouselStyle.doubleSideMargin) /
-    //     data.length
-    // };
   };
 
   componentDidUpdate = () => {
+    console.log('update');
+
     const { data } = this.props;
-    const { translateStep } = this.carouselStyle;
+    const { buttonsVisibility } = this.state;
 
     if (data.length) {
       this.carouselStyle = {
@@ -91,36 +101,43 @@ class Carousel extends Component {
         translateStep:
           (this.carouselRef.current.scrollWidth +
             this.carouselStyle.doubleSideMargin) /
-          data.length,
-        visibleItems: Math.ceil(
-          this.wrapperRef.current.offsetWidth / translateStep
-        )
+          data.length
       };
+    }
 
-      this.carouselStyleSheet = {
-        width: this.carouselStyle.width
+    const { width, wrapperWidth } = this.carouselStyle;
+
+    const buttonsShouldBeShown = width > wrapperWidth;
+
+    if (!buttonsVisibility && buttonsShouldBeShown) {
+      this.setState({ buttonsVisibility: true });
+    }
+
+    if (buttonsVisibility && !buttonsShouldBeShown) {
+      this.setState({ buttonsVisibility: false });
+      this.carouselStyle = {
+        ...this.carouselStyle,
+        translation: 0
       };
+      this.carouselRef.current.style.transform = `translate(${
+        this.carouselStyle.translation
+      }px)`;
+    }
+
+    if (this.prevButtonRef.current) {
+      this.updateButtonsAppearance();
     }
   };
 
   renderButtons() {
-    const {
-      translation,
-      scrollCounter,
-      visibleItems,
-      width,
-      wrapperWidth
-    } = this.carouselStyle;
-
-    const { data } = this.props;
-
     return (
       <React.Fragment>
         <button
           type="button"
           className="carousel__button carousel__button--prev"
           onClick={this.prevSlide}
-          disabled={translation === 0}
+          // disabled={!buttonsActive.previous}
+          ref={this.prevButtonRef}
         >
           <i className="fas fa-angle-left" />
         </button>
@@ -129,7 +146,8 @@ class Carousel extends Component {
           type="button"
           className="carousel__button carousel__button--next"
           onClick={this.nextSlide}
-          disabled={data.length - visibleItems === scrollCounter}
+          // disabled={!buttonsActive.next}
+          ref={this.nextButtonRef}
         >
           <i className="fas fa-angle-right" />
         </button>
@@ -138,13 +156,8 @@ class Carousel extends Component {
   }
 
   render() {
-    const { children } = this.props;
-    const { visibleItems } = this.carouselStyle;
-
-    const { data } = this.props;
-    const shouldShowButtons = !this.isTouchDevice && visibleItems < data.length;
-
-    console.log('should show butt', shouldShowButtons);
+    const { children, data } = this.props;
+    const { buttonsVisibility } = this.state;
 
     return !data.length ? null : (
       <div
@@ -159,7 +172,7 @@ class Carousel extends Component {
         >
           {children}
         </div>
-        {shouldShowButtons ? this.renderButtons() : null}
+        {!this.isTouchDevice && buttonsVisibility ? this.renderButtons() : null}
       </div>
     );
   }
