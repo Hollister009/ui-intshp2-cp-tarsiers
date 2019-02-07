@@ -1,6 +1,7 @@
 /* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import productType from '../../../types';
 import MaxItemDetails from './MaxItemDetails';
@@ -84,7 +85,7 @@ class ProductItem extends Component {
       addToWishListItem,
       removeFromWishListItem
     } = this.props;
-    const { available, src, title, price } = data;
+    const { available, src, title, price, _id } = data;
 
     const fullItem = showDetails ? (
       <MaxItemDetails
@@ -108,7 +109,7 @@ class ProductItem extends Component {
         {available ? (
           fullItem
         ) : (
-          <ViewFrontFull src={src} title={title} price={price} />
+          <ViewFrontFull src={src} title={title} price={price} itemId={_id} />
         )}
       </div>
     ) : (
