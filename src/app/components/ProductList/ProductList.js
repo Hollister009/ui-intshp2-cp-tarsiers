@@ -13,6 +13,8 @@ export default class ProductList extends Component {
   }
 
   componentDidMount() {
+    this.forceUpdate();
+
     this.scroll = this.throttled(500, this.handleScroll.bind(this));
   }
 
@@ -71,7 +73,12 @@ export default class ProductList extends Component {
     const { sizes, brands, category, price, available, skip, limit } = filter;
 
     const params = { sizes, brands, category, price, available, skip, limit };
-    const scrollHeight = this.scrollRef.current.offsetHeight;
+
+    let scrollHeight;
+
+    if (filteredItems.length) {
+      scrollHeight = this.scrollRef.current.offsetHeight;
+    }
     const threshold = 450;
 
     if (window.scrollY >= scrollHeight - threshold) {
@@ -82,13 +89,16 @@ export default class ProductList extends Component {
         window.removeEventListener('scroll', this.scroll);
         this.setState({ showButton: true });
       } else {
-        updateLimit(3);
-        updateSkip(skipped);
         params.limit = 3;
         params.skip = skipped;
 
         getFilteredProducts({ params }).then(res => {
           addItemsToFiltered(res.data);
+          console.log('resdata', res.data);
+          if (res.data.length) {
+            updateLimit(3);
+            updateSkip(skipped);
+          }
         });
       }
     }
@@ -109,12 +119,17 @@ export default class ProductList extends Component {
 
     const skipped = skip === 0 ? limit : skip + limit;
 
-    updateLimit(3);
-    updateSkip(skipped);
     params.limit = 3;
     params.skip = skipped;
 
-    getFilteredProducts({ params }).then(res => addItemsToFiltered(res.data));
+    getFilteredProducts({ params }).then(res => {
+      addItemsToFiltered(res.data);
+      console.log('resdata', res.data);
+      if (res.data.length) {
+        updateLimit(3);
+        updateSkip(skipped);
+      }
+    });
   };
 
   componentWillUnmount = () => {
@@ -126,14 +141,16 @@ export default class ProductList extends Component {
 
     if (!filteredItems.length) {
       return (
-        <div className="spin-position">
-          <Spinner />
+        <div className="product_list__page">
+          <div className="spin-position">
+            <Spinner />
+          </div>
         </div>
       );
     }
     const { showButton } = this.state;
     const list =
-      filteredItems &&
+      filteredItems.length &&
       filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
 
     return (
