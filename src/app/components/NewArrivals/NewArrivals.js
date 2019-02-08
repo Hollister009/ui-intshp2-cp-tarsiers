@@ -9,21 +9,25 @@ import styles from './NewArrivals.module.scss';
 const title = 'New Arrivals';
 
 const NewArrivals = props => {
-  const { products, wishlist } = props;
+  const { products, wishlist, cart } = props;
   const extended = true;
   const titleArr = title.split(' ');
   const isAddedtoWishList = id => wishlist.includes(id);
+  const isAddedtoCart = id => cart.includes(id);
 
   const list =
     products &&
     products.map(el => (
       <ProductItemContainer
         isAddedtoWishList={isAddedtoWishList(el._id)}
+        isAddedtoCart={isAddedtoCart(el._id)}
         extended={extended}
         key={el._id}
         data={el}
       />
     ));
+
+  const newArrivals = list.slice(0, 9);
 
   return (
     <section className={styles.arrivals}>
@@ -40,7 +44,7 @@ const NewArrivals = props => {
       </div>
       <div className={styles.arrivals__display}>
         <Carousel data={products} extended>
-          {list}
+          {newArrivals}
         </Carousel>
       </div>
     </section>

@@ -14,12 +14,21 @@ class HeaderMain extends Component {
   renderLinks = list =>
     list.map(link => {
       const { id, icon, value, href } = link;
+      // const { quantity } = this.state;
+      const { cart } = this.props;
+      const cartCounter =
+        icon === 'fas fa-shopping-basket' ? (
+          <div className="cart">
+            <span className="cart-quantity">{cart.value}</span>
+            <i className={icon} />
+          </div>
+        ) : (
+          <i className={icon} />
+        );
 
       return (
         <li key={id} className="navbar-link">
-          <RouterLink href={href}>
-            {icon ? <i className={icon} /> : value}
-          </RouterLink>
+          <RouterLink href={href}>{icon ? cartCounter : value}</RouterLink>
         </li>
       );
     });

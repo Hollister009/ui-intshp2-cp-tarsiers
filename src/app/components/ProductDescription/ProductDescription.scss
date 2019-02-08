@@ -101,7 +101,7 @@ p {
     .quantity {
       @include d-flex();
 
-      align-items: start;
+      align-items: flex-start;
 
       button {
         background: none;

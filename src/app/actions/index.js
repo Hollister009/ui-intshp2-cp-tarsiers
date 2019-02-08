@@ -20,3 +20,4 @@ export const addItemsToFiltered = data =>
 export const removeFromWishList = data => actionHelper(data, RM_FROM_WISHLIST);
 export const updateFiltered = data => actionHelper(data, UPDATE_FILTERED);
 export const addToCart = data => actionHelper(data, ADD_TO_CART);
+export const removeFromCart = data => actionHelper(data, REMOVE_FROM_CART);

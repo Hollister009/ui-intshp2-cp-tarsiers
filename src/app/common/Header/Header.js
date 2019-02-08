@@ -5,7 +5,7 @@ import HeaderMain from './HeaderMain';
 import appConfig from '../../../config/appConfig';
 
 const Header = props => {
-  const { headerFooterVisibility } = props;
+  const { headerFooterVisibility, cart } = props;
   const visible = headerFooterVisibility.value;
   const { contacts, links, pages, options } = appConfig.header;
 
@@ -13,7 +13,7 @@ const Header = props => {
     visible && (
       <header className="header">
         <HeaderTop contacts={contacts} links={links} />
-        <HeaderMain pages={pages} options={options} />
+        <HeaderMain pages={pages} options={options} cart={cart} />
       </header>
     )
   );

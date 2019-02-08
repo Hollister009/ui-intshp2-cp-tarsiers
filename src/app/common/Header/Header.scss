@@ -1,6 +1,12 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixin';
 
+a {
+  &:not(div):hover {
+    color: $color-main !important;
+  }
+}
+
 .header {
   width: 100%;
   padding-bottom: 62px;
@@ -148,5 +154,18 @@
         flex-flow: column nowrap;
       }
     }
+  }
+}
+
+.cart {
+  @include d-flex(unset, column);
+  align-items: center;
+  position: relative;
+
+  .cart-quantity {
+    position: absolute;
+    bottom: 65%;
+    color: $color-dark;
+    font-size: 13px;
   }
 }
