@@ -89,13 +89,16 @@ export default class ProductList extends Component {
         window.removeEventListener('scroll', this.scroll);
         this.setState({ showButton: true });
       } else {
-        updateLimit(3);
-        updateSkip(skipped);
         params.limit = 3;
         params.skip = skipped;
 
         getFilteredProducts({ params }).then(res => {
           addItemsToFiltered(res.data);
+          console.log('resdata', res.data);
+          if (res.data.length) {
+            updateLimit(3);
+            updateSkip(skipped);
+          }
         });
       }
     }
@@ -116,12 +119,17 @@ export default class ProductList extends Component {
 
     const skipped = skip === 0 ? limit : skip + limit;
 
-    updateLimit(3);
-    updateSkip(skipped);
     params.limit = 3;
     params.skip = skipped;
 
-    getFilteredProducts({ params }).then(res => addItemsToFiltered(res.data));
+    getFilteredProducts({ params }).then(res => {
+      addItemsToFiltered(res.data);
+      console.log('resdata', res.data);
+      if (res.data.length) {
+        updateLimit(3);
+        updateSkip(skipped);
+      }
+    });
   };
 
   componentWillUnmount = () => {
