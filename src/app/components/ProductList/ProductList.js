@@ -141,8 +141,10 @@ export default class ProductList extends Component {
 
     if (!filteredItems.length) {
       return (
-        <div className="spin-position">
-          <Spinner />
+        <div className="product_list__page">
+          <div className="spin-position">
+            <Spinner />
+          </div>
         </div>
       );
     }
