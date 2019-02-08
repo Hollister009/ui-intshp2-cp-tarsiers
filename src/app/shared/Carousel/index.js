@@ -88,8 +88,6 @@ class Carousel extends Component {
   };
 
   componentDidUpdate = () => {
-    console.log('update');
-
     const { data } = this.props;
     const { buttonsVisibility } = this.state;
 
@@ -136,7 +134,6 @@ class Carousel extends Component {
           type="button"
           className="carousel__button carousel__button--prev"
           onClick={this.prevSlide}
-          // disabled={!buttonsActive.previous}
           ref={this.prevButtonRef}
         >
           <i className="fas fa-angle-left" />
@@ -146,7 +143,6 @@ class Carousel extends Component {
           type="button"
           className="carousel__button carousel__button--next"
           onClick={this.nextSlide}
-          // disabled={!buttonsActive.next}
           ref={this.nextButtonRef}
         >
           <i className="fas fa-angle-right" />
