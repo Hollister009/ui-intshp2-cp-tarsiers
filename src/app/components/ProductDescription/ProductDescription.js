@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import appConfig from '../../../config/appConfig';
 
+import productType from '../../../types';
+import appConfig from '../../../config/appConfig';
 import styles from './ProductDescription.module.scss';
 
 class ProductDescription extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { quantity: 0 };
-  }
+  static propTypes = { item: productType.isRequired };
+
+  state = { quantity: 0 };
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
@@ -28,10 +28,16 @@ class ProductDescription extends Component {
     if (!item) {
       return null;
     }
+
     const price = quantity > 0 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((element, index, array) => (
       <React.Fragment>
-        <a href="/" className={styles.size} onClick={e => e.preventDefault()}>
+        <a
+          key={element}
+          href="/"
+          className={styles.size}
+          onClick={e => e.preventDefault()}
+        >
           {element}
         </a>
         {index + 1 !== array.length ? <span>-</span> : null}
