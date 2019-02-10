@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductItem from '../../shared/ProductItem/ProductItem';
+import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
 
@@ -17,16 +17,6 @@ export default class ProductList extends Component {
 
     this.scroll = this.throttled(500, this.handleScroll.bind(this));
   }
-
-  shouldComponentUpdate = (nextProps, nextState) => {
-    const { filteredItems } = this.props;
-    const { showButton } = this.state;
-
-    return (
-      filteredItems !== nextProps.filteredItems ||
-      showButton !== nextState.showButton
-    );
-  };
 
   throttled = (delay, fn) => {
     let lastCall = 0;
@@ -136,8 +126,11 @@ export default class ProductList extends Component {
     window.removeEventListener('scroll', this.scroll);
   };
 
+  isAddedtoWishList = id => this.wishlist.includes(id);
+
   render() {
-    const { filteredItems } = this.props;
+    const { filteredItems, wishlist } = this.props;
+    const isAddedtoWishList = id => wishlist.includes(id);
 
     if (!filteredItems.length) {
       return (
@@ -150,8 +143,15 @@ export default class ProductList extends Component {
     }
     const { showButton } = this.state;
     const list =
-      filteredItems.length &&
-      filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
+      filteredItems &&
+      filteredItems.map(el => (
+        <ProductItemContainer
+          key={el._id}
+          data={el}
+          isAddedtoWishList={isAddedtoWishList(el._id)}
+          extended
+        />
+      ));
 
     return (
       <div>
