@@ -96,7 +96,11 @@ exports[`<MaxItemDetails /> should match its snapshot 1`] = `
         className="fas fa-share-alt"
       />
     </button>
+    <Connect(Notify)
+      position="TopRight"
+    />
     <button
+      onClick={[Function]}
       title="Add to shopping-cart"
       type="button"
     >
