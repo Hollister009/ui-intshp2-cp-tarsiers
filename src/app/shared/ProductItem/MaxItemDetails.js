@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
-import PropTypes from 'prop-types';
 import { Notify } from 'react-redux-notify';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
@@ -117,8 +118,10 @@ class MaxItemDetails extends Component {
     return (
       data && (
         <React.Fragment>
-          <img className={`${CN}__img-small`} src={image} alt="" />
-          <h4 className="highlighted">{title}</h4>
+          <Link to={`/products/${_id}`}>
+            <img className={`${CN}__img-small`} src={image} alt={data.title} />
+            <h4 className="highlighted">{title}</h4>
+          </Link>
           <div className={`${CN}__sizes`}>{`sizes : ${allSizes}`}</div>
           <div className={`${CN}__swatches`}>{swatches}</div>
           <hr className="separate" />

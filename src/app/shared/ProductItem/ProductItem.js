@@ -15,7 +15,7 @@ const ViewFrontFull = props => {
 
   return (
     <React.Fragment>
-      <img className={`${CN}__img`} src={src} alt="" />
+      <img className={`${CN}__img`} src={src} alt={title} />
       <h4>{title}</h4>
       <span className="highlighted">{`${price} $`}</span>
     </React.Fragment>
@@ -98,7 +98,7 @@ class ProductItem extends Component {
       removeFromWishListItem,
       createNotification
     } = this.props;
-    const { available, src, title, price } = data;
+    const { available, src, title, price, _id } = data;
 
     const fullItem = showDetails ? (
       <MaxItemDetails
@@ -123,7 +123,7 @@ class ProductItem extends Component {
         {available ? (
           fullItem
         ) : (
-          <ViewFrontFull src={src} title={title} price={price} />
+          <ViewFrontFull src={src} title={title} price={price} itemId={_id} />
         )}
       </div>
     ) : (

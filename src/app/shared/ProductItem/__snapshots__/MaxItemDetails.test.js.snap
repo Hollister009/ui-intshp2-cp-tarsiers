@@ -2,16 +2,21 @@
 
 exports[`<MaxItemDetails /> should match its snapshot 1`] = `
 <Fragment>
-  <img
-    alt=""
-    className="product-item--full__img-small"
-    src="https://res.cloudinary.com/so/image/upload/v1548069002/products/reebok%20jacket/red.jpg"
-  />
-  <h4
-    className="highlighted"
+  <Link
+    replace={false}
+    to="/products/5c473090e7179a544940dfec"
   >
-    Reebok Track Jacket
-  </h4>
+    <img
+      alt="Reebok Track Jacket"
+      className="product-item--full__img-small"
+      src="https://res.cloudinary.com/so/image/upload/v1548069002/products/reebok%20jacket/red.jpg"
+    />
+    <h4
+      className="highlighted"
+    >
+      Reebok Track Jacket
+    </h4>
+  </Link>
   <div
     className="product-item--full__sizes"
   >
