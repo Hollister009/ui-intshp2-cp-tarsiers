@@ -5,7 +5,9 @@ import appConfig from '../../../config/appConfig';
 import styles from './ProductDescription.module.scss';
 
 class ProductDescription extends Component {
-  static propTypes = { item: productType.isRequired };
+  static propTypes = { item: productType };
+
+  static defaultProps = { item: null };
 
   state = { quantity: 0 };
 
@@ -31,13 +33,8 @@ class ProductDescription extends Component {
 
     const price = quantity > 0 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((element, index, array) => (
-      <React.Fragment>
-        <a
-          key={element}
-          href="/"
-          className={styles.size}
-          onClick={e => e.preventDefault()}
-        >
+      <React.Fragment key={element}>
+        <a href="/" className={styles.size} onClick={e => e.preventDefault()}>
           {element}
         </a>
         {index + 1 !== array.length ? <span>-</span> : null}
@@ -65,11 +62,19 @@ class ProductDescription extends Component {
             <div className={styles.flex_row}>
               <p className={styles.choose}>Choose Quantity</p>
               <div className={styles.quantity}>
-                <button type="button" onClick={this.increment}>
+                <button
+                  type="button"
+                  onClick={this.increment}
+                  data-type="increment"
+                >
                   &#43;
                 </button>
                 <span>{quantity}</span>
-                <button type="button" onClick={this.decrement}>
+                <button
+                  type="button"
+                  onClick={this.decrement}
+                  data-type="decrement"
+                >
                   &#45;
                 </button>
               </div>

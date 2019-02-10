@@ -83,7 +83,9 @@
       }
     }
     .quantity {
-      @include d-flex();
+      @include d-flex() {
+        align-items: baseline;
+      }
 
       button {
         background: none;
