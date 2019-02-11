@@ -1,0 +1,152 @@
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+
+.section {
+  @include d-flex(center);
+
+  p {
+    font-size: 18px;
+    font-family: $main-font-regular;
+    font-weight: 400;
+  }
+
+  .flex_row {
+    @include d-flex();
+  }
+  .choose {
+    margin-right: 20px;
+  }
+  .price {
+    font-weight: bold;
+  }
+}
+
+.preview {
+  width: 70%;
+}
+
+.details {
+  margin: 0 40px;
+  margin-top: 100px;
+
+  .info {
+    @include d-flex(flex-start, column);
+
+    & > .title {
+      color: $color-main;
+      font-family: $main-font-bold;
+      font-size: 52px;
+      text-transform: uppercase;
+      line-height: 45px;
+    }
+    & > .subtitle {
+      color: $color-dark;
+      font-family: $main-font-regular;
+      font-weight: 400;
+      font-size: 18px;
+      margin: 30px 0 15px 0;
+    }
+    & > .text {
+      color: $color-dark;
+      font-family: $main-font-regular;
+      font-size: 16px;
+      line-height: 30px;
+      margin: 15px 0 30px 0;
+    }
+  }
+
+  .select {
+    padding: 30px 0;
+    border-top: 2px solid $color-light-2;
+    border-bottom: 2px solid $color-light-2;
+    @include d-flex();
+
+    .sizes {
+      @include d-flex() {
+        align-items: center;
+      }
+    }
+
+    .size {
+      color: $color-dark;
+      font-size: 18px;
+      padding: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      // transition: 0.3s ease;
+      outline: none;
+
+      &:hover,
+      &:focus-within {
+        animation: scale 0.5s forwards ease;
+        color: $color-main;
+      }
+    }
+    .quantity {
+      @include d-flex() {
+        align-items: baseline;
+      }
+
+      button {
+        background: none;
+        font-size: 18px;
+        padding: 0;
+
+        &:first-of-type {
+          padding-left: 10px;
+        }
+
+        &:last-of-type {
+          padding-right: 10px;
+        }
+      }
+
+      span {
+        color: $color-main;
+        font-size: 18px;
+        padding: 0 10px;
+      }
+    }
+  }
+
+  .order {
+    padding: 30px 0;
+    @include d-flex();
+
+    & > .buttons_row {
+      @include d-flex();
+
+      button {
+        background: none;
+        padding: 0 10px;
+        color: $color-dark;
+        font-size: 18px;
+
+        &:hover {
+          color: $color-main;
+        }
+      }
+
+      .btn_order {
+        color: $color-white;
+        background-color: $color-main;
+        border-radius: 30px;
+        padding: 20px 30px;
+        font-size: 16px;
+
+        &:hover {
+          background-color: $color-dark;
+        }
+      }
+    }
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
