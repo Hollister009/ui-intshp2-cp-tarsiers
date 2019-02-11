@@ -44,7 +44,7 @@ const NewArrivals = props => {
         </p>
       </div>
       <div className={styles.arrivals__display}>
-        <Carousel data={products} extended>
+        <Carousel data={products.slice(0, 9)} extended>
           {newArrivals}
         </Carousel>
       </div>
