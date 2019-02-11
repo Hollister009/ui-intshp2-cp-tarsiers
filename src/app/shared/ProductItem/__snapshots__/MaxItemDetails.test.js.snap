@@ -97,6 +97,7 @@ exports[`<MaxItemDetails /> should match its snapshot 1`] = `
       />
     </button>
     <button
+      onClick={[Function]}
       title="Add to shopping-cart"
       type="button"
     >

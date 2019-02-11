@@ -8,12 +8,7 @@ import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 import productType from '../../../types';
 
-const {
-  addToWishList,
-  removeFromWishList,
-  addToCart,
-  removeFromCart
-} = appConfig.apiResources;
+const { addToWishList, removeFromWishList } = appConfig.apiResources;
 
 const CN = 'product-item--full';
 
@@ -69,43 +64,13 @@ class MaxItemDetails extends Component {
       .finally(this.setState({ heartDisabled: false }));
   };
 
-  addItemToCart = id => {
-    const { addToCartListItem, inCart } = this.props;
-
-    HttpService.post(addToCart, { productId: id })
-      .then(res => {
-        if (res.status === 200 && !inCart) {
-          addToCartListItem(id);
-          console.log(`Added to Cart: ${id}`);
-        }
-      })
-      .catch(error => console.log(error))
-      .finally();
-  };
-
-  removeItemFromCart = id => {
-    const { removeFromCartListItem } = this.props;
-
-    HttpService.post(removeFromCart, { productId: id })
-      .then(res => {
-        if (res.status === 200) {
-          removeFromCartListItem(id);
-          console.log(`Removed from Cart: ${id}`);
-        }
-      })
-      .catch(error => console.log(error))
-      .finally();
-  };
-
   toggleCart = (e, id) => {
-    const { inCart } = this.props;
+    const { inCart, addToCartListItem, removeFromCartListItem } = this.props;
 
     e.preventDefault();
-    const cb = !inCart ? this.addItemToCart : this.removeItemFromCart;
+    const cb = !inCart ? addToCartListItem : removeFromCartListItem;
 
-    this.setState(() => {
-      cb(id);
-    });
+    cb(id);
   };
 
   toggleWishList = (e, id) => {

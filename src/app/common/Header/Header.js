@@ -19,4 +19,10 @@ const Header = props => {
   );
 };
 
+Header.defaultProps = {
+  cart: {
+    value: 0
+  }
+};
+
 export default Header;

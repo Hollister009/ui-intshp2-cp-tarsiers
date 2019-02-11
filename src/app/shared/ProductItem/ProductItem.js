@@ -67,7 +67,7 @@ class ProductItem extends Component {
   static defaultProps = {
     extended: false,
     isAddedtoWishList: false,
-    isAddedtoCart: false,
+    isAddedToCart: false,
     data: null
   };
 
@@ -83,7 +83,7 @@ class ProductItem extends Component {
       data,
       extended,
       isAddedtoWishList,
-      isAddedtoCart,
+      isAddedToCart,
       addToWishListItem,
       removeFromWishListItem,
       addToCartListItem,
@@ -99,7 +99,7 @@ class ProductItem extends Component {
         wished={isAddedtoWishList}
         addToCartListItem={addToCartListItem}
         removeFromCartListItem={removeFromCartListItem}
-        inCart={isAddedtoCart}
+        inCart={isAddedToCart}
       />
     ) : (
       <ViewFrontFull src={src} title={title} price={price} />

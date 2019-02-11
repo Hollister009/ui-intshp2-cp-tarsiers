@@ -19,7 +19,7 @@ class HeaderMain extends Component {
       const cartCounter =
         icon === 'fas fa-shopping-basket' ? (
           <div className="cart">
-            <span className="cart-quantity">{cart.value}</span>
+            <span className="cart-quantity">{cart}</span>
             <i className={icon} />
           </div>
         ) : (
