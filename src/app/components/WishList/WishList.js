@@ -15,10 +15,10 @@ const WishList = props => {
   const filteredProducts = products.filter(item => wishlist.includes(item._id));
 
   const list =
-    !!wishlist.length &&
+    wishlist.length &&
     filteredProducts.map(el => <ProductItemContainer key={el._id} data={el} />);
 
-  return (
+  return !list.length ? null : (
     <section className={styles.wishlist}>
       <div className="section_heading">
         <h2>

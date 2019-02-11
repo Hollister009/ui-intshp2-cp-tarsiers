@@ -32,7 +32,7 @@ export default class ProductDescription extends Component {
     }
     const price = quantity > 0 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((el, index, array) => (
-      <React.Fragment>
+      <React.Fragment key={el}>
         <a className="size" href="#">
           {el}
         </a>

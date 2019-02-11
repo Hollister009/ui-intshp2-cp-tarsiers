@@ -18,16 +18,6 @@ export default class ProductList extends Component {
     this.scroll = this.throttled(500, this.handleScroll.bind(this));
   }
 
-  shouldComponentUpdate = (nextProps, nextState) => {
-    const { filteredItems } = this.props;
-    const { showButton } = this.state;
-
-    return (
-      filteredItems !== nextProps.filteredItems ||
-      showButton !== nextState.showButton
-    );
-  };
-
   throttled = (delay, fn) => {
     let lastCall = 0;
 
@@ -51,7 +41,11 @@ export default class ProductList extends Component {
       this.setState({ showButton: false });
       this.scrollSet = false;
     } else if (filteredItems.length >= 12 && !showButton) {
-      this.setState({ showButton: true });
+      if (prevProps.filteredItems.length !== filteredItems.length) {
+        this.setState({ showButton: true });
+      } else {
+        window.removeEventListener('scroll', this.scroll);
+      }
     }
 
     if (!this.scrollSet) {
@@ -70,9 +64,27 @@ export default class ProductList extends Component {
       filter
     } = this.props;
 
-    const { sizes, brands, category, price, available, skip, limit } = filter;
+    const {
+      sizes,
+      brands,
+      category,
+      price,
+      available,
+      skip,
+      limit,
+      tag
+    } = filter;
 
-    const params = { sizes, brands, category, price, available, skip, limit };
+    const params = {
+      sizes,
+      brands,
+      category,
+      price,
+      available,
+      skip,
+      limit,
+      tag
+    };
 
     let scrollHeight;
 
@@ -94,7 +106,6 @@ export default class ProductList extends Component {
 
         getFilteredProducts({ params }).then(res => {
           addItemsToFiltered(res.data);
-          console.log('resdata', res.data);
           if (res.data.length) {
             updateLimit(3);
             updateSkip(skipped);
@@ -124,10 +135,11 @@ export default class ProductList extends Component {
 
     getFilteredProducts({ params }).then(res => {
       addItemsToFiltered(res.data);
-      console.log('resdata', res.data);
-      if (res.data.length) {
+      if (res.data.length !== 0) {
         updateLimit(3);
         updateSkip(skipped);
+      } else {
+        this.setState({ showButton: false });
       }
     });
   };
