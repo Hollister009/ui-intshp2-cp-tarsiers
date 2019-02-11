@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import notifyReducer from 'react-redux-notify';
 import counter from './counter';
 import headerFooterVisibility from './headerFooterVisibility';
 import products from './products';
@@ -12,5 +13,6 @@ export default combineReducers({
   products,
   wishlist,
   filter,
+  notifications: notifyReducer,
   filteredProducts
 });

@@ -7,6 +7,8 @@ module.exports = {
   },
   moduleNameMapper: {
     '^.+\\.(jpg|jpeg|gif|png|mp4|mkv|avi|webm|swf|wav|mid)$':
+      '<rootDir>/.utils/file.stub.js',
+    'react-redux-notify/dist/ReactReduxNotify.css':
       '<rootDir>/.utils/file.stub.js'
   },
   transformIgnorePatterns: ['./node_modules/'],

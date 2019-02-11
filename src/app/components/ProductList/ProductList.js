@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductItem from '../../shared/ProductItem/ProductItem';
+import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
 
@@ -148,8 +148,11 @@ export default class ProductList extends Component {
     window.removeEventListener('scroll', this.scroll);
   };
 
+  isAddedtoWishList = id => this.wishlist.includes(id);
+
   render() {
-    const { filteredItems } = this.props;
+    const { filteredItems, wishlist } = this.props;
+    const isAddedtoWishList = id => wishlist.includes(id);
 
     if (!filteredItems.length) {
       return (
@@ -162,8 +165,15 @@ export default class ProductList extends Component {
     }
     const { showButton } = this.state;
     const list =
-      filteredItems.length &&
-      filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
+      filteredItems &&
+      filteredItems.map(el => (
+        <ProductItemContainer
+          key={el._id}
+          data={el}
+          isAddedtoWishList={isAddedtoWishList(el._id)}
+          extended
+        />
+      ));
 
     return (
       <div>
