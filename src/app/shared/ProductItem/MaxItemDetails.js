@@ -55,7 +55,7 @@ class MaxItemDetails extends Component {
   };
 
   removeItem = id => {
-    const { removeFromWishListItem } = this.props;
+    const { removeFromWishListItem, createNotification } = this.props;
 
     HttpService.post(removeFromWishList, { productId: id })
       .then(res => {
@@ -66,18 +66,27 @@ class MaxItemDetails extends Component {
       })
       .catch(error => console.log(error))
       .finally(this.setState({ heartDisabled: false }));
+
+    createNotification(NotifyService.removed);
   };
 
   toggleCart = (e, id) => {
-    const { inCart, addToCartListItem, removeFromCartListItem } = this.props;
-    const { createNotification } = this.props;
+    const {
+      inCart,
+      removeFromCartListItem,
+      addToCartListItem,
+      createNotification
+    } = this.props;
 
     e.preventDefault();
-    console.log('incart', inCart);
     const cb = !inCart ? addToCartListItem : removeFromCartListItem;
 
+    if (!inCart) {
+      createNotification(NotifyService.cartAdd);
+    } else {
+      createNotification(NotifyService.cartRemove);
+    }
     cb(id);
-    createNotification(NotifyService.cart);
   };
 
   toggleSwatch = (e, colors) => {
@@ -104,7 +113,6 @@ class MaxItemDetails extends Component {
 
   toggleWishList = (e, id) => {
     const { wished } = this.props;
-    const { createNotification } = this.props;
 
     e.preventDefault();
     const cb = !wished ? this.addItem : this.removeItem;
@@ -112,7 +120,6 @@ class MaxItemDetails extends Component {
     this.setState({ heartDisabled: true }, () => {
       cb(id);
     });
-    createNotification(NotifyService.removed);
   };
 
   render() {

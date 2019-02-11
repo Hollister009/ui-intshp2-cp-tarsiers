@@ -33,9 +33,17 @@ class NotifyService {
     icon: <i className="fa fa-check" />
   };
 
-  cart = {
+  cartAdd = {
     message: 'Added to cart!',
-    type: NOTIFICATION_TYPE_INFO,
+    type: NOTIFICATION_TYPE_SUCCESS,
+    duration: 800,
+    canDismiss: true,
+    icon: <i className="fa fa-check" />
+  };
+
+  cartRemove = {
+    message: 'Removed from cart!',
+    type: NOTIFICATION_TYPE_WARNING,
     duration: 800,
     canDismiss: true,
     icon: <i className="fa fa-check" />
