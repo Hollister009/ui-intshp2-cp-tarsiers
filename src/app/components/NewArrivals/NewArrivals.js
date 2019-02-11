@@ -5,16 +5,16 @@ import Carousel from '../../shared/Carousel';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 
 import styles from './NewArrivals.module.scss';
-import cart from '../../reducers/cart';
+// import cart from '../../reducers/cart';
 
 const title = 'New Arrivals';
 
 const NewArrivals = props => {
-  const { products, wishlist } = props;
+  const { products, wishlist, cart } = props;
   const extended = true;
   const titleArr = title.split(' ');
   const isAddedtoWishList = id => wishlist.includes(id);
-  const isAddedToCart = id => cart.includes(id);
+  const isAddedToCart = id => cart.productsIds.includes(id);
 
   const list =
     products &&

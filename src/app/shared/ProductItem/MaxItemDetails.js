@@ -70,17 +70,14 @@ class MaxItemDetails extends Component {
 
   toggleCart = (e, id) => {
     const { inCart, addToCartListItem, removeFromCartListItem } = this.props;
+    const { createNotification } = this.props;
 
     e.preventDefault();
+    console.log('incart', inCart);
     const cb = !inCart ? addToCartListItem : removeFromCartListItem;
 
     cb(id);
-  };
-
-  toggleWishList = () => {
-    const { createNotification } = this.props;
-
-    createNotification(NotifyService.removed);
+    createNotification(NotifyService.cart);
   };
 
   toggleSwatch = (e, colors) => {
@@ -107,6 +104,7 @@ class MaxItemDetails extends Component {
 
   toggleWishList = (e, id) => {
     const { wished } = this.props;
+    const { createNotification } = this.props;
 
     e.preventDefault();
     const cb = !wished ? this.addItem : this.removeItem;
@@ -114,12 +112,7 @@ class MaxItemDetails extends Component {
     this.setState({ heartDisabled: true }, () => {
       cb(id);
     });
-  };
-
-  cartNote = () => {
-    const { createNotification } = this.props;
-
-    createNotification(NotifyService.cart);
+    createNotification(NotifyService.removed);
   };
 
   render() {
@@ -149,7 +142,7 @@ class MaxItemDetails extends Component {
             <button
               type="button"
               title="Add to shopping-cart"
-              onClick={this.cartNote}
+              onClick={e => this.toggleCart(e, _id)}
             >
               <i className="fas fa-shopping-cart" />
             </button>

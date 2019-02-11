@@ -14,12 +14,11 @@ class HeaderMain extends Component {
   renderLinks = list =>
     list.map(link => {
       const { id, icon, value, href } = link;
-      // const { quantity } = this.state;
       const { cart } = this.props;
       const cartCounter =
         icon === 'fas fa-shopping-basket' ? (
           <div className="cart">
-            <span className="cart-quantity">{cart}</span>
+            <span className="cart-quantity">{cart.value}</span>
             <i className={icon} />
           </div>
         ) : (

@@ -8,15 +8,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         value: state.value + 1,
-        productsIds: [...state.productsIds, action.payload.productId]
+        productsIds: [...state.productsIds, action.payload]
       };
     case REMOVE_FROM_CART:
       return {
         ...state,
         value: state.value ? state.value - 1 : 0,
-        productsIds: state.productsIds.filter(
-          id => id !== action.payload.productId
-        )
+        productsIds: state.productsIds.filter(id => id !== action.payload)
       };
     default:
       return state;
