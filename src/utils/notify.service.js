@@ -4,7 +4,6 @@ import 'react-redux-notify/dist/ReactReduxNotify.css';
 import {
   NOTIFICATION_TYPE_SUCCESS,
   NOTIFICATION_TYPE_WARNING,
-  NOTIFICATION_TYPE_INFO,
   NOTIFICATION_TYPE_ERROR
 } from 'react-redux-notify';
 
