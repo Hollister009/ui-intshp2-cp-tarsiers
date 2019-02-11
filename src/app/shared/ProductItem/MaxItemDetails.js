@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
-import PropTypes from 'prop-types';
+import { Notify } from 'react-redux-notify';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 import productType from '../../../types';
+import NotifyService from '../../../utils/notify.service';
 
 const { addToWishList, removeFromWishList } = appConfig.apiResources;
 
@@ -37,7 +39,7 @@ class MaxItemDetails extends Component {
   }
 
   addItem = id => {
-    const { addToWishListItem, wished } = this.props;
+    const { addToWishListItem, wished, createNotification } = this.props;
 
     HttpService.post(addToWishList, { productId: id })
       .then(res => {
@@ -48,6 +50,8 @@ class MaxItemDetails extends Component {
       })
       .catch(error => console.log(error))
       .finally(this.setState({ heartDisabled: false }));
+
+    createNotification(NotifyService.added);
   };
 
   removeItem = id => {
@@ -73,15 +77,10 @@ class MaxItemDetails extends Component {
     cb(id);
   };
 
-  toggleWishList = (e, id) => {
-    const { wished } = this.props;
+  toggleWishList = () => {
+    const { createNotification } = this.props;
 
-    e.preventDefault();
-    const cb = !wished ? this.addItem : this.removeItem;
-
-    this.setState({ heartDisabled: true }, () => {
-      cb(id);
-    });
+    createNotification(NotifyService.removed);
   };
 
   toggleSwatch = (e, colors) => {
@@ -106,6 +105,23 @@ class MaxItemDetails extends Component {
       </span>
     ));
 
+  toggleWishList = (e, id) => {
+    const { wished } = this.props;
+
+    e.preventDefault();
+    const cb = !wished ? this.addItem : this.removeItem;
+
+    this.setState({ heartDisabled: true }, () => {
+      cb(id);
+    });
+  };
+
+  cartNote = () => {
+    const { createNotification } = this.props;
+
+    createNotification(NotifyService.cart);
+  };
+
   render() {
     const { data } = this.props;
     const { _id, title, sizes, colors, colorUrls, wished } = data;
@@ -129,10 +145,11 @@ class MaxItemDetails extends Component {
             <button type="button" title="Share with others">
               <i className="fas fa-share-alt" />
             </button>
+            <Notify position={NotifyService.position.topRight} />
             <button
               type="button"
               title="Add to shopping-cart"
-              onClick={e => this.toggleCart(e, _id)}
+              onClick={this.cartNote}
             >
               <i className="fas fa-shopping-cart" />
             </button>

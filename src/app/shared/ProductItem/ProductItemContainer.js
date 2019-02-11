@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { createNotification } from 'react-redux-notify';
 import {
   addToWishList,
   removeFromWishList,
@@ -15,7 +16,8 @@ const mapDispatchToProps = dispatch => ({
   addToWishListItem: data => dispatch(addToWishList(data)),
   removeFromWishListItem: data => dispatch(removeFromWishList(data)),
   addToCartListItem: data => dispatch(addToCart(data)),
-  removeFromCartListItem: data => dispatch(removeFromCart(data))
+  removeFromCartListItem: data => dispatch(removeFromCart(data)),
+  createNotification: config => dispatch(createNotification(config))
 });
 
 const ProductItemContainer = connect(

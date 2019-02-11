@@ -21,14 +21,13 @@ const getFilteredProducts = (req, res) => {
   const categoryQuery = category ? { category } : {};
   const brandQuery = brands ? { brand: { $in: brands } } : {};
   const sizesQuery = sizes ? { sizes: { $in: sizes } } : {};
-  const availableQuery = available ? { available: true } : {};
+  const availableQuery = available === 'true' ? { available: true } : {};
 
   db.products
     .find({
       $and: [
         brandQuery,
         sizesQuery,
-        // { category },
         categoryQuery,
         { price: { $gte: JSON.parse(price).min, $lte: JSON.parse(price).max } },
         availableQuery

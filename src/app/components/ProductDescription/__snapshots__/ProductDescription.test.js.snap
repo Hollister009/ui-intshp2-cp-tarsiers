@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductDescription /> should match its snapshot 1`] = `
+<section
+  className="section"
+>
+  <div
+    className="preview"
+  />
+  <div
+    className="details"
+  >
+    <div
+      className="info"
+    >
+      <h1
+        className="title"
+      >
+        Nike Sports Suit
+      </h1>
+      <h3
+        className="subtitle"
+      >
+        Lorem Ipsum is simply dummy text
+      </h3>
+      <p
+        className="text"
+      >
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry
+      </p>
+    </div>
+    <div
+      className="select"
+    >
+      <div
+        className="flex_row"
+      >
+        <p
+          className="choose"
+        >
+          Choose Size
+        </p>
+        <div
+          className="sizes"
+        >
+          <a
+            className="size"
+            href="/"
+            onClick={[Function]}
+          >
+            s
+          </a>
+          <span>
+            -
+          </span>
+          <a
+            className="size"
+            href="/"
+            onClick={[Function]}
+          >
+            m
+          </a>
+          <span>
+            -
+          </span>
+          <a
+            className="size"
+            href="/"
+            onClick={[Function]}
+          >
+            l
+          </a>
+          <span>
+            -
+          </span>
+          <a
+            className="size"
+            href="/"
+            onClick={[Function]}
+          >
+            xl
+          </a>
+        </div>
+      </div>
+      <div
+        className="flex_row"
+      >
+        <p
+          className="choose"
+        >
+          Choose Quantity
+        </p>
+        <div
+          className="quantity"
+        >
+          <button
+            data-type="increment"
+            onClick={[Function]}
+            type="button"
+          >
+            +
+          </button>
+          <span>
+            0
+          </span>
+          <button
+            data-type="decrement"
+            onClick={[Function]}
+            type="button"
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="order"
+    >
+      <p
+        className="price"
+      >
+        Price: 800$
+      </p>
+      <div
+        className="buttons_row"
+      >
+        <button
+          type="button"
+        >
+          <i
+            className="fas fa-globe"
+          />
+        </button>
+        <button
+          type="button"
+        >
+          <i
+            className="fas fa-cart-plus"
+          />
+        </button>
+        <button
+          type="button"
+        >
+          <i
+            className="far fa-heart"
+          />
+        </button>
+        <button
+          className="btn_order"
+          type="button"
+        >
+          Order Now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+`;

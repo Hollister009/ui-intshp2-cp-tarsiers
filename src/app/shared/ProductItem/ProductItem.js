@@ -1,8 +1,9 @@
-/* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
+import { Notify } from 'react-redux-notify';
 
 import productType from '../../../types';
+import NotifyService from '../../../utils/notify.service';
 import MaxItemDetails from './MaxItemDetails';
 
 import './ProductItem.scss';
@@ -24,10 +25,22 @@ const ViewFrontFull = props => {
 const ViewCartSmall = props => {
   const { title } = props;
 
+  const handleClick = e => {
+    const { createNotification } = props;
+
+    e.preventDefault();
+    createNotification(NotifyService.cart);
+  };
+
   return (
     <div className="product-item--small__info">
       <h4>{title}</h4>
-      <button type="button" className="add-to-card">
+      <Notify position={NotifyService.position.topRight} />
+      <button
+        type="button"
+        className="add-to-card"
+        onClick={e => handleClick(e)}
+      >
         <i className="fas fa-shopping-cart" />
         add to cart
       </button>
@@ -87,7 +100,8 @@ class ProductItem extends Component {
       addToWishListItem,
       removeFromWishListItem,
       addToCartListItem,
-      removeFromCartListItem
+      removeFromCartListItem,
+      createNotification
     } = this.props;
     const { available, src, title, price, _id } = data;
 
@@ -100,6 +114,7 @@ class ProductItem extends Component {
         addToCartListItem={addToCartListItem}
         removeFromCartListItem={removeFromCartListItem}
         inCart={isAddedToCart}
+        createNotification={createNotification}
       />
     ) : (
       <ViewFrontFull src={src} title={title} price={price} />
@@ -127,7 +142,10 @@ class ProductItem extends Component {
       >
         <img src={src} alt="" />
         {showDetails ? (
-          <ViewCartSmall title={title} />
+          <ViewCartSmall
+            title={title}
+            createNotification={createNotification}
+          />
         ) : (
           <ViewInfoSmall title={title} price={price} />
         )}
