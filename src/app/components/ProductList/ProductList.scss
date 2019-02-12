@@ -15,7 +15,7 @@
 
 .products {
   @include d-flex(unset, column);
-
+  min-height: 1px;
   margin-left: 30px;
 }
 
