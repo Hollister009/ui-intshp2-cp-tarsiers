@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import productType from '../../types/index';
 import Carousel from '../../shared/Carousel/index';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 
@@ -45,13 +46,8 @@ const RelatedProducts = props => {
 };
 
 RelatedProducts.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object),
-  wishlist: PropTypes.arrayOf(PropTypes.string)
-};
-
-RelatedProducts.defaultProps = {
-  products: [],
-  wishlist: []
+  products: PropTypes.arrayOf(productType).isRequired,
+  wishlist: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default RelatedProducts;
