@@ -1,15 +1,15 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable max-len */
 import React, { Component } from 'react';
+
+import productType from '../../../types';
 import appConfig from '../../../config/appConfig';
+import styles from './ProductDescription.module.scss';
 
-import './ProductDescription.scss';
+class ProductDescription extends Component {
+  static propTypes = { item: productType };
 
-export default class ProductDescription extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { quantity: 0 };
-  }
+  static defaultProps = { item: null };
+
+  state = { quantity: 0 };
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
@@ -30,63 +30,77 @@ export default class ProductDescription extends Component {
     if (!item) {
       return null;
     }
+
     const price = quantity > 0 ? item.price * quantity : item.price;
-    const sizes = item.sizes.map((el, index, array) => (
-      <React.Fragment>
-        <a className="size" href="#">
-          {el}
+    const sizes = item.sizes.map((element, index, array) => (
+      <React.Fragment key={element}>
+        <a href="/" className={styles.size} onClick={e => e.preventDefault()}>
+          {element}
         </a>
         {index + 1 !== array.length ? <span>-</span> : null}
       </React.Fragment>
     ));
 
     return (
-      <div className="product-description">
-        <div className="product-text">
-          <h1 className="product-header">{item.title}</h1>
-          <h3 className="product-subheader">
-            {appConfig.productDescription.subheader}
-          </h3>
-          <p className="product-info">
-            {appConfig.productDescription.description}
-          </p>
-        </div>
-        <div className="size-quantity">
-          <div className="p-size">
-            <p className="choose">Choose Size</p>
-            <div className="sizes">{sizes}</div>
+      <section className={styles.section}>
+        <div className={styles.preview} />
+        <div className={styles.details}>
+          <div className={styles.info}>
+            <h1 className={styles.title}>{item.title}</h1>
+            <h3 className={styles.subtitle}>
+              {appConfig.productDescription.subheader}
+            </h3>
+            <p className={styles.text}>
+              {appConfig.productDescription.description}
+            </p>
           </div>
-          <div className="p-quantity">
-            <p className="choose">Choose Quantity</p>
-            <div className="quantity">
-              <button type="button" onClick={this.increment}>
-                +
+          <div className={styles.select}>
+            <div className={styles.flex_row}>
+              <p className={styles.choose}>Choose Size</p>
+              <div className={styles.sizes}>{sizes}</div>
+            </div>
+            <div className={styles.flex_row}>
+              <p className={styles.choose}>Choose Quantity</p>
+              <div className={styles.quantity}>
+                <button
+                  type="button"
+                  onClick={this.increment}
+                  data-type="increment"
+                >
+                  &#43;
+                </button>
+                <span>{quantity}</span>
+                <button
+                  type="button"
+                  onClick={this.decrement}
+                  data-type="decrement"
+                >
+                  &#45;
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className={styles.order}>
+            <p className={styles.price}>{`Price: ${price}$`}</p>
+            <div className={styles.buttons_row}>
+              <button type="button">
+                <i className="fas fa-globe" />
               </button>
-              <span>{quantity}</span>
-              <button type="button" onClick={this.decrement}>
-                -
+              <button type="button">
+                <i className="fas fa-cart-plus" />
+              </button>
+              <button type="button">
+                <i className="far fa-heart" />
+              </button>
+              <button type="button" className={styles.btn_order}>
+                Order Now
               </button>
             </div>
           </div>
         </div>
-        <div className="order-section">
-          <p className="price">{`Price: ${price}$`}</p>
-          <div className="order-buttons">
-            <button type="button">
-              <i className="fas fa-globe" />
-            </button>
-            <button type="button">
-              <i className="fas fa-cart-plus" />
-            </button>
-            <button type="button">
-              <i className="far fa-heart" />
-            </button>
-            <button type="button" className="order-now">
-              Order Now
-            </button>
-          </div>
-        </div>
-      </div>
+      </section>
     );
   }
 }
+
+export default ProductDescription;

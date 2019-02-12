@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: row;
   transition: 0.7s;
-  min-width: 100%;
+  width: fit-content;
+  margin: 0 auto;
 
   &__wrapper {
     overflow: hidden;
@@ -39,7 +40,6 @@
 
     &:hover:enabled {
       & > i {
-        font-size: 50px;
         color: $color-main;
       }
     }
@@ -58,6 +58,16 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+.product-item {
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
   }
 }
 

@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import ProductItem from './ProductItem';
 
 jest.mock('../../actions');
+jest.mock('../../../utils/notify.service');
 const products = require('../../../mocks/products.json');
 
 describe('<ProductItem />', () => {
@@ -37,7 +38,7 @@ describe('<ProductItem />', () => {
   });
 
   it('should render <ViewInfoSmall /> if showDetails is true', () => {
-    const wrapper = mount(<ProductItem {...props} />);
+    const wrapper = shallow(<ProductItem {...props} />);
 
     wrapper.setState({ showDetails: true });
     expect(wrapper.state('showDetails')).toBe(true);

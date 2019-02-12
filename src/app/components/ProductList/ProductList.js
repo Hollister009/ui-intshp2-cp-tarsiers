@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductItem from '../../shared/ProductItem/ProductItem';
+import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
 
@@ -13,18 +13,10 @@ export default class ProductList extends Component {
   }
 
   componentDidMount() {
+    this.forceUpdate();
+
     this.scroll = this.throttled(500, this.handleScroll.bind(this));
   }
-
-  shouldComponentUpdate = (nextProps, nextState) => {
-    const { filteredItems } = this.props;
-    const { showButton } = this.state;
-
-    return (
-      filteredItems !== nextProps.filteredItems ||
-      showButton !== nextState.showButton
-    );
-  };
 
   throttled = (delay, fn) => {
     let lastCall = 0;
@@ -49,7 +41,11 @@ export default class ProductList extends Component {
       this.setState({ showButton: false });
       this.scrollSet = false;
     } else if (filteredItems.length >= 12 && !showButton) {
-      this.setState({ showButton: true });
+      if (prevProps.filteredItems.length !== filteredItems.length) {
+        this.setState({ showButton: true });
+      } else {
+        window.removeEventListener('scroll', this.scroll);
+      }
     }
 
     if (!this.scrollSet) {
@@ -68,10 +64,33 @@ export default class ProductList extends Component {
       filter
     } = this.props;
 
-    const { sizes, brands, category, price, available, skip, limit } = filter;
+    const {
+      sizes,
+      brands,
+      category,
+      price,
+      available,
+      skip,
+      limit,
+      tag
+    } = filter;
 
-    const params = { sizes, brands, category, price, available, skip, limit };
-    const scrollHeight = this.scrollRef.current.offsetHeight;
+    const params = {
+      sizes,
+      brands,
+      category,
+      price,
+      available,
+      skip,
+      limit,
+      tag
+    };
+
+    let scrollHeight;
+
+    if (filteredItems.length) {
+      scrollHeight = this.scrollRef.current.offsetHeight;
+    }
     const threshold = 450;
 
     if (window.scrollY >= scrollHeight - threshold) {
@@ -82,13 +101,15 @@ export default class ProductList extends Component {
         window.removeEventListener('scroll', this.scroll);
         this.setState({ showButton: true });
       } else {
-        updateLimit(3);
-        updateSkip(skipped);
         params.limit = 3;
         params.skip = skipped;
 
         getFilteredProducts({ params }).then(res => {
           addItemsToFiltered(res.data);
+          if (res.data.length) {
+            updateLimit(3);
+            updateSkip(skipped);
+          }
         });
       }
     }
@@ -109,32 +130,51 @@ export default class ProductList extends Component {
 
     const skipped = skip === 0 ? limit : skip + limit;
 
-    updateLimit(3);
-    updateSkip(skipped);
     params.limit = 3;
     params.skip = skipped;
 
-    getFilteredProducts({ params }).then(res => addItemsToFiltered(res.data));
+    getFilteredProducts({ params }).then(res => {
+      addItemsToFiltered(res.data);
+      if (res.data.length !== 0) {
+        updateLimit(3);
+        updateSkip(skipped);
+      }
+      if (res.data.length < params.limit) {
+        this.setState({ showButton: false });
+      }
+    });
   };
 
   componentWillUnmount = () => {
     window.removeEventListener('scroll', this.scroll);
   };
 
+  isAddedtoWishList = id => this.wishlist.includes(id);
+
   render() {
-    const { filteredItems } = this.props;
+    const { filteredItems, wishlist } = this.props;
+    const isAddedtoWishList = id => wishlist.includes(id);
 
     if (!filteredItems.length) {
       return (
-        <div className="spin-position">
-          <Spinner />
+        <div className="product_list__page">
+          <div className="spin-position">
+            <Spinner />
+          </div>
         </div>
       );
     }
     const { showButton } = this.state;
     const list =
       filteredItems &&
-      filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
+      filteredItems.map(el => (
+        <ProductItemContainer
+          key={el._id}
+          data={el}
+          isAddedtoWishList={isAddedtoWishList(el._id)}
+          extended
+        />
+      ));
 
     return (
       <div>

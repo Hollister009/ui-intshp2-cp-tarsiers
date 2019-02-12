@@ -19,7 +19,8 @@ const initialState = {
   price: { min: appConfig.filter.price.min, max: appConfig.filter.price.max },
   available: null,
   skip: 0,
-  limit: 6
+  limit: 6,
+  tag: null
 };
 
 export default (state = initialState, action) => {
