@@ -1,7 +1,6 @@
 import React from 'react';
 import ProductDescription from '../ProductDescription/ProductDescription';
 import ImgPreview from '../ProductDescription/ImgPreview';
-// import ImgSwitch from '../ProductDescription/ImgSwitch';
 
 const ProductDetails = props => {
   const { id, products } = props;
@@ -16,7 +15,6 @@ const ProductDetails = props => {
     <div className="product-details">
       <ImgPreview item={item} />
       <ProductDescription item={item} />
-      {/* <ImgSwitch item={item} /> */}
     </div>
   );
 };

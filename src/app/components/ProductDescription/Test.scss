@@ -2,39 +2,41 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.test-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 103px;
+  background-color: white;
+  width: 40%;
 
   figure {
-    max-width: 350px;
+    width: 150px;
     position: relative;
-  }
+    background-color: white;
 
-  figure div {
-    width: 300px;
-    height: 300px;
-    background-repeat: no-repeat;
-    background-size: 200% 200%;
-    opacity: 0;
-    position: absolute;
-    top: -50px;
-    right: -200px;
-    border-radius: 50%;
-    border: 5px solid rgba(255, 255, 255, 0.5);
-  }
+    img {
+      display: block;
+      max-width: 180px;
+      pointer-events: none;
+    }
 
-  figure:hover div {
-    opacity: 1;
-  }
+    div {
+      width: 300px;
+      height: 300px;
+      background-repeat: no-repeat;
+      background-size: 200% 200%;
+      opacity: 0;
+      position: absolute;
+      top: -50px;
+      right: -200px;
+      border-radius: 50%;
+      padding: 30px;
+      border: 5px solid rgba(255, 255, 255, 0.5);
+      &:hover {
+        opacity: 0;
+      }
+    }
 
-  img {
-    display: block;
-    width: 100%;
-    pointer-events: none;
+    &:hover div {
+      opacity: 1;
+    }
   }
 }
 

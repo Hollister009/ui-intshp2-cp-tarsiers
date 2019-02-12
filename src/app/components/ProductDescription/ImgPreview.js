@@ -6,9 +6,6 @@ import React, { Component } from 'react';
 // import ActiveThunb from './ActiveTumb';
 import './Test.scss';
 
-const src =
-  'https://res.cloudinary.com/so/image/upload/v1548069124/products/cycling%20tshirt/blue.jpg';
-
 export default class ImgPreview extends Component {
   constructor(props) {
     super(props);
@@ -30,10 +27,7 @@ export default class ImgPreview extends Component {
 
     this.setState(state => ({
       ...state,
-      figureStyle: {
-        ...state.figureStyle,
-        backgroundPosition: `${x}% ${y}%`
-      }
+      figureStyle: { ...state.figureStyle, backgroundPosition: `${x}% ${y}%` }
     }));
   };
 
@@ -42,24 +36,9 @@ export default class ImgPreview extends Component {
 
     this.setState({
       mainImgURL: newMainUrl,
-      figureStyle: {
-        backgroundImage: `url(${newMainUrl})`
-      }
+      figureStyle: { backgroundImage: `url(${newMainUrl})` }
     });
   };
-
-  // toggle = (e, colors) => {
-  //   if (e.type === 'click') {
-  //     const value = e.target.innerText;
-
-  //     this.setState({ image: colors[value] });
-  //   }
-  // };
-
-  //   thumbnails = (items, colors) => {
-  //     (Object.values(item.colorUrls).map((el, index) => (
-  //       <img src={el} alt="" key={index} onClick={e => this.toggle(e, items)}/>
-  //   };
 
   render() {
     const { item } = this.props;
@@ -67,16 +46,13 @@ export default class ImgPreview extends Component {
     const thumbnails = Object.values(item.colorUrls).map(el => (
       <img src={el} alt="" key={el} onClick={this.changeMainImage} />
     ));
-    // const mainimg = thumbnails[1];
 
     return (
       <div className="img-container">
-        <div className="test-container">
-          <figure onMouseMove={this.handleMouseMove} style={figureStyle}>
-            <img src={this.state.mainImgURL} />
-          </figure>
-        </div>
-
+        <figure onMouseMove={this.handleMouseMove}>
+          <img src={this.state.mainImgURL} />
+          <div style={figureStyle} />
+        </figure>
         <div className="thumbnails-box">{thumbnails}</div>
       </div>
     );

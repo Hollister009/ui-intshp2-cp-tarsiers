@@ -4,15 +4,18 @@
 import React, { Component } from 'react';
 import './Test.scss';
 
-const src =
-  'https://res.cloudinary.com/so/image/upload/v1548069002/products/reebok%20jacket/red.jpg';
+// const src =
+//   'https://res.cloudinary.com/so/image/upload/v1548069002/products/reebok%20jacket/red.jpg';
 
-export default class ImgTest extends Component {
-  constructor() {
-    super();
+export default class ImgZoom extends Component {
+  constructor(props) {
+    super(props);
+
+    const { item } = this.props;
+
     this.state = {
       figureStyle: {
-        backgroundImage: `url(${src})`,
+        backgroundImage: `url(${item.src})`,
         backgroundPosition: '0% 0%'
       }
     };
@@ -26,7 +29,7 @@ export default class ImgTest extends Component {
     this.setState(state => ({
       ...state,
       figureStyle: {
-        backgroundImage: `url(${src})`,
+        backgroundImage: `url(${item.src})`,
         backgroundPosition: `${x}% ${y}%`
       }
     }));
@@ -35,12 +38,6 @@ export default class ImgTest extends Component {
   render() {
     const { figureStyle } = this.state;
 
-    return (
-      <div className="test-container">
-        <figure onMouseMove={this.handleMouseMove} style={figureStyle}>
-          <img src={src} />
-        </figure>
-      </div>
-    );
+    return <div onMouseMove={this.handleMouseMove} style={figureStyle} />;
   }
 }
