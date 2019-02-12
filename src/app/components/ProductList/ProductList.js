@@ -138,7 +138,8 @@ export default class ProductList extends Component {
       if (res.data.length !== 0) {
         updateLimit(3);
         updateSkip(skipped);
-      } else {
+      }
+      if (res.data.length < params.limit) {
         this.setState({ showButton: false });
       }
     });
