@@ -13,16 +13,6 @@
     margin-bottom: 40px;
   }
 
-  &.apply-changes-button {
-    text-transform: uppercase;
-    font-size: 16px;
-    transition: 0.3s;
-
-    &:hover {
-      color: $color-main;
-    }
-  }
-
   button {
     display: block;
     appearance: none;
