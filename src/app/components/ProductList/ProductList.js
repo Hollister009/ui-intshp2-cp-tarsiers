@@ -13,6 +13,7 @@ export default class ProductList extends Component {
   }
 
   componentDidMount() {
+    this.forceUpdate();
     this.scroll = this.throttled(500, this.handleScroll.bind(this));
   }
 
@@ -71,7 +72,12 @@ export default class ProductList extends Component {
     const { sizes, brands, category, price, available, skip, limit } = filter;
 
     const params = { sizes, brands, category, price, available, skip, limit };
-    const scrollHeight = this.scrollRef.current.offsetHeight;
+    let scrollHeight = 1;
+
+    if (this.scrollRef.current) {
+      scrollHeight = this.scrollRef.current.offsetHeight;
+    }
+
     const threshold = 450;
 
     if (window.scrollY >= scrollHeight - threshold) {
