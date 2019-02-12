@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
+import ProductItem from '../../shared/ProductItem/ProductItem';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
 
@@ -14,9 +14,18 @@ export default class ProductList extends Component {
 
   componentDidMount() {
     this.forceUpdate();
-
     this.scroll = this.throttled(500, this.handleScroll.bind(this));
   }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    const { filteredItems } = this.props;
+    const { showButton } = this.state;
+
+    return (
+      filteredItems !== nextProps.filteredItems ||
+      showButton !== nextState.showButton
+    );
+  };
 
   throttled = (delay, fn) => {
     let lastCall = 0;
@@ -63,12 +72,12 @@ export default class ProductList extends Component {
     const { sizes, brands, category, price, available, skip, limit } = filter;
 
     const params = { sizes, brands, category, price, available, skip, limit };
+    let scrollHeight = 1;
 
-    let scrollHeight;
-
-    if (filteredItems.length) {
+    if (this.scrollRef.current) {
       scrollHeight = this.scrollRef.current.offsetHeight;
     }
+
     const threshold = 450;
 
     if (window.scrollY >= scrollHeight - threshold) {
@@ -79,16 +88,13 @@ export default class ProductList extends Component {
         window.removeEventListener('scroll', this.scroll);
         this.setState({ showButton: true });
       } else {
+        updateLimit(3);
+        updateSkip(skipped);
         params.limit = 3;
         params.skip = skipped;
 
         getFilteredProducts({ params }).then(res => {
           addItemsToFiltered(res.data);
-          console.log('resdata', res.data);
-          if (res.data.length) {
-            updateLimit(3);
-            updateSkip(skipped);
-          }
         });
       }
     }
@@ -109,49 +115,32 @@ export default class ProductList extends Component {
 
     const skipped = skip === 0 ? limit : skip + limit;
 
+    updateLimit(3);
+    updateSkip(skipped);
     params.limit = 3;
     params.skip = skipped;
 
-    getFilteredProducts({ params }).then(res => {
-      addItemsToFiltered(res.data);
-      console.log('resdata', res.data);
-      if (res.data.length) {
-        updateLimit(3);
-        updateSkip(skipped);
-      }
-    });
+    getFilteredProducts({ params }).then(res => addItemsToFiltered(res.data));
   };
 
   componentWillUnmount = () => {
     window.removeEventListener('scroll', this.scroll);
   };
 
-  isAddedtoWishList = id => this.wishlist.includes(id);
-
   render() {
-    const { filteredItems, wishlist } = this.props;
-    const isAddedtoWishList = id => wishlist.includes(id);
+    const { filteredItems } = this.props;
 
     if (!filteredItems.length) {
       return (
-        <div className="product_list__page">
-          <div className="spin-position">
-            <Spinner />
-          </div>
+        <div className="spin-position">
+          <Spinner />
         </div>
       );
     }
     const { showButton } = this.state;
     const list =
       filteredItems &&
-      filteredItems.map(el => (
-        <ProductItemContainer
-          key={el._id}
-          data={el}
-          isAddedtoWishList={isAddedtoWishList(el._id)}
-          extended
-        />
-      ));
+      filteredItems.map(el => <ProductItem key={el._id} data={el} extended />);
 
     return (
       <div>
