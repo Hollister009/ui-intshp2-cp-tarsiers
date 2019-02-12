@@ -3,7 +3,6 @@ import HttpService from '../../utils/http.service';
 import FilterAreaContainer from '../components/FilterArea/FilterAreaContainer';
 import ProductListContainer from '../components/ProductList/ProductListContainer';
 import JoinUs from '../components/JoinUs/JoinUs';
-import ImgTest from '../components/ProductDetails/ImgTest';
 
 const ProductsListPage = () => {
   const getFilteredProducts = params =>
@@ -15,7 +14,6 @@ const ProductsListPage = () => {
         <FilterAreaContainer getFilteredProducts={getFilteredProducts} />
         <ProductListContainer getFilteredProducts={getFilteredProducts} />
       </div>
-      <ImgTest />
       <JoinUs />
     </div>
   );

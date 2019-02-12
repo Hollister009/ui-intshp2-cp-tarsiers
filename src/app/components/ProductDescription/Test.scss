@@ -1,0 +1,52 @@
+.img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.test-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  figure {
+    max-width: 350px;
+    position: relative;
+  }
+
+  figure div {
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: 200% 200%;
+    opacity: 0;
+    position: absolute;
+    top: -50px;
+    right: -200px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+  }
+
+  figure:hover div {
+    opacity: 1;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+  }
+}
+
+.thumbnails-box {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2;
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+  img {
+    width: 70px;
+    height: auto;
+  }
+}
