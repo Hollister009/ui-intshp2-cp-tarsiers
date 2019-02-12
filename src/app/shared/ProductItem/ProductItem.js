@@ -1,8 +1,9 @@
-/* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
+import { Notify } from 'react-redux-notify';
 
 import productType from '../../../types';
+import NotifyService from '../../../utils/notify.service';
 import MaxItemDetails from './MaxItemDetails';
 
 import './ProductItem.scss';
@@ -14,7 +15,7 @@ const ViewFrontFull = props => {
 
   return (
     <React.Fragment>
-      <img className={`${CN}__img`} src={src} alt="" />
+      <img className={`${CN}__img`} src={src} alt={title} />
       <h4>{title}</h4>
       <span className="highlighted">{`${price} $`}</span>
     </React.Fragment>
@@ -24,10 +25,22 @@ const ViewFrontFull = props => {
 const ViewCartSmall = props => {
   const { title } = props;
 
+  const handleClick = e => {
+    const { createNotification } = props;
+
+    e.preventDefault();
+    createNotification(NotifyService.cart);
+  };
+
   return (
     <div className="product-item--small__info">
       <h4>{title}</h4>
-      <button type="button" className="add-to-card">
+      <Notify position={NotifyService.position.topRight} />
+      <button
+        type="button"
+        className="add-to-card"
+        onClick={e => handleClick(e)}
+      >
         <i className="fas fa-shopping-cart" />
         add to cart
       </button>
@@ -82,9 +95,10 @@ class ProductItem extends Component {
       extended,
       isAddedtoWishList,
       addToWishListItem,
-      removeFromWishListItem
+      removeFromWishListItem,
+      createNotification
     } = this.props;
-    const { available, src, title, price } = data;
+    const { available, src, title, price, _id } = data;
 
     const fullItem = showDetails ? (
       <MaxItemDetails
@@ -92,6 +106,7 @@ class ProductItem extends Component {
         addToWishListItem={addToWishListItem}
         removeFromWishListItem={removeFromWishListItem}
         wished={isAddedtoWishList}
+        createNotification={createNotification}
       />
     ) : (
       <ViewFrontFull src={src} title={title} price={price} />
@@ -108,7 +123,7 @@ class ProductItem extends Component {
         {available ? (
           fullItem
         ) : (
-          <ViewFrontFull src={src} title={title} price={price} />
+          <ViewFrontFull src={src} title={title} price={price} itemId={_id} />
         )}
       </div>
     ) : (
@@ -119,7 +134,10 @@ class ProductItem extends Component {
       >
         <img src={src} alt="" />
         {showDetails ? (
-          <ViewCartSmall title={title} />
+          <ViewCartSmall
+            title={title}
+            createNotification={createNotification}
+          />
         ) : (
           <ViewInfoSmall title={title} price={price} />
         )}

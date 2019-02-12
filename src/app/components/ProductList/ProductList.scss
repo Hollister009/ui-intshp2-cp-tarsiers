@@ -3,6 +3,14 @@
 
 .product_list__page {
   @include d-flex(unset);
+
+  .spin-position {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    left: 60%;
+    background: none;
+  }
 }
 
 .products {
@@ -44,12 +52,6 @@
     color: $color-main;
     font-size: 14px;
   }
-}
-
-.spin-position {
-  position: absolute;
-  top: 65%;
-  right: 40%;
 }
 
 .hide {

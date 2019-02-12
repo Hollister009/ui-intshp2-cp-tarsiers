@@ -3,6 +3,8 @@ import appConfig from '../../../config/appConfig';
 import Slider from '../Slideshow/Slider';
 import Spinner from '../../shared/Spinner';
 
+import './Promotions.scss';
+
 export default class Promotions extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,13 @@ export default class Promotions extends Component {
 
     return (
       <section className="promotions">
-        {this.isLoaded ? <Slider slides={slides} /> : <Spinner />}
+        {this.isLoaded ? (
+          <Slider slides={slides} />
+        ) : (
+          <div className="spin-position">
+            <Spinner />
+          </div>
+        )}
       </section>
     );
   }
