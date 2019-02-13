@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import HttpService from '../../../utils/http.service';
 import productType from '../../../types';
 import appConfig from '../../../config/appConfig';
 import styles from './ProductDescription.module.scss';
