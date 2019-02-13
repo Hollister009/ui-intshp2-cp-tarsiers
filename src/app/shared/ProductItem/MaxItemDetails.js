@@ -10,8 +10,6 @@ import productType from '../../../types';
 import NotifyService from '../../../utils/notify.service';
 import { addItem, removeItem } from '../../../utils/wishlist.service';
 
-// const { addToWishList, removeFromWishList } = appConfig.apiResources;
-
 const CN = 'product-item--full';
 
 class MaxItemDetails extends Component {
@@ -36,38 +34,6 @@ class MaxItemDetails extends Component {
 
     this.setState({ image: data.src });
   }
-
-  // addItem = id => {
-  //   const { addToWishListItem, wished, createNotification } = this.props;
-
-  //   HttpService.post(addToWishList, { productId: id })
-  //     .then(res => {
-  //       if (res.status === 200 && !wished) {
-  //         addToWishListItem(id);
-  //         console.log(`Added to the WishList: ${id}`);
-  //       }
-  //     })
-  //     .catch(error => console.log(error))
-  //     .finally(this.setState({ heartDisabled: false }));
-
-  //   createNotification(NotifyService.added);
-  // };
-
-  // removeItem = id => {
-  //   const { removeFromWishListItem, createNotification } = this.props;
-
-  //   HttpService.post(removeFromWishList, { productId: id })
-  //     .then(res => {
-  //       if (res.status === 200) {
-  //         removeFromWishListItem(id);
-  //         console.log(`Removed from the WishList: ${id}`);
-  //       }
-  //     })
-  //     .catch(error => console.log(error))
-  //     .finally(this.setState({ heartDisabled: false }));
-
-  //   createNotification(NotifyService.removed);
-  // };
 
   toggleWishList = (e, id) => {
     const { wished } = this.props;

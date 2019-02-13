@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
+import { Flags } from 'react-feature-flags';
+import { Notify } from 'react-redux-notify';
+import PropTypes from 'prop-types';
 import productType from '../../../types';
 import appConfig from '../../../config/appConfig';
+import NotifyService from '../../../utils/notify.service';
 import styles from './ProductDescription.module.scss';
+import { addItem, removeItem } from '../../../utils/wishlist.service';
 
 class ProductDescription extends Component {
   static propTypes = {
-    item: productType
-    // addToWishListItem: PropTypes.func.isRequired,
-    // removeFromWishListItem: PropTypes.func.isRequired,
-    // wished: PropTypes.bool
-    // addToCart: PropTypes.func.isRequired,
-    // removeFromCart: PropTypes.func.isRequired,
-    // inCart: PropTypes.bool
+    item: productType,
+    wished: PropTypes.bool,
+    inCart: PropTypes.bool
   };
 
-  static defaultProps = { item: null };
+  addItem = addItem.bind(this);
 
-  state = { quantity: 0, sizeClicked: '' };
+  removeItem = removeItem.bind(this);
+
+  static defaultProps = { item: null, wished: false, inCart: false };
+
+  state = { quantity: 0, sizeClicked: '', heartDisabled: false };
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
@@ -36,14 +41,45 @@ class ProductDescription extends Component {
     this.setState({ sizeClicked: e.target.innerText.toLowerCase() });
   };
 
+  toggleWishList = (e, id) => {
+    const { wished } = this.props;
+
+    e.preventDefault();
+    const cb = !wished ? this.addItem : this.removeItem;
+
+    this.setState({ heartDisabled: true }, () => {
+      cb(id);
+    });
+  };
+
+  toggleCart = (e, id) => {
+    const {
+      inCart,
+      removeFromCart,
+      addToCart,
+      createNotification
+    } = this.props;
+
+    e.preventDefault();
+    const cb = !inCart ? addToCart : removeFromCart;
+
+    if (!inCart) {
+      createNotification(NotifyService.cartAdd);
+    } else {
+      createNotification(NotifyService.cartRemove);
+    }
+    cb(id);
+  };
+
   render() {
     const { item } = this.props;
-    const { quantity, sizeClicked } = this.state;
+    const { quantity, sizeClicked, heartDisabled } = this.state;
 
     if (!item) {
       return null;
     }
 
+    const { _id, wished } = item;
     const price = quantity > 0 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((element, index, array) => {
       const active = sizeClicked === element ? { color: '#ff5912' } : {};
@@ -108,12 +144,24 @@ class ProductDescription extends Component {
               <button type="button">
                 <i className="fas fa-globe" />
               </button>
-              <button type="button">
+              <Notify position={NotifyService.position.topRight} />
+              <button
+                type="button"
+                title="Add to shopping-cart"
+                onClick={e => this.toggleCart(e, _id)}
+              >
                 <i className="fas fa-cart-plus" />
               </button>
-              <button type="button">
-                <i className="far fa-heart" />
-              </button>
+              <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
+                <button
+                  type="button"
+                  onClick={e => this.toggleWishList(e, _id)}
+                  title="Add to wish-list"
+                  disabled={heartDisabled}
+                >
+                  <i className={wished ? 'fas fa-heart' : 'far fa-heart'} />
+                </button>
+              </Flags>
               <button type="button" className={styles.btn_order}>
                 Order Now
               </button>
