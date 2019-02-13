@@ -73,13 +73,13 @@ class ProductItem extends Component {
      */
     data: productType,
     extended: bool,
-    isAddedtoWishList: bool,
+    isAddedToWishList: bool,
     isAddedToCart: bool
   };
 
   static defaultProps = {
     extended: false,
-    isAddedtoWishList: false,
+    isAddedToWishList: false,
     isAddedToCart: false,
     data: null
   };
@@ -95,12 +95,12 @@ class ProductItem extends Component {
     const {
       data,
       extended,
-      isAddedtoWishList,
+      isAddedToWishList,
       isAddedToCart,
       addToWishListItem,
       removeFromWishListItem,
-      addToCartListItem,
-      removeFromCartListItem,
+      addToCart,
+      removeFromCart,
       createNotification
     } = this.props;
     const { available, src, title, price, _id } = data;
@@ -110,9 +110,9 @@ class ProductItem extends Component {
         data={data}
         addToWishListItem={addToWishListItem}
         removeFromWishListItem={removeFromWishListItem}
-        wished={isAddedtoWishList}
-        addToCartListItem={addToCartListItem}
-        removeFromCartListItem={removeFromCartListItem}
+        wished={isAddedToWishList}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
         inCart={isAddedToCart}
         createNotification={createNotification}
       />

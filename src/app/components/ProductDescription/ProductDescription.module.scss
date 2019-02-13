@@ -73,15 +73,23 @@
       padding: 0 5px;
       text-decoration: none;
       text-transform: uppercase;
-      // transition: 0.3s ease;
       outline: none;
 
-      &:hover,
-      &:focus-within {
+      &:hover {
         animation: scale 0.5s forwards ease;
         color: $color-main;
       }
     }
+
+    .activate {
+      color: $color-main;
+      font-size: 22px;
+      padding: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      outline: none;
+    }
+
     .quantity {
       @include d-flex() {
         align-items: baseline;

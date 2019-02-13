@@ -13,14 +13,14 @@ const NewArrivals = props => {
   const { products, wishlist, cart } = props;
   const extended = true;
   const titleArr = title.split(' ');
-  const isAddedtoWishList = id => wishlist.includes(id);
+  const isAddedToWishList = id => wishlist.includes(id);
   const isAddedToCart = id => cart.productsIds.includes(id);
 
   const list =
     products &&
     products.map(el => (
       <ProductItemContainer
-        isAddedtoWishList={isAddedtoWishList(el._id)}
+        isAddedToWishList={isAddedToWishList(el._id)}
         isAddedToCart={isAddedToCart(el._id)}
         extended={extended}
         key={el._id}

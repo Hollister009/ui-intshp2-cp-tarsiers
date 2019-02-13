@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { createNotification } from 'react-redux-notify';
+import ProductDescription from './ProductDescription';
 import {
   addToWishList,
   removeFromWishList,
   addToCart,
   removeFromCart
 } from '../../actions';
-import ProductItem from './ProductItem';
 
 const mapStateToProps = state => ({
   wishlist: state.wishlist.wishlist,
@@ -19,10 +19,9 @@ const mapDispatchToProps = dispatch => ({
   removeFromCart: data => dispatch(removeFromCart(data)),
   createNotification: config => dispatch(createNotification(config))
 });
-
-const ProductItemContainer = connect(
+const ProductDescriptionContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductItem);
+)(ProductDescription);
 
-export default ProductItemContainer;
+export default ProductDescriptionContainer;
