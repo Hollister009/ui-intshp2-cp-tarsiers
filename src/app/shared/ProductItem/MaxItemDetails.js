@@ -17,8 +17,6 @@ const CN = 'product-item--full';
 class MaxItemDetails extends Component {
   static propTypes = {
     data: productType,
-    addToWishListItem: PropTypes.func.isRequired,
-    removeFromWishListItem: PropTypes.func.isRequired,
     wished: PropTypes.bool,
     addToCart: PropTypes.func.isRequired,
     removeFromCart: PropTypes.func.isRequired,
