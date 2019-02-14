@@ -1,22 +1,20 @@
-/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/prefer-stateless-function */
-/* eslint-disable jsx-a11y/alt-text */
+
 import React, { Component } from 'react';
-// import ImgSwitch from './ImgSwitch'
-// import ActiveThunb from './ActiveTumb';
-import './Test.scss';
+import './ImgPreview.scss';
 
 export default class ImgPreview extends Component {
   constructor(props) {
     super(props);
-    const { item } = this.props;
 
     this.state = {
       figureStyle: {
-        backgroundImage: `url(${item.src})`,
+        backgroundImage: '',
         backgroundPosition: '0% 0%'
       },
-      mainImgURL: item.src
+      mainImgURL: ''
     };
   }
 
@@ -33,6 +31,13 @@ export default class ImgPreview extends Component {
 
   changeMainImage = e => {
     const newMainUrl = e.target.getAttribute('src');
+    const activeElement = e.target.parentNode;
+    const activeElementSiblings = e.target.parentNode.parentNode.childNodes;
+
+    activeElementSiblings.forEach(element => {
+      element.classList.remove('active');
+    });
+    activeElement.classList.toggle('active');
 
     this.setState({
       mainImgURL: newMainUrl,
@@ -42,15 +47,34 @@ export default class ImgPreview extends Component {
 
   render() {
     const { item } = this.props;
-    const { figureStyle } = this.state;
+    const { figureStyle, mainImgURL } = this.state;
+
+    if (item && !mainImgURL.length) {
+      this.setState(state => ({
+        figureStyle: {
+          ...state.figureStyle,
+          backgroundImage: `url(${item.src})`
+        },
+        mainImgURL: item.src
+      }));
+    } else if (!item) {
+      return null;
+    }
+
+    const imgState = this.state;
     const thumbnails = Object.values(item.colorUrls).map(el => (
-      <img src={el} alt="" key={el} onClick={this.changeMainImage} />
+      <div
+        className="thumbnail-container"
+        onClick={e => this.changeMainImage(e)}
+      >
+        <img src={el} alt="" key={el} />
+      </div>
     ));
 
     return (
       <div className="img-container">
         <figure onMouseMove={this.handleMouseMove}>
-          <img src={this.state.mainImgURL} />
+          <img src={imgState.mainImgURL} alt="thumbnail" />
           <div style={figureStyle} />
         </figure>
         <div className="thumbnails-box">{thumbnails}</div>

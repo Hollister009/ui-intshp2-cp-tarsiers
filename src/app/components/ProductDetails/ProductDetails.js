@@ -3,6 +3,7 @@ import ProductDescription from '../ProductDescription/ProductDescription';
 import ImgPreview from '../ProductDescription/ImgPreview';
 import RelatedProducts from '../RelatedProducts/RelatedProducts';
 import HttpService from '../../../utils/http.service';
+import styles from './ProductDetails.module.scss';
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -46,16 +47,23 @@ class ProductDetails extends Component {
     const { relatedProducts } = this.state;
 
     return (
-      <div className="container">
-        <ProductDescription item={item} />
-        {relatedProducts.length ? (
-          <RelatedProducts
-            item={item}
-            products={relatedProducts}
-            wishlist={wishlist}
-          />
-        ) : null}
-      </div>
+      <>
+        <div className={styles.section}>
+          <div className={styles.innersection}>
+            <ImgPreview item={item} />
+            <ProductDescription item={item} />
+          </div>
+        </div>
+        <div className="container">
+          {relatedProducts.length ? (
+            <RelatedProducts
+              item={item}
+              products={relatedProducts}
+              wishlist={wishlist}
+            />
+          ) : null}
+        </div>
+      </>
     );
   }
 }

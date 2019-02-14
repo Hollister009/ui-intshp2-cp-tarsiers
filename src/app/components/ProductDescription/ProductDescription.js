@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import productType from '../../../types';
 import appConfig from '../../../config/appConfig';
 import styles from './ProductDescription.module.scss';
@@ -43,7 +42,6 @@ class ProductDescription extends Component {
 
     return (
       <section className={styles.section}>
-        <div className={styles.preview} />
         <div className={styles.details}>
           <div className={styles.info}>
             <h1 className={styles.title}>{item.title}</h1>
