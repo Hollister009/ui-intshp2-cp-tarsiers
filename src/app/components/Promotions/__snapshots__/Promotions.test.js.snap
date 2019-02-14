@@ -4,10 +4,6 @@ exports[`<Promotions /> should match its snapshot 1`] = `
 <section
   className="promotions"
 >
-  <div
-    className="spin-position"
-  >
-    <Spinner />
-  </div>
+  <Spinner />
 </section>
 `;
