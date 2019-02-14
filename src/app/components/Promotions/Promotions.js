@@ -29,13 +29,7 @@ export default class Promotions extends Component {
 
     return (
       <section className="promotions">
-        {this.isLoaded ? (
-          <Slider slides={slides} />
-        ) : (
-          <div className="spin-position">
-            <Spinner />
-          </div>
-        )}
+        {this.isLoaded ? <Slider slides={slides} /> : <Spinner />}
       </section>
     );
   }

@@ -109,6 +109,9 @@ export default class ProductList extends Component {
           if (res.data.length) {
             updateLimit(3);
             updateSkip(skipped);
+          } else {
+            window.removeEventListener('scroll', this.scroll);
+            this.scrollSet = false;
           }
         });
       }
