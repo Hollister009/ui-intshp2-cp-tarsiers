@@ -17,45 +17,35 @@ class Sizes extends Component {
   }
 
   render() {
+    const { filter } = this.props;
+    const sizesPairs = { Small: 's', Medium: 'm', Large: 'l', 'X-large': 'xl' };
+    const sizesList = Object.entries(sizesPairs).map(el => {
+      const shouldBeHighlighted = filter.sizes.includes(el[1])
+        ? { color: '#ff5912' }
+        : {};
+
+      return (
+        <label
+          htmlFor={`size-${el[0].toLowerCase()}`}
+          className="filter-option-container"
+          style={shouldBeHighlighted}
+        >
+          {el[0]}
+          <input
+            id={`size-${el[0].toLowerCase()}`}
+            type="checkbox"
+            onChange={e => this.onChange(e, el[1])}
+            checked={filter.sizes.includes(el[1])}
+          />
+          <span className="checkmark" />
+        </label>
+      );
+    });
+
     return (
       <div className="filter-block">
         <h3>Size</h3>
-        <label htmlFor="size-small" className="filter-option-container">
-          Small
-          <input
-            id="size-small"
-            type="checkbox"
-            onChange={e => this.onChange(e, 's')}
-          />
-          <span className="checkmark" />
-        </label>
-        <label htmlFor="size-medium" className="filter-option-container">
-          Medium
-          <input
-            id="size-medium"
-            type="checkbox"
-            onChange={e => this.onChange(e, 'm')}
-          />
-          <span className="checkmark" />
-        </label>
-        <label htmlFor="size-large" className="filter-option-container">
-          Large
-          <input
-            id="size-large"
-            type="checkbox"
-            onChange={e => this.onChange(e, 'l')}
-          />
-          <span className="checkmark" />
-        </label>
-        <label htmlFor="size-xlarge" className="filter-option-container">
-          X-Large
-          <input
-            id="size-xlarge"
-            type="checkbox"
-            onChange={e => this.onChange(e, 'xl')}
-          />
-          <span className="checkmark" />
-        </label>
+        {sizesList}
       </div>
     );
   }
