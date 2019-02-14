@@ -48,7 +48,7 @@ class ProductDescription extends Component {
 
     const cb = !wished ? this.addItem : this.removeItem;
 
-    this.setState({ heartDisabled: true }, () => {
+    this.setState(() => {
       cb(id);
     });
   };
