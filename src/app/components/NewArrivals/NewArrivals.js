@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import Carousel from '../../shared/Carousel';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
-
+import {
+  isAddedToCart,
+  isAddedToWishList
+} from '../../../utils/inCartInWishlist.service';
 import styles from './NewArrivals.module.scss';
-// import cart from '../../reducers/cart';
 
 const title = 'New Arrivals';
 
@@ -13,15 +15,13 @@ const NewArrivals = props => {
   const { products, wishlist, cart } = props;
   const extended = true;
   const titleArr = title.split(' ');
-  const isAddedToWishList = id => wishlist.includes(id);
-  const isAddedToCart = id => cart.productsIds.includes(id);
 
   const list =
     products &&
     products.map(el => (
       <ProductItemContainer
-        isAddedToWishList={isAddedToWishList(el._id)}
-        isAddedToCart={isAddedToCart(el._id)}
+        isAddedToWishList={isAddedToWishList(el._id, wishlist)}
+        isAddedToCart={isAddedToCart(el._id, cart)}
         extended={extended}
         key={el._id}
         data={el}

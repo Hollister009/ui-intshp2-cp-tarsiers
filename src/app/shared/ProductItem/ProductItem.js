@@ -68,9 +68,6 @@ const ViewInfoSmall = props => {
 
 class ProductItem extends Component {
   static propTypes = {
-    /**
-     * data - productType shape
-     */
     data: productType,
     extended: bool,
     isAddedToWishList: bool,
@@ -110,9 +107,9 @@ class ProductItem extends Component {
         data={data}
         addToWishListItem={addToWishListItem}
         removeFromWishListItem={removeFromWishListItem}
-        wished={isAddedToWishList}
         addToCart={addToCart}
         removeFromCart={removeFromCart}
+        wished={isAddedToWishList}
         inCart={isAddedToCart}
         createNotification={createNotification}
       />

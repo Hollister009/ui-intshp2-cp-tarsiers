@@ -21,7 +21,7 @@ class ProductDescription extends Component {
 
   static defaultProps = { item: null, wished: false, inCart: false };
 
-  state = { quantity: 0, sizeClicked: '', heartDisabled: false };
+  state = { quantity: 0, sizeClicked: '' };
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
@@ -45,6 +45,7 @@ class ProductDescription extends Component {
     const { wished } = this.props;
 
     e.preventDefault();
+
     const cb = !wished ? this.addItem : this.removeItem;
 
     this.setState({ heartDisabled: true }, () => {
@@ -61,6 +62,7 @@ class ProductDescription extends Component {
     } = this.props;
 
     e.preventDefault();
+
     const cb = !inCart ? addToCart : removeFromCart;
 
     if (!inCart) {
@@ -68,18 +70,19 @@ class ProductDescription extends Component {
     } else {
       createNotification(NotifyService.cartRemove);
     }
+
     cb(id);
   };
 
   render() {
     const { item } = this.props;
-    const { quantity, sizeClicked, heartDisabled } = this.state;
+    const { quantity, sizeClicked } = this.state;
 
     if (!item) {
       return null;
     }
 
-    const { _id, wished } = item;
+    const { _id } = item;
     const price = quantity > 0 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((element, index, array) => {
       const active = sizeClicked === element ? { color: '#ff5912' } : {};
@@ -157,9 +160,8 @@ class ProductDescription extends Component {
                   type="button"
                   onClick={e => this.toggleWishList(e, _id)}
                   title="Add to wish-list"
-                  disabled={heartDisabled}
                 >
-                  <i className={wished ? 'fas fa-heart' : 'far fa-heart'} />
+                  <i className="fas fa-heart" />
                 </button>
               </Flags>
               <button type="button" className={styles.btn_order}>

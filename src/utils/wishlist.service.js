@@ -5,7 +5,6 @@ import appConfig from '../config/appConfig';
 const { addToWishList, removeFromWishList } = appConfig.apiResources;
 
 export function addItem(id) {
-  console.log(id);
   const { addToWishListItem, wished, createNotification } = this.props;
 
   HttpService.post(addToWishList, { productId: id })
@@ -22,11 +21,11 @@ export function addItem(id) {
 }
 
 export function removeItem(id) {
-  const { removeFromWishListItem, createNotification } = this.props;
+  const { removeFromWishListItem, createNotification, wished } = this.props;
 
   HttpService.post(removeFromWishList, { productId: id })
     .then(res => {
-      if (res.status === 200) {
+      if (res.status === 200 && wished) {
         removeFromWishListItem(id);
         console.log(`Removed from the WishList: ${id}`);
       }

@@ -89,7 +89,7 @@ class MaxItemDetails extends Component {
 
   render() {
     const { data } = this.props;
-    const { _id, title, sizes, colors, colorUrls, wished } = data;
+    const { _id, title, sizes, colors, colorUrls, wished, inCart } = data;
     const { heartDisabled, image } = this.state;
     const allSizes = sizes
       .map((size, i) => (i !== 0 ? `- ${size}` : size))
@@ -107,16 +107,20 @@ class MaxItemDetails extends Component {
           <div className={`${CN}__swatches`}>{swatches}</div>
           <hr className="separate" />
           <div className="social_buttons">
+            <Notify position={NotifyService.position.topRight} />
             <button type="button" title="Share with others">
               <i className="fas fa-share-alt" />
             </button>
-            <Notify position={NotifyService.position.topRight} />
             <button
               type="button"
               title="Add to shopping-cart"
               onClick={e => this.toggleCart(e, _id)}
             >
-              <i className="fas fa-shopping-cart" />
+              <i
+                className={
+                  inCart ? 'fas fa-cart-arrow-down' : 'fas fa-cart-plus'
+                }
+              />
             </button>
             <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
               <button
