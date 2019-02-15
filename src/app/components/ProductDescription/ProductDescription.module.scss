@@ -73,15 +73,23 @@
       padding: 0 5px;
       text-decoration: none;
       text-transform: uppercase;
-      // transition: 0.3s ease;
       outline: none;
 
-      &:hover,
-      &:focus-within {
+      &:hover {
         animation: scale 0.5s forwards ease;
         color: $color-main;
       }
     }
+
+    .activate {
+      color: $color-main;
+      font-size: 22px;
+      padding: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      outline: none;
+    }
+
     .quantity {
       @include d-flex() {
         align-items: baseline;
@@ -148,5 +156,72 @@
   }
   to {
     transform: scale(1.1);
+  }
+}
+
+@media screen and (max-width: $media-tablet) {
+  .section {
+    @include d-flex(center, column);
+  }
+}
+
+@media screen and (max-width: $media-mobile) {
+  .section {
+    @include d-flex(center, column);
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .details {
+    .select {
+      @include d-flex(unset, column);
+
+      .flex_row {
+        align-items: center;
+      }
+    }
+
+    .order {
+      @include d-flex(unset, column);
+
+      align-items: center;
+
+      .price {
+        padding: 25px 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $media-smallest) {
+  .section {
+    @include d-flex(center, column);
+  }
+
+  .title {
+    text-align: center;
+    font-size: 40px !important;
+  }
+
+  .details {
+    .select {
+      @include d-flex(unset, column);
+
+      .flex_row {
+        align-items: center;
+      }
+    }
+
+    .order {
+      @include d-flex(unset, column);
+
+      align-items: center;
+
+      .price {
+        padding: 25px 0;
+      }
+    }
   }
 }
