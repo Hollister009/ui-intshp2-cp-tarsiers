@@ -126,7 +126,7 @@ exports[`<MaxItemDetails /> should match its snapshot 1`] = `
         type="button"
       >
         <i
-          className="fas fa-heart"
+          className="fas fa-heart highlighted"
         />
       </button>
     </Flags>
