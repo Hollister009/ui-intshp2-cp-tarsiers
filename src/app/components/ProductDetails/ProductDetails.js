@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductDescription from '../ProductDescription/ProductDescription';
+import ProductDescriptionContainer from '../ProductDescription/ProductDescriptionContainer';
 import RelatedProducts from '../RelatedProducts/RelatedProducts';
 import Spinner from '../../shared/Spinner';
 import {
@@ -20,16 +20,17 @@ class ProductDetails extends Component {
       <div className="container">
         {item ? (
           <React.Fragment>
-            <ProductDescription
+            <ProductDescriptionContainer
               item={item}
               wished={isAddedToWishList(id, wishlist)}
               inCart={isAddedToCart(id, cart)}
             />
             <RelatedProducts
+              id={id}
               item={item}
               products={products}
               wishlist={wishlist}
-              id={id}
+              cart={cart}
             />
           </React.Fragment>
         ) : (

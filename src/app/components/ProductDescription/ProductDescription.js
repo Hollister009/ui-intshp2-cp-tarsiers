@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
 import { Notify } from 'react-redux-notify';
 import PropTypes from 'prop-types';
+
 import productType from '../../../types';
 import appConfig from '../../../config/appConfig';
 import NotifyService from '../../../utils/notify.service';
-import styles from './ProductDescription.module.scss';
 import { addItem, removeItem } from '../../../utils/wishlist.service';
+import styles from './ProductDescription.module.scss';
 
 class ProductDescription extends Component {
   static propTypes = {
@@ -15,13 +16,13 @@ class ProductDescription extends Component {
     inCart: PropTypes.bool
   };
 
-  addItem = addItem.bind(this);
-
-  removeItem = removeItem.bind(this);
-
   static defaultProps = { item: null, wished: false, inCart: false };
 
   state = { quantity: 0, sizeClicked: '' };
+
+  addItem = addItem.bind(this);
+
+  removeItem = removeItem.bind(this);
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
@@ -48,9 +49,7 @@ class ProductDescription extends Component {
 
     const cb = !wished ? this.addItem : this.removeItem;
 
-    this.setState(() => {
-      cb(id);
-    });
+    cb(id);
   };
 
   toggleCart = (e, id) => {
@@ -74,9 +73,9 @@ class ProductDescription extends Component {
     cb(id);
   };
 
-  orderNow = e => {
+  orderHandler = e => {
     e.preventDefault();
-    const { item, orderNow, createNotification } = this.props;
+    const { item, orderNowItem, createNotification } = this.props;
     const { sizeClicked, quantity } = this.state;
     const orderData = {
       title: item.title,
@@ -85,12 +84,12 @@ class ProductDescription extends Component {
       quantity
     };
 
-    orderNow(orderData);
+    orderNowItem(orderData);
     createNotification(NotifyService.ordered);
   };
 
   render() {
-    const { item } = this.props;
+    const { item, wished, inCart } = this.props;
     const { quantity, sizeClicked } = this.state;
 
     if (!item) {
@@ -168,7 +167,11 @@ class ProductDescription extends Component {
                 title="Add to shopping-cart"
                 onClick={e => this.toggleCart(e, _id)}
               >
-                <i className="fas fa-cart-plus" />
+                {inCart ? (
+                  <i className="fas fa-cart-arrow-down" />
+                ) : (
+                  <i className="fas fa-cart-plus" />
+                )}
               </button>
               <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
                 <button
@@ -176,15 +179,17 @@ class ProductDescription extends Component {
                   onClick={e => this.toggleWishList(e, _id)}
                   title="Add to wish-list"
                 >
-                  <i className="fas fa-heart" />
+                  <i
+                    className={
+                      wished ? 'fas fa-heart highlighted' : 'fas fa-heart'
+                    }
+                  />
                 </button>
               </Flags>
               <button
                 type="button"
                 className={styles.btn_order}
-                onClick={e => {
-                  this.orderNow(e);
-                }}
+                onClick={e => this.orderHandler(e)}
               >
                 Order Now
               </button>

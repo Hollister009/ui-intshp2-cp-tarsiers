@@ -121,7 +121,6 @@ class ProductItem extends Component {
       createNotification
     } = this.props;
     const { available, src, title, price, _id } = data;
-    console.log(isAddedToCart);
 
     const fullItem = showDetails ? (
       <MaxItemDetails

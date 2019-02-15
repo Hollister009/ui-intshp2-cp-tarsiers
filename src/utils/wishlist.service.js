@@ -21,7 +21,7 @@ export function addItem(id) {
 }
 
 export function removeItem(id) {
-  const { removeFromWishListItem, createNotification, wished } = this.props;
+  const { removeFromWishListItem, wished, createNotification } = this.props;
 
   HttpService.post(removeFromWishList, { productId: id })
     .then(res => {

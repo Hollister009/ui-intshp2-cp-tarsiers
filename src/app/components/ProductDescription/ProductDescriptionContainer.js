@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { createNotification } from 'react-redux-notify';
-import ProductDescription from './ProductDescription';
 import {
   addToWishList,
   removeFromWishList,
@@ -8,6 +7,7 @@ import {
   removeFromCart,
   orderNow
 } from '../../actions';
+import ProductDescription from './ProductDescription';
 
 const mapStateToProps = state => ({
   wishlist: state.wishlist.wishlist,
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
   addToCart: data => dispatch(addToCart(data)),
   removeFromCart: data => dispatch(removeFromCart(data)),
   createNotification: config => dispatch(createNotification(config)),
-  orderNow: data => dispatch(orderNow(data))
+  orderNowItem: data => dispatch(orderNow(data))
 });
 const ProductDescriptionContainer = connect(
   mapStateToProps,

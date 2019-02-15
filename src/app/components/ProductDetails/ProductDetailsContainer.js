@@ -6,10 +6,6 @@ const mapStateToProps = state => ({
   wishlist: state.wishlist.wishlist,
   cart: state.cart
 });
-const mapDispatchToProps = () => ({});
-const ProductDetailsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductDetails);
+const ProductDetailsContainer = connect(mapStateToProps)(ProductDetails);
 
 export default ProductDetailsContainer;
