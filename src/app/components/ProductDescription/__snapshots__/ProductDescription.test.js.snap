@@ -47,6 +47,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             className="size"
             href="/"
             onClick={[Function]}
+            style={Object {}}
           >
             s
           </a>
@@ -57,6 +58,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             className="size"
             href="/"
             onClick={[Function]}
+            style={Object {}}
           >
             m
           </a>
@@ -67,6 +69,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             className="size"
             href="/"
             onClick={[Function]}
+            style={Object {}}
           >
             l
           </a>
@@ -77,6 +80,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             className="size"
             href="/"
             onClick={[Function]}
+            style={Object {}}
           >
             xl
           </a>
@@ -131,22 +135,41 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             className="fas fa-globe"
           />
         </button>
+        <Connect(Notify)
+          position="TopRight"
+        />
         <button
+          onClick={[Function]}
+          title="Add to shopping-cart"
           type="button"
         >
           <i
             className="fas fa-cart-plus"
           />
         </button>
-        <button
-          type="button"
+        <Flags
+          authorizedFlags={
+            Array [
+              "showWishlist",
+            ]
+          }
+          exactFlags={false}
+          renderOff={[Function]}
+          renderOn={[Function]}
         >
-          <i
-            className="far fa-heart"
-          />
-        </button>
+          <button
+            onClick={[Function]}
+            title="Add to wish-list"
+            type="button"
+          >
+            <i
+              className="fas fa-heart"
+            />
+          </button>
+        </Flags>
         <button
           className="btn_order"
+          onClick={[Function]}
           type="button"
         >
           Order Now

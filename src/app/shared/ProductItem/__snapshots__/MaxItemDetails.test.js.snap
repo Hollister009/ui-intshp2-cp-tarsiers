@@ -88,6 +88,9 @@ exports[`<MaxItemDetails /> should match its snapshot 1`] = `
   <div
     className="social_buttons"
   >
+    <Connect(Notify)
+      position="TopRight"
+    />
     <button
       title="Share with others"
       type="button"
@@ -96,16 +99,13 @@ exports[`<MaxItemDetails /> should match its snapshot 1`] = `
         className="fas fa-share-alt"
       />
     </button>
-    <Connect(Notify)
-      position="TopRight"
-    />
     <button
       onClick={[Function]}
       title="Add to shopping-cart"
       type="button"
     >
       <i
-        className="fas fa-shopping-cart"
+        className="fas fa-cart-plus"
       />
     </button>
     <Flags
