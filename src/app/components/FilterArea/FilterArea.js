@@ -102,8 +102,12 @@ class FilterArea extends Component {
             minValue={filter.price.min}
             maxValue={filter.price.max}
           />
-          <Sizes addSize={addSize} removeSize={removeSize} />
-          <Brands addBrand={addBrand} removeBrand={removeBrand} />
+          <Sizes addSize={addSize} removeSize={removeSize} filter={filter} />
+          <Brands
+            addBrand={addBrand}
+            removeBrand={removeBrand}
+            filter={filter}
+          />
           <button
             type="button"
             onClick={this.applyChanges}

@@ -16,8 +16,17 @@ const getProducts = (req, res) =>
   });
 
 const getFilteredProducts = (req, res) => {
-  const { sizes, brands, category, price, available, skip, limit } = req.query;
-
+  const {
+    sizes,
+    brands,
+    category,
+    price,
+    available,
+    skip,
+    limit,
+    tag
+  } = req.query;
+  const tagQuery = tag ? { tag } : {};
   const categoryQuery = category ? { category } : {};
   const brandQuery = brands ? { brand: { $in: brands } } : {};
   const sizesQuery = sizes ? { sizes: { $in: sizes } } : {};
@@ -26,6 +35,7 @@ const getFilteredProducts = (req, res) => {
   db.products
     .find({
       $and: [
+        tagQuery,
         brandQuery,
         sizesQuery,
         categoryQuery,
