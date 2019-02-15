@@ -23,14 +23,27 @@ const ViewFrontFull = props => {
 };
 
 const ViewCartSmall = props => {
-  const { title } = props;
+  const { title, inCart, id } = props;
 
-  const handleClick = e => {
-    const { createNotification } = props;
+  console.log(inCart);
+
+  const toggleCart = e => {
+    const { removeFromCart, addToCart, createNotification } = props;
 
     e.preventDefault();
-    createNotification(NotifyService.cart);
+    const cb = !inCart ? addToCart : removeFromCart;
+
+    if (!inCart) {
+      createNotification(NotifyService.cartAdd);
+    } else {
+      createNotification(NotifyService.cartRemove);
+    }
+
+    cb(id);
   };
+
+  const addToCartText = 'Add to cart';
+  const rmFromCartText = 'Remove from cart';
 
   return (
     <div className="product-item--small__info">
@@ -39,10 +52,19 @@ const ViewCartSmall = props => {
       <button
         type="button"
         className="add-to-card"
-        onClick={e => handleClick(e)}
+        onClick={e => toggleCart(e, id)}
       >
-        <i className="fas fa-shopping-cart" />
-        add to cart
+        {!inCart ? (
+          <span>
+            <i className="fas fa-cart-plus" />
+            {addToCartText}
+          </span>
+        ) : (
+          <span>
+            <i className="fas fa-cart-arrow-down" />
+            {rmFromCartText}
+          </span>
+        )}
       </button>
     </div>
   );
@@ -140,8 +162,12 @@ class ProductItem extends Component {
         <img src={src} alt="" />
         {showDetails ? (
           <ViewCartSmall
+            id={_id}
             title={title}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
             createNotification={createNotification}
+            inCart={isAddedToCart}
           />
         ) : (
           <ViewInfoSmall title={title} price={price} />
