@@ -74,6 +74,21 @@ class ProductDescription extends Component {
     cb(id);
   };
 
+  orderNow = e => {
+    e.preventDefault();
+    const { item, orderNow, createNotification } = this.props;
+    const { sizeClicked, quantity } = this.state;
+    const orderData = {
+      title: item.title,
+      size: sizeClicked,
+      price: item.price,
+      quantity
+    };
+
+    orderNow(orderData);
+    createNotification(NotifyService.ordered);
+  };
+
   render() {
     const { item } = this.props;
     const { quantity, sizeClicked } = this.state;
@@ -164,7 +179,13 @@ class ProductDescription extends Component {
                   <i className="fas fa-heart" />
                 </button>
               </Flags>
-              <button type="button" className={styles.btn_order}>
+              <button
+                type="button"
+                className={styles.btn_order}
+                onClick={e => {
+                  this.orderNow(e);
+                }}
+              >
                 Order Now
               </button>
             </div>

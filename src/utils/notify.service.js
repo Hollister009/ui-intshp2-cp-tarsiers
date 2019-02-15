@@ -4,7 +4,8 @@ import 'react-redux-notify/dist/ReactReduxNotify.css';
 import {
   NOTIFICATION_TYPE_SUCCESS,
   NOTIFICATION_TYPE_WARNING,
-  NOTIFICATION_TYPE_ERROR
+  NOTIFICATION_TYPE_ERROR,
+  NOTIFICATION_TYPE_INFO
 } from 'react-redux-notify';
 
 class NotifyService {
@@ -43,6 +44,14 @@ class NotifyService {
   cartRemove = {
     message: 'Removed from cart!',
     type: NOTIFICATION_TYPE_WARNING,
+    duration: 800,
+    canDismiss: true,
+    icon: <i className="fa fa-check" />
+  };
+
+  ordered = {
+    message: 'You successfully ordered!',
+    type: NOTIFICATION_TYPE_INFO,
     duration: 800,
     canDismiss: true,
     icon: <i className="fa fa-check" />

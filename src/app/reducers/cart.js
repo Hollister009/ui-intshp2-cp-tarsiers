@@ -1,6 +1,6 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, ORDER_NOW } from '../actions';
 
-const initialState = { value: 0, productsIds: [] };
+const initialState = { value: 0, productsIds: [], orders: [] };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -15,6 +15,20 @@ export default (state = initialState, action) => {
         ...state,
         value: state.value ? state.value - 1 : 0,
         productsIds: state.productsIds.filter(id => id !== action.payload)
+      };
+    case ORDER_NOW:
+      return {
+        ...state,
+        value: state.value + action.payload.quantity,
+        orders: [
+          ...state.orders,
+          {
+            title: action.payload.title,
+            price: action.payload.price * action.payload.quantity,
+            quantity: action.payload.quantity,
+            size: action.payload.size
+          }
+        ]
       };
     default:
       return state;
