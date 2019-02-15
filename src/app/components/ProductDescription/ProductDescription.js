@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
+import { Flags } from 'react-feature-flags';
+import { Notify } from 'react-redux-notify';
+import PropTypes from 'prop-types';
 
 import productType from '../../../types';
 import appConfig from '../../../config/appConfig';
+import NotifyService from '../../../utils/notify.service';
+import { addItem, removeItem } from '../../../utils/wishlist.service';
 import styles from './ProductDescription.module.scss';
 
 class ProductDescription extends Component {
-  static propTypes = { item: productType };
+  static propTypes = {
+    item: productType,
+    wished: PropTypes.bool,
+    inCart: PropTypes.bool
+  };
 
-  static defaultProps = { item: null };
+  static defaultProps = { item: null, wished: false, inCart: false };
 
-  state = { quantity: 0 };
+  state = { quantity: 0, sizeClicked: '' };
+
+  addItem = addItem.bind(this);
+
+  removeItem = removeItem.bind(this);
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
@@ -23,23 +36,85 @@ class ProductDescription extends Component {
     }
   };
 
+  toggleSizes = e => {
+    e.preventDefault();
+
+    this.setState({ sizeClicked: e.target.innerText.toLowerCase() });
+  };
+
+  toggleWishList = (e, id) => {
+    const { wished } = this.props;
+
+    e.preventDefault();
+
+    const cb = !wished ? this.addItem : this.removeItem;
+
+    cb(id);
+  };
+
+  toggleCart = (e, id) => {
+    const {
+      inCart,
+      removeFromCart,
+      addToCart,
+      createNotification
+    } = this.props;
+
+    e.preventDefault();
+
+    const cb = !inCart ? addToCart : removeFromCart;
+
+    if (!inCart) {
+      createNotification(NotifyService.cartAdd);
+    } else {
+      createNotification(NotifyService.cartRemove);
+    }
+
+    cb(id);
+  };
+
+  orderHandler = e => {
+    e.preventDefault();
+    const { item, orderNowItem, createNotification } = this.props;
+    const { sizeClicked, quantity } = this.state;
+    const orderData = {
+      title: item.title,
+      size: sizeClicked,
+      price: item.price,
+      quantity
+    };
+
+    orderNowItem(orderData);
+    createNotification(NotifyService.ordered);
+  };
+
   render() {
-    const { item } = this.props;
-    const { quantity } = this.state;
+    const { item, wished, inCart } = this.props;
+    const { quantity, sizeClicked } = this.state;
 
     if (!item) {
       return null;
     }
 
+    const { _id } = item;
     const price = quantity > 0 ? item.price * quantity : item.price;
-    const sizes = item.sizes.map((element, index, array) => (
-      <React.Fragment key={element}>
-        <a href="/" className={styles.size} onClick={e => e.preventDefault()}>
-          {element}
-        </a>
-        {index + 1 !== array.length ? <span>-</span> : null}
-      </React.Fragment>
-    ));
+    const sizes = item.sizes.map((element, index, array) => {
+      const active = sizeClicked === element ? { color: '#ff5912' } : {};
+
+      return (
+        <React.Fragment key={element}>
+          <a
+            href="/"
+            className={styles.size}
+            onClick={e => this.toggleSizes(e)}
+            style={active}
+          >
+            {element}
+          </a>
+          {index + 1 !== array.length ? <span>-</span> : null}
+        </React.Fragment>
+      );
+    });
 
     return (
       <section className={styles.section}>
@@ -86,13 +161,36 @@ class ProductDescription extends Component {
               <button type="button">
                 <i className="fas fa-globe" />
               </button>
-              <button type="button">
-                <i className="fas fa-cart-plus" />
+              <Notify position={NotifyService.position.topRight} />
+              <button
+                type="button"
+                title="Add to shopping-cart"
+                onClick={e => this.toggleCart(e, _id)}
+              >
+                {inCart ? (
+                  <i className="fas fa-cart-arrow-down" />
+                ) : (
+                  <i className="fas fa-cart-plus" />
+                )}
               </button>
-              <button type="button">
-                <i className="far fa-heart" />
-              </button>
-              <button type="button" className={styles.btn_order}>
+              <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
+                <button
+                  type="button"
+                  onClick={e => this.toggleWishList(e, _id)}
+                  title="Add to wish-list"
+                >
+                  <i
+                    className={
+                      wished ? 'fas fa-heart highlighted' : 'fas fa-heart'
+                    }
+                  />
+                </button>
+              </Flags>
+              <button
+                type="button"
+                className={styles.btn_order}
+                onClick={e => this.orderHandler(e)}
+              >
                 Order Now
               </button>
             </div>

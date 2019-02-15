@@ -4,6 +4,11 @@ import Carousel from '../../shared/Carousel/index';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 import HttpService from '../../../utils/http.service';
 
+import {
+  isAddedToCart,
+  isAddedToWishList
+} from '../../../utils/inCartInWishlist.service';
+
 import './RelatedProducts.scss';
 
 const title = 'Related Products';
@@ -13,12 +18,6 @@ class RelatedProducts extends Component {
     super(props);
     this.state = { relatedProducts: [] };
   }
-
-  isAddedtoWishList = id => {
-    const { wishlist } = this.props;
-
-    return wishlist.includes(id);
-  };
 
   getFilteredProducts = params =>
     HttpService.get('/api/filtered-products', params);
@@ -47,13 +46,15 @@ class RelatedProducts extends Component {
 
   render() {
     const titleArr = title.split(' ');
+    const { cart, wishlist } = this.props;
     const { relatedProducts } = this.state;
     const extended = true;
     const list =
       relatedProducts &&
       relatedProducts.map(el => (
         <ProductItemContainer
-          isAddedtoWishList={this.isAddedtoWishList(el._id)}
+          isAddedToCart={isAddedToCart(el._id, cart)}
+          isAddedToWishList={isAddedToWishList(el._id, wishlist)}
           extended={extended}
           key={el._id}
           data={el}

@@ -28,6 +28,7 @@ class Brands extends Component {
 
       return (
         <label
+          key={el}
           htmlFor={`brand-${el.toLowerCase()}`}
           className="filter-option-container"
           style={shouldBeHighlighted}

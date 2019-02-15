@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import ProductDescription from '../ProductDescription/ProductDescription';
+import ProductDescriptionContainer from '../ProductDescription/ProductDescriptionContainer';
 import RelatedProducts from '../RelatedProducts/RelatedProducts';
 import Spinner from '../../shared/Spinner';
+import {
+  isAddedToCart,
+  isAddedToWishList
+} from '../../../utils/inCartInWishlist.service';
 
 class ProductDetails extends Component {
   componentDidMount() {
@@ -9,19 +13,24 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { id, products, wishlist } = this.props;
+    const { id, products, wishlist, cart } = this.props;
     const item = products.find(el => el._id === id);
 
     return (
       <div className="container">
         {item ? (
           <React.Fragment>
-            <ProductDescription item={item} />
+            <ProductDescriptionContainer
+              item={item}
+              wished={isAddedToWishList(id, wishlist)}
+              inCart={isAddedToCart(id, cart)}
+            />
             <RelatedProducts
+              id={id}
               item={item}
               products={products}
               wishlist={wishlist}
-              id={id}
+              cart={cart}
             />
           </React.Fragment>
         ) : (
