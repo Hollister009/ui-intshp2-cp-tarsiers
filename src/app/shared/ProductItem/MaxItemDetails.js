@@ -88,8 +88,8 @@ class MaxItemDetails extends Component {
     ));
 
   render() {
-    const { data } = this.props;
-    const { _id, title, sizes, colors, colorUrls, wished, inCart } = data;
+    const { data, wished, inCart } = this.props;
+    const { _id, title, sizes, colors, colorUrls } = data;
     const { heartDisabled, image } = this.state;
     const allSizes = sizes
       .map((size, i) => (i !== 0 ? `- ${size}` : size))
@@ -116,11 +116,11 @@ class MaxItemDetails extends Component {
               title="Add to shopping-cart"
               onClick={e => this.toggleCart(e, _id)}
             >
-              <i
-                className={
-                  inCart ? 'fas fa-cart-arrow-down' : 'fas fa-cart-plus'
-                }
-              />
+              {!inCart ? (
+                <i className="fas fa-cart-plus" />
+              ) : (
+                <i className="fas fa-cart-arrow-down" />
+              )}
             </button>
             <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
               <button

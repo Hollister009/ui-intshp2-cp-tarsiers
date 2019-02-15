@@ -25,8 +25,6 @@ const ViewFrontFull = props => {
 const ViewCartSmall = props => {
   const { title, inCart, id } = props;
 
-  console.log(inCart);
-
   const toggleCart = e => {
     const { removeFromCart, addToCart, createNotification } = props;
 
@@ -123,6 +121,7 @@ class ProductItem extends Component {
       createNotification
     } = this.props;
     const { available, src, title, price, _id } = data;
+    console.log(isAddedToCart);
 
     const fullItem = showDetails ? (
       <MaxItemDetails
