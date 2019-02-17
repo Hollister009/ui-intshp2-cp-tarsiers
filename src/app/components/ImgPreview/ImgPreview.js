@@ -1,11 +1,11 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/prefer-stateless-function */
-
 import React, { Component } from 'react';
+import { productType } from '../../types';
+
 import './ImgPreview.scss';
 
-export default class ImgPreview extends Component {
+class ImgPreview extends Component {
+  static propTypes = { item: productType.isRequired };
+
   constructor(props) {
     super(props);
 
@@ -30,19 +30,21 @@ export default class ImgPreview extends Component {
   };
 
   changeMainImage = e => {
-    const newMainUrl = e.target.getAttribute('src');
-    const activeElement = e.target.parentNode;
-    const activeElementSiblings = e.target.parentNode.parentNode.childNodes;
+    if (e.keyCode === 13 || e.type === 'click') {
+      const newMainUrl = e.target.getAttribute('src');
+      const activeElement = e.target.parentNode;
+      const activeElementSiblings = e.target.parentNode.parentNode.childNodes;
 
-    activeElementSiblings.forEach(element => {
-      element.classList.remove('active');
-    });
-    activeElement.classList.toggle('active');
+      activeElementSiblings.forEach(element => {
+        element.classList.remove('active');
+      });
+      activeElement.classList.toggle('active');
 
-    this.setState({
-      mainImgURL: newMainUrl,
-      figureStyle: { backgroundImage: `url(${newMainUrl})` }
-    });
+      this.setState({
+        mainImgURL: newMainUrl,
+        figureStyle: { backgroundImage: `url(${newMainUrl})` }
+      });
+    }
   };
 
   render() {
@@ -64,10 +66,14 @@ export default class ImgPreview extends Component {
     const imgState = this.state;
     const thumbnails = Object.values(item.colorUrls).map(el => (
       <div
+        key={el}
+        role="button"
+        tabIndex="0"
         className="thumbnail-container"
         onClick={e => this.changeMainImage(e)}
+        onKeyDown={e => this.changeMainImage(e)}
       >
-        <img src={el} alt="" key={el} />
+        <img src={el} alt="" />
       </div>
     ));
 
@@ -82,3 +88,5 @@ export default class ImgPreview extends Component {
     );
   }
 }
+
+export default ImgPreview;
