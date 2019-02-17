@@ -139,6 +139,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
           position="TopRight"
         />
         <button
+          data-type="cart-btn"
           onClick={[Function]}
           title="Add to shopping-cart"
           type="button"
@@ -158,6 +159,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
           renderOn={[Function]}
         >
           <button
+            data-type="wishlist-btn"
             onClick={[Function]}
             title="Add to wish-list"
             type="button"
