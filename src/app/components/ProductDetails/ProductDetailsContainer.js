@@ -1,17 +1,11 @@
 import { connect } from 'react-redux';
-import { addToCart } from '../../actions';
 import ProductDetails from './ProductDetails';
 
 const mapStateToProps = state => ({
   products: state.products.products,
-  wishlist: state.wishlist.wishlist
+  wishlist: state.wishlist.wishlist,
+  cart: state.cart
 });
-const mapDispatchToProps = dispatch => ({
-  addToCart: data => dispatch(addToCart(data))
-});
-const ProductDetailsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductDetails);
+const ProductDetailsContainer = connect(mapStateToProps)(ProductDetails);
 
 export default ProductDetailsContainer;

@@ -1,69 +1,50 @@
 import React, { Component } from 'react';
-import ProductDescription from '../ProductDescription/ProductDescription';
-import ImgPreview from '../ProductDescription/ImgPreview';
-import RelatedProducts from '../RelatedProducts/RelatedProducts';
-import HttpService from '../../../utils/http.service';
-import styles from './ProductDetails.module.scss';
+import PropTypes from 'prop-types';
+
+import Spinner from '../../shared/Spinner';
+import { productType, cartType } from '../../types';
+import {
+  isAddedToCart,
+  isAddedToWishList
+} from '../../../utils/inCartInWishlist.service';
+import ProductDescriptionContainer from './ProductDescription/ProductDescriptionContainer';
+import RelatedProducts from './RelatedProducts/RelatedProducts';
 
 class ProductDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { relatedProducts: [] };
-  }
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    products: PropTypes.arrayOf(productType),
+    wishlist: PropTypes.arrayOf(PropTypes.string),
+    cart: cartType.isRequired
+  };
+
+  static defaultProps = { products: [], wishlist: [] };
 
   componentDidMount() {
-    this.forceUpdate();
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate() {
-    const { products, id } = this.props;
-    const { relatedProducts } = this.state;
-    const item = products.find(el => el._id === id);
-
-    if (item && !relatedProducts.length) {
-      const params = {
-        brands: [],
-        available: null,
-        price: { min: 0, max: 1000 },
-        category: item.category,
-        tag: item.tag,
-        skip: 0,
-        limit: 1000
-      };
-
-      this.getFilteredProducts({ params }).then(res => {
-        this.setState({ relatedProducts: res.data });
-      });
-    }
-  }
-
-  getFilteredProducts = params =>
-    HttpService.get('/api/filtered-products', params);
-
   render() {
-    const { id, products, wishlist } = this.props;
+    const { id, products, wishlist, cart } = this.props;
     const item = products.find(el => el._id === id);
-    const { relatedProducts } = this.state;
+    const wished = isAddedToWishList(id, wishlist);
+    const inCart = isAddedToCart(id, cart);
 
     return (
-      <>
-        <div className={styles.section}>
-          <div className={styles.innersection}>
-            <ImgPreview item={item} />
-            <ProductDescription item={item} />
-          </div>
-        </div>
-        <div className="container">
-          {relatedProducts.length ? (
-            <RelatedProducts
+      <div className="container">
+        {item ? (
+          <React.Fragment>
+            <ProductDescriptionContainer
               item={item}
-              products={relatedProducts}
-              wishlist={wishlist}
+              wished={wished}
+              inCart={inCart}
             />
-          ) : null}
-        </div>
-      </>
+            <RelatedProducts item={item} wished={wished} inCart={inCart} />
+          </React.Fragment>
+        ) : (
+          <Spinner height="80vh" />
+        )}
+      </div>
     );
   }
 }

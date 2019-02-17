@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RelatedProducts /> should match its snapshot 1`] = `
+<section
+  className="container related-products"
+>
+  <div
+    className="section_heading"
+  >
+    <h2>
+      <span
+        className="highlighted"
+      >
+        Related
+      </span>
+       
+      Products
+    </h2>
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry
+    </p>
+  </div>
+  <Carousel
+    data={Array []}
+    extended={true}
+  />
+</section>
+`;
