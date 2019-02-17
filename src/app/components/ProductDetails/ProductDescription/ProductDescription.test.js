@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ProductDescription from './ProductDescription';
 
-const products = require('../../../mocks/products.json');
+const products = require('../../../../mocks/products.json');
 
 describe('<ProductDescription />', () => {
   it('should match its snapshot', () => {

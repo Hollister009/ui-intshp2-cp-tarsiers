@@ -3,10 +3,10 @@ import { Flags } from 'react-feature-flags';
 import { Notify } from 'react-redux-notify';
 import PropTypes from 'prop-types';
 
-import productType from '../../../types';
-import appConfig from '../../../config/appConfig';
-import NotifyService from '../../../utils/notify.service';
-import { addItem, removeItem } from '../../../utils/wishlist.service';
+import { productType } from '../../../types';
+import appConfig from '../../../../config/appConfig';
+import NotifyService from '../../../../utils/notify.service';
+import { addItem, removeItem } from '../../../../utils/wishlist.service';
 import styles from './ProductDescription.module.scss';
 
 class ProductDescription extends Component {
