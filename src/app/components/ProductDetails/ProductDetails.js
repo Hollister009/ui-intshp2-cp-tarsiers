@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
-import ProductDescriptionContainer from '../ProductDescription/ProductDescriptionContainer';
-import RelatedProducts from '../RelatedProducts/RelatedProducts';
+import PropTypes from 'prop-types';
+
 import Spinner from '../../shared/Spinner';
+import { productType, cartType } from '../../types';
 import {
   isAddedToCart,
   isAddedToWishList
 } from '../../../utils/inCartInWishlist.service';
+import ProductDescriptionContainer from './ProductDescription/ProductDescriptionContainer';
+import RelatedProducts from './RelatedProducts/RelatedProducts';
 
 class ProductDetails extends Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    products: PropTypes.arrayOf(productType),
+    wishlist: PropTypes.arrayOf(PropTypes.string),
+    cart: cartType.isRequired
+  };
+
+  static defaultProps = { products: [], wishlist: [] };
+
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -15,6 +27,8 @@ class ProductDetails extends Component {
   render() {
     const { id, products, wishlist, cart } = this.props;
     const item = products.find(el => el._id === id);
+    const wished = isAddedToWishList(id, wishlist);
+    const inCart = isAddedToCart(id, cart);
 
     return (
       <div className="container">
@@ -22,16 +36,10 @@ class ProductDetails extends Component {
           <React.Fragment>
             <ProductDescriptionContainer
               item={item}
-              wished={isAddedToWishList(id, wishlist)}
-              inCart={isAddedToCart(id, cart)}
+              wished={wished}
+              inCart={inCart}
             />
-            <RelatedProducts
-              id={id}
-              item={item}
-              products={products}
-              wishlist={wishlist}
-              cart={cart}
-            />
+            <RelatedProducts item={item} wished={wished} inCart={inCart} />
           </React.Fragment>
         ) : (
           <Spinner height="80vh" />

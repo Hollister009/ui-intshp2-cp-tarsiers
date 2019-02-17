@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import appConfig from '../../../config/appConfig';
-import productType from '../../../types';
+import { productType } from '../../types';
 import NotifyService from '../../../utils/notify.service';
 import { addItem, removeItem } from '../../../utils/wishlist.service';
 

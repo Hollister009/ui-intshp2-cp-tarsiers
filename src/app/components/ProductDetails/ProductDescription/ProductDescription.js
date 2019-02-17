@@ -3,10 +3,10 @@ import { Flags } from 'react-feature-flags';
 import { Notify } from 'react-redux-notify';
 import PropTypes from 'prop-types';
 
-import productType from '../../../types';
-import appConfig from '../../../config/appConfig';
-import NotifyService from '../../../utils/notify.service';
-import { addItem, removeItem } from '../../../utils/wishlist.service';
+import { productType } from '../../../types';
+import appConfig from '../../../../config/appConfig';
+import NotifyService from '../../../../utils/notify.service';
+import { addItem, removeItem } from '../../../../utils/wishlist.service';
 import styles from './ProductDescription.module.scss';
 
 class ProductDescription extends Component {
@@ -166,6 +166,7 @@ class ProductDescription extends Component {
                 type="button"
                 title="Add to shopping-cart"
                 onClick={e => this.toggleCart(e, _id)}
+                data-type="cart-btn"
               >
                 {inCart ? (
                   <i className="fas fa-cart-arrow-down" />
@@ -178,6 +179,7 @@ class ProductDescription extends Component {
                   type="button"
                   onClick={e => this.toggleWishList(e, _id)}
                   title="Add to wish-list"
+                  data-type="wishlist-btn"
                 >
                   <i
                     className={

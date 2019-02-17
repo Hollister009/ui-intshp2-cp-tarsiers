@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Carousel from '../../shared/Carousel/index';
-import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
-import HttpService from '../../../utils/http.service';
 
-import {
-  isAddedToCart,
-  isAddedToWishList
-} from '../../../utils/inCartInWishlist.service';
+import { productType } from '../../../types';
+import Carousel from '../../../shared/Carousel/index';
+import ProductItemContainer from '../../../shared/ProductItem/ProductItemContainer';
+import HttpService from '../../../../utils/http.service';
 
 import './RelatedProducts.scss';
 
 const title = 'Related Products';
 
 class RelatedProducts extends Component {
+  static propTypes = {
+    item: productType,
+    wished: PropTypes.bool,
+    inCart: PropTypes.bool
+  };
+
+  static defaultProps = { item: null, wished: false, inCart: false };
+
   constructor(props) {
     super(props);
     this.state = { relatedProducts: [] };
@@ -46,15 +51,15 @@ class RelatedProducts extends Component {
 
   render() {
     const titleArr = title.split(' ');
-    const { cart, wishlist } = this.props;
+    const { inCart, wished } = this.props;
     const { relatedProducts } = this.state;
     const extended = true;
     const list =
       relatedProducts &&
       relatedProducts.map(el => (
         <ProductItemContainer
-          isAddedToCart={isAddedToCart(el._id, cart)}
-          isAddedToWishList={isAddedToWishList(el._id, wishlist)}
+          isAddedToCart={inCart}
+          isAddedToWishList={wished}
           extended={extended}
           key={el._id}
           data={el}
@@ -81,9 +86,5 @@ class RelatedProducts extends Component {
     );
   }
 }
-
-RelatedProducts.propTypes = {
-  wishlist: PropTypes.arrayOf(PropTypes.string).isRequired
-};
 
 export default RelatedProducts;

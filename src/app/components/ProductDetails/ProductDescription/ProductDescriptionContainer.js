@@ -6,7 +6,7 @@ import {
   addToCart,
   removeFromCart,
   orderNow
-} from '../../actions';
+} from '../../../actions';
 import ProductDescription from './ProductDescription';
 
 const mapStateToProps = state => ({

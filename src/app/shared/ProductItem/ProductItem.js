@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bool } from 'prop-types';
 import { Notify } from 'react-redux-notify';
 
-import productType from '../../../types';
+import { productType } from '../../types';
 import NotifyService from '../../../utils/notify.service';
 import MaxItemDetails from './MaxItemDetails';
 
