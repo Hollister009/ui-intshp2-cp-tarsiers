@@ -2,10 +2,23 @@
 
 exports[`<Spinner /> should match its snapshot 1`] = `
 <div
-  className="spinner"
+  className="spinner-container"
+  style={
+    Object {
+      "height": undefined,
+    }
+  }
 >
-  <i
-    className="fas fa-sun"
-  />
+  <div
+    className="spin-position"
+  >
+    <div
+      className="spinner"
+    >
+      <i
+        className="fas fa-sun"
+      />
+    </div>
+  </div>
 </div>
 `;
