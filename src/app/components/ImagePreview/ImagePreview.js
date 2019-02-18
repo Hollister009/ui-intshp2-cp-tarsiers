@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { productType } from '../../types';
 
-import './ImgPreview.scss';
+import './ImagePreview.scss';
 
-class ImgPreview extends Component {
+class ImagePreview extends Component {
   static propTypes = { item: productType.isRequired };
 
   constructor(props) {
@@ -89,4 +89,4 @@ class ImgPreview extends Component {
   }
 }
 
-export default ImgPreview;
+export default ImagePreview;

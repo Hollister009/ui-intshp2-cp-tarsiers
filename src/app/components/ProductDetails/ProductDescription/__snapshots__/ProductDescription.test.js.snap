@@ -6,33 +6,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
 >
   <div
     className="preview"
-  >
-    <ImgPreview
-      item={
-        Object {
-          "_id": "5c486043e7179a544941a6b2",
-          "available": true,
-          "brand": "Nike",
-          "category": "male",
-          "colorUrls": Object {
-            "#171717": "https://res.cloudinary.com/so/image/upload/v1548246979/products/cba0707c66f3b196408f9bf6e92cc460--knt-nike.jpg",
-          },
-          "colors": Array [
-            "#171717",
-          ],
-          "price": 800,
-          "sizes": Array [
-            "s",
-            "m",
-            "l",
-            "xl",
-          ],
-          "src": "https://res.cloudinary.com/so/image/upload/v1548246979/products/cba0707c66f3b196408f9bf6e92cc460--knt-nike.jpg",
-          "title": "Nike Sports Suit",
-        }
-      }
-    />
-  </div>
+  />
   <div
     className="details"
   >
