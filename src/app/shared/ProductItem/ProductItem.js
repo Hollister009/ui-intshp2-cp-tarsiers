@@ -54,12 +54,12 @@ const ViewCartSmall = props => {
       >
         {!inCart ? (
           <span>
-            <i className="fas fa-cart-plus" />
+            <i className="fas fa-cart-plus wishlist-icon" />
             {addToCartText}
           </span>
         ) : (
           <span>
-            <i className="fas fa-cart-arrow-down" />
+            <i className="fas fa-cart-arrow-down wishlist-icon" />
             {rmFromCartText}
           </span>
         )}
