@@ -1,0 +1,26 @@
+@import '../../../styles/mixin';
+@import '../../../styles/variables';
+
+.section {
+  @include d-flex(center, row);
+  background-color: $color-white;
+  border-top: 0.5px solid $color-light-2;
+  padding-bottom: 75px;
+}
+
+.innersection {
+  @include d-flex(center, row);
+  max-width: $media-large;
+}
+
+@media screen and (min-width: $media-tablet) and (max-width: $media-medium) {
+  .innersection {
+    max-width: $media-tablet;
+  }
+}
+
+@media screen and (min-width: $media-smallest) and (max-width: $media-tablet) {
+  .innersection {
+    display: block;
+  }
+}

@@ -35,6 +35,7 @@ const Categories = props => {
 
     return (
       <a
+        key={el}
         href="null"
         onClick={e => setCategories(e, el[0])}
         style={shouldBeHighlighted}

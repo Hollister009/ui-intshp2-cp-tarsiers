@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bool } from 'prop-types';
 import { Notify } from 'react-redux-notify';
 
-import productType from '../../../types';
+import { productType } from '../../types';
 import NotifyService from '../../../utils/notify.service';
 import MaxItemDetails from './MaxItemDetails';
 
@@ -23,14 +23,25 @@ const ViewFrontFull = props => {
 };
 
 const ViewCartSmall = props => {
-  const { title } = props;
+  const { title, inCart, id } = props;
 
-  const handleClick = e => {
-    const { createNotification } = props;
+  const toggleCart = e => {
+    const { removeFromCart, addToCart, createNotification } = props;
 
     e.preventDefault();
-    createNotification(NotifyService.cart);
+    const cb = !inCart ? addToCart : removeFromCart;
+
+    if (!inCart) {
+      createNotification(NotifyService.cartAdd);
+    } else {
+      createNotification(NotifyService.cartRemove);
+    }
+
+    cb(id);
   };
+
+  const addToCartText = 'Add to cart';
+  const rmFromCartText = 'Remove from cart';
 
   return (
     <div className="product-item--small__info">
@@ -39,10 +50,19 @@ const ViewCartSmall = props => {
       <button
         type="button"
         className="add-to-card"
-        onClick={e => handleClick(e)}
+        onClick={e => toggleCart(e, id)}
       >
-        <i className="fas fa-shopping-cart" />
-        add to cart
+        {!inCart ? (
+          <span>
+            <i className="fas fa-cart-plus" />
+            {addToCartText}
+          </span>
+        ) : (
+          <span>
+            <i className="fas fa-cart-arrow-down" />
+            {rmFromCartText}
+          </span>
+        )}
       </button>
     </div>
   );
@@ -68,17 +88,16 @@ const ViewInfoSmall = props => {
 
 class ProductItem extends Component {
   static propTypes = {
-    /**
-     * data - productType shape
-     */
     data: productType,
     extended: bool,
-    isAddedtoWishList: bool
+    isAddedToWishList: bool,
+    isAddedToCart: bool
   };
 
   static defaultProps = {
     extended: false,
-    isAddedtoWishList: false,
+    isAddedToWishList: false,
+    isAddedToCart: false,
     data: null
   };
 
@@ -93,9 +112,12 @@ class ProductItem extends Component {
     const {
       data,
       extended,
-      isAddedtoWishList,
+      isAddedToWishList,
+      isAddedToCart,
       addToWishListItem,
       removeFromWishListItem,
+      addToCart,
+      removeFromCart,
       createNotification
     } = this.props;
     const { available, src, title, price, _id } = data;
@@ -105,7 +127,10 @@ class ProductItem extends Component {
         data={data}
         addToWishListItem={addToWishListItem}
         removeFromWishListItem={removeFromWishListItem}
-        wished={isAddedtoWishList}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        wished={isAddedToWishList}
+        inCart={isAddedToCart}
         createNotification={createNotification}
       />
     ) : (
@@ -135,8 +160,12 @@ class ProductItem extends Component {
         <img src={src} alt="" />
         {showDetails ? (
           <ViewCartSmall
+            id={_id}
             title={title}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
             createNotification={createNotification}
+            inCart={isAddedToCart}
           />
         ) : (
           <ViewInfoSmall title={title} price={price} />

@@ -153,7 +153,10 @@ const appConfig = {
     wishlist: '/api/wish-list',
     addToWishList: '/api/add-to-wish-list',
     removeFromWishList: '/api/remove-from-wish-list',
-    killswitch: '/api/killswitch'
+    killswitch: '/api/killswitch',
+    addToCart: 'api/add-to-cart',
+    removeFromCart: 'api/remove-from-cart',
+    cart: '/api/cart'
   },
   filter: {
     price: {
