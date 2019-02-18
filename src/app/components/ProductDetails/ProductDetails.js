@@ -9,6 +9,7 @@ import {
 } from '../../../utils/inCartInWishlist.service';
 import ProductDescriptionContainer from './ProductDescription/ProductDescriptionContainer';
 import RelatedProducts from './RelatedProducts/RelatedProducts';
+import ImagePreview from '../ImagePreview/ImagePreview';
 
 class ProductDetails extends Component {
   static propTypes = {
@@ -30,20 +31,20 @@ class ProductDetails extends Component {
     const wished = isAddedToWishList(id, wishlist);
     const inCart = isAddedToCart(id, cart);
 
-    return (
+    return item ? (
+      <React.Fragment>
+        <ProductDescriptionContainer
+          item={item}
+          wished={wished}
+          inCart={inCart}
+        >
+          <ImagePreview item={item} />
+        </ProductDescriptionContainer>
+        <RelatedProducts item={item} wished={wished} inCart={inCart} />
+      </React.Fragment>
+    ) : (
       <div className="container">
-        {item ? (
-          <React.Fragment>
-            <ProductDescriptionContainer
-              item={item}
-              wished={wished}
-              inCart={inCart}
-            />
-            <RelatedProducts item={item} wished={wished} inCart={inCart} />
-          </React.Fragment>
-        ) : (
-          <Spinner height="80vh" />
-        )}
+        <Spinner height="80vh" />
       </div>
     );
   }

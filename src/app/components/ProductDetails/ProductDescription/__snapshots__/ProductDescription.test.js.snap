@@ -1,209 +1,191 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductDescription /> should match its snapshot 1`] = `
-<section
-  className="section"
+<div
+  className="background"
 >
   <div
-    className="preview"
+    className="container"
   >
-    <ImgPreview
-      item={
-        Object {
-          "_id": "5c486043e7179a544941a6b2",
-          "available": true,
-          "brand": "Nike",
-          "category": "male",
-          "colorUrls": Object {
-            "#171717": "https://res.cloudinary.com/so/image/upload/v1548246979/products/cba0707c66f3b196408f9bf6e92cc460--knt-nike.jpg",
-          },
-          "colors": Array [
-            "#171717",
-          ],
-          "price": 800,
-          "sizes": Array [
-            "s",
-            "m",
-            "l",
-            "xl",
-          ],
-          "src": "https://res.cloudinary.com/so/image/upload/v1548246979/products/cba0707c66f3b196408f9bf6e92cc460--knt-nike.jpg",
-          "title": "Nike Sports Suit",
-        }
-      }
-    />
-  </div>
-  <div
-    className="details"
-  >
-    <div
-      className="info"
-    >
-      <h1
-        className="title"
-      >
-        Nike Sports Suit
-      </h1>
-      <h3
-        className="subtitle"
-      >
-        Lorem Ipsum is simply dummy text
-      </h3>
-      <p
-        className="text"
-      >
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry
-      </p>
-    </div>
-    <div
-      className="select"
+    <section
+      className="section"
     >
       <div
-        className="flex_row"
+        className="preview"
+      />
+      <div
+        className="details"
       >
-        <p
-          className="choose"
-        >
-          Choose Size
-        </p>
         <div
-          className="sizes"
+          className="info"
         >
-          <a
-            className="size"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
+          <h1
+            className="title"
           >
-            s
-          </a>
-          <span>
-            -
-          </span>
-          <a
-            className="size"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
+            Nike Sports Suit
+          </h1>
+          <h3
+            className="subtitle"
           >
-            m
-          </a>
-          <span>
-            -
-          </span>
-          <a
-            className="size"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
+            Lorem Ipsum is simply dummy text
+          </h3>
+          <p
+            className="text"
           >
-            l
-          </a>
-          <span>
-            -
-          </span>
-          <a
-            className="size"
-            href="/"
-            onClick={[Function]}
-            style={Object {}}
-          >
-            xl
-          </a>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry
+          </p>
         </div>
-      </div>
-      <div
-        className="flex_row"
-      >
-        <p
-          className="choose"
-        >
-          Choose Quantity
-        </p>
         <div
-          className="quantity"
+          className="select"
         >
-          <button
-            data-type="increment"
-            onClick={[Function]}
-            type="button"
+          <div
+            className="flex_row"
           >
-            +
-          </button>
-          <span>
-            0
-          </span>
-          <button
-            data-type="decrement"
-            onClick={[Function]}
-            type="button"
+            <p
+              className="choose"
+            >
+              Choose Size
+            </p>
+            <div
+              className="sizes"
+            >
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                s
+              </a>
+              <span>
+                -
+              </span>
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                m
+              </a>
+              <span>
+                -
+              </span>
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                l
+              </a>
+              <span>
+                -
+              </span>
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                xl
+              </a>
+            </div>
+          </div>
+          <div
+            className="flex_row"
           >
-            -
-          </button>
+            <p
+              className="choose"
+            >
+              Choose Quantity
+            </p>
+            <div
+              className="quantity"
+            >
+              <button
+                data-type="increment"
+                onClick={[Function]}
+                type="button"
+              >
+                +
+              </button>
+              <span>
+                0
+              </span>
+              <button
+                data-type="decrement"
+                onClick={[Function]}
+                type="button"
+              >
+                -
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div
-      className="order"
-    >
-      <p
-        className="price"
-      >
-        Price: 800$
-      </p>
-      <div
-        className="buttons_row"
-      >
-        <button
-          type="button"
+        <div
+          className="order"
         >
-          <i
-            className="fas fa-globe"
-          />
-        </button>
-        <Connect(Notify)
-          position="TopRight"
-        />
-        <button
-          data-type="cart-btn"
-          onClick={[Function]}
-          title="Add to shopping-cart"
-          type="button"
-        >
-          <i
-            className="fas fa-cart-plus"
-          />
-        </button>
-        <Flags
-          authorizedFlags={
-            Array [
-              "showWishlist",
-            ]
-          }
-          exactFlags={false}
-          renderOff={[Function]}
-          renderOn={[Function]}
-        >
-          <button
-            data-type="wishlist-btn"
-            onClick={[Function]}
-            title="Add to wish-list"
-            type="button"
+          <p
+            className="price"
           >
-            <i
-              className="fas fa-heart"
+            Price: 800$
+          </p>
+          <div
+            className="buttons_row"
+          >
+            <button
+              type="button"
+            >
+              <i
+                className="fas fa-globe"
+              />
+            </button>
+            <Connect(Notify)
+              position="TopRight"
             />
-          </button>
-        </Flags>
-        <button
-          className="btn_order"
-          onClick={[Function]}
-          type="button"
-        >
-          Order Now
-        </button>
+            <button
+              data-type="cart-btn"
+              onClick={[Function]}
+              title="Add to shopping-cart"
+              type="button"
+            >
+              <i
+                className="fas fa-cart-plus"
+              />
+            </button>
+            <Flags
+              authorizedFlags={
+                Array [
+                  "showWishlist",
+                ]
+              }
+              exactFlags={false}
+              renderOff={[Function]}
+              renderOn={[Function]}
+            >
+              <button
+                data-type="wishlist-btn"
+                onClick={[Function]}
+                title="Add to wish-list"
+                type="button"
+              >
+                <i
+                  className="fas fa-heart"
+                />
+              </button>
+            </Flags>
+            <button
+              className="btn_order"
+              onClick={[Function]}
+              type="button"
+            >
+              Order Now
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
-</section>
+</div>
 `;

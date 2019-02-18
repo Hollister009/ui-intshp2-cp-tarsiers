@@ -9,14 +9,14 @@ a {
 
 .header {
   width: 100%;
-  padding-bottom: 62px;
+  padding-bottom: 40px;
   background-color: $color-white;
   font-family: $main-font-regular;
   position: relative;
 
   &-top {
     padding: 10px;
-    padding-top: 20px;
+    padding-top: 30px;
     @include d-flex();
 
     .far,
