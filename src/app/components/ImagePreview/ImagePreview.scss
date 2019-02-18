@@ -51,6 +51,9 @@
   img {
     max-width: 70px;
     height: auto;
+    &:focus {
+      outline: none;
+    }
   }
 }
 .active {
