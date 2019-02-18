@@ -119,7 +119,7 @@ class MaxItemDetails extends Component {
               {!inCart ? (
                 <i className="fas fa-cart-plus" />
               ) : (
-                <i className="fas fa-cart-arrow-down" />
+                <i className="fas fa-cart-arrow-down highlighted" />
               )}
             </button>
             <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>

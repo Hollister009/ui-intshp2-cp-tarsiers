@@ -170,7 +170,7 @@ class ProductDescription extends Component {
                 data-type="cart-btn"
               >
                 {inCart ? (
-                  <i className="fas fa-cart-arrow-down" />
+                  <i className="fas fa-cart-arrow-down highlighted" />
                 ) : (
                   <i className="fas fa-cart-plus" />
                 )}
