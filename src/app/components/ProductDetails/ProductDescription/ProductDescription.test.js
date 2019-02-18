@@ -75,7 +75,7 @@ describe('<ProductDescription />', () => {
     expect(props.orderNowItem).toHaveBeenCalled();
   });
 
-  describe('toggleWishList', () => {
+  xdescribe('toggleWishList', () => {
     it('should call addItem when wished is false', () => {
       const evt = { preventDefault() {} };
       const wrapper = shallow(<ProductDescription {...props} />);
