@@ -51,7 +51,7 @@ class ImagePreview extends Component {
     const { item } = this.props;
     const { figureStyle, mainImgURL } = this.state;
 
-    if (item && !mainImgURL.length) {
+    if (item && mainImgURL !== item.src) {
       this.setState(state => ({
         figureStyle: {
           ...state.figureStyle,

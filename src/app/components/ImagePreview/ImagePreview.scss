@@ -5,15 +5,13 @@
   @include d-flex();
   flex-direction: column;
   align-items: center;
-  margin-top: 103px;
-  background-color: white;
-  width: 80%;
+  margin-top: 100px;
+  background-color: $color-white;
   max-height: 400px;
 
   figure {
-    width: 200px;
     position: relative;
-    background-color: white;
+    background-color: $color-white;
 
     img {
       display: block;
@@ -73,7 +71,7 @@
 
 @media screen and (min-width: $media-smallest) and (max-width: $media-tablet) {
   .img-container {
-    width: 90%;
+    // width: 90%;
     figure {
       div {
         display: none;
