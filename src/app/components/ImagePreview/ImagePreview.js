@@ -11,12 +11,26 @@ class ImagePreview extends Component {
 
     this.state = {
       figureStyle: {
-        backgroundImage: '',
+        backgroundImage: `url(${props.item.src})`,
         backgroundPosition: '0% 0%'
       },
-      mainImgURL: ''
+      mainImgURL: props.item.src
     };
   }
+
+  componentDidUpdate = prevProps => {
+    const { item } = this.props;
+
+    if (prevProps.item !== item) {
+      this.setState(state => ({
+        mainImgURL: item.src,
+        figureStyle: {
+          ...state.figureStyle,
+          backgroundImage: `url(${item.src})`
+        }
+      }));
+    }
+  };
 
   handleMouseMove = e => {
     const { left, top, width, height } = e.target.getBoundingClientRect();
@@ -31,19 +45,24 @@ class ImagePreview extends Component {
 
   changeMainImage = e => {
     if (e.keyCode === 13 || e.type === 'click') {
-      const newMainUrl = e.target.getAttribute('src');
-      const activeElement = e.target.parentNode;
+      const newMainUrl = e.currentTarget
+        .querySelector('img')
+        .getAttribute('src');
+      const activeElement = e.currentTarget;
       const activeElementSiblings = e.target.parentNode.parentNode.childNodes;
 
       activeElementSiblings.forEach(element => {
         element.classList.remove('active');
       });
-      activeElement.classList.toggle('active');
+      activeElement.classList.add('active');
 
-      this.setState({
+      this.setState(state => ({
         mainImgURL: newMainUrl,
-        figureStyle: { backgroundImage: `url(${newMainUrl})` }
-      });
+        figureStyle: {
+          ...state.figureStyle,
+          backgroundImage: `url(${newMainUrl})`
+        }
+      }));
     }
   };
 
@@ -51,19 +70,6 @@ class ImagePreview extends Component {
     const { item } = this.props;
     const { figureStyle, mainImgURL } = this.state;
 
-    if (item && mainImgURL !== item.src) {
-      this.setState(state => ({
-        figureStyle: {
-          ...state.figureStyle,
-          backgroundImage: `url(${item.src})`
-        },
-        mainImgURL: item.src
-      }));
-    } else if (!item) {
-      return null;
-    }
-
-    const imgState = this.state;
     const thumbnails = Object.values(item.colorUrls).map(el => (
       <div
         key={el}
@@ -80,7 +86,7 @@ class ImagePreview extends Component {
     return (
       <div className="img-container">
         <figure onMouseMove={this.handleMouseMove}>
-          <img src={imgState.mainImgURL} alt="thumbnail" />
+          <img src={mainImgURL} alt="thumbnail" />
           <div style={figureStyle} />
         </figure>
         <div className="thumbnails-box">{thumbnails}</div>
