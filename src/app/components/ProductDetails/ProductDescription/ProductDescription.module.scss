@@ -1,6 +1,11 @@
 @import '../../../../styles/mixin';
 @import '../../../../styles/variables';
 
+.background {
+  background-color: $color-white;
+  border-top: 0.5px solid $color-light-2;
+  padding-bottom: 65px;
+}
 .section {
   @include d-flex(center);
 
@@ -22,11 +27,11 @@
 }
 
 .preview {
-  width: 70%;
+  width: 60%;
 }
 
 .details {
-  margin: 0 40px;
+  margin: 0;
   margin-top: 100px;
 
   .info {
@@ -163,11 +168,18 @@
   .section {
     @include d-flex(center, column);
   }
+  .preview {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: $media-mobile) {
   .section {
     @include d-flex(center, column);
+  }
+
+  .preview {
+    width: 100%;
   }
 
   .title {
@@ -198,6 +210,10 @@
 @media screen and (max-width: $media-smallest) {
   .section {
     @include d-flex(center, column);
+  }
+
+  .preview {
+    width: 100%;
   }
 
   .title {

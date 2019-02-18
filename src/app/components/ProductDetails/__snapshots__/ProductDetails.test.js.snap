@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductDetails /> should match its snapshot 1`] = `
-<div
-  className="container"
->
+<Fragment>
   <Connect(ProductDescription)
     inCart={false}
     item={
@@ -105,5 +103,5 @@ exports[`<ProductDetails /> should match its snapshot 1`] = `
     }
     wished={false}
   />
-</div>
+</Fragment>
 `;
