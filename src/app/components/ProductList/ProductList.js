@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
+import {
+  isAddedToCart,
+  isAddedToWishList
+} from '../../../utils/inCartInWishlist.service';
 
 export default class ProductList extends Component {
   constructor(props) {
@@ -21,7 +25,7 @@ export default class ProductList extends Component {
   throttled = (delay, fn) => {
     let lastCall = 0;
 
-    return function kek(...args) {
+    return function mock(...args) {
       const now = new Date().getTime();
 
       if (now - lastCall < delay) {
@@ -169,7 +173,7 @@ export default class ProductList extends Component {
 
     getFilteredProducts({ params }).then(res => {
       addItemsToFiltered(res.data);
-      if (res.data.length !== 0) {
+      if (res.data.length) {
         updateLimit(3);
         updateSkip(skipped);
       }
@@ -183,12 +187,9 @@ export default class ProductList extends Component {
     window.removeEventListener('scroll', this.scroll);
   };
 
-  isAddedtoWishList = id => this.wishlist.includes(id);
-
   render() {
-    const { filteredItems, wishlist } = this.props;
-
-    const isAddedtoWishList = id => wishlist.includes(id);
+    const { filteredItems, wishlist, cart } = this.props;
+    const extended = true;
 
     if (!filteredItems.length) {
       return (
@@ -204,10 +205,11 @@ export default class ProductList extends Component {
       filteredItems &&
       filteredItems.map(el => (
         <ProductItemContainer
+          isAddedToWishList={isAddedToWishList(el._id, wishlist)}
+          isAddedToCart={isAddedToCart(el._id, cart)}
+          extended={extended}
           key={el._id}
           data={el}
-          isAddedtoWishList={isAddedtoWishList(el._id)}
-          extended
         />
       ));
 

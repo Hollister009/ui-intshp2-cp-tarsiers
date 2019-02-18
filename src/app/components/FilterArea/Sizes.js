@@ -26,6 +26,7 @@ class Sizes extends Component {
 
       return (
         <label
+          key={el}
           htmlFor={`size-${el[0].toLowerCase()}`}
           className="filter-option-container"
           style={shouldBeHighlighted}

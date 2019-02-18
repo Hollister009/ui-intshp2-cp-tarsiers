@@ -16,6 +16,7 @@ const Categories = props => {
 
     return (
       <a
+        key={el}
         href="null"
         onClick={e => handleCategoryChange(e, el[0])}
         style={shouldBeHighlighted}

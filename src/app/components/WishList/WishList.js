@@ -3,6 +3,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import Carousel from '../../shared/Carousel';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
+import { isAddedToCart } from '../../../utils/inCartInWishlist.service';
 
 import styles from './WishList.module.scss';
 
@@ -10,13 +11,19 @@ const title = 'Wish list';
 const message = 'Currently your wishlist is empty. Add products to it first';
 
 const WishList = props => {
-  const { products, wishlist } = props;
+  const { products, wishlist, cart } = props;
   const titleArr = title.split(' ');
   const filteredProducts = products.filter(item => wishlist.includes(item._id));
 
   const list =
     wishlist.length &&
-    filteredProducts.map(el => <ProductItemContainer key={el._id} data={el} />);
+    filteredProducts.map(el => (
+      <ProductItemContainer
+        key={el._id}
+        data={el}
+        isAddedToCart={isAddedToCart(el._id, cart)}
+      />
+    ));
 
   return !list.length ? null : (
     <section className={styles.wishlist}>
