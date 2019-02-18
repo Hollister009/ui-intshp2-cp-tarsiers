@@ -1,30 +1,11 @@
 import React from 'react';
 
 const Categories = props => {
-  const {
-    setCategory,
-    getFilteredProducts,
-    toggleAvailability,
-    updateFiltered,
-    updateSkip,
-    updateLimit,
-    filter
-  } = props;
+  const { setCategory, toggleAvailability, filter } = props;
 
-  const setCategories = (e, category) => {
+  const handleCategoryChange = (e, category) => {
     e.preventDefault();
-    const { sizes, brands, price, available } = filter;
-
     setCategory(category);
-    updateSkip(0);
-    updateLimit(6);
-
-    const { skip, limit } = filter;
-    const params = { sizes, brands, category, price, available, skip, limit };
-
-    params.skip = 0;
-    params.limit = 6;
-    getFilteredProducts({ params }).then(res => updateFiltered(res.data));
   };
 
   const categoryPairs = { male: 'Men', female: 'Women', kids: 'Children' };
@@ -36,7 +17,7 @@ const Categories = props => {
     return (
       <a
         href="null"
-        onClick={e => setCategories(e, el[0])}
+        onClick={e => handleCategoryChange(e, el[0])}
         style={shouldBeHighlighted}
       >
         {el[1]}
