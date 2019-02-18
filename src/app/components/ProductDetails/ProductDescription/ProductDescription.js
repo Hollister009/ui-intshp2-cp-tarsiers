@@ -7,7 +7,6 @@ import { productType } from '../../../types';
 import appConfig from '../../../../config/appConfig';
 import NotifyService from '../../../../utils/notify.service';
 import { addItem, removeItem } from '../../../../utils/wishlist.service';
-import ImgPreview from '../../ImgPreview/ImgPreview';
 
 import styles from './ProductDescription.module.scss';
 
@@ -91,7 +90,7 @@ class ProductDescription extends Component {
   };
 
   render() {
-    const { item, wished, inCart } = this.props;
+    const { item, wished, inCart, children } = this.props;
     const { quantity, sizeClicked } = this.state;
 
     if (!item) {
@@ -120,9 +119,7 @@ class ProductDescription extends Component {
 
     return (
       <section className={styles.section}>
-        <div className={styles.preview}>
-          <ImgPreview item={item} />
-        </div>
+        <div className={styles.preview}>{children}</div>
         <div className={styles.details}>
           <div className={styles.info}>
             <h1 className={styles.title}>{item.title}</h1>

@@ -9,6 +9,7 @@ import {
 } from '../../../utils/inCartInWishlist.service';
 import ProductDescriptionContainer from './ProductDescription/ProductDescriptionContainer';
 import RelatedProducts from './RelatedProducts/RelatedProducts';
+import ImagePreview from '../ImagePreview/ImagePreview';
 
 class ProductDetails extends Component {
   static propTypes = {
@@ -38,7 +39,9 @@ class ProductDetails extends Component {
               item={item}
               wished={wished}
               inCart={inCart}
-            />
+            >
+              <ImagePreview item={item} />
+            </ProductDescriptionContainer>
             <RelatedProducts item={item} wished={wished} inCart={inCart} />
           </React.Fragment>
         ) : (
