@@ -59,7 +59,11 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
                 className="size"
                 href="/"
                 onClick={[Function]}
-                style={Object {}}
+                style={
+                  Object {
+                    "color": "#ff5912",
+                  }
+                }
               >
                 s
               </a>
@@ -96,6 +100,34 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
               >
                 xl
               </a>
+            </div>
+          </div>
+          <div
+            className="flex_row"
+          >
+            <p
+              className="choose"
+            >
+              Choose Color
+            </p>
+            <div
+              className="colors"
+            >
+              <span
+                className="active"
+                key="#171717"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="button"
+                style={
+                  Object {
+                    "backgroundColor": "#171717",
+                  }
+                }
+                tabIndex="0"
+              >
+                #171717
+              </span>
             </div>
           </div>
           <div

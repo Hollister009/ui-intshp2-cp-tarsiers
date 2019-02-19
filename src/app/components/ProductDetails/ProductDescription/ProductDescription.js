@@ -28,7 +28,12 @@ class ProductDescription extends Component {
   componentDidMount = () => {
     const { item } = this.props;
 
-    this.setState({ sizeClicked: item.sizes[0], activeColor: item.colors[0] });
+    if (item) {
+      this.setState({
+        sizeClicked: item.sizes[0],
+        activeColor: item.colors[0]
+      });
+    }
   };
 
   increment = () => {
