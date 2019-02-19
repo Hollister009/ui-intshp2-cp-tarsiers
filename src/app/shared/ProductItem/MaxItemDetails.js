@@ -30,7 +30,6 @@ class MaxItemDetails extends Component {
   state = { heartDisabled: false };
 
   componentDidMount() {
-    console.log('mounted');
     const { data } = this.props;
 
     this.setState({ image: data.src });
@@ -38,13 +37,11 @@ class MaxItemDetails extends Component {
 
   toggleWishList = (e, id) => {
     const { wished } = this.props;
-    const { heartDisabled } = this.state;
 
     e.preventDefault();
     const cb = !wished ? this.addItem : this.removeItem;
 
     this.setState({ heartDisabled: true }, () => {
-      console.log(heartDisabled);
       cb(id);
     });
   };
