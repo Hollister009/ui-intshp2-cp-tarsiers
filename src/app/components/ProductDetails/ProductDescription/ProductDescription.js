@@ -25,30 +25,6 @@ class ProductDescription extends Component {
 
   removeItem = removeItem.bind(this);
 
-  componentDidMount = () => {
-    const { item } = this.props;
-
-    if (item) {
-      this.setState({
-        sizeClicked: item.sizes[0],
-        activeColor: item.colors[0]
-      });
-    }
-  };
-
-  componentDidUpdate = () => {
-    const { item } = this.props;
-    const { sizeClicked, activeColor } = this.state;
-
-    if (item.sizes[0] !== sizeClicked) {
-      this.setState({ sizeClicked: item.sizes[0] });
-    }
-
-    if (item.colors[0] !== activeColor) {
-      this.setState({ activeColor: item.colors[0] });
-    }
-  };
-
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
   };
@@ -117,8 +93,14 @@ class ProductDescription extends Component {
       quantity
     };
 
-    orderNowItem(orderData);
-    createNotification(NotifyService.ordered);
+    if (sizeClicked && activeColor) {
+      orderNowItem(orderData);
+      createNotification(NotifyService.ordered);
+    } else if (sizeClicked) {
+      createNotification(NotifyService.chooseSize);
+    } else {
+      createNotification(NotifyService.chooseColor);
+    }
   };
 
   chooseColor = colors =>

@@ -59,11 +59,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
                 className="size"
                 href="/"
                 onClick={[Function]}
-                style={
-                  Object {
-                    "color": "#ff5912",
-                  }
-                }
+                style={Object {}}
               >
                 s
               </a>
@@ -114,7 +110,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
               className="colors"
             >
               <span
-                className="active"
+                className=""
                 key="#171717"
                 onClick={[Function]}
                 onKeyDown={[Function]}
