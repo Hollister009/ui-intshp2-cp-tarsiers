@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import HttpService from './http.service';
 import NotifyService from './notify.service';
 import appConfig from '../config/appConfig';
