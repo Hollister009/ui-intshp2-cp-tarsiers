@@ -19,7 +19,7 @@ class ProductDescription extends Component {
 
   static defaultProps = { item: null, wished: false, inCart: false };
 
-  state = { quantity: 0, sizeClicked: '' };
+  state = { quantity: 1, sizeClicked: '' };
 
   addItem = addItem.bind(this);
 
@@ -32,7 +32,7 @@ class ProductDescription extends Component {
   decrement = () => {
     const { quantity } = this.state;
 
-    if (quantity > 0) {
+    if (quantity > 1) {
       this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
     }
   };
@@ -82,11 +82,16 @@ class ProductDescription extends Component {
       title: item.title,
       size: sizeClicked,
       price: item.price,
+      src: item.src,
       quantity
     };
 
-    orderNowItem(orderData);
-    createNotification(NotifyService.ordered);
+    if (sizeClicked) {
+      orderNowItem(orderData);
+      createNotification(NotifyService.ordered);
+    } else {
+      createNotification(NotifyService.chooseSize);
+    }
   };
 
   render() {
@@ -98,7 +103,7 @@ class ProductDescription extends Component {
     }
 
     const { _id } = item;
-    const price = quantity > 0 ? item.price * quantity : item.price;
+    const price = quantity > 1 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((element, index, array) => {
       const active = sizeClicked === element ? { color: '#ff5912' } : {};
 
