@@ -111,7 +111,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
                 +
               </button>
               <span>
-                0
+                1
               </span>
               <button
                 data-type="decrement"

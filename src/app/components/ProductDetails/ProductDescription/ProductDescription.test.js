@@ -42,15 +42,15 @@ describe('<ProductDescription />', () => {
   it('should be able to decrement', () => {
     const wrapper = shallow(<ProductDescription {...props} />);
 
-    wrapper.setState({ quantity: 1 });
+    wrapper.setState({ quantity: 2 });
     wrapper.update();
 
     const decBtn = wrapper.find('button[data-type="decrement"]');
 
     decBtn.simulate('click');
-    expect(wrapper.state().quantity).toBe(0);
+    expect(wrapper.state().quantity).toBe(1);
     decBtn.simulate('click');
-    expect(wrapper.state().quantity).toBe(0);
+    expect(wrapper.state().quantity).toBe(1);
   });
 
   it('should be able to call toggleSizes', () => {
@@ -66,11 +66,22 @@ describe('<ProductDescription />', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should be able to call orderHandler', () => {
+  it('should not call orderHandler when size isn`t clicked', () => {
     const evt = { preventDefault() {} };
     const wrapper = shallow(<ProductDescription {...props} />);
     const btn = wrapper.find('.btn_order');
 
+    btn.simulate('click', evt);
+    expect(props.orderNowItem).not.toHaveBeenCalled();
+  });
+
+  it('should be able to call orderHandler when size is clicked', () => {
+    const evt = { preventDefault() {} };
+    const wrapper = shallow(<ProductDescription {...props} />);
+    const btn = wrapper.find('.btn_order');
+
+    wrapper.setState({ sizeClicked: 'S' });
+    wrapper.update();
     btn.simulate('click', evt);
     expect(props.orderNowItem).toHaveBeenCalled();
   });
