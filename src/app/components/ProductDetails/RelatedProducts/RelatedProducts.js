@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { productType } from '../../../types';
 import Carousel from '../../../shared/Carousel/index';
 import ProductItemContainer from '../../../shared/ProductItem/ProductItemContainer';
 import HttpService from '../../../../utils/http.service';
-
+import {
+  isAddedToCart,
+  isAddedToWishList
+} from '../../../../utils/inCartInWishlist.service';
 import './RelatedProducts.scss';
 
 const title = 'Related Products';
 
 class RelatedProducts extends Component {
   static propTypes = {
-    item: productType,
-    wished: PropTypes.bool,
-    inCart: PropTypes.bool
+    item: productType
   };
 
-  static defaultProps = { item: null, wished: false, inCart: false };
+  static defaultProps = { item: null };
 
   constructor(props) {
     super(props);
@@ -51,15 +51,16 @@ class RelatedProducts extends Component {
 
   render() {
     const titleArr = title.split(' ');
-    const { inCart, wished } = this.props;
+    const { wishlist, cart } = this.props;
     const { relatedProducts } = this.state;
     const extended = true;
+
     const list =
       relatedProducts &&
       relatedProducts.map(el => (
         <ProductItemContainer
-          isAddedToCart={inCart}
-          isAddedToWishList={wished}
+          isAddedToCart={isAddedToCart(el._id, cart)}
+          isAddedToWishList={isAddedToWishList(el._id, wishlist)}
           extended={extended}
           key={el._id}
           data={el}
