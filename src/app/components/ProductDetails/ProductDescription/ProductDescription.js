@@ -19,11 +19,17 @@ class ProductDescription extends Component {
 
   static defaultProps = { item: null, wished: false, inCart: false };
 
-  state = { quantity: 1, sizeClicked: '' };
+  state = { quantity: 1, sizeClicked: '', activeColor: '' };
 
   addItem = addItem.bind(this);
 
   removeItem = removeItem.bind(this);
+
+  componentDidMount = () => {
+    const { item } = this.props;
+
+    this.setState({ sizeClicked: item.sizes[0], activeColor: item.colors[0] });
+  };
 
   increment = () => {
     this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
@@ -41,6 +47,12 @@ class ProductDescription extends Component {
     e.preventDefault();
 
     this.setState({ sizeClicked: e.target.innerText.toLowerCase() });
+  };
+
+  toggleColors = e => {
+    e.preventDefault();
+
+    this.setState({ activeColor: e.target.innerText });
   };
 
   toggleWishList = (e, id) => {
@@ -77,22 +89,39 @@ class ProductDescription extends Component {
   orderHandler = e => {
     e.preventDefault();
     const { item, orderNowItem, createNotification } = this.props;
-    const { sizeClicked, quantity } = this.state;
+    const { sizeClicked, quantity, activeColor } = this.state;
     const orderData = {
       title: item.title,
       size: sizeClicked,
+      color: activeColor,
       price: item.price,
       src: item.src,
       quantity
     };
 
-    if (sizeClicked) {
-      orderNowItem(orderData);
-      createNotification(NotifyService.ordered);
-    } else {
-      createNotification(NotifyService.chooseSize);
-    }
+    orderNowItem(orderData);
+    createNotification(NotifyService.ordered);
   };
+
+  chooseColor = colors =>
+    colors.map(color => {
+      const { activeColor } = this.state;
+      const style = { backgroundColor: `${color}` };
+
+      return (
+        <span
+          key={color}
+          role="button"
+          tabIndex="0"
+          className={color === activeColor ? styles.active : ''}
+          style={style}
+          onClick={e => this.toggleColors(e)}
+          onKeyDown={e => this.toggleColors(e)}
+        >
+          {color}
+        </span>
+      );
+    });
 
   render() {
     const { item, wished, inCart, children } = this.props;
@@ -102,7 +131,7 @@ class ProductDescription extends Component {
       return null;
     }
 
-    const { _id } = item;
+    const { _id, colors } = item;
     const price = quantity > 1 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((element, index, array) => {
       const active = sizeClicked === element ? { color: '#ff5912' } : {};
@@ -121,6 +150,7 @@ class ProductDescription extends Component {
         </React.Fragment>
       );
     });
+    const swatches = this.chooseColor(colors);
 
     return (
       <div className={styles.background}>
@@ -144,6 +174,10 @@ class ProductDescription extends Component {
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Choose Size</p>
                   <div className={styles.sizes}>{sizes}</div>
+                </div>
+                <div className={styles.flex_row}>
+                  <p className={styles.choose}>Choose Color</p>
+                  <div className={styles.colors}>{swatches}</div>
                 </div>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Choose Quantity</p>
