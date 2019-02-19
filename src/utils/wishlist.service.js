@@ -7,7 +7,6 @@ const { addToWishList, removeFromWishList } = appConfig.apiResources;
 export function addItem(id) {
   const { addToWishListItem, wished, createNotification } = this.props;
 
-  if (!this.state.heartDisabled) return;
   HttpService.post(addToWishList, { productId: id })
     .then(res => {
       if (res.status === 200 && !wished) {
