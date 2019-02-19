@@ -5,7 +5,20 @@
   background-color: $color-white;
   border-top: 0.5px solid $color-light-2;
   padding-bottom: 65px;
+
+  .titlebig {
+    display: none;
+    color: $color-main;
+    font-family: $main-font-bold;
+    font-size: 52px;
+    text-transform: uppercase;
+    line-height: 45px;
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 }
+
 .section {
   @include d-flex(center);
 
@@ -165,11 +178,27 @@
 }
 
 @media screen and (max-width: $media-tablet) {
+  .background {
+    .titlebig {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
   .section {
     @include d-flex(center, column);
   }
+
+  .details {
+    margin-top: 20px;
+  }
+
   .preview {
     width: 100%;
+  }
+
+  .title {
+    display: none;
   }
 }
 
@@ -180,10 +209,6 @@
 
   .preview {
     width: 100%;
-  }
-
-  .title {
-    text-align: center;
   }
 
   .details {
