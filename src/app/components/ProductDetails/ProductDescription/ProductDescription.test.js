@@ -59,20 +59,20 @@ describe('<ProductDescription />', () => {
     const size = wrapper.find('.size').at(0);
     const evt = { preventDefault() {}, target: { size, innerText: 'S' } };
 
-    expect(wrapper.state().sizeClicked).toBe('s');
+    expect(wrapper.state().sizeClicked).toBe('');
     size.simulate('click', evt);
 
     expect(wrapper.state().sizeClicked).toBe('s');
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should be able to call orderHandler', () => {
+  it('should not call orderHandler if sizeClicked & activeColor wasnt chosen', () => {
     const evt = { preventDefault() {} };
     const wrapper = shallow(<ProductDescription {...props} />);
     const btn = wrapper.find('.btn_order');
 
     btn.simulate('click', evt);
-    expect(props.orderNowItem).toHaveBeenCalled();
+    expect(props.orderNowItem).not.toHaveBeenCalled();
   });
 
   xdescribe('toggleWishList', () => {
