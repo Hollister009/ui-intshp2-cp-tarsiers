@@ -57,14 +57,6 @@ class NotifyService {
     icon: <i className="far fa-thumbs-up" />
   };
 
-  chooseSize = {
-    message: 'Choose size first!',
-    type: NOTIFICATION_TYPE_WARNING,
-    duration: 800,
-    canDismiss: true,
-    icon: <i className="fas fa-tag" />
-  };
-
   position = {
     topRight: 'TopRight',
     topLeft: 'TopLeft',

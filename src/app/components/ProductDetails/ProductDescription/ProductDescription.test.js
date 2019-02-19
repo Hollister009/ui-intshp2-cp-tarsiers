@@ -59,29 +59,18 @@ describe('<ProductDescription />', () => {
     const size = wrapper.find('.size').at(0);
     const evt = { preventDefault() {}, target: { size, innerText: 'S' } };
 
-    expect(wrapper.state().sizeClicked).toBe('');
+    expect(wrapper.state().sizeClicked).toBe('s');
     size.simulate('click', evt);
 
     expect(wrapper.state().sizeClicked).toBe('s');
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should not call orderHandler when size isn`t clicked', () => {
+  it('should be able to call orderHandler', () => {
     const evt = { preventDefault() {} };
     const wrapper = shallow(<ProductDescription {...props} />);
     const btn = wrapper.find('.btn_order');
 
-    btn.simulate('click', evt);
-    expect(props.orderNowItem).not.toHaveBeenCalled();
-  });
-
-  it('should be able to call orderHandler when size is clicked', () => {
-    const evt = { preventDefault() {} };
-    const wrapper = shallow(<ProductDescription {...props} />);
-    const btn = wrapper.find('.btn_order');
-
-    wrapper.setState({ sizeClicked: 'S' });
-    wrapper.update();
     btn.simulate('click', evt);
     expect(props.orderNowItem).toHaveBeenCalled();
   });
