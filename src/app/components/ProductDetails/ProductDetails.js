@@ -40,7 +40,7 @@ class ProductDetails extends Component {
         >
           <ImagePreview item={item} />
         </ProductDescriptionContainer>
-        <RelatedProducts item={item} wished={wished} inCart={inCart} />
+        <RelatedProducts item={item} wishlist={wishlist} cart={cart} />
       </React.Fragment>
     ) : (
       <div className="container">
