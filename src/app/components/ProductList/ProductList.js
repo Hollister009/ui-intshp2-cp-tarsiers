@@ -38,6 +38,34 @@ export default class ProductList extends Component {
   };
 
   componentDidUpdate = prevProps => {
+    const { filter } = this.props;
+
+    const shouldUpdate =
+      JSON.stringify(prevProps.filter) !== JSON.stringify(filter) &&
+      prevProps.filter.skip === filter.skip &&
+      prevProps.filter.limit === filter.limit;
+
+    if (shouldUpdate) {
+      const {
+        getFilteredProducts,
+        updateFiltered,
+        updateSkip,
+        updateLimit
+      } = this.props;
+
+      const { sizes, brands, price, available, category } = filter;
+
+      updateSkip(0);
+      updateLimit(6);
+
+      const params = { sizes, brands, price, available, category };
+
+      params.skip = 0;
+      params.limit = 6;
+      getFilteredProducts({ params }).then(res => updateFiltered(res.data));
+      return;
+    }
+
     const { filteredItems } = this.props;
     const { showButton } = this.state;
 
@@ -108,14 +136,17 @@ export default class ProductList extends Component {
         params.limit = 3;
         params.skip = skipped;
 
+        updateLimit(3);
+        updateSkip(skipped);
+
         getFilteredProducts({ params }).then(res => {
           addItemsToFiltered(res.data);
           if (res.data.length) {
             updateLimit(3);
             updateSkip(skipped);
           } else {
-            window.removeEventListener('scroll', this.scroll);
             this.scrollSet = false;
+            window.removeEventListener('scroll', this.scroll);
           }
         });
       }
