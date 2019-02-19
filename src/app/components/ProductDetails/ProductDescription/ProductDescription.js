@@ -97,9 +97,9 @@ class ProductDescription extends Component {
       orderNowItem(orderData);
       createNotification(NotifyService.ordered);
     } else if (sizeClicked) {
-      createNotification(NotifyService.chooseSize);
-    } else {
       createNotification(NotifyService.chooseColor);
+    } else {
+      createNotification(NotifyService.chooseSize);
     }
   };
 
