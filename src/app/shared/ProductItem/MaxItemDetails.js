@@ -30,6 +30,7 @@ class MaxItemDetails extends Component {
   state = { heartDisabled: false };
 
   componentDidMount() {
+    console.log('mounted');
     const { data } = this.props;
 
     this.setState({ image: data.src });
@@ -42,6 +43,7 @@ class MaxItemDetails extends Component {
     const cb = !wished ? this.addItem : this.removeItem;
 
     this.setState({ heartDisabled: true }, () => {
+      console.log(this.state.heartDisabled);
       cb(id);
     });
   };
@@ -91,6 +93,8 @@ class MaxItemDetails extends Component {
     const { data, wished, inCart } = this.props;
     const { _id, title, sizes, colors, colorUrls } = data;
     const { heartDisabled, image } = this.state;
+
+    console.log('heart disabled', heartDisabled);
     const allSizes = sizes
       .map((size, i) => (i !== 0 ? `- ${size}` : size))
       .join(' ');

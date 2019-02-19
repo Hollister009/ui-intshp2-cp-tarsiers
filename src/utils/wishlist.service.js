@@ -7,6 +7,7 @@ const { addToWishList, removeFromWishList } = appConfig.apiResources;
 export function addItem(id) {
   const { addToWishListItem, wished, createNotification } = this.props;
 
+  if (!this.state.heartDisabled) return;
   HttpService.post(addToWishList, { productId: id })
     .then(res => {
       if (res.status === 200 && !wished) {
@@ -15,7 +16,9 @@ export function addItem(id) {
       }
     })
     .catch(error => console.log(error))
-    .finally(this.setState({ heartDisabled: false }));
+    .finally(() => {
+      this.setState({ heartDisabled: false });
+    });
 
   createNotification(NotifyService.added);
 }
@@ -31,7 +34,9 @@ export function removeItem(id) {
       }
     })
     .catch(error => console.log(error))
-    .finally(this.setState({ heartDisabled: false }));
+    .finally(() => {
+      this.setState({ heartDisabled: false });
+    });
 
   createNotification(NotifyService.removed);
 }
