@@ -125,6 +125,9 @@ class ProductDescription extends Component {
     return (
       <div className={styles.background}>
         <div className="container">
+          <h1 className={styles.titlebig} id="test">
+            {item.title}
+          </h1>
           <section className={styles.section}>
             <div className={styles.preview}>{children}</div>
             <div className={styles.details}>
