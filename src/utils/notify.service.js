@@ -14,7 +14,7 @@ class NotifyService {
     type: NOTIFICATION_TYPE_SUCCESS,
     duration: 800,
     canDismiss: true,
-    icon: <i className="fa fa-check" />
+    icon: <i className="fas fa-check" />
   };
 
   removed = {
@@ -22,7 +22,7 @@ class NotifyService {
     type: NOTIFICATION_TYPE_WARNING,
     duration: 800,
     canDismiss: true,
-    icon: <i className="fa fa-check" />
+    icon: <i className="fas fa-ban" />
   };
 
   error = {
@@ -30,7 +30,7 @@ class NotifyService {
     type: NOTIFICATION_TYPE_ERROR,
     duration: 800,
     canDismiss: true,
-    icon: <i className="fa fa-check" />
+    icon: <i className="fas fa-exclamation" />
   };
 
   cartAdd = {
@@ -46,7 +46,7 @@ class NotifyService {
     type: NOTIFICATION_TYPE_WARNING,
     duration: 800,
     canDismiss: true,
-    icon: <i className="fa fa-check" />
+    icon: <i className="fas fa-ban" />
   };
 
   ordered = {
@@ -54,7 +54,15 @@ class NotifyService {
     type: NOTIFICATION_TYPE_INFO,
     duration: 800,
     canDismiss: true,
-    icon: <i className="fa fa-check" />
+    icon: <i className="far fa-thumbs-up" />
+  };
+
+  chooseSize = {
+    message: 'Choose size first!',
+    type: NOTIFICATION_TYPE_WARNING,
+    duration: 800,
+    canDismiss: true,
+    icon: <i className="fas fa-tag" />
   };
 
   position = {
