@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
     case ORDER_NOW:
       return {
         ...state,
-        value: state.value + action.payload.quantity,
+        value: state.value + 1,
         orders: [
           ...state.orders,
           {
