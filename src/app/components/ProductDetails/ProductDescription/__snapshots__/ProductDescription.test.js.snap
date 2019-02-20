@@ -110,7 +110,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
               className="colors"
             >
               <span
-                className=""
+                className="color"
                 key="#171717"
                 onClick={[Function]}
                 onKeyDown={[Function]}
