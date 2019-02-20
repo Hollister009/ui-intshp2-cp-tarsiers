@@ -26,7 +26,9 @@ export default (state = initialState, action) => {
             title: action.payload.title,
             price: action.payload.price * action.payload.quantity,
             quantity: action.payload.quantity,
-            size: action.payload.size
+            size: action.payload.size,
+            color: action.payload.color,
+            src: action.payload.src
           }
         ]
       };

@@ -42,15 +42,15 @@ describe('<ProductDescription />', () => {
   it('should be able to decrement', () => {
     const wrapper = shallow(<ProductDescription {...props} />);
 
-    wrapper.setState({ quantity: 1 });
+    wrapper.setState({ quantity: 2 });
     wrapper.update();
 
     const decBtn = wrapper.find('button[data-type="decrement"]');
 
     decBtn.simulate('click');
-    expect(wrapper.state().quantity).toBe(0);
+    expect(wrapper.state().quantity).toBe(1);
     decBtn.simulate('click');
-    expect(wrapper.state().quantity).toBe(0);
+    expect(wrapper.state().quantity).toBe(1);
   });
 
   it('should be able to call toggleSizes', () => {
@@ -59,7 +59,7 @@ describe('<ProductDescription />', () => {
     const size = wrapper.find('.size').at(0);
     const evt = { preventDefault() {}, target: { size, innerText: 'S' } };
 
-    expect(wrapper.state().sizeClicked).toBe('');
+    expect(wrapper.state().sizeClicked).toBe('s');
     size.simulate('click', evt);
 
     expect(wrapper.state().sizeClicked).toBe('s');

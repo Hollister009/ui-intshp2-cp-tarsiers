@@ -15,7 +15,7 @@ export function addItem(id) {
       }
     })
     .catch(error => console.log(error))
-    .finally(this.setState({ heartDisabled: true }));
+    .finally(this.setState({ heartDisabled: false }));
 
   createNotification(NotifyService.added);
 }

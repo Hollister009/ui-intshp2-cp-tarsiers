@@ -7,6 +7,12 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
   <div
     className="container"
   >
+    <h1
+      className="titlebig"
+      id="test"
+    >
+      Nike Sports Suit
+    </h1>
     <section
       className="section"
     >
@@ -98,6 +104,34 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             <p
               className="choose"
             >
+              Choose Color
+            </p>
+            <div
+              className="colors"
+            >
+              <span
+                className=""
+                key="#171717"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="button"
+                style={
+                  Object {
+                    "backgroundColor": "#171717",
+                  }
+                }
+                tabIndex="0"
+              >
+                #171717
+              </span>
+            </div>
+          </div>
+          <div
+            className="flex_row"
+          >
+            <p
+              className="choose"
+            >
               Choose Quantity
             </p>
             <div
@@ -111,7 +145,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
                 +
               </button>
               <span>
-                0
+                1
               </span>
               <button
                 data-type="decrement"

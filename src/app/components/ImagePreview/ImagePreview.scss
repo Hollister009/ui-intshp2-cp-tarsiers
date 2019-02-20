@@ -75,7 +75,7 @@
 
 @media screen and (min-width: $media-smallest) and (max-width: $media-tablet) {
   .img-container {
-    // width: 90%;
+    margin-top: 0;
     figure {
       div {
         display: none;

@@ -70,7 +70,13 @@ exports[`<ProductDetails /> should match its snapshot 1`] = `
     />
   </Connect(ProductDescription)>
   <RelatedProducts
-    inCart={false}
+    cart={
+      Object {
+        "orders": Array [],
+        "productsIds": Array [],
+        "value": 0,
+      }
+    }
     item={
       Object {
         "_id": "5c47312be7179a544940e080",
@@ -101,7 +107,7 @@ exports[`<ProductDetails /> should match its snapshot 1`] = `
         "title": "Columbia Cycling T-shirt",
       }
     }
-    wished={false}
+    wishlist={Array []}
   />
 </Fragment>
 `;
