@@ -124,8 +124,8 @@ describe('<ProductDescription />', () => {
     expect(props.orderNowItem).toHaveBeenCalled();
   });
 
-  describe('toggleWishList', () => {
-    xit('should call addItem when wished is false', () => {
+  xdescribe('toggleWishList', () => {
+    it('should call addItem when wished is false', () => {
       const evt = { preventDefault() {} };
       const wrapper = shallow(<ProductDescription {...props} />);
       const spy = jest.spyOn(wrapper.instance(), 'addItem');
