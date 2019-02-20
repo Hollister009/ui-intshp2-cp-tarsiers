@@ -103,26 +103,6 @@ class ProductDescription extends Component {
     }
   };
 
-  chooseColor = colors =>
-    colors.map(color => {
-      const { activeColor } = this.state;
-      const style = { backgroundColor: `${color}` };
-
-      return (
-        <span
-          key={color}
-          role="button"
-          tabIndex="0"
-          className={color === activeColor ? styles.active : ''}
-          style={style}
-          onClick={e => this.toggleColors(e)}
-          onKeyDown={e => this.toggleColors(e)}
-        >
-          {color}
-        </span>
-      );
-    });
-
   render() {
     const { item, wished, inCart, children } = this.props;
     const { quantity, sizeClicked } = this.state;
@@ -131,7 +111,7 @@ class ProductDescription extends Component {
       return null;
     }
 
-    const { _id, colors } = item;
+    const { _id } = item;
     const price = quantity > 1 ? item.price * quantity : item.price;
     const sizes = item.sizes.map((element, index, array) => {
       const active = sizeClicked === element ? { color: '#ff5912' } : {};
@@ -150,7 +130,24 @@ class ProductDescription extends Component {
         </React.Fragment>
       );
     });
-    const swatches = this.chooseColor(colors);
+    const swatches = item.colors.map(color => {
+      const { activeColor } = this.state;
+      const style = { backgroundColor: `${color}` };
+
+      return (
+        <span
+          key={color}
+          role="button"
+          tabIndex="0"
+          className={color === activeColor ? styles.active : styles.color}
+          style={style}
+          onClick={e => this.toggleColors(e)}
+          onKeyDown={e => this.toggleColors(e)}
+        >
+          {color}
+        </span>
+      );
+    });
 
     return (
       <div className={styles.background}>

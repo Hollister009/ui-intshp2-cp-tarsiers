@@ -59,11 +59,58 @@ describe('<ProductDescription />', () => {
     const size = wrapper.find('.size').at(0);
     const evt = { preventDefault() {}, target: { size, innerText: 'S' } };
 
-    expect(wrapper.state().sizeClicked).toBe('s');
+    expect(wrapper.state().sizeClicked).toBe('');
     size.simulate('click', evt);
 
     expect(wrapper.state().sizeClicked).toBe('s');
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should be able to call toggleColors', () => {
+    const wrapper = shallow(<ProductDescription {...props} />);
+    const spy = jest.spyOn(wrapper.instance(), 'toggleColors');
+    const color = wrapper.find('.color').at(0);
+    const evt = {
+      preventDefault() {},
+      target: { color, innerText: '#e63a43' }
+    };
+
+    expect(wrapper.state().activeColor).toBe('');
+    color.simulate('click', evt);
+
+    expect(wrapper.state().activeColor).toBe('#e63a43');
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should not call orderHandler when size and color isn`t clicked', () => {
+    const evt = { preventDefault() {} };
+    const wrapper = shallow(<ProductDescription {...props} />);
+    const btn = wrapper.find('.btn_order');
+
+    btn.simulate('click', evt);
+    expect(props.orderNowItem).not.toHaveBeenCalled();
+  });
+
+  it('should not be able to call orderHandler when size is clicked and color is not', () => {
+    const evt = { preventDefault() {} };
+    const wrapper = shallow(<ProductDescription {...props} />);
+    const btn = wrapper.find('.btn_order');
+
+    wrapper.setState({ sizeClicked: 'S' });
+    wrapper.update();
+    btn.simulate('click', evt);
+    expect(props.orderNowItem).not.toHaveBeenCalled();
+  });
+
+  it('should not be able to call orderHandler when color is clicked and size is not', () => {
+    const evt = { preventDefault() {} };
+    const wrapper = shallow(<ProductDescription {...props} />);
+    const btn = wrapper.find('.btn_order');
+
+    wrapper.setState({ activeColor: '#e63a43' });
+    wrapper.update();
+    btn.simulate('click', evt);
+    expect(props.orderNowItem).not.toHaveBeenCalled();
   });
 
   it('should be able to call orderHandler', () => {
@@ -71,12 +118,14 @@ describe('<ProductDescription />', () => {
     const wrapper = shallow(<ProductDescription {...props} />);
     const btn = wrapper.find('.btn_order');
 
+    wrapper.setState({ activeColor: '#e63a43', sizeClicked: 'S' });
+    wrapper.update();
     btn.simulate('click', evt);
     expect(props.orderNowItem).toHaveBeenCalled();
   });
 
-  xdescribe('toggleWishList', () => {
-    it('should call addItem when wished is false', () => {
+  describe('toggleWishList', () => {
+    xit('should call addItem when wished is false', () => {
       const evt = { preventDefault() {} };
       const wrapper = shallow(<ProductDescription {...props} />);
       const spy = jest.spyOn(wrapper.instance(), 'addItem');
