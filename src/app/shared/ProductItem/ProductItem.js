@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Notify } from 'react-redux-notify';
 
 import { productType } from '../../types';
@@ -45,7 +46,9 @@ const ViewCartSmall = props => {
 
   return (
     <div className="product-item--small__info">
-      <h4>{title}</h4>
+      <Link to={`/products/${id}`}>
+        <h4>{title}</h4>
+      </Link>
       <Notify position={NotifyService.position.topRight} />
       <button
         type="button"
@@ -157,7 +160,9 @@ class ProductItem extends Component {
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
       >
-        <img src={src} alt="" />
+        <Link to={`/products/${_id}`}>
+          <img src={src} alt="" className="small-pi-image" />
+        </Link>
         {showDetails ? (
           <ViewCartSmall
             id={_id}
