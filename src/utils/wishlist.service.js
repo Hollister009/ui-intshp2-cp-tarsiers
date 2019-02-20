@@ -15,7 +15,9 @@ export function addItem(id) {
       }
     })
     .catch(error => console.log(error))
-    .finally(this.setState({ heartDisabled: false }));
+    .finally(() => {
+      this.setState({ heartDisabled: false });
+    });
 
   createNotification(NotifyService.added);
 }
@@ -31,7 +33,9 @@ export function removeItem(id) {
       }
     })
     .catch(error => console.log(error))
-    .finally(this.setState({ heartDisabled: false }));
+    .finally(() => {
+      this.setState({ heartDisabled: false });
+    });
 
   createNotification(NotifyService.removed);
 }

@@ -19,10 +19,6 @@
   }
 }
 
-.active {
-  border: 2px solid $color-main;
-}
-
 .section {
   @include d-flex(center);
 
@@ -94,7 +90,7 @@
         align-items: center;
       }
 
-      span {
+      .color {
         font-size: 0px;
         display: block;
         width: 15px;
@@ -109,6 +105,19 @@
           animation: scale 0.5s forwards ease;
         }
       }
+    }
+
+    .active {
+      font-size: 0px;
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      margin: 2px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      outline: none;
+      border: 2px solid $color-main;
     }
 
     .size {
