@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const brandsArr = ['Reebok', 'Adidas', 'Nike'];
+
 class Brands extends Component {
   constructor(props) {
     super(props);
@@ -17,36 +19,36 @@ class Brands extends Component {
   }
 
   render() {
+    const { filter } = this.props;
+
+    const brandsList = brandsArr.map(el => {
+      const shouldBeHighlighted = filter.brands.includes(el)
+        ? { color: '#ff5912' }
+        : {};
+
+      return (
+        <label
+          key={el}
+          htmlFor={`brand-${el.toLowerCase()}`}
+          className="filter-option-container"
+          style={shouldBeHighlighted}
+        >
+          {el}
+          <input
+            id={`brand-${el.toLowerCase()}`}
+            type="checkbox"
+            onChange={e => this.onChange(e, el)}
+            checked={filter.brands.includes(el)}
+          />
+          <span className="checkmark" />
+        </label>
+      );
+    });
+
     return (
       <div className="filter-block">
         <h3>Brands</h3>
-        <label htmlFor="brand-reebok" className="filter-option-container">
-          Reebok
-          <input
-            id="brand-reebok"
-            type="checkbox"
-            onChange={e => this.onChange(e, 'Reebok')}
-          />
-          <span className="checkmark" />
-        </label>
-        <label htmlFor="brand-adidas" className="filter-option-container">
-          Adidas
-          <input
-            id="brand-adidas"
-            type="checkbox"
-            onChange={e => this.onChange(e, 'Adidas')}
-          />
-          <span className="checkmark" />
-        </label>
-        <label htmlFor="brand-nike" className="filter-option-container">
-          Nike
-          <input
-            id="brand-nike"
-            type="checkbox"
-            onChange={e => this.onChange(e, 'Nike')}
-          />
-          <span className="checkmark" />
-        </label>
+        {brandsList}
       </div>
     );
   }

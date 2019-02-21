@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductDescription /> should match its snapshot 1`] = `
+<div
+  className="background"
+>
+  <div
+    className="container"
+  >
+    <h1
+      className="titlebig"
+      id="test"
+    >
+      Nike Sports Suit
+    </h1>
+    <section
+      className="section"
+    >
+      <div
+        className="preview"
+      />
+      <div
+        className="details"
+      >
+        <div
+          className="info"
+        >
+          <h1
+            className="title"
+          >
+            Nike Sports Suit
+          </h1>
+          <h3
+            className="subtitle"
+          >
+            Lorem Ipsum is simply dummy text
+          </h3>
+          <p
+            className="text"
+          >
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry
+          </p>
+        </div>
+        <div
+          className="select"
+        >
+          <div
+            className="flex_row"
+          >
+            <p
+              className="choose"
+            >
+              Choose Size
+            </p>
+            <div
+              className="sizes"
+            >
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                s
+              </a>
+              <span>
+                -
+              </span>
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                m
+              </a>
+              <span>
+                -
+              </span>
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                l
+              </a>
+              <span>
+                -
+              </span>
+              <a
+                className="size"
+                href="/"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                xl
+              </a>
+            </div>
+          </div>
+          <div
+            className="flex_row"
+          >
+            <p
+              className="choose"
+            >
+              Choose Color
+            </p>
+            <div
+              className="colors"
+            >
+              <span
+                className="color"
+                key="#171717"
+                onClick={[Function]}
+                onKeyDown={[Function]}
+                role="button"
+                style={
+                  Object {
+                    "backgroundColor": "#171717",
+                  }
+                }
+                tabIndex="0"
+              >
+                #171717
+              </span>
+            </div>
+          </div>
+          <div
+            className="flex_row"
+          >
+            <p
+              className="choose"
+            >
+              Choose Quantity
+            </p>
+            <div
+              className="quantity"
+            >
+              <button
+                data-type="increment"
+                onClick={[Function]}
+                type="button"
+              >
+                +
+              </button>
+              <span>
+                1
+              </span>
+              <button
+                data-type="decrement"
+                onClick={[Function]}
+                type="button"
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          className="order"
+        >
+          <p
+            className="price"
+          >
+            Price: 800$
+          </p>
+          <div
+            className="buttons_row"
+          >
+            <button
+              type="button"
+            >
+              <i
+                className="fas fa-globe"
+              />
+            </button>
+            <Connect(Notify)
+              position="TopRight"
+            />
+            <button
+              data-type="cart-btn"
+              onClick={[Function]}
+              title="Add to shopping-cart"
+              type="button"
+            >
+              <i
+                className="fas fa-cart-plus"
+              />
+            </button>
+            <Flags
+              authorizedFlags={
+                Array [
+                  "showWishlist",
+                ]
+              }
+              exactFlags={false}
+              renderOff={[Function]}
+              renderOn={[Function]}
+            >
+              <button
+                data-type="wishlist-btn"
+                onClick={[Function]}
+                title="Add to wish-list"
+                type="button"
+              >
+                <i
+                  className="fas fa-heart"
+                />
+              </button>
+            </Flags>
+            <button
+              className="btn_order"
+              onClick={[Function]}
+              type="button"
+            >
+              Order Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+`;

@@ -42,6 +42,11 @@ exports[`<Header /> should match its snapshot 1`] = `
     }
   />
   <HeaderMain
+    cart={
+      Object {
+        "value": 0,
+      }
+    }
     options={
       Array [
         Object {

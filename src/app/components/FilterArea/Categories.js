@@ -1,44 +1,36 @@
 import React from 'react';
 
 const Categories = props => {
-  const {
-    setCategory,
-    getFilteredProducts,
-    toggleAvailability,
-    updateFiltered,
-    updateSkip,
-    updateLimit
-  } = props;
+  const { setCategory, toggleAvailability, filter } = props;
 
-  const setCategories = (e, category) => {
+  const handleCategoryChange = (e, category) => {
     e.preventDefault();
-    const { sizes, brands, price, available } = props.filter;
-
     setCategory(category);
-    updateSkip(0);
-    updateLimit(6);
-
-    const { skip, limit } = props.filter;
-    const params = { sizes, brands, category, price, available, skip, limit };
-
-    params.skip = 0;
-    params.limit = 6;
-    getFilteredProducts({ params }).then(res => updateFiltered(res.data));
   };
+
+  const categoryPairs = { male: 'Men', female: 'Women', kids: 'Children' };
+
+  const categoriesList = Object.entries(categoryPairs).map(el => {
+    const shouldBeHighlighted =
+      filter.category === el[0] ? { color: '#ff5912' } : {};
+
+    return (
+      <a
+        key={el}
+        href="null"
+        onClick={e => handleCategoryChange(e, el[0])}
+        style={shouldBeHighlighted}
+      >
+        {el[1]}
+      </a>
+    );
+  });
 
   return (
     <div className="filter-block">
       <h3>Categories</h3>
       <ul>
-        <a href="null" onClick={e => setCategories(e, 'male')}>
-          Men
-        </a>
-        <a href="null" onClick={e => setCategories(e, 'female')}>
-          Women
-        </a>
-        <a href="null" onClick={e => setCategories(e, 'kids')}>
-          Children
-        </a>
+        {categoriesList}
         <label
           htmlFor="availability"
           className="filter__label--show-available filter-option-container"

@@ -6,6 +6,7 @@ import ProductList from './ProductList';
 const mapStateToProps = state => ({
   products: state.products.products,
   wishlist: state.wishlist.wishlist,
+  cart: state.cart,
   filteredItems: state.filteredProducts.items,
   filter: state.filter
 });

@@ -1,16 +1,22 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixin';
 
+a {
+  &:not(div):hover {
+    color: $color-main !important;
+  }
+}
+
 .header {
   width: 100%;
-  padding-bottom: 62px;
+  padding-bottom: 40px;
   background-color: $color-white;
   font-family: $main-font-regular;
   position: relative;
 
   &-top {
     padding: 10px;
-    padding-top: 20px;
+    padding-top: 30px;
     @include d-flex();
 
     .far,
@@ -148,5 +154,18 @@
         flex-flow: column nowrap;
       }
     }
+  }
+}
+
+.cart {
+  @include d-flex(unset, column);
+  align-items: center;
+  position: relative;
+
+  .cart-quantity {
+    position: absolute;
+    bottom: 65%;
+    color: $color-dark;
+    font-size: 13px;
   }
 }

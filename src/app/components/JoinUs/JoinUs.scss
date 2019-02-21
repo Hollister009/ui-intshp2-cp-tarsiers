@@ -2,10 +2,12 @@
 @import '../../../styles/mixin';
 
 .joinus {
+  @include d-flex();
+
   width: 100%;
   background-color: $color-white;
   padding: 38px 42px 38px 54px;
-  @include d-flex();
+  margin-top: 100px;
 
   &__info {
     position: relative;

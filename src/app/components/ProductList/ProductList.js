@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import ProductItemContainer from '../../shared/ProductItem/ProductItemContainer';
 import Spinner from '../../shared/Spinner/index';
 import './ProductList.scss';
+import {
+  isAddedToCart,
+  isAddedToWishList
+} from '../../../utils/inCartInWishlist.service';
 
 export default class ProductList extends Component {
   constructor(props) {
@@ -21,7 +25,7 @@ export default class ProductList extends Component {
   throttled = (delay, fn) => {
     let lastCall = 0;
 
-    return function kek(...args) {
+    return function mock(...args) {
       const now = new Date().getTime();
 
       if (now - lastCall < delay) {
@@ -34,6 +38,34 @@ export default class ProductList extends Component {
   };
 
   componentDidUpdate = prevProps => {
+    const { filter } = this.props;
+
+    const shouldUpdate =
+      JSON.stringify(prevProps.filter) !== JSON.stringify(filter) &&
+      prevProps.filter.skip === filter.skip &&
+      prevProps.filter.limit === filter.limit;
+
+    if (shouldUpdate) {
+      const {
+        getFilteredProducts,
+        updateFiltered,
+        updateSkip,
+        updateLimit
+      } = this.props;
+
+      const { sizes, brands, price, available, category } = filter;
+
+      updateSkip(0);
+      updateLimit(6);
+
+      const params = { sizes, brands, price, available, category };
+
+      params.skip = 0;
+      params.limit = 6;
+      getFilteredProducts({ params }).then(res => updateFiltered(res.data));
+      return;
+    }
+
     const { filteredItems } = this.props;
     const { showButton } = this.state;
 
@@ -41,7 +73,11 @@ export default class ProductList extends Component {
       this.setState({ showButton: false });
       this.scrollSet = false;
     } else if (filteredItems.length >= 12 && !showButton) {
-      this.setState({ showButton: true });
+      if (prevProps.filteredItems.length !== filteredItems.length) {
+        this.setState({ showButton: true });
+      } else {
+        window.removeEventListener('scroll', this.scroll);
+      }
     }
 
     if (!this.scrollSet) {
@@ -60,9 +96,27 @@ export default class ProductList extends Component {
       filter
     } = this.props;
 
-    const { sizes, brands, category, price, available, skip, limit } = filter;
+    const {
+      sizes,
+      brands,
+      category,
+      price,
+      available,
+      skip,
+      limit,
+      tag
+    } = filter;
 
-    const params = { sizes, brands, category, price, available, skip, limit };
+    const params = {
+      sizes,
+      brands,
+      category,
+      price,
+      available,
+      skip,
+      limit,
+      tag
+    };
 
     let scrollHeight;
 
@@ -82,12 +136,17 @@ export default class ProductList extends Component {
         params.limit = 3;
         params.skip = skipped;
 
+        updateLimit(3);
+        updateSkip(skipped);
+
         getFilteredProducts({ params }).then(res => {
           addItemsToFiltered(res.data);
-          console.log('resdata', res.data);
           if (res.data.length) {
             updateLimit(3);
             updateSkip(skipped);
+          } else {
+            this.scrollSet = false;
+            window.removeEventListener('scroll', this.scroll);
           }
         });
       }
@@ -114,10 +173,12 @@ export default class ProductList extends Component {
 
     getFilteredProducts({ params }).then(res => {
       addItemsToFiltered(res.data);
-      console.log('resdata', res.data);
       if (res.data.length) {
         updateLimit(3);
         updateSkip(skipped);
+      }
+      if (res.data.length < params.limit) {
+        this.setState({ showButton: false });
       }
     });
   };
@@ -126,11 +187,9 @@ export default class ProductList extends Component {
     window.removeEventListener('scroll', this.scroll);
   };
 
-  isAddedtoWishList = id => this.wishlist.includes(id);
-
   render() {
-    const { filteredItems, wishlist } = this.props;
-    const isAddedtoWishList = id => wishlist.includes(id);
+    const { filteredItems, wishlist, cart } = this.props;
+    const extended = true;
 
     if (!filteredItems.length) {
       return (
@@ -146,10 +205,11 @@ export default class ProductList extends Component {
       filteredItems &&
       filteredItems.map(el => (
         <ProductItemContainer
+          isAddedToWishList={isAddedToWishList(el._id, wishlist)}
+          isAddedToCart={isAddedToCart(el._id, cart)}
+          extended={extended}
           key={el._id}
           data={el}
-          isAddedtoWishList={isAddedtoWishList(el._id)}
-          extended
         />
       ));
 

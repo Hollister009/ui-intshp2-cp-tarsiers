@@ -1,84 +1,24 @@
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
-import { Notify } from 'react-redux-notify';
 
-import productType from '../../../types';
-import NotifyService from '../../../utils/notify.service';
-import MaxItemDetails from './MaxItemDetails';
+import { productType } from '../../types';
+import { ViewFrontFull, ViewDetailsFull } from './ExtendedDetails';
+import { ViewCartSmall, ViewInfoSmall } from './ItemSmall';
 
-import './ProductItem.scss';
-
-const CN = 'product-item';
-
-const ViewFrontFull = props => {
-  const { src, title, price } = props;
-
-  return (
-    <React.Fragment>
-      <img className={`${CN}__img`} src={src} alt={title} />
-      <h4>{title}</h4>
-      <span className="highlighted">{`${price} $`}</span>
-    </React.Fragment>
-  );
-};
-
-const ViewCartSmall = props => {
-  const { title } = props;
-
-  const handleClick = e => {
-    const { createNotification } = props;
-
-    e.preventDefault();
-    createNotification(NotifyService.cart);
-  };
-
-  return (
-    <div className="product-item--small__info">
-      <h4>{title}</h4>
-      <Notify position={NotifyService.position.topRight} />
-      <button
-        type="button"
-        className="add-to-card"
-        onClick={e => handleClick(e)}
-      >
-        <i className="fas fa-shopping-cart" />
-        add to cart
-      </button>
-    </div>
-  );
-};
-
-const ViewInfoSmall = props => {
-  const { title, price } = props;
-
-  return (
-    <div className="product-item--small__info">
-      <h4>{title}</h4>
-      <div className="info-group">
-        <div className="rating">
-          <i className="fa fa-star" />
-          <i className="fa fa-star" />
-          <i className="fa fa-star" />
-        </div>
-        <span className="highlighted price">{`${price} $`}</span>
-      </div>
-    </div>
-  );
-};
+import styles from './ProductItem.module.scss';
 
 class ProductItem extends Component {
   static propTypes = {
-    /**
-     * data - productType shape
-     */
     data: productType,
     extended: bool,
-    isAddedtoWishList: bool
+    isAddedToWishList: bool,
+    isAddedToCart: bool
   };
 
   static defaultProps = {
     extended: false,
-    isAddedtoWishList: false,
+    isAddedToWishList: false,
+    isAddedToCart: false,
     data: null
   };
 
@@ -93,53 +33,59 @@ class ProductItem extends Component {
     const {
       data,
       extended,
-      isAddedtoWishList,
+      isAddedToWishList,
+      isAddedToCart,
       addToWishListItem,
       removeFromWishListItem,
+      addToCart,
+      removeFromCart,
       createNotification
     } = this.props;
-    const { available, src, title, price, _id } = data;
+    const { src, title, price, _id } = data;
 
     const fullItem = showDetails ? (
-      <MaxItemDetails
+      <ViewDetailsFull
         data={data}
+        styles={styles}
         addToWishListItem={addToWishListItem}
         removeFromWishListItem={removeFromWishListItem}
-        wished={isAddedtoWishList}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        wished={isAddedToWishList}
+        inCart={isAddedToCart}
         createNotification={createNotification}
       />
     ) : (
-      <ViewFrontFull src={src} title={title} price={price} />
+      <ViewFrontFull styles={styles} src={src} title={title} price={price} />
     );
 
     return extended ? (
       <div
+        className={styles.full}
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
-        className={
-          available ? `${CN} ${CN}--full` : `${CN} ${CN}--full not-available`
-        }
       >
-        {available ? (
-          fullItem
-        ) : (
-          <ViewFrontFull src={src} title={title} price={price} itemId={_id} />
-        )}
+        {fullItem}
       </div>
     ) : (
       <div
-        className={`${CN} ${CN}--small`}
+        className={styles.small}
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
       >
         <img src={src} alt="" />
         {showDetails ? (
           <ViewCartSmall
+            id={_id}
+            styles={styles}
             title={title}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
             createNotification={createNotification}
+            inCart={isAddedToCart}
           />
         ) : (
-          <ViewInfoSmall title={title} price={price} />
+          <ViewInfoSmall styles={styles} title={title} price={price} />
         )}
       </div>
     );
