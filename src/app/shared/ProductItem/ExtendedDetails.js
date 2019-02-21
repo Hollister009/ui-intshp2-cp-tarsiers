@@ -1,18 +1,27 @@
-/* eslint-disable no-console */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Flags } from 'react-feature-flags';
 import { Notify } from 'react-redux-notify';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-import appConfig from '../../../config/appConfig';
 import { productType } from '../../types';
+import appConfig from '../../../config/appConfig';
 import NotifyService from '../../../utils/notify.service';
 import { addItem, removeItem } from '../../../utils/wishlist.service';
 
-const CN = 'product-item--full';
+const ViewFrontFull = props => {
+  const { src, title, price, styles } = props;
 
-class MaxItemDetails extends Component {
+  return (
+    <React.Fragment>
+      <img className={styles.full__img} src={src} alt={title} />
+      <h4>{title}</h4>
+      <span className="highlighted">{`${price} $`}</span>
+    </React.Fragment>
+  );
+};
+
+class ViewDetailsFull extends Component {
   static propTypes = {
     data: productType,
     wished: PropTypes.bool,
@@ -88,7 +97,7 @@ class MaxItemDetails extends Component {
     ));
 
   render() {
-    const { data, wished, inCart } = this.props;
+    const { data, wished, inCart, styles } = this.props;
     const { _id, title, sizes, colors, colorUrls } = data;
     const { heartDisabled, image } = this.state;
     const allSizes = sizes
@@ -100,11 +109,15 @@ class MaxItemDetails extends Component {
       data && (
         <React.Fragment>
           <Link to={`/products/${_id}`}>
-            <img className={`${CN}__img-small`} src={image} alt={data.title} />
+            <img
+              className={styles.full__img_small}
+              src={image}
+              alt={data.title}
+            />
             <h4 className="highlighted">{title}</h4>
           </Link>
-          <div className={`${CN}__sizes`}>{`sizes : ${allSizes}`}</div>
-          <div className={`${CN}__swatches`}>{swatches}</div>
+          <div className={styles.full__sizes}>{`sizes : ${allSizes}`}</div>
+          <div className={styles.full__swatches}>{swatches}</div>
           <hr className="separate" />
           <div className="social_buttons">
             <Notify position={NotifyService.position.topRight} />
@@ -144,4 +157,4 @@ class MaxItemDetails extends Component {
   }
 }
 
-export default MaxItemDetails;
+export { ViewFrontFull, ViewDetailsFull };
