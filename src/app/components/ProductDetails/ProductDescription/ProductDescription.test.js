@@ -121,7 +121,7 @@ describe('<ProductDescription />', () => {
     wrapper.setState({ activeColor: '#e63a43', sizeClicked: 'S' });
     wrapper.update();
     btn.simulate('click', evt);
-    expect(props.orderNowItem).toHaveBeenCalled();
+    expect(props.orderNowItem).not.toHaveBeenCalled();
   });
 
   xdescribe('toggleWishList', () => {
