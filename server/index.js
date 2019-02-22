@@ -7,7 +7,7 @@ const router = require('./router');
 
 const app = express();
 
-const port = process.env.PORT || config.PORT;
+const port = process.env.PORT || 3001;
 
 function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
