@@ -1,13 +1,11 @@
 {
-  "name": "ui-intshp2-cp-tarsiers",
-  "homepage": "https://griddynamics.github.io/ui-intshp2-cp-tarsiers",
-  "version": "0.1.0",
+  "name": "client",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.2.0",
     "axios": "^0.18.0",
     "node-sass": "^4.11.0",
-    "nodemon": "^1.18.9",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-cookie": "^3.0.8",
@@ -25,26 +23,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "start-server": "nodemon node ../server/index.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "tdd": "jest --watch",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prettier": "prettier --write \"src/**/*.js\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
@@ -56,13 +40,19 @@
     "enzyme-to-json": "^3.3.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
-    "gh-pages": "^2.0.1",
-    "husky": "^1.2.1",
     "jest-css-modules-transform": "^2.1.1",
-    "lint-staged": "^8.1.0",
-    "prettier": "1.15.3",
     "react-devtools": "^3.4.3",
     "regenerator-runtime": "^0.13.1",
     "supertest": "^3.3.0"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "proxy": "http://localhost:3300"
 }

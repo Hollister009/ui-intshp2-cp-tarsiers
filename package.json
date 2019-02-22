@@ -1,27 +1,27 @@
 {
   "name": "ui-intshp2-cp-tarsiers",
-  "homepage": "https://griddynamics.github.io/ui-intshp2-cp-tarsiers",
   "version": "0.1.0",
-  "private": true,
+  "description": "Shoppy App built with MERN stack",
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
-    "axios": "^0.18.0",
-    "babel-core": "^7.0.0-bridge.0",
     "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongojs": "^2.6.0",
-    "nodemon": "^1.18.9"
+    "mongojs": "^2.6.0"
   },
   "devDependencies": {
     "husky": "^1.3.1",
     "lint-staged": "^8.1.4",
+    "nodemon": "^1.18.10",
     "prettier": "^1.16.4"
   },
   "scripts": {
-    "dev": "concurrently \"npm start\" \"cd client && npm start\"",
+    "client-install": "npm install --prefix client",
     "start": "node server",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {
     "node": "10.x"
@@ -29,12 +29,6 @@
   "cacheDirectories": [
     "node_modules",
     "client/node_modules"
-  ],
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
   ],
   "husky": {
     "hooks": {
