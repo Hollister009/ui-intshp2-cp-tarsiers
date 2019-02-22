@@ -6,8 +6,7 @@ const config = require('./config');
 const router = require('./router');
 
 const app = express();
-
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || config.port;
 
 function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
@@ -17,20 +16,13 @@ function clientErrorHandler(err, req, res, next) {
   }
 }
 
-app.use(clientErrorHandler);
-app.use(cors());
-// app.use(express.static(path.join(__dirname, 'public')));
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
-
-app.use('/api', router);
-
-app.listen(port, () => {
-  console.log(`listening on ${port}`);
-});
+app
+  .use(clientErrorHandler)
+  .use(cors())
+  .use(bodyParser.urlencoded({ extended: false }))
+  .use(bodyParser.json())
+  .use('/api', router)
+  .listen(port, () => console.log(`listening on ${port}`));
 
 if (process.env.NODE_ENV === 'production') {
   app
