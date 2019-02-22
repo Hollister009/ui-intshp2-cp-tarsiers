@@ -12,7 +12,14 @@
   transform: translate(-50%, -50%);
 }
 
-@mixin p-el($el, $width, $height, $bg-color: #000, $content: null, $pos: absolute) {
+@mixin p-el(
+  $el,
+  $width,
+  $height,
+  $bg-color: #000,
+  $content: null,
+  $pos: absolute
+) {
   &::#{$el} {
     display: block;
     content: '#{$content}';
