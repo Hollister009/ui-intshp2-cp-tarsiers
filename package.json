@@ -20,6 +20,7 @@
     "client": "npm start --prefix client",
     "start": "node server",
     "server": "nodemon server",
+    "tdd": "cd client && jest --watch",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "production-server": "NODE_ENV=production node server",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
