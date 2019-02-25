@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
 import { Notify } from 'react-redux-notify';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { productType } from '../../../types';
 import appConfig from '../../../../config/appConfig';
@@ -28,9 +29,9 @@ const CartButton = props => {
       Add to Cart
     </button>
   ) : (
-    <button type="button" className={styles.btn_order}>
+    <Link to="/cart" type="button" className={styles.btn_order}>
       Go to Cart
-    </button>
+    </Link>
   );
 };
 

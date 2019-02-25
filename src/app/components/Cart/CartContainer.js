@@ -5,7 +5,8 @@ import Cart from './Cart';
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  orders: state.orders
+  orders: state.orders,
+  products: state.products.products
 });
 const mapDispatchToProps = dispatch => ({
   removeFromCart: data => dispatch(removeFromCart(data)),
