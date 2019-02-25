@@ -1,38 +1,34 @@
 const mongojs = require('mongojs');
+const config = require('../config');
 
-const db = mongojs(
-  'mongodb://admin:admin123@ds157064.mlab.com:57064/tarsiers',
-  ['products', 'cartList']
-);
+const db = mongojs(config.dbUrl, ['products', 'cartList']);
 
 function getCartList(req, res) {
-  const { userId } = req.body; // eslint-disable-line
+  const { userId } = config;
 
-  db.cartList.findOne(
-    { userId: '5c3c3021e7179a7d124487f3' },
-    (err, response) => {
-      if (err) {
+  db.cartList.findOne({ userId }, (err, response) => {
+    if (err) {
+      res.send(err);
+    }
+
+    const { cartList } = response;
+
+    db.products.find({ _id: { $in: cartList } }, (error, products) => {
+      if (error) {
         res.send(err);
       }
 
-      const { cartList } = response;
-
-      db.products.find({ _id: { $in: cartList } }, (error, products) => {
-        if (error) {
-          res.send(err);
-        }
-
-        res.json(products);
-      });
-    }
-  );
+      res.json(products);
+    });
+  });
 }
 
 function addToCartList(req, res) {
+  const { userId } = config;
   const { productId } = req.body; // eslint-disable-line
 
   db.cartList.update(
-    { userId: '5c3c3021e7179a7d124487f3' },
+    { userId },
     { $push: { cartList: mongojs.ObjectId(productId) } },
     err => {
       if (err) {
@@ -45,10 +41,11 @@ function addToCartList(req, res) {
 }
 
 function removeFromCartList(req, res) {
+  const { userId } = config;
   const { productId } = req.body; // eslint-disable-line
 
   db.cartList.update(
-    { userId: '5c3c3021e7179a7d124487f3' },
+    { userId },
     { $pull: { cartList: mongojs.ObjectId(productId) } },
     err => {
       if (err) {
