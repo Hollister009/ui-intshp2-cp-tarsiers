@@ -63,7 +63,7 @@ exports[`<Header /> should match its snapshot 1`] = `
         },
         Object {
           "desc": "cart",
-          "href": "/",
+          "href": "/cart",
           "icon": "fas fa-shopping-basket",
           "id": 13,
         },

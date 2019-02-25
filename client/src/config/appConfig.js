@@ -52,7 +52,7 @@ const appConfig = {
       {
         id: 13,
         icon: 'fas fa-shopping-basket',
-        href: '/',
+        href: '/cart',
         desc: 'cart'
       }
     ]
