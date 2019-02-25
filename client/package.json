@@ -24,6 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
+    "test:tdd": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
