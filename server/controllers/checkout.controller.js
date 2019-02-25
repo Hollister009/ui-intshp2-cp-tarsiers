@@ -27,8 +27,8 @@ function payment(req, res) {
       payment_method: 'paypal'
     },
     redirect_urls: {
-      return_url: return_url,
-      cancel_url: cancel_url
+      return_url,
+      cancel_url
     },
     transactions: [
       {
@@ -37,7 +37,7 @@ function payment(req, res) {
             {
               name: 'item',
               sku: 'item',
-              price: '1.00',
+              price: '10.00',
               currency: 'USD',
               quantity: 1
             }
@@ -45,7 +45,7 @@ function payment(req, res) {
         },
         amount: {
           currency: 'USD',
-          total: '1.00'
+          total: '10.00'
         },
         description: 'This is the payment description.'
       }
@@ -63,6 +63,11 @@ function payment(req, res) {
       }
     }
   });
+}
+function onSuccess(req, res) {
+  const payerId = req.query.PayerID;
+  const paymentId = req.query.paymentId;
+  console.log(payerId, paymentId);
 }
 
 module.exports = { payment };

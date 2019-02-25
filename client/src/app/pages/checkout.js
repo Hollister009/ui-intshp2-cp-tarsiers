@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
 import HttpService from '../../utils/http.service';
 
@@ -19,10 +18,12 @@ class CheckoutPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    HttpService.post('/api/payment').then(res => {
-      console.log(res.data);
-      console.log(<Redirect push to={res.data} />);
-    });
+
+    HttpService.post('/api/payment').then(res => this.extRedirect(res.data));
+  };
+
+  extRedirect = url => {
+    window.location.assign(url);
   };
 
   render() {
