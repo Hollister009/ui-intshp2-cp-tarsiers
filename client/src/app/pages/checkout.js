@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
+import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
 class CheckoutPage extends Component {
   componentDidMount() {
@@ -16,7 +17,11 @@ class CheckoutPage extends Component {
   }
 
   render() {
-    return <h1>Hello from CheckoutPage page</h1>;
+    return (
+      <React.Fragment>
+        <CheckoutForm />
+      </React.Fragment>
+    );
   }
 }
 
