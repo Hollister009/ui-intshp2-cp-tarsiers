@@ -43,6 +43,7 @@ class CheckoutForm extends Component {
     const maskOptions = {
       mask: '+({38\\0})000000000'
     };
+    // eslint-disable-next-line no-unused-vars
     const mask = new IMask(element, maskOptions);
   };
 
