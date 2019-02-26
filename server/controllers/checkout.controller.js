@@ -69,14 +69,12 @@ function onSuccess(req, res) {
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
   console.log(payerId, paymentId);
-  res.send('Success');
+  // res.send('Success');
+  res.redirect('http://localhost:3000?checkout=success');
 }
 
-function onCancel(req, res) {
-  const payerId = req.query.PayerID;
-  const paymentId = req.query.paymentId;
-  console.log(payerId, paymentId);
-  res.send('Canceled');
-}
+const onCancel = (req, res) => {
+  res.redirect('http://localhost:3000?checkout=canceled');
+};
 
 module.exports = { payment, onSuccess, onCancel };
