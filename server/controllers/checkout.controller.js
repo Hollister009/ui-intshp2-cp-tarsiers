@@ -19,8 +19,8 @@ function getHostUrl(req) {
 
 function payment(req, res) {
   const hosthame = getHostUrl(req);
-  const return_url = `${hosthame}/success`;
-  const cancel_url = `${hosthame}/cancel`;
+  const return_url = `${hosthame}/api/success`;
+  const cancel_url = `${hosthame}/api/cancel`;
   const create_payment_json = {
     intent: 'sale',
     payer: {
@@ -64,10 +64,19 @@ function payment(req, res) {
     }
   });
 }
+
 function onSuccess(req, res) {
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
   console.log(payerId, paymentId);
+  res.send('Success');
 }
 
-module.exports = { payment };
+function onCancel(req, res) {
+  const payerId = req.query.PayerID;
+  const paymentId = req.query.paymentId;
+  console.log(payerId, paymentId);
+  res.send('Canceled');
+}
+
+module.exports = { payment, onSuccess, onCancel };

@@ -23,6 +23,8 @@ router.post('/add-to-cart', cartListController.addToCartList);
 router.post('/remove-from-cart', cartListController.removeFromCartList);
 
 router.post('/payment', checkoutController.payment);
+router.get('/success', checkoutController.onSuccess);
+router.get('/cancel', checkoutController.onCancel);
 
 router.get('*', controller.notFound);
 
