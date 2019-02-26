@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { FlagsProvider } from 'react-feature-flags';
 
 import appConfig from '../config/appConfig';
@@ -46,15 +46,13 @@ export default class App extends Component {
     return isFlagsReady ? (
       <FlagsProvider value={featureFlags}>
         <Router>
-          <HashRouter>
-            <>
-              <Header />
-              <ErrorHandler>
-                <Content className="content" />
-              </ErrorHandler>
-              <Footer />
-            </>
-          </HashRouter>
+          <>
+            <Header />
+            <ErrorHandler>
+              <Content className="content" />
+            </ErrorHandler>
+            <Footer />
+          </>
         </Router>
       </FlagsProvider>
     ) : null;

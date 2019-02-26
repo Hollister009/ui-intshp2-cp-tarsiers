@@ -1,0 +1,100 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.checkout-form {
+  color: inherit;
+  text-align: start;
+  letter-spacing: 3px;
+  font-size: 16px;
+  text-transform: uppercase;
+
+  form {
+    margin: 0 auto;
+    display: block;
+    max-width: 400px;
+    font-size: 14px;
+  }
+
+  label {
+    color: inherit;
+    display: block;
+    margin: 10px 0;
+    position: relative;
+    width: 100%;
+  }
+
+  input {
+    padding: 0 10px;
+    margin: 0 auto;
+    transition: 0.3s;
+    font-size: 16px;
+    outline: none;
+    background-color: $color-light-1;
+    border: none;
+    border-bottom: 2px solid $color-main;
+    display: block;
+    width: 100%;
+    height: 26px;
+  }
+
+  .success {
+    border-bottom: 2px solid green;
+  }
+
+  button {
+    width: 100%;
+    height: 50px;
+    font-size: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    background-color: $color-main;
+    color: white;
+
+    &:hover {
+      box-shadow: 0px 0px 5px $color-main;
+    }
+  }
+
+  .tooltip {
+    border-radius: 4px;
+    padding: 2px;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 110%;
+    height: 42px;
+    background-color: #fff;
+    z-index: 1;
+    text-align: middle;
+    box-shadow: 0px 0px 10px grey;
+    transition: 0.3s;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 10%;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid white;
+    }
+  }
+
+  .show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  input:-internal-autofill-selected {
+    background-color: green;
+  }
+
+  .error {
+    background-color: rgba(255, 89, 18, 0.788) !important;
+    border-bottom: 2px solid red;
+  }
+}
