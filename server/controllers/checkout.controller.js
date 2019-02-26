@@ -1,5 +1,4 @@
 const paypal = require('paypal-rest-sdk');
-const http = require('http');
 const url = require('url');
 
 paypal.configure({
@@ -18,9 +17,18 @@ function getHostUrl(req) {
 }
 
 function payment(req, res) {
-  const hosthame = getHostUrl(req);
-  const return_url = `${hosthame}/api/success`;
-  const cancel_url = `${hosthame}/api/cancel`;
+  let hosthame;
+
+  if (process.env.NODE_ENV === 'production') {
+    hosthame = getHostUrl(req);
+  } else {
+    hosthame = 'http://localhost:3000';
+  }
+
+  console.log(hostname);
+
+  const return_url = `${hosthame}/?payment=success`;
+  const cancel_url = `${hosthame}/?payment=cancel`;
   const create_payment_json = {
     intent: 'sale',
     payer: {
@@ -66,15 +74,34 @@ function payment(req, res) {
 }
 
 function onSuccess(req, res) {
-  const payerId = req.query.PayerID;
-  const paymentId = req.query.paymentId;
-  console.log(payerId, paymentId);
-  // res.send('Success');
-  res.redirect('http://localhost:3000?checkout=success');
+  // const payerId = req.query.PayerID;
+  // const paymentId = req.query.paymentId;
+  console.log(req.query);
+
+  // const execute_payment_json = {
+  //   "payer_id": payerId,
+  //   "transactions": [{
+  //       "amount": {
+  //           "currency": "USD",
+  //           "total": "10.00"
+  //       }
+  //   }]
+  // };
+
+  // paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+  //   if (error) {
+  //       console.log(error.response);
+  //       throw error;
+  //   } else {
+  //       console.log(JSON.stringify(payment));
+  //       res.send('Success');
+  //   }
+  // });
+  res.send('Success');
 }
 
-const onCancel = (req, res) => {
-  res.redirect('http://localhost:3000?checkout=canceled');
-};
+function onCancel(req, res) {
+  res.send('Canceled');
+}
 
 module.exports = { payment, onSuccess, onCancel };

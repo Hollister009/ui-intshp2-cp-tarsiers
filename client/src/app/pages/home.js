@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
 
 import appConfig from '../../config/appConfig';
@@ -7,29 +7,45 @@ import NewArrivalsContainer from '../components/NewArrivals/NewArrivalsContainer
 import AdvertisingArea from '../shared/Advertising';
 import JoinUs from '../components/JoinUs/JoinUs';
 import WishListContainer from '../components/WishList/WishListContainer';
+import httpService from '../../utils/http.service';
 
-const HomePage = props => {
-  const { location } = props;
+class HomePage extends Component {
+  // TODO
+  /**
+   * 1. loop trough searchParams with query object
+   * 2. create methods for success and cancel endpoints
+   * 3. call endpoint passing query object
+   */
 
-  console.log(location.search);
+  componentDidMount() {
+    const { location } = this.props;
+    const searchParams = new URLSearchParams(location.search);
 
-  if (location.search === '?checkout=success') {
-    alert('Succeded');
+    console.log(searchParams.get('payment'));
+
+    if (searchParams.get('payment') === 'success') {
+      httpService.get('/api/success').then(res => console.log(res));
+    }
+    if (searchParams.get('payment') === 'cancel') {
+      httpService.get('/api/cancel').then(res => console.log(res));
+    }
   }
 
-  return (
-    <React.Fragment>
-      <Promotions />
-      <NewArrivalsContainer />
-      <Flags authorizedFlags={[appConfig.killswitch.advertising]}>
-        <AdvertisingArea />
-      </Flags>
-      <JoinUs />
-      <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
-        <WishListContainer />
-      </Flags>
-    </React.Fragment>
-  );
-};
+  render() {
+    return (
+      <React.Fragment>
+        <Promotions />
+        <NewArrivalsContainer />
+        <Flags authorizedFlags={[appConfig.killswitch.advertising]}>
+          <AdvertisingArea />
+        </Flags>
+        <JoinUs />
+        <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
+          <WishListContainer />
+        </Flags>
+      </React.Fragment>
+    );
+  }
+}
 
 export default HomePage;
