@@ -55,7 +55,9 @@ class CheckoutForm extends Component {
   };
 
   handleInputFocus = e => {
-    this.showTooltip(e);
+    if (!e.currentTarget.classList.contains('success')) {
+      this.showTooltip(e);
+    }
     this.removeErrorClass(e);
   };
 
@@ -80,6 +82,7 @@ class CheckoutForm extends Component {
 
     if (this.validateField(e.currentTarget, field)) {
       e.currentTarget.classList.add('success');
+      this.hideTooltip(e);
     } else {
       e.currentTarget.classList.remove('success');
     }
