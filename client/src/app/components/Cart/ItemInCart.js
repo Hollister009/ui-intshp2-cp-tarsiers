@@ -44,9 +44,18 @@ class ItemInCart extends Component {
     this.setState({ activeColor: e.target.innerText });
   };
 
+  removeFromCartAction = e => {
+    const { removeFromCart, createNotification, item } = this.props;
+
+    e.preventDefault();
+    removeFromCart(item);
+    createNotification(NotifyService.cartRemove);
+  };
+
   render() {
     const { sizeClicked, activeColor, quantity } = this.state;
     const { item } = this.props;
+    const { _id } = item;
     const sizes = item.sizes.map((element, index, array) => {
       const active = sizeClicked === element ? { color: '#ff5912' } : {};
 
@@ -106,7 +115,11 @@ class ItemInCart extends Component {
           <div className={styles.select_sizes}>{sizes}</div>
           <div>{`${item.price}$`}</div>
           <div>{quantityButtons}</div>
-          <button type="button" className={styles.item_remove}>
+          <button
+            type="button"
+            className={styles.item_remove}
+            onClick={e => this.removeFromCartAction(e, _id)}
+          >
             <i className="far fa-trash-alt" />
           </button>
           <div className={styles.item_total}>{`${total}$`}</div>

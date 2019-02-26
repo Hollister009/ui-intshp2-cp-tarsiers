@@ -13,10 +13,9 @@ import styles from './ProductDescription.module.scss';
 
 const CartButton = props => {
   const { inCart, item, addToCart, createNotification } = props;
-  const { _id } = item;
-  const cartAction = (e, id) => {
+  const cartAction = e => {
     e.preventDefault();
-    addToCart(id);
+    addToCart(item);
     createNotification(NotifyService.cartAdd);
   };
 
@@ -24,7 +23,7 @@ const CartButton = props => {
     <button
       type="button"
       className={styles.btn_order}
-      onClick={e => cartAction(e, _id)}
+      onClick={e => cartAction(e, item)}
     >
       Add to Cart
     </button>

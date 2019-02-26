@@ -55,12 +55,13 @@ class ViewDetailsFull extends Component {
     });
   };
 
-  toggleCart = (e, id) => {
+  toggleCart = e => {
     const {
       inCart,
       removeFromCart,
       addToCart,
-      createNotification
+      createNotification,
+      data
     } = this.props;
 
     e.preventDefault();
@@ -71,7 +72,7 @@ class ViewDetailsFull extends Component {
     } else {
       createNotification(NotifyService.cartRemove);
     }
-    cb(id);
+    cb(data);
   };
 
   toggleSwatch = (e, colors) => {

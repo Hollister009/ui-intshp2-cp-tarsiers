@@ -1,6 +1,6 @@
 import { ADD_TO_CART, REMOVE_FROM_CART, ORDER_NOW } from '../actions';
 
-const initialState = { value: 0, productsIds: [], orders: [] };
+const initialState = { value: 0, productsInCart: [], orders: [] };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -8,27 +8,44 @@ export default (state = initialState, action) => {
       return {
         ...state,
         value: state.value + 1,
-        productsIds: [...state.productsIds, action.payload]
+        productsInCart: [
+          ...state.productsInCart,
+          {
+            _id: action.payload._id,
+            title: action.payload.title,
+            src: action.payload.src,
+            price: action.payload.price,
+            quantity: action.payload.quantity,
+            sizes: action.payload.sizes,
+            colors: action.payload.colors,
+            chosenSize: null,
+            chosenColor: null,
+            chosenQuantity: 1,
+            total: action.payload.price
+          }
+        ]
       };
     case REMOVE_FROM_CART:
       return {
         ...state,
         value: state.value ? state.value - 1 : 0,
-        productsIds: state.productsIds.filter(id => id !== action.payload)
+        productsInCart: state.productsInCart.filter(
+          element => element._id !== action.payload._id
+        )
       };
     case ORDER_NOW:
       return {
         ...state,
-        value: state.value + 1,
         orders: [
           ...state.orders,
           {
             title: action.payload.title,
-            price: action.payload.price * action.payload.quantity,
+            price: action.payload.price,
             quantity: action.payload.quantity,
             size: action.payload.size,
             color: action.payload.color,
-            src: action.payload.src
+            src: action.payload.src,
+            total: action.payload.price * action.payload.quantity
           }
         ]
       };
