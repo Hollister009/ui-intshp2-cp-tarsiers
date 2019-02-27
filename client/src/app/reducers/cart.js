@@ -4,10 +4,11 @@ import {
   ORDER_NOW,
   SET_COLOR,
   SET_QUANTITY_AND_TOTAL,
-  SET_SIZE
+  SET_SIZE,
+  SET_COMMON_TOTAL
 } from '../actions';
 
-const initialState = { value: 0, productsInCart: [], orders: [] };
+const initialState = { value: 0, productsInCart: [], orders: [], total: 0 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -109,6 +110,12 @@ export default (state = initialState, action) => {
           },
           ...state.productsInCart.slice(itemId + 1)
         ]
+      };
+    }
+    case SET_COMMON_TOTAL: {
+      return {
+        ...state,
+        total: action.payload
       };
     }
     default:

@@ -15,6 +15,7 @@ export const TOGGLE_HEADER_AND_FOOTER_VISIBILITY = {
 export const SET_SIZE = 'SET_SIZE';
 export const SET_COLOR = 'SET_COLOR';
 export const SET_QUANTITY_AND_TOTAL = 'SET_QUANTITY_AND_TOTAL';
+export const SET_COMMON_TOTAL = 'SET_COMMON_TOTAL';
 
 export const getProducts = data => actionHelper(data, GET_PRODUCTS);
 export const getWishList = data => actionHelper(data, GET_WISHLIST);
@@ -30,3 +31,4 @@ export const setColor = data => actionHelper(data, SET_COLOR);
 export const setSize = data => actionHelper(data, SET_SIZE);
 export const setQuantityAndTotal = data =>
   actionHelper(data, SET_QUANTITY_AND_TOTAL);
+export const setCommonTotal = data => actionHelper(data, SET_COMMON_TOTAL);

@@ -5,7 +5,8 @@ import {
   orderNow,
   setColor,
   setSize,
-  setQuantityAndTotal
+  setQuantityAndTotal,
+  setCommonTotal
 } from '../../actions';
 import Cart from './Cart';
 
@@ -19,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
   orderNowItem: data => dispatch(orderNow(data)),
   setColor: data => dispatch(setColor(data)),
   setSize: data => dispatch(setSize(data)),
-  setQuantityAndTotal: data => dispatch(setQuantityAndTotal(data))
+  setQuantityAndTotal: data => dispatch(setQuantityAndTotal(data)),
+  setCommonTotal: data => dispatch(setCommonTotal(data))
 });
 const CartContainer = connect(
   mapStateToProps,

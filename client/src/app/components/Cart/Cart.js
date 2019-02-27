@@ -43,7 +43,8 @@ class Cart extends Component {
       removeFromCart,
       setColor,
       setSize,
-      setQuantityAndTotal
+      setQuantityAndTotal,
+      setCommonTotal
     } = this.props;
     const { productsInCart } = cart;
     const reflectItems = productsInCart.map(item => (
@@ -62,6 +63,10 @@ class Cart extends Component {
       (accumulator, el) => accumulator + el.total,
       0
     );
+
+    if (cart.total !== total) {
+      setCommonTotal(total);
+    }
 
     return (
       <React.Fragment>
