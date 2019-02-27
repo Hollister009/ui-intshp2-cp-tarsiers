@@ -3,7 +3,6 @@ import NotifyService from '../../../utils/notify.service';
 import { cartType } from '../../types/index';
 import ItemInCart from './ItemInCart';
 import styles from './Cart.module.scss';
-import { element } from 'prop-types';
 
 class Cart extends Component {
   static propTypes = {
