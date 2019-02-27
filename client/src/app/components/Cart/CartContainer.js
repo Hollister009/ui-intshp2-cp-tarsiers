@@ -1,17 +1,25 @@
 import { connect } from 'react-redux';
 import { createNotification } from 'react-redux-notify';
-import { removeFromCart, orderNow } from '../../actions';
+import {
+  removeFromCart,
+  orderNow,
+  setColor,
+  setSize,
+  setQuantityAndTotal
+} from '../../actions';
 import Cart from './Cart';
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  orders: state.orders,
-  products: state.products.products
+  orders: state.orders
 });
 const mapDispatchToProps = dispatch => ({
   removeFromCart: data => dispatch(removeFromCart(data)),
   createNotification: config => dispatch(createNotification(config)),
-  orderNowItem: data => dispatch(orderNow(data))
+  orderNowItem: data => dispatch(orderNow(data)),
+  setColor: data => dispatch(setColor(data)),
+  setSize: data => dispatch(setSize(data)),
+  setQuantityAndTotal: data => dispatch(setQuantityAndTotal(data))
 });
 const CartContainer = connect(
   mapStateToProps,

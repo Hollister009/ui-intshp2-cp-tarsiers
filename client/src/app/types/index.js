@@ -15,7 +15,7 @@ export const productType = shape({
 
 export const cartType = shape({
   value: number.isRequired,
-  productsIds: arrayOf(string).isRequired,
+  productsInCart: arrayOf(Object).isRequired,
   orders: arrayOf(
     shape({
       title: string,

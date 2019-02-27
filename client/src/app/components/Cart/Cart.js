@@ -3,6 +3,7 @@ import NotifyService from '../../../utils/notify.service';
 import { cartType } from '../../types/index';
 import ItemInCart from './ItemInCart';
 import styles from './Cart.module.scss';
+import { element } from 'prop-types';
 
 class Cart extends Component {
   static propTypes = {
@@ -37,17 +38,31 @@ class Cart extends Component {
   };
 
   render() {
-    const { cart, createNotification, removeFromCart } = this.props;
+    const {
+      cart,
+      createNotification,
+      removeFromCart,
+      setColor,
+      setSize,
+      setQuantityAndTotal
+    } = this.props;
     const { productsInCart } = cart;
     const reflectItems = productsInCart.map(item => (
       <ItemInCart
-        key={item}
+        key={item._id}
         item={item}
         createNotification={createNotification}
         removeFromCart={removeFromCart}
+        setColor={setColor}
+        setSize={setSize}
+        setQuantityAndTotal={setQuantityAndTotal}
       />
     ));
     const styleHead = { borderBottom: 'none' };
+    const total = productsInCart.reduce(
+      (accumulator, el) => accumulator + el.total,
+      0
+    );
 
     return (
       <React.Fragment>
@@ -69,7 +84,7 @@ class Cart extends Component {
             <button type="button" className={styles.clear_cart}>
               Clear Cart
             </button>
-            <div className={styles.total}>Total: $</div>
+            <div className={styles.total}>{`Total: ${total}$`}</div>
             <button type="button" className={styles.payPal_button}>
               <img
                 src="https://res.cloudinary.com/so/image/upload/v1551187779/logos/rsz_1196566.png"

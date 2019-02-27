@@ -13,11 +13,14 @@ class ItemInCart extends Component {
 
   state = { sizeClicked: '', activeColor: '', quantity: 1 };
 
-  increment = item => {
+  increment = () => {
     const { quantity } = this.state;
-    const { createNotification } = this.props;
+    const { createNotification, setQuantityAndTotal, item } = this.props;
+    const { _id } = item;
+    const newQuantity = quantity + 1;
 
     if (quantity < item.quantity) {
+      setQuantityAndTotal({ _id, newQuantity });
       this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
     } else {
       createNotification(NotifyService.limitQuantity);
@@ -26,22 +29,32 @@ class ItemInCart extends Component {
 
   decrement = () => {
     const { quantity } = this.state;
+    const { setQuantityAndTotal, item } = this.props;
+    const { _id } = item;
+    const newQuantity = quantity - 1;
 
     if (quantity > 1) {
+      setQuantityAndTotal({ _id, newQuantity });
       this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
     }
   };
 
-  toggleSizes = e => {
+  toggleSizes = (e, size) => {
     e.preventDefault();
+    const { setSize, item } = this.props;
+    const { _id } = item;
 
-    this.setState({ sizeClicked: e.target.innerText.toLowerCase() });
+    setSize({ _id, size });
+    this.setState({ sizeClicked: size });
   };
 
-  toggleColors = e => {
+  toggleColors = (e, color) => {
     e.preventDefault();
+    const { setColor, item } = this.props;
+    const { _id } = item;
 
-    this.setState({ activeColor: e.target.innerText });
+    setColor({ _id, color });
+    this.setState({ activeColor: color });
   };
 
   removeFromCartAction = e => {
@@ -64,7 +77,7 @@ class ItemInCart extends Component {
           <a
             href="/"
             className={styles.size}
-            onClick={e => this.toggleSizes(e)}
+            onClick={e => this.toggleSizes(e, element)}
             style={active}
           >
             {element}
@@ -84,8 +97,8 @@ class ItemInCart extends Component {
           tabIndex="0"
           className={color === activeColor ? styles.active : styles.color}
           style={style}
-          onClick={e => this.toggleColors(e)}
-          onKeyDown={e => this.toggleColors(e)}
+          onClick={e => this.toggleColors(e, color)}
+          onKeyDown={e => this.toggleColors(e, color)}
         >
           {color}
         </span>
@@ -93,7 +106,7 @@ class ItemInCart extends Component {
     });
     const quantityButtons = (
       <div className={styles.select_quantity}>
-        <button type="button" onClick={() => this.increment(item)}>
+        <button type="button" onClick={() => this.increment()}>
           +
         </button>
         {quantity}
