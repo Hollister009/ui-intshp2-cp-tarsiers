@@ -23,6 +23,7 @@ class CheckoutPage extends Component {
   };
 
   extRedirect = url => {
+    console.log(`redirecting to: ${url}`);
     window.location.assign(url);
   };
 

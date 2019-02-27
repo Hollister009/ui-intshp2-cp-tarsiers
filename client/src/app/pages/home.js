@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
 
@@ -10,26 +11,32 @@ import WishListContainer from '../components/WishList/WishListContainer';
 import httpService from '../../utils/http.service';
 
 class HomePage extends Component {
-  // TODO
-  /**
-   * 1. loop trough searchParams with query object
-   * 2. create methods for success and cancel endpoints
-   * 3. call endpoint passing query object
-   */
-
   componentDidMount() {
     const { location } = this.props;
     const searchParams = new URLSearchParams(location.search);
-
-    console.log(searchParams.get('payment'));
+    const query = searchParams.toString();
 
     if (searchParams.get('payment') === 'success') {
-      httpService.get('/api/success').then(res => console.log(res));
+      this.callSuccesful(query);
     }
     if (searchParams.get('payment') === 'cancel') {
-      httpService.get('/api/cancel').then(res => console.log(res));
+      this.callCanceled(query);
     }
   }
+
+  callSuccesful = query => {
+    httpService
+      .get(`/api/success?${query}`)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
+  callCanceled = query => {
+    httpService
+      .get(`/api/cancel?${query}`)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
