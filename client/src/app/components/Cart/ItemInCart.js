@@ -106,11 +106,19 @@ class ItemInCart extends Component {
     });
     const quantityButtons = (
       <div className={styles.select_quantity}>
-        <button type="button" onClick={() => this.increment()}>
+        <button
+          type="button"
+          onClick={() => this.increment()}
+          data-type="increment"
+        >
           +
         </button>
         {quantity}
-        <button type="button" onClick={() => this.decrement()}>
+        <button
+          type="button"
+          onClick={() => this.decrement()}
+          data-type="decrement"
+        >
           -
         </button>
       </div>
@@ -132,6 +140,7 @@ class ItemInCart extends Component {
             type="button"
             className={styles.item_remove}
             onClick={e => this.removeFromCartAction(e, _id)}
+            data-type="remove-btn"
           >
             <i className="far fa-trash-alt" />
           </button>

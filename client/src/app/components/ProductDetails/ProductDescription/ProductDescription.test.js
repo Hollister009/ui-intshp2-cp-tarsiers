@@ -68,11 +68,11 @@ describe('<ProductDescription />', () => {
       expect(props.addToCart).toHaveBeenCalledWith(id);
     });
 
-    it('should call goToCart when addToCart is called', () => {
+    it('should call removeFromCart when inCart is true', () => {
       const id = props.item._id;
       const evt = { preventDefault() {} };
       const wrapper = mount(<ProductDescription {...props} />);
-      const btn = wrapper.find('button[data-type="go-btn"]');
+      const btn = wrapper.find('button[data-type="cart-btn"]');
 
       wrapper.setProps({ inCart: true });
       wrapper.update();
