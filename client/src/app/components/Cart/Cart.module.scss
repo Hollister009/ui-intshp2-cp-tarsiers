@@ -169,8 +169,6 @@
 
   p {
     position: absolute;
-    right: 24%;
-    bottom: 86%;
     font-size: 18px;
     color: $color-main;
   }
@@ -180,12 +178,9 @@
     height: 40%;
   }
 
-  .arrow_img {
+  .click_arrow {
     position: absolute;
-    width: 8%;
-    bottom: 80%;
-    left: 40%;
-    transform: rotate(267deg);
+    top: 75%;
   }
 }
 
@@ -198,7 +193,7 @@
     }
 
     .cart_img {
-      width: 30%;
+      width: 70%;
     }
 
     .arrow_img {

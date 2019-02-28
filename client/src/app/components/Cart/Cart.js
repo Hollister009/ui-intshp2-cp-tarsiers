@@ -1,4 +1,6 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { cartType } from '../../types/index';
 import ItemInCart from './ItemInCart';
 import styles from './Cart.module.scss';
@@ -52,17 +54,18 @@ class Cart extends Component {
       return (
         <React.Fragment>
           <div className={styles.empty_cart}>
-            <img
-              src="https://www.qrcardboard.com/images/cart.gif?v=01"
-              alt="Empty cart"
-              className={styles.cart_img}
-            />
+            <Link to="/products">
+              <img
+                src="https://www.qrcardboard.com/images/cart.gif?v=01"
+                alt="Empty cart"
+                className={styles.cart_img}
+              />
+            </Link>
             <p>Your cart is empty! Please order something!</p>
             <img
-              // eslint-disable-next-line max-len
-              src="https://res.cloudinary.com/so/image/upload/v1551356807/logos/c651a8b38a9632d03364e864feec0b15-curved-line-arrow-doodle-by-vexels.png"
-              alt="Order arrow"
-              className={styles.arrow_img}
+              src="https://gifimage.net/wp-content/uploads/2017/10/click-here-gif-4.gif"
+              alt="Click"
+              className={styles.click_arrow}
             />
           </div>
         </React.Fragment>
