@@ -24,11 +24,17 @@ const CartButton = props => {
       type="button"
       className={styles.btn_order}
       onClick={e => cartAction(e, item)}
+      data-type="cart-btn"
     >
       Add to Cart
     </button>
   ) : (
-    <Link to="/cart" type="button" className={styles.btn_order}>
+    <Link
+      to="/cart"
+      type="button"
+      className={styles.btn_order}
+      data-type="go-btn"
+    >
       Go to Cart
     </Link>
   );
@@ -129,7 +135,7 @@ class ProductDescription extends Component {
                     <i className="fas fa-globe" />
                   </button>
                   <Notify position={NotifyService.position.topRight} />
-                  <div data-type="cart-btn" className={styles.iconButton}>
+                  <div className={styles.iconButton}>
                     {inCart ? (
                       <i className="fas fa-cart-arrow-down highlighted" />
                     ) : (

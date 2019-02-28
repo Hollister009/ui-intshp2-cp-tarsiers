@@ -4,8 +4,7 @@ import {
   addToWishList,
   removeFromWishList,
   addToCart,
-  removeFromCart,
-  orderNow
+  removeFromCart
 } from '../../../actions';
 import ProductDescription from './ProductDescription';
 
@@ -19,8 +18,7 @@ const mapDispatchToProps = dispatch => ({
   removeFromWishListItem: data => dispatch(removeFromWishList(data)),
   addToCart: data => dispatch(addToCart(data)),
   removeFromCart: data => dispatch(removeFromCart(data)),
-  createNotification: config => dispatch(createNotification(config)),
-  orderNowItem: data => dispatch(orderNow(data))
+  createNotification: config => dispatch(createNotification(config))
 });
 const ProductDescriptionContainer = connect(
   mapStateToProps,

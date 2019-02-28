@@ -1,14 +1,14 @@
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  ORDER_NOW,
   SET_COLOR,
   SET_QUANTITY_AND_TOTAL,
   SET_SIZE,
-  SET_COMMON_TOTAL
+  SET_COMMON_TOTAL,
+  CLEAR_CART
 } from '../actions';
 
-const initialState = { value: 0, productsInCart: [], orders: [], total: 0 };
+const initialState = { value: 0, productsInCart: [], total: 0 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -40,22 +40,6 @@ export default (state = initialState, action) => {
         productsInCart: state.productsInCart.filter(
           element => element._id !== action.payload._id
         )
-      };
-    case ORDER_NOW:
-      return {
-        ...state,
-        orders: [
-          ...state.orders,
-          {
-            title: action.payload.title,
-            price: action.payload.price,
-            quantity: action.payload.quantity,
-            size: action.payload.size,
-            color: action.payload.color,
-            src: action.payload.src,
-            total: action.payload.price * action.payload.quantity
-          }
-        ]
       };
     case SET_COLOR: {
       const itemId = state.productsInCart.findIndex(
@@ -118,6 +102,8 @@ export default (state = initialState, action) => {
         total: action.payload
       };
     }
+    case CLEAR_CART:
+      return { ...initialState };
     default:
       return state;
   }

@@ -1,39 +1,20 @@
 import React, { Component } from 'react';
-import NotifyService from '../../../utils/notify.service';
 import { cartType } from '../../types/index';
 import ItemInCart from './ItemInCart';
 import styles from './Cart.module.scss';
 
 class Cart extends Component {
-  static propTypes = {
-    cart: cartType.isRequired
-  };
+  static propTypes = { cart: cartType.isRequired };
 
   componentDidMount = () => {
     window.scrollTo(0, 0);
   };
 
-  orderHandler = e => {
+  clearCartHandler = e => {
     e.preventDefault();
-    const { item, orderNowItem, createNotification } = this.props;
-    const { sizeClicked, quantity, activeColor } = this.state;
-    const orderData = {
-      title: item.title,
-      size: sizeClicked,
-      color: activeColor,
-      price: item.price,
-      total: item.price * quantity,
-      quantity
-    };
+    const { clearCart } = this.props;
 
-    if (sizeClicked && activeColor) {
-      orderNowItem(orderData);
-      createNotification(NotifyService.ordered);
-    } else if (sizeClicked) {
-      createNotification(NotifyService.chooseColor);
-    } else {
-      createNotification(NotifyService.chooseSize);
-    }
+    clearCart();
   };
 
   render() {
@@ -60,14 +41,33 @@ class Cart extends Component {
     ));
     const styleHead = { borderBottom: 'none' };
     const total = productsInCart.reduce(
-      (accumulator, el) => accumulator + el.total,
+      (totalSum, el) => totalSum + el.total,
       0
     );
 
     if (cart.total !== total) {
       setCommonTotal(total);
     }
-
+    if (productsInCart.length === 0) {
+      return (
+        <React.Fragment>
+          <div className={styles.empty_cart}>
+            <img
+              src="https://www.qrcardboard.com/images/cart.gif?v=01"
+              alt="Empty cart"
+              className={styles.cart_img}
+            />
+            <p>Your cart is empty! Please order something!</p>
+            <img
+              // eslint-disable-next-line max-len
+              src="https://res.cloudinary.com/so/image/upload/v1551356807/logos/c651a8b38a9632d03364e864feec0b15-curved-line-arrow-doodle-by-vexels.png"
+              alt="Order arrow"
+              className={styles.arrow_img}
+            />
+          </div>
+        </React.Fragment>
+      );
+    }
     return (
       <React.Fragment>
         <div className="container">
@@ -85,10 +85,14 @@ class Cart extends Component {
             <div className={styles.item_in_cart}>{reflectItems}</div>
           </div>
           <div className={styles.order_buttons}>
-            <button type="button" className={styles.clear_cart}>
+            <button
+              type="button"
+              className={styles.clear_cart}
+              onClick={e => this.clearCartHandler(e)}
+            >
               Clear Cart
             </button>
-            <div className={styles.total}>{`Total: ${total}$`}</div>
+            <div className={styles.total}>{`Total: ${total.toFixed(2)}$`}</div>
             <button type="button" className={styles.payPal_button}>
               <img
                 src="https://res.cloudinary.com/so/image/upload/v1551187779/logos/rsz_1196566.png"

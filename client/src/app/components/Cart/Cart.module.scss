@@ -140,6 +140,7 @@
   .total {
     font-size: 20px;
     font-weight: bold;
+    margin: 10px 0;
   }
 
   .payPal_button {
@@ -157,6 +158,34 @@
       background-color: $color-white;
       border-color: $color-main;
     }
+  }
+}
+
+.empty_cart {
+  @include d-flex(unset, column);
+
+  align-items: center;
+  position: relative;
+
+  .cart_img {
+    width: 40%;
+    height: 40%;
+  }
+
+  .arrow_img {
+    position: absolute;
+    width: 8%;
+    bottom: 80%;
+    left: 40%;
+    transform: rotate(267deg);
+  }
+
+  p {
+    position: absolute;
+    right: 24%;
+    bottom: 86%;
+    font-size: 18px;
+    color: $color-main;
   }
 }
 
