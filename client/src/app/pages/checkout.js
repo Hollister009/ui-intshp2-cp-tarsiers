@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
 import HttpService from '../../utils/http.service';
+import PayPalButton from '../shared/PayPalButton';
 
 class CheckoutPage extends Component {
   componentDidMount() {
@@ -25,14 +26,15 @@ class CheckoutPage extends Component {
   extRedirect = url => {
     console.log(`redirecting to: ${url}`);
     window.location.assign(url);
+    // TODO: add spinner state to display
   };
 
   render() {
     return (
-      <section className="checkout">
+      <section className="checkout container">
         <h1>Hello from CheckoutPage page</h1>
         <form onSubmit={e => this.handleSubmit(e)}>
-          <input type="submit" value="Submit" />
+          <PayPalButton />
         </form>
       </section>
     );

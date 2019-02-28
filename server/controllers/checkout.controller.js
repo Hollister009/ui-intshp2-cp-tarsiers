@@ -17,6 +17,7 @@ function getHostUrl(req) {
 }
 
 function payment(req, res) {
+  // TODO: pass data to payment in POST
   let hostname;
 
   if (process.env.NODE_ENV === 'production') {

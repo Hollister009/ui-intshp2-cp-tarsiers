@@ -24,6 +24,8 @@ class HomePage extends Component {
     }
   }
 
+  // TODO: User notifications on success or cancel
+
   callSuccesful = query => {
     httpService
       .get(`/api/success?${query}`)
@@ -37,6 +39,8 @@ class HomePage extends Component {
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
+
+  // TODO: write utility function to clear routes
 
   render() {
     return (
