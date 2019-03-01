@@ -44,7 +44,6 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
         className="size"
         href="/"
         onClick={[Function]}
-        style={Object {}}
       >
         s
       </a>
@@ -55,7 +54,6 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
         className="size"
         href="/"
         onClick={[Function]}
-        style={Object {}}
       >
         m
       </a>
@@ -66,7 +64,6 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
         className="size"
         href="/"
         onClick={[Function]}
-        style={Object {}}
       >
         l
       </a>
@@ -77,7 +74,6 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
         className="size"
         href="/"
         onClick={[Function]}
-        style={Object {}}
       >
         xl
       </a>

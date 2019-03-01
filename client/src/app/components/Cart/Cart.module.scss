@@ -205,36 +205,6 @@
     .cart_img {
       width: 70%;
     }
-
-    .arrow_img {
-      left: 36%;
-      bottom: 86%;
-    }
-  }
-}
-
-@media screen and (max-width: $media-medium) {
-  .empty_cart {
-    p {
-      font-size: 18px;
-      right: 18%;
-    }
-
-    .arrow_img {
-      left: 36%;
-      bottom: 81%;
-      width: 7%;
-    }
-  }
-}
-
-@media screen and (max-width: $media-tablet) {
-  .empty_cart {
-    .arrow_img {
-      transform: rotate3d(-51, 42, -4, 140deg);
-      bottom: 84%;
-      left: 82%;
-    }
   }
 }
 
@@ -249,14 +219,9 @@
   }
 
   .empty_cart {
-    .arrow_img {
-      display: none;
-    }
-
     p {
       left: 0;
       right: 0;
-      top: 95%;
       text-align: center;
     }
   }
