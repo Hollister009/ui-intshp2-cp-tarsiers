@@ -87,6 +87,16 @@
         animation: scale 0.5s forwards ease;
       }
     }
+
+    .highlightedSize {
+      color: $color-main;
+      font-size: 18px;
+      padding: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      outline: none;
+      height: 18px;
+    }
   }
 
   .select_quantity {

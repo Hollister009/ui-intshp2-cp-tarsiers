@@ -10,8 +10,7 @@ import ProductDescription from './ProductDescription';
 
 const mapStateToProps = state => ({
   wishlist: state.wishlist.wishlist,
-  cart: state.cart,
-  orders: state.orders
+  cart: state.cart
 });
 const mapDispatchToProps = dispatch => ({
   addToWishListItem: data => dispatch(addToWishList(data)),

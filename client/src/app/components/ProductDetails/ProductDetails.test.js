@@ -13,8 +13,7 @@ describe('<ProductDetails />', () => {
       products,
       cart: {
         value: 0,
-        productsIds: [],
-        orders: []
+        productsInCart: []
       }
     };
   });

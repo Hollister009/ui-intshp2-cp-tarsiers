@@ -72,8 +72,7 @@ exports[`<ProductDetails /> should match its snapshot 1`] = `
   <RelatedProducts
     cart={
       Object {
-        "orders": Array [],
-        "productsIds": Array [],
+        "productsInCart": Array [],
         "value": 0,
       }
     }

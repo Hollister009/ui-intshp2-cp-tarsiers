@@ -11,31 +11,27 @@ class ItemInCart extends Component {
 
   static defaultProps = { item: null };
 
-  state = { sizeClicked: '', activeColor: '', quantity: 1 };
+  state = { sizeClicked: '', activeColor: '' };
 
   increment = () => {
-    const { quantity } = this.state;
     const { createNotification, setQuantityAndTotal, item } = this.props;
-    const { _id } = item;
-    const newQuantity = quantity + 1;
+    const { _id, chosenQuantity } = item;
+    const newQuantity = chosenQuantity + 1;
 
-    if (quantity < item.quantity) {
+    if (chosenQuantity < item.quantity) {
       setQuantityAndTotal({ _id, newQuantity });
-      this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
     } else {
       createNotification(NotifyService.limitQuantity);
     }
   };
 
   decrement = () => {
-    const { quantity } = this.state;
     const { setQuantityAndTotal, item } = this.props;
-    const { _id } = item;
-    const newQuantity = quantity - 1;
+    const { _id, chosenQuantity } = item;
+    const newQuantity = chosenQuantity - 1;
 
-    if (quantity > 1) {
+    if (chosenQuantity > 1) {
       setQuantityAndTotal({ _id, newQuantity });
-      this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
     }
   };
 
@@ -66,19 +62,22 @@ class ItemInCart extends Component {
   };
 
   render() {
-    const { sizeClicked, activeColor, quantity } = this.state;
+    const { sizeClicked, activeColor } = this.state;
     const { item } = this.props;
-    const { _id } = item;
+    const { _id, chosenQuantity } = item;
     const sizes = item.sizes.map((element, index, array) => {
-      const active = sizeClicked === element ? { color: '#ff5912' } : {};
+      const active =
+        sizeClicked === element
+          ? `${styles.highlightedSize}`
+          : `${styles.size}`;
 
       return (
         <React.Fragment key={element}>
           <a
             href="/"
-            className={styles.size}
+            className={active}
             onClick={e => this.toggleSizes(e, element)}
-            style={active}
+            // style={active}
           >
             {element}
           </a>
@@ -113,7 +112,7 @@ class ItemInCart extends Component {
         >
           +
         </button>
-        {quantity}
+        {chosenQuantity}
         <button
           type="button"
           onClick={() => this.decrement()}
@@ -124,7 +123,7 @@ class ItemInCart extends Component {
       </div>
     );
 
-    const total = (item.price * quantity).toFixed(2);
+    const total = (item.price * chosenQuantity).toFixed(2);
 
     return (
       <React.Fragment>

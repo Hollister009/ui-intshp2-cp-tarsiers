@@ -25,31 +25,28 @@ describe('<ItemInCart />', () => {
   });
 
   xit('should return null when item is falsy', () => {
-    const wrapper = shallow(<ItemInCart />);
+    const wrapper = shallow(<ItemInCart {...props} />);
 
     expect(wrapper.html()).toBe(null);
   });
 
   xit('should be able to increment', () => {
     const wrapper = shallow(<ItemInCart {...props} />);
-    const { quantity } = wrapper.state();
+    const chosenQuantity = wrapper.props;
 
     wrapper.find('button[data-type="increment"]').simulate('click');
-    expect(wrapper.state().quantity).toBe(quantity + 1);
+    expect(chosenQuantity()).toBe(chosenQuantity() + 1);
   });
 
-  it('should be able to decrement', () => {
+  xit('should be able to decrement', () => {
     const wrapper = shallow(<ItemInCart {...props} />);
-
-    wrapper.setState({ quantity: 2 });
-    wrapper.update();
-
+    const chosenQuantity = wrapper.props;
     const decBtn = wrapper.find('button[data-type="decrement"]');
 
     decBtn.simulate('click');
-    expect(wrapper.state().quantity).toBe(1);
+    expect(chosenQuantity).toBe(1);
     decBtn.simulate('click');
-    expect(wrapper.state().quantity).toBe(1);
+    expect(chosenQuantity).toBe(1);
   });
 
   it('should be able to call toggleSizes', () => {

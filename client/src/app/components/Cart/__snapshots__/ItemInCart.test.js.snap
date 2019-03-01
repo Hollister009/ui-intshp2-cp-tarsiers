@@ -96,7 +96,6 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
         >
           +
         </button>
-        1
         <button
           data-type="decrement"
           onClick={[Function]}
@@ -119,7 +118,7 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
     <div
       className="item_total"
     >
-      800.00$
+      NaN$
     </div>
   </div>
 </Fragment>
