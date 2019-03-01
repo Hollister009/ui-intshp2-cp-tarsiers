@@ -34,7 +34,9 @@ class CheckoutForm extends Component {
         onBlur={e => this.handleInputBlur(e, element[0])}
         onFocus={e => this.handleInputFocus(e)}
       />
-      <div className="tooltip">{hints[element[0]]}</div>
+      <div className="tooltip" id={`${element[0]}-tooltip`}>
+        {hints[element[0]]}
+      </div>
     </label>
   ));
 
@@ -85,15 +87,16 @@ class CheckoutForm extends Component {
       this.hideTooltip(e);
     } else {
       e.currentTarget.classList.remove('success');
+      this.showTooltip(e);
     }
   };
 
   removeErrorClass = e => {
-    e.target.classList.remove('error');
+    e.currentTarget.classList.remove('error');
   };
 
   addErrorClass = e => {
-    e.target.classList.add('error');
+    e.currentTarget.classList.add('error');
   };
 
   validateForm = e => {
