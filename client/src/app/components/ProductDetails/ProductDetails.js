@@ -21,9 +21,9 @@ class ProductDetails extends Component {
 
   static defaultProps = { products: [], wishlist: [] };
 
-  componentDidMount() {
+  componentDidMount = () => {
     window.scrollTo(0, 0);
-  }
+  };
 
   render() {
     const { id, products, wishlist, cart } = this.props;
