@@ -11,13 +11,15 @@ const title = 'Wish list';
 const message = 'Currently your wishlist is empty. Add products to it first';
 
 const WishList = props => {
-  const { products, wishlist, cart } = props;
+  const { wishlist, cart } = props;
+
+  console.log('wishlist props', props);
+
   const titleArr = title.split(' ');
-  const filteredProducts = products.filter(item => wishlist.includes(item._id));
 
   const list =
     wishlist.length &&
-    filteredProducts.map(el => (
+    wishlist.map(el => (
       <ProductItemContainer
         key={el._id}
         data={el}
@@ -36,19 +38,17 @@ const WishList = props => {
         {!wishlist.length ? <p>{message}</p> : ''}
       </div>
       <div className={styles.wishlist__display}>
-        <Carousel data={filteredProducts}>{list}</Carousel>
+        <Carousel data={wishlist}>{list}</Carousel>
       </div>
     </section>
   );
 };
 
 WishList.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object),
   wishlist: PropTypes.arrayOf(PropTypes.string)
 };
 
 WishList.defaultProps = {
-  products: [],
   wishlist: []
 };
 
