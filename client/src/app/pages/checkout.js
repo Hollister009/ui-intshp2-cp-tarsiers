@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
 import HttpService from '../../utils/http.service';
 import PayPalButton from '../shared/PayPalButton';
+import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
 class CheckoutPage extends Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class CheckoutPage extends Component {
     return (
       <section className="checkout container">
         <h1>Hello from CheckoutPage page</h1>
+        <CheckoutForm />
         <form onSubmit={e => this.handleSubmit(e)}>
           <PayPalButton />
         </form>

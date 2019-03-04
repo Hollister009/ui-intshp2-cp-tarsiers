@@ -73,6 +73,14 @@ class NotifyService {
     icon: <i className="fas fa-tag" />
   };
 
+  limitQuantity = {
+    message: 'You can`t order more!',
+    type: NOTIFICATION_TYPE_WARNING,
+    duration: 800,
+    canDismiss: true,
+    icon: <i className="far fa-frown" />
+  };
+
   position = {
     topRight: 'TopRight',
     topLeft: 'TopLeft',

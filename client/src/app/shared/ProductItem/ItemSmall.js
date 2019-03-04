@@ -39,7 +39,7 @@ const ViewCartSmall = props => {
         onClick={e => toggleCart(e)}
       >
         {!inCart ? (
-          <span>
+          <span className>
             <i className="fas fa-cart-plus" />
             {addToCartText}
           </span>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { productType } from '../../types';
 import { ViewFrontFull, ViewDetailsFull } from './ExtendedDetails';
@@ -73,7 +74,9 @@ class ProductItem extends Component {
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
       >
-        <img src={src} alt="" />
+        <Link to={`/products/${_id}`}>
+          <img src={src} alt="" className="small-pi-image" />
+        </Link>
         {showDetails ? (
           <ViewCartSmall
             id={_id}

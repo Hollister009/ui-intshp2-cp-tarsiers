@@ -137,6 +137,10 @@
     width: 100%;
     text-align: left;
 
+    span > i {
+      padding-right: 5px;
+    }
+
     &::before {
       content: '';
       display: block;
