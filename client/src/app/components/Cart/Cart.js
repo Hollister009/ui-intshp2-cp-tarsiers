@@ -56,14 +56,14 @@ class Cart extends Component {
           <div className={styles.empty_cart}>
             <Link to="/products">
               <img
-                src="https://www.qrcardboard.com/images/cart.gif?v=01"
+                src="https://res.cloudinary.com/so/image/upload/v1551445634/logos/cart.gif"
                 alt="Empty cart"
                 className={styles.cart_img}
               />
             </Link>
             <p>Your cart is empty! Please order something!</p>
             <img
-              src="https://gifimage.net/wp-content/uploads/2017/10/click-here-gif-4.gif"
+              src="https://res.cloudinary.com/so/image/upload/v1551445686/logos/click-here-gif-4.gif"
               alt="Click"
               className={styles.click_arrow}
             />

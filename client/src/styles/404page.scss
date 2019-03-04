@@ -1,0 +1,27 @@
+@import '../styles/mixin';
+@import '../styles/variables';
+
+.not_found_block {
+  @include d-flex(unset, column);
+
+  align-items: center;
+}
+
+.nf_heading {
+  @include d-flex(center);
+
+  padding-top: 30px;
+}
+
+.not_found_header {
+  color: $color-main;
+}
+
+.home {
+  margin: 0 10px;
+  color: $color-main;
+
+  &:hover {
+    color: $color-dark !important;
+  }
+}
