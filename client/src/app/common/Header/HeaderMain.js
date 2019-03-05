@@ -8,7 +8,11 @@ class HeaderMain extends Component {
   state = { isHidden: true };
 
   navToggle = () => {
-    this.setState(prevState => ({ isHidden: !prevState.isHidden }));
+    const { innerWidth } = window;
+
+    if (innerWidth < 768) {
+      this.setState(prevState => ({ isHidden: !prevState.isHidden }));
+    }
   };
 
   renderLinks = list =>
@@ -26,7 +30,7 @@ class HeaderMain extends Component {
         );
 
       return (
-        <li key={id} className="navbar-link">
+        <li key={id} className="navbar-link" onClick={this.navToggle}>
           <RouterLink href={href}>{icon ? headerIcon : value}</RouterLink>
         </li>
       );

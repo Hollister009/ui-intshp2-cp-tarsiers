@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CheckoutForm.scss';
-import IMask from 'imask';
+import IMask from 'mask';
 
 const patterns = {
   name: /^([a-zA-Z0-9]+|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{1,}|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{3,}\s{1}[a-zA-Z0-9]{1,}){6,}$/,
