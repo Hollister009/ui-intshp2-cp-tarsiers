@@ -115,11 +115,15 @@ class ProductDescription extends Component {
               <div className={styles.select}>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available sizes</p>
-                  <div className={styles.sizes}>{sizes}</div>
+                  <div className={styles.sizes}>
+                    <div className={styles.scrollBoxSize}>{sizes}</div>
+                  </div>
                 </div>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available colors</p>
-                  <div className={styles.colors}>{swatches}</div>
+                  <div className={styles.colors}>
+                    <div className={styles.scrollBoxColor}>{swatches}</div>
+                  </div>
                 </div>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available quantity</p>

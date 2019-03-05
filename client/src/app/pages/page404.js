@@ -31,7 +31,7 @@ class Page404 extends Component {
           </div>
           <div>
             <img
-              src="https://res.cloudinary.com/so/image/upload/v1551445566/logos/oie_11438wBPVT3CE.gif"
+              src="https://res.cloudinary.com/sofimat/image/upload/v1551793877/empty/oie_11438wBPVT3CE.gif"
               alt="Not found cat"
               className="not_found_img"
             />

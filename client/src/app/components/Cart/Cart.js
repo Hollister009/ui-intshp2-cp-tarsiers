@@ -56,14 +56,14 @@ class Cart extends Component {
           <div className={styles.empty_cart}>
             <Link to="/products">
               <img
-                src="https://res.cloudinary.com/so/image/upload/v1551445634/logos/cart.gif"
+                src="https://res.cloudinary.com/sofimat/image/upload/v1551793878/empty/cart.gif"
                 alt="Empty cart"
                 className={styles.cart_img}
               />
             </Link>
             <p>Your cart is empty! Please order something!</p>
             <img
-              src="https://res.cloudinary.com/so/image/upload/v1551445686/logos/click-here-gif-4.gif"
+              src="https://res.cloudinary.com/sofimat/image/upload/v1551793876/empty/click-here-gif-4.gif"
               alt="Click"
               className={styles.click_arrow}
             />
