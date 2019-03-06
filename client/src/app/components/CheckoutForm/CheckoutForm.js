@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import './CheckoutForm.scss';
 import IMask from 'imask';
-
-const patterns = {
-  name: /^([a-zA-Z0-9]+|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{1,}|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{3,}\s{1}[a-zA-Z0-9]{1,}){6,}$/,
-  email: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-  address: /^.{6,}/,
-  phoneNumber: /\+\(380\){1}[0-9]{9}$/
-};
+import { validateForm, validateField } from './validateForm';
+import './CheckoutForm.scss';
 
 const inputPairs = {
   name: 'Full Name',
@@ -40,11 +34,13 @@ class CheckoutForm extends Component {
     </label>
   ));
 
+  validateForm = validateForm.bind(this);
+
+  validateField = validateField.bind(this);
+
   componentDidMount = () => {
     const element = document.getElementById('phoneNumber');
-    const maskOptions = {
-      mask: '+({38\\0})000000000'
-    };
+    const maskOptions = { mask: '+({38\\0})000000000' };
     // eslint-disable-next-line no-unused-vars
     const mask = new IMask(element, maskOptions);
   };
@@ -76,11 +72,7 @@ class CheckoutForm extends Component {
   };
 
   handleInputChange = (e, field) => {
-    this.setState({
-      [field]: {
-        value: e.target.value
-      }
-    });
+    this.setState({ [field]: { value: e.target.value } });
 
     if (this.validateField(e.currentTarget, field)) {
       e.currentTarget.classList.add('success');
@@ -99,27 +91,15 @@ class CheckoutForm extends Component {
     e.currentTarget.classList.add('error');
   };
 
-  validateForm = e => {
-    const inputNodes = document
-      .querySelector('.checkout-form')
-      .querySelectorAll('input');
-
-    const result = [...inputNodes].reduce((acc, element) => {
-      if (!this.validateField(element, element.id)) {
-        element.classList.add('error');
-      }
-      return acc || element.classList.contains('error');
-    }, false);
-
-    if (result) e.preventDefault();
-  };
-
-  validateField = (node, field) => patterns[field].test(node.value);
-
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <div className="container checkout-form">
-        <form onSubmit={e => this.validateForm(e)} autoComplete="off">
+        <form
+          autoComplete="off"
+          onSubmit={e => handleSubmit(e, this.validateForm)}
+        >
           {this.formFields}
           <button type="submit">Proceed</button>
         </form>
