@@ -1,0 +1,59 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.paypal_btn {
+  margin: 0 auto;
+  display: flex;
+  background: $paypal-gold;
+  padding: 7px 15px;
+  border-radius: 7px;
+  transition: 0.3s ease;
+  outline: none;
+
+  .logo {
+    display: block;
+    background: url('./paypal-logo.svg') no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    width: 100px;
+    height: 25px;
+  }
+
+  .logo_alt {
+    display: inline-block;
+    width: 20px;
+    height: 26px;
+    background: url('./pp-logo-sm.svg') no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .paypal_txt {
+    display: inline-block;
+    margin-left: 5px;
+    padding-top: 5px;
+    font-family: $main-font-bold;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+
+    span:nth-child(1) {
+      color: $paypal-dark;
+    }
+
+    span:nth-child(2) {
+      color: $paypal-blue;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: darken($paypal-gold, 10%);
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    background-color: darken($paypal-gold, 15%);
+    transform: translateY(-1px);
+  }
+}

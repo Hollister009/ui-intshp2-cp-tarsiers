@@ -46,13 +46,13 @@ export default class App extends Component {
     return isFlagsReady ? (
       <FlagsProvider value={featureFlags}>
         <Router>
-          <>
+          <React.Fragment>
             <Header />
             <ErrorHandler>
               <Content className="content" />
             </ErrorHandler>
             <Footer />
-          </>
+          </React.Fragment>
         </Router>
       </FlagsProvider>
     ) : null;

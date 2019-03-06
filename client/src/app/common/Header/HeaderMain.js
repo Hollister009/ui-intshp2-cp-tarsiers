@@ -32,8 +32,10 @@ class HeaderMain extends Component {
         );
 
       return (
-        <li key={id} className="navbar-link" onClick={this.navToggle}>
-          <RouterLink href={href}>{icon ? headerIcon : value}</RouterLink>
+        <li key={id} className="navbar-link">
+          <RouterLink href={href} onClick={this.navToggle}>
+            {icon ? headerIcon : value}
+          </RouterLink>
         </li>
       );
     });
