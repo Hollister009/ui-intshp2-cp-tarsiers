@@ -13,7 +13,7 @@ import ImagePreview from '../ImagePreview/ImagePreview';
 import HttpService from '../../../utils/http.service';
 import appConfig from '../../../config/appConfig';
 
-const { productItem } = appConfig.apiResources;
+const { products } = appConfig.apiResources;
 
 class ProductDetails extends Component {
   static propTypes = {
@@ -49,7 +49,7 @@ class ProductDetails extends Component {
       _id: id
     };
 
-    HttpService.get(productItem, { params }).then(res => {
+    HttpService.get(products, { params }).then(res => {
       this.setState({ item: res.data[0] });
     });
   };
