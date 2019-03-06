@@ -13,7 +13,7 @@ import Content from './common/Content';
 
 import '../styles/index.scss';
 
-const { newArrivals, wishlist } = appConfig.apiResources;
+const { products, wishlist } = appConfig.apiResources;
 
 export default class App extends Component {
   state = { featureFlags: [], isFlagsReady: false };
@@ -23,7 +23,7 @@ export default class App extends Component {
 
     const params = { skip: 0, limit: 9 };
 
-    HttpService.get(newArrivals, { params })
+    HttpService.get(products, { params })
       .then(res => {
         updateNewArrivals(res.data);
         updateFiltered(res.data.slice(0, 6));
