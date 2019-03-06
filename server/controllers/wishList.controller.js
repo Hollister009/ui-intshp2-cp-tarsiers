@@ -12,14 +12,7 @@ function getWishList(req, res) {
     }
 
     const { wishList } = response;
-
-    db.products.find({ _id: { $in: wishList } }, (error, products) => {
-      if (error) {
-        res.send(err);
-      }
-
-      res.json(products);
-    });
+    res.json(wishList);
   });
 }
 

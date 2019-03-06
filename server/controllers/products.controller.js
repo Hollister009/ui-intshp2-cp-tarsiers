@@ -3,14 +3,32 @@ const config = require('../config');
 
 const db = mongojs(config.dbUrl, ['products']);
 
-const getProducts = (req, res) =>
-  db.products.find((err, products) => {
+const getNewArrivals = (req, res) => {
+  const { skip, limit } = req.query;
+
+  db.products
+    .find()
+    .sort({ _id: -1 })
+    .skip(parseInt(skip, 10))
+    .limit(parseInt(limit, 10), (err, products) => {
+      if (err) {
+        res.send(err);
+      }
+
+      res.json(products);
+    });
+};
+
+const getProductItem = (req, res) => {
+  const { _id } = req.query;
+
+  db.products.find({ _id: mongojs.ObjectId(_id) }, (err, response) => {
     if (err) {
       res.send(err);
     }
-
-    res.json(products);
+    res.json(response);
   });
+};
 
 const getFilteredProducts = (req, res) => {
   const {
@@ -40,6 +58,7 @@ const getFilteredProducts = (req, res) => {
         availableQuery
       ]
     })
+    .sort({ _id: -1 })
     .skip(parseInt(skip, 10))
     .limit(parseInt(limit, 10), (err, products) => {
       if (err) {
@@ -49,4 +68,4 @@ const getFilteredProducts = (req, res) => {
     });
 };
 
-module.exports = { getProducts, getFilteredProducts };
+module.exports = { getProductItem, getNewArrivals, getFilteredProducts };

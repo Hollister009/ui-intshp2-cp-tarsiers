@@ -7,7 +7,8 @@ const wishListController = require('./controllers/wishList.controller');
 const cartListController = require('./controllers/cart.controller');
 const controller = require('./controller');
 
-router.get('/products', productsController.getProducts);
+router.get('/new-arrivals', productsController.getNewArrivals);
+router.get('/product-item', productsController.getProductItem);
 router.get('/filtered-products', productsController.getFilteredProducts);
 router.get('/baner', controller.getBanner);
 router.get('/promotions', controller.getPromotions);

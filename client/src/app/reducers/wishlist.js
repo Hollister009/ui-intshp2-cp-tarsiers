@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
     case RM_FROM_WISHLIST:
       return {
         ...state,
-        wishlist: state.wishlist.filter(id => id !== action.payload)
+        wishlist: state.wishlist.filter(el => el._id !== action.payload._id)
       };
     default:
       return state;

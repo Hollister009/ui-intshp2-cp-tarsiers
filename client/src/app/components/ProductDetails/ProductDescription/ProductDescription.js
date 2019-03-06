@@ -53,14 +53,14 @@ class ProductDescription extends Component {
 
   removeItem = removeItem.bind(this);
 
-  toggleWishList = (e, id) => {
+  toggleWishList = (e, item) => {
     const { wished } = this.props;
 
     e.preventDefault();
 
     const cb = !wished ? this.addItem : this.removeItem;
 
-    cb(id);
+    cb(item);
   };
 
   render() {
@@ -77,7 +77,6 @@ class ProductDescription extends Component {
       return null;
     }
 
-    const { _id } = item;
     const sizes = item.sizes.map((element, index, array) => (
       <React.Fragment key={element}>
         <span className={styles.size}>{element}</span>
@@ -145,7 +144,7 @@ class ProductDescription extends Component {
                   <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
                     <button
                       type="button"
-                      onClick={e => this.toggleWishList(e, _id)}
+                      onClick={e => this.toggleWishList(e, item)}
                       title="Add to wish-list"
                       data-type="wishlist-btn"
                       className={styles.iconButton}

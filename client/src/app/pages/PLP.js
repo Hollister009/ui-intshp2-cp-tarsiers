@@ -11,7 +11,7 @@ const ProductsListPage = () => {
   return (
     <div className="container">
       <div className="products_filters">
-        <FilterAreaContainer getFilteredProducts={getFilteredProducts} />
+        <FilterAreaContainer />
         <ProductListContainer getFilteredProducts={getFilteredProducts} />
       </div>
       <JoinUs />
