@@ -22,19 +22,14 @@ const CartButton = props => {
   return !inCart ? (
     <button
       type="button"
-      className={styles.btn_order}
+      className={styles.btn_add}
       onClick={e => cartAction(e, item)}
       data-type="cart-btn"
     >
       Add to Cart
     </button>
   ) : (
-    <Link
-      to="/cart"
-      type="button"
-      className={styles.btn_order}
-      data-type="go-btn"
-    >
+    <Link to="/cart" type="button" className={styles.btn_go} data-type="go-btn">
       Go to Cart
     </Link>
   );

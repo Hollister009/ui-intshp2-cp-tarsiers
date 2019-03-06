@@ -173,11 +173,23 @@
         }
       }
 
-      .btn_order {
+      .btn_add {
         color: $color-white;
         background-color: $color-main;
         border-radius: 30px;
         padding: 20px 30px;
+        font-size: 16px;
+
+        &:hover {
+          background-color: $color-dark;
+        }
+      }
+
+      .btn_go {
+        color: $color-white;
+        background-color: $color-main;
+        border-radius: 30px;
+        padding: 16px 33px;
         font-size: 16px;
 
         &:hover {
