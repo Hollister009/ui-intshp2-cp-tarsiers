@@ -121,7 +121,8 @@ class ViewDetailsFull extends Component {
             <h4 className="highlighted">{title}</h4>
           </Link>
           <div className={styles.full__sizes}>
-            <div className={styles.scrollBoxSize}>{`sizes : ${allSizes}`}</div>
+            <div className={styles.sizesText}>Sizes: </div>
+            <div className={styles.scrollBoxSize}>{allSizes}</div>
           </div>
           <div className={styles.full__swatches}>
             <div className={styles.scrollBoxColor}>{swatches}</div>

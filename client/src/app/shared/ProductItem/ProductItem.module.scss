@@ -64,15 +64,44 @@
   }
 
   &__sizes {
-    font-size: 14px;
     line-height: 1;
-    margin-top: 30px;
+    margin: 0 auto;
+    @include d-flex(center) {
+      align-items: center;
+    }
+    overflow-y: scroll;
+    width: 160px;
+
+    .sizesText {
+      color: $color-dark;
+      font-size: 18px;
+    }
+
+    .size {
+      color: $color-dark;
+      font-size: 18px;
+      padding: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      outline: none;
+    }
+  }
+
+  .scrollBoxSize {
+    @include d-flex() {
+      align-items: center;
+    }
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__swatches {
-    margin: 30px auto;
+    margin: 15px auto;
     overflow-y: scroll;
-    @include d-flex();
+    @include d-flex(center);
     padding: 5px;
     width: 80px;
 
@@ -101,7 +130,7 @@
 }
 
 .scrollBoxColor {
-  @include d-flex(center);
+  @include d-flex();
 }
 
 .small {
