@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
+
 import HttpService from '../../utils/http.service';
+import Overlay from '../common/Overlay';
 import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
 class CheckoutPage extends Component {
@@ -37,21 +39,17 @@ class CheckoutPage extends Component {
     // TODO: add spinner state to display
   };
 
-  renderOverlay = () => (
-    <div className="checkout_overlay">
-      <h2>Hello from redirect!</h2>
-    </div>
-  );
-
   render() {
     const { redirecting } = this.state;
 
     return (
-      <section className="checkout container">
-        {redirecting ? this.renderOverlay() : null}
-        <h1>Please enter your shipping information bellow:</h1>
-        <CheckoutForm handleSubmit={this.handleSubmit} />
-      </section>
+      <React.Fragment>
+        {redirecting ? <Overlay /> : null}
+        <section className="checkout container">
+          <h1>Please enter your shipping information bellow:</h1>
+          <CheckoutForm handleSubmit={this.handleSubmit} />
+        </section>
+      </React.Fragment>
     );
   }
 }
