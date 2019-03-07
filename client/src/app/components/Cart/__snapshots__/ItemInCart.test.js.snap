@@ -13,11 +13,11 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
       className="item_image"
       src="https://res.cloudinary.com/so/image/upload/v1548246979/products/cba0707c66f3b196408f9bf6e92cc460--knt-nike.jpg"
     />
-    <div
+    <h3
       className="item_title"
     >
       Nike Sports Suit
-    </div>
+    </h3>
     <div
       className="select_colors"
     >

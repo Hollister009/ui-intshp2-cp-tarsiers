@@ -92,6 +92,12 @@
     @include d-flex();
     margin: 0 10px;
 
+    .scrollPic {
+      width: 15%;
+      align-self: center;
+      margin: 0 auto;
+    }
+
     .scrollBoxSize {
       @include d-flex();
 
