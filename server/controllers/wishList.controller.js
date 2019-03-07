@@ -20,7 +20,6 @@ function addToWishList(req, res) {
   const { userId } = config;
   const product = req.body;
 
-  console.log('PID atowili', product, product._id);
   db.wishList.update({ userId }, { $push: { wishList: product } }, err => {
     if (err) {
       res.send(err);
@@ -34,7 +33,6 @@ function removeFromWishList(req, res) {
   const { userId } = config;
   const product = req.body;
 
-  console.log('product', product, product._id);
   db.wishList.update(
     { userId },
     { $pull: { wishList: { _id: product._id } } },
