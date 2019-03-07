@@ -130,7 +130,7 @@ class ItemInCart extends Component {
         <Notify position={NotifyService.position.topRight} />
         <div className={styles.cart_block}>
           <img src={item.src} alt={item.title} className={styles.item_image} />
-          <div className={styles.item_title}>{item.title}</div>
+          <h3 className={styles.item_title}>{item.title}</h3>
           <div className={styles.select_colors}>
             <div className={styles.scrollColor}>{swatches}</div>
           </div>
