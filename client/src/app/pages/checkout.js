@@ -6,6 +6,8 @@ import HttpService from '../../utils/http.service';
 import Overlay from '../common/Overlay';
 import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
+import '../../styles/pages/checkout.scss';
+
 class CheckoutPage extends Component {
   state = { redirecting: false };
 
@@ -36,16 +38,16 @@ class CheckoutPage extends Component {
   extRedirect = url => {
     console.log(`redirecting to: ${url}`);
     window.location.assign(url);
-    // TODO: add spinner state to display
   };
 
   render() {
     const { redirecting } = this.state;
+    const onBlur = redirecting ? 'blur' : '';
 
     return (
       <React.Fragment>
-        {redirecting ? <Overlay /> : null}
-        <section className="checkout container">
+        <Overlay show={redirecting} />
+        <section className={`checkout container ${onBlur}`}>
           <h1>Please enter your shipping information bellow:</h1>
           <CheckoutForm handleSubmit={this.handleSubmit} />
         </section>

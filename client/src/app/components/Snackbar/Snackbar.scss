@@ -17,48 +17,7 @@
   font-size: 1rem;
   &.show {
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 3.5s;
-    animation: fadein 0.5s, fadeout 0.5s 3.5s;
-  }
-}
-
-@-webkit-keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 5px;
-    opacity: 1;
-  }
-}
-@keyframes fadein {
-  from {
-    bottom: 0;
-    opacity: 0;
-  }
-  to {
-    bottom: 5px;
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeout {
-  from {
-    bottom: 5px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-@keyframes fadeout {
-  from {
-    bottom: 5px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
+    -webkit-animation: fadeIn 0.5s, fadeOut 0.5s 3.5s;
+    animation: fadeIn 0.5s, fadeOut 0.5s 3.5s;
   }
 }

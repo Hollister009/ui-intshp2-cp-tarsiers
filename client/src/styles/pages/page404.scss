@@ -1,5 +1,5 @@
-@import '../styles/mixin';
-@import '../styles/variables';
+@import '../mixin';
+@import '../variables';
 
 .not_found_block {
   @include d-flex(unset, column);
