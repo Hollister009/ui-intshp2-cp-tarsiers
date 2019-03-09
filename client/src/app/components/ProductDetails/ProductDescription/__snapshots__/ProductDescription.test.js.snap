@@ -38,7 +38,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
           <p
             className="text"
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry
           </p>
         </div>
         <div
@@ -55,35 +55,39 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             <div
               className="sizes"
             >
-              <span
-                className="size"
+              <div
+                className="scrollBoxSize"
               >
-                s
-              </span>
-              <span>
-                -
-              </span>
-              <span
-                className="size"
-              >
-                m
-              </span>
-              <span>
-                -
-              </span>
-              <span
-                className="size"
-              >
-                l
-              </span>
-              <span>
-                -
-              </span>
-              <span
-                className="size"
-              >
-                xl
-              </span>
+                <span
+                  className="size"
+                >
+                  s
+                </span>
+                <span>
+                  -
+                </span>
+                <span
+                  className="size"
+                >
+                  m
+                </span>
+                <span>
+                  -
+                </span>
+                <span
+                  className="size"
+                >
+                  l
+                </span>
+                <span>
+                  -
+                </span>
+                <span
+                  className="size"
+                >
+                  xl
+                </span>
+              </div>
             </div>
           </div>
           <div
@@ -97,17 +101,21 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             <div
               className="colors"
             >
-              <span
-                className="color"
-                key="#171717"
-                style={
-                  Object {
-                    "backgroundColor": "#171717",
-                  }
-                }
+              <div
+                className="scrollBoxColor"
               >
-                #171717
-              </span>
+                <span
+                  className="color"
+                  key="#171717"
+                  style={
+                    Object {
+                      "backgroundColor": "#171717",
+                    }
+                  }
+                >
+                  #171717
+                </span>
+              </div>
             </div>
           </div>
           <div

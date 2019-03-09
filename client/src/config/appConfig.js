@@ -196,7 +196,15 @@ const appConfig = {
   productDescription: {
     subheader: 'Lorem Ipsum is simply dummy text',
     description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry'
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry'
+  },
+  imageRes: {
+    emptyCart:
+      'https://res.cloudinary.com/sofimat/image/upload/v1551793878/empty/cart.gif',
+    clickHere:
+      'https://res.cloudinary.com/sofimat/image/upload/v1551793876/empty/click-here-gif-4.gif',
+    pageNotFound:
+      'https://res.cloudinary.com/sofimat/image/upload/v1551793877/empty/oie_11438wBPVT3CE.gif'
   }
 };
 

@@ -22,19 +22,14 @@ const CartButton = props => {
   return !inCart ? (
     <button
       type="button"
-      className={styles.btn_order}
+      className={styles.btn_add}
       onClick={e => cartAction(e, item)}
       data-type="cart-btn"
     >
       Add to Cart
     </button>
   ) : (
-    <Link
-      to="/cart"
-      type="button"
-      className={styles.btn_order}
-      data-type="go-btn"
-    >
+    <Link to="/cart" type="button" className={styles.btn_go} data-type="go-btn">
       Go to Cart
     </Link>
   );
@@ -115,11 +110,15 @@ class ProductDescription extends Component {
               <div className={styles.select}>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available sizes</p>
-                  <div className={styles.sizes}>{sizes}</div>
+                  <div className={styles.sizes}>
+                    <div className={styles.scrollBoxSize}>{sizes}</div>
+                  </div>
                 </div>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available colors</p>
-                  <div className={styles.colors}>{swatches}</div>
+                  <div className={styles.colors}>
+                    <div className={styles.scrollBoxColor}>{swatches}</div>
+                  </div>
                 </div>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available quantity</p>

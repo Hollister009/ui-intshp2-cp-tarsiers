@@ -101,9 +101,12 @@ class ViewDetailsFull extends Component {
     const { data, wished, inCart, styles } = this.props;
     const { _id, title, sizes, colors, colorUrls } = data;
     const { heartDisabled, image } = this.state;
-    const allSizes = sizes
-      .map((size, i) => (i !== 0 ? `- ${size}` : size))
-      .join(' ');
+    const allSizes = sizes.map((element, index, array) => (
+      <React.Fragment key={element}>
+        <span className={styles.size}>{element}</span>
+        {index + 1 !== array.length ? <span>-</span> : null}
+      </React.Fragment>
+    ));
     const swatches = this.swatchesFactory(colors, colorUrls);
 
     return (
@@ -117,8 +120,13 @@ class ViewDetailsFull extends Component {
             />
             <h4 className="highlighted">{title}</h4>
           </Link>
-          <div className={styles.full__sizes}>{`sizes : ${allSizes}`}</div>
-          <div className={styles.full__swatches}>{swatches}</div>
+          <div className={styles.full__sizes}>
+            <div className={styles.sizesText}>Sizes: </div>
+            <div className={styles.scrollBoxSize}>{allSizes}</div>
+          </div>
+          <div className={styles.full__swatches}>
+            <div className={styles.scrollBoxColor}>{swatches}</div>
+          </div>
           <hr className="separate" />
           <div className="social_buttons">
             <Notify position={NotifyService.position.topRight} />

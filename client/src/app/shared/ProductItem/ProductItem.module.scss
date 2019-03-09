@@ -64,20 +64,55 @@
   }
 
   &__sizes {
-    font-size: 14px;
     line-height: 1;
-    margin-top: 30px;
+    margin: 0 auto;
+    @include d-flex(center) {
+      align-items: center;
+    }
+    overflow-y: scroll;
+    width: 160px;
+
+    .sizesText {
+      color: $color-dark;
+      font-size: 18px;
+    }
+
+    .size {
+      color: $color-dark;
+      font-size: 18px;
+      padding: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
+      outline: none;
+    }
+  }
+
+  .scrollBoxSize {
+    @include d-flex() {
+      align-items: center;
+    }
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__swatches {
-    width: fit-content;
-    margin: 30px auto;
+    margin: 15px auto;
+    overflow-y: scroll;
     @include d-flex(center);
+    padding: 5px;
+    width: 80px;
 
-    & > span {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    & > .scrollBoxColor > span {
       display: block;
-      width: 15px;
-      height: 15px;
+      min-width: 15px;
+      min-height: 15px;
       font-size: 0;
       padding: 0;
       border-radius: 50%;
@@ -88,10 +123,14 @@
 
       &:focus,
       &:hover {
-        transform: scale(1.15);
+        transform: scale(1.1);
       }
     }
   }
+}
+
+.scrollBoxColor {
+  @include d-flex();
 }
 
 .small {

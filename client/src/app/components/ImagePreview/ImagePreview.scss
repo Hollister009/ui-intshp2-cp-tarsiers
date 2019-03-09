@@ -43,11 +43,14 @@
 
 .thumbnails-box {
   margin-top: 30px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 2;
-  grid-column-gap: 10px;
-  grid-row-gap: 15px;
+  @include d-flex();
+  width: 210px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   img {
     max-width: 70px;
     height: auto;
