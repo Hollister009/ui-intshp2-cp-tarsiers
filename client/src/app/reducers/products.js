@@ -1,11 +1,11 @@
-import { GET_PRODUCTS } from '../actions';
+import { UPDATE_NEW_ARRIVALS } from '../actions';
 
-const initialState = { products: [] };
+const initialState = { newArrivals: [] };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_PRODUCTS:
-      return { ...state, products: action.payload };
+    case UPDATE_NEW_ARRIVALS:
+      return { ...state, newArrivals: action.payload };
     default:
       return state;
   }

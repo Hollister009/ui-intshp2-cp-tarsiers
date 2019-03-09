@@ -44,14 +44,16 @@ class ViewDetailsFull extends Component {
     this.setState({ image: data.src });
   }
 
-  toggleWishList = (e, id) => {
+  toggleWishList = (e, item) => {
     const { wished } = this.props;
+
+    console.log('ed id argument', item);
 
     e.preventDefault();
     const cb = !wished ? this.addItem : this.removeItem;
 
     this.setState({ heartDisabled: true }, () => {
-      cb(id);
+      cb(item);
     });
   };
 
@@ -148,7 +150,7 @@ class ViewDetailsFull extends Component {
               <button
                 type="button"
                 className="btn-heart"
-                onClick={e => this.toggleWishList(e, _id)}
+                onClick={e => this.toggleWishList(e, data)}
                 title="Add to wish-list"
                 disabled={heartDisabled}
               >

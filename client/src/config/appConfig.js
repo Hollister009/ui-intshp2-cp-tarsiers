@@ -147,8 +147,8 @@ const appConfig = {
     message: 'You are registered now :) Have a great shopping!'
   },
   apiResources: {
-    promotions: '/api/promotions',
     products: '/api/products',
+    newArrivals: '/api/new-arrivals',
     baner: '/api/baner',
     wishlist: '/api/wish-list',
     addToWishList: '/api/add-to-wish-list',
