@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ItemInCart from './ItemInCart';
+import ItemInCart from './CartItem';
+import styles from '../Cart.module.scss';
 
-const products = require('../../../mocks/products.json');
+const products = require('../../../../mocks/products.json');
 
 describe('<ItemInCart />', () => {
   let props;
@@ -17,6 +18,7 @@ describe('<ItemInCart />', () => {
   beforeEach(() => {
     props = {
       item,
+      styles,
       removeFromCart: jest.fn(),
       updateCartItem: jest.fn(),
       createNotification: jest.fn()

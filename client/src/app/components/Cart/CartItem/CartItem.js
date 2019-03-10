@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Notify } from 'react-redux-notify';
-import NotifyService from '../../../utils/notify.service';
-import { productType } from '../../types';
-
-import styles from './Cart.module.scss';
+import NotifyService from '../../../../utils/notify.service';
+import { productType } from '../../../types';
 
 class ItemInCart extends Component {
   static propTypes = { item: productType };
@@ -90,6 +88,7 @@ class ItemInCart extends Component {
 
   renderSizes = () => {
     const { chosenSize } = this.state;
+    const { styles } = this.props;
 
     return this.item.sizes.map((element, index, array) => {
       const active =
@@ -112,6 +111,7 @@ class ItemInCart extends Component {
 
   renderColors = () => {
     const { chosenColor } = this.state;
+    const { styles } = this.props;
 
     return this.item.colors.map(color => {
       const style = { backgroundColor: `${color}` };
@@ -134,6 +134,7 @@ class ItemInCart extends Component {
 
   render() {
     const { chosenQuantity, total } = this.state;
+    const { styles } = this.props;
     const quantityButtons = (
       <div className={styles.select_quantity}>
         <button type="button" onClick={this.increment} data-type="increment">
