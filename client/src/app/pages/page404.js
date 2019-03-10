@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
 
 import '../../styles/pages/page404.scss';
+import appConfig from '../../config/appConfig';
 
 class Page404 extends Component {
   componentDidMount() {
@@ -32,7 +33,7 @@ class Page404 extends Component {
           </div>
           <div>
             <img
-              src="https://res.cloudinary.com/so/image/upload/v1551445566/logos/oie_11438wBPVT3CE.gif"
+              src={appConfig.imageRes.pageNotFound}
               alt="Not found cat"
               className="not_found_img"
             />

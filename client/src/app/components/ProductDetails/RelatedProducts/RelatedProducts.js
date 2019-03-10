@@ -9,8 +9,10 @@ import {
   isAddedToWishList
 } from '../../../../utils/inCartInWishlist.service';
 import './RelatedProducts.scss';
+import appConfig from '../../../../config/appConfig';
 
 const title = 'Related Products';
+const { products } = appConfig.apiResources;
 
 class RelatedProducts extends Component {
   static propTypes = {
@@ -24,9 +26,6 @@ class RelatedProducts extends Component {
     this.state = { relatedProducts: [] };
   }
 
-  getFilteredProducts = params =>
-    HttpService.get('/api/filtered-products', params);
-
   componentDidMount = () => {
     this.getRelatedProducts();
   };
@@ -35,16 +34,11 @@ class RelatedProducts extends Component {
     const { item } = this.props;
 
     const params = {
-      brands: [],
-      available: null,
-      price: { min: 0, max: 1000 },
       category: item.category,
-      tag: item.tag,
-      skip: 0,
-      limit: 1000
+      tag: item.tag
     };
 
-    this.getFilteredProducts({ params }).then(res => {
+    HttpService.get(products, { params }).then(res => {
       this.setState({ relatedProducts: res.data });
     });
   };

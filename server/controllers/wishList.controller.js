@@ -12,41 +12,30 @@ function getWishList(req, res) {
     }
 
     const { wishList } = response;
-
-    db.products.find({ _id: { $in: wishList } }, (error, products) => {
-      if (error) {
-        res.send(err);
-      }
-
-      res.json(products);
-    });
+    res.json(wishList);
   });
 }
 
 function addToWishList(req, res) {
   const { userId } = config;
-  const { productId } = req.body;
+  const product = req.body;
 
-  db.wishList.update(
-    { userId },
-    { $push: { wishList: mongojs.ObjectId(productId) } },
-    err => {
-      if (err) {
-        res.send(err);
-      }
-
-      res.status(200).send();
+  db.wishList.update({ userId }, { $push: { wishList: product } }, err => {
+    if (err) {
+      res.send(err);
     }
-  );
+
+    res.status(200).send();
+  });
 }
 
 function removeFromWishList(req, res) {
   const { userId } = config;
-  const { productId } = req.body;
+  const product = req.body;
 
   db.wishList.update(
     { userId },
-    { $pull: { wishList: mongojs.ObjectId(productId) } },
+    { $pull: { wishList: { _id: product._id } } },
     err => {
       if (err) {
         res.send(err);

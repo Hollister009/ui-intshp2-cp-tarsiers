@@ -19,18 +19,19 @@ export default class App extends Component {
   state = { featureFlags: [], isFlagsReady: false };
 
   componentDidMount() {
-    const { getProductsItems, getWishListItems, updateFiltered } = this.props;
+    const { updateNewArrivals, getWishListItems, updateFiltered } = this.props;
 
-    HttpService.get(products)
+    const params = { skip: 0, limit: 9 };
+
+    HttpService.get(products, { params })
       .then(res => {
-        getProductsItems(res.data);
+        updateNewArrivals(res.data);
         updateFiltered(res.data.slice(0, 6));
       })
       .catch(error => console.log(error));
 
     HttpService.get(wishlist)
-      .then(res => res.data.map(item => item._id))
-      .then(item => getWishListItems(item))
+      .then(res => getWishListItems(res.data))
       .catch(error => console.log(error));
 
     HttpService.get(appConfig.apiResources.killswitch)

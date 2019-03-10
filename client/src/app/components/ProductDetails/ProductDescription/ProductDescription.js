@@ -22,19 +22,14 @@ const CartButton = props => {
   return !inCart ? (
     <button
       type="button"
-      className={styles.btn_order}
+      className={styles.btn_add}
       onClick={e => cartAction(e, item)}
       data-type="cart-btn"
     >
       Add to Cart
     </button>
   ) : (
-    <Link
-      to="/cart"
-      type="button"
-      className={styles.btn_order}
-      data-type="go-btn"
-    >
+    <Link to="/cart" type="button" className={styles.btn_go} data-type="go-btn">
       Go to Cart
     </Link>
   );
@@ -53,14 +48,14 @@ class ProductDescription extends Component {
 
   removeItem = removeItem.bind(this);
 
-  toggleWishList = (e, id) => {
+  toggleWishList = (e, item) => {
     const { wished } = this.props;
 
     e.preventDefault();
 
     const cb = !wished ? this.addItem : this.removeItem;
 
-    cb(id);
+    cb(item);
   };
 
   render() {
@@ -77,7 +72,6 @@ class ProductDescription extends Component {
       return null;
     }
 
-    const { _id } = item;
     const sizes = item.sizes.map((element, index, array) => (
       <React.Fragment key={element}>
         <span className={styles.size}>{element}</span>
@@ -115,11 +109,15 @@ class ProductDescription extends Component {
               <div className={styles.select}>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available sizes</p>
-                  <div className={styles.sizes}>{sizes}</div>
+                  <div className={styles.sizes}>
+                    <div className={styles.scrollBoxSize}>{sizes}</div>
+                  </div>
                 </div>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available colors</p>
-                  <div className={styles.colors}>{swatches}</div>
+                  <div className={styles.colors}>
+                    <div className={styles.scrollBoxColor}>{swatches}</div>
+                  </div>
                 </div>
                 <div className={styles.flex_row}>
                   <p className={styles.choose}>Available quantity</p>
@@ -145,7 +143,7 @@ class ProductDescription extends Component {
                   <Flags authorizedFlags={[appConfig.killswitch.wishlist]}>
                     <button
                       type="button"
-                      onClick={e => this.toggleWishList(e, _id)}
+                      onClick={e => this.toggleWishList(e, item)}
                       title="Add to wish-list"
                       data-type="wishlist-btn"
                       className={styles.iconButton}

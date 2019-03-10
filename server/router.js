@@ -9,9 +9,7 @@ const cartListController = require('./controllers/cart.controller');
 const checkoutController = require('./controllers/checkout.controller');
 
 // Products
-router
-  .get('/products', productsController.getProducts)
-  .get('/filtered-products', productsController.getFilteredProducts);
+router.get('/products', productsController.getProducts);
 
 // WishList
 router

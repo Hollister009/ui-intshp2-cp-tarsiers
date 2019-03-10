@@ -12,13 +12,13 @@ import styles from './NewArrivals.module.scss';
 const title = 'New Arrivals';
 
 const NewArrivals = props => {
-  const { products, wishlist, cart } = props;
+  const { newArrivals, wishlist, cart } = props;
   const extended = true;
   const titleArr = title.split(' ');
 
   const list =
-    products &&
-    products.map(el => (
+    newArrivals &&
+    newArrivals.map(el => (
       <ProductItemContainer
         isAddedToWishList={isAddedToWishList(el._id, wishlist)}
         isAddedToCart={isAddedToCart(el._id, cart)}
@@ -27,8 +27,6 @@ const NewArrivals = props => {
         data={el}
       />
     ));
-
-  const newArrivals = list.slice(0, 9);
 
   return (
     <section className={styles.arrivals}>
@@ -44,8 +42,8 @@ const NewArrivals = props => {
         </p>
       </div>
       <div className={styles.arrivals__display}>
-        <Carousel data={products.slice(0, 9)} extended>
-          {newArrivals}
+        <Carousel data={newArrivals} extended>
+          {list}
         </Carousel>
       </div>
     </section>
@@ -53,11 +51,11 @@ const NewArrivals = props => {
 };
 
 NewArrivals.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object)
+  newArrivals: PropTypes.arrayOf(PropTypes.object)
 };
 
 NewArrivals.defaultProps = {
-  products: []
+  newArrivals: []
 };
 
 export default NewArrivals;

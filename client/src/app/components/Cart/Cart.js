@@ -6,6 +6,7 @@ import PayPalButton from '../../shared/PayPalButton';
 
 import ItemInCart from './ItemInCart';
 import styles from './Cart.module.scss';
+import appConfig from '../../../config/appConfig';
 
 class Cart extends Component {
   static propTypes = { cart: cartType.isRequired };
@@ -57,14 +58,14 @@ class Cart extends Component {
         <div className={styles.empty_cart}>
           <Link to="/products">
             <img
-              src="https://res.cloudinary.com/so/image/upload/v1551445634/logos/cart.gif"
+              src={appConfig.imageRes.emptyCart}
               alt="Empty cart"
               className={styles.cart_img}
             />
           </Link>
           <p>Your cart is empty! Please order something!</p>
           <img
-            src="https://res.cloudinary.com/so/image/upload/v1551445686/logos/click-here-gif-4.gif"
+            src={appConfig.imageRes.clickHere}
             alt="Click"
             className={styles.click_arrow}
           />
