@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PayPalButton from '../../shared/PayPalButton';
 
 import CartItem from './CartItem/CartItem';
@@ -30,28 +29,8 @@ const Cart = props => {
     />
   ));
 
-  if (productsInCart.length === 0) {
-    return (
-      <div className={styles.empty_cart}>
-        <Link to="/products">
-          <img
-            src={appConfig.imageRes.emptyCart}
-            alt="Empty cart"
-            className={styles.cart_img}
-          />
-        </Link>
-        <p>Your cart is empty! Please order something!</p>
-        <img
-          src={appConfig.imageRes.clickHere}
-          alt="Click"
-          className={styles.click_arrow}
-        />
-      </div>
-    );
-  }
-
   return (
-    <div className="container">
+    <section className="cart container">
       <div className={styles.cart_rows}>
         <div className={styles.cart_block}>{cellHeadings}</div>
         <div className={styles.item_in_cart}>{displayedItems}</div>
@@ -63,7 +42,7 @@ const Cart = props => {
         </button>
         <PayPalButton />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -8,7 +8,8 @@ describe('<Header />', () => {
 
   beforeEach(() => {
     props = {
-      headerFooterVisibility: { value: true }
+      headerFooterVisibility: { value: true },
+      cart: { productsInCart: [] }
     };
   });
 

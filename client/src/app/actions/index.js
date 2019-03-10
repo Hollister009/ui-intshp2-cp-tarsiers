@@ -13,7 +13,6 @@ export const TOGGLE_HEADER_AND_FOOTER_VISIBILITY = {
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
-export const SET_COMMON_TOTAL = 'SET_COMMON_TOTAL';
 export const CLEAR_CART = 'CLEAR_CART';
 
 export const updateNewArrivals = data =>
@@ -28,5 +27,4 @@ export const updateFiltered = data => actionHelper(data, UPDATE_FILTERED);
 export const addToCart = data => actionHelper(data, ADD_TO_CART);
 export const removeFromCart = data => actionHelper(data, REMOVE_FROM_CART);
 export const updateCartItem = data => actionHelper(data, UPDATE_CART_ITEM);
-export const setCommonTotal = data => actionHelper(data, SET_COMMON_TOTAL);
 export const clearCart = () => actionHelper({}, CLEAR_CART);

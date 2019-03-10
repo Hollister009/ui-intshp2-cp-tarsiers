@@ -19,10 +19,11 @@ class HeaderMain extends Component {
     list.map(link => {
       const { id, icon, href, desc, value } = link;
       const { cart } = this.props;
+      const cartValue = cart.productsInCart.length;
       const headerIcon =
         desc === 'cart' ? (
-          <div className="cart">
-            <span className="cart-quantity">{cart.value}</span>
+          <div className="cart-icon">
+            <span className="cart-icon__quantity">{cartValue}</span>
             <i className={icon} />
           </div>
         ) : (
