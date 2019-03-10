@@ -129,7 +129,9 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
             <div
               className="quantity"
             >
-              <span />
+              <span>
+                12
+              </span>
             </div>
           </div>
         </div>
@@ -191,7 +193,6 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
               item={
                 Object {
                   "_id": "5c486043e7179a544941a6b2",
-                  "available": true,
                   "brand": "Nike",
                   "category": "male",
                   "colorUrls": Object {
@@ -201,6 +202,7 @@ exports[`<ProductDescription /> should match its snapshot 1`] = `
                     "#171717",
                   ],
                   "price": 800,
+                  "quantity": 12,
                   "sizes": Array [
                     "s",
                     "m",

@@ -87,27 +87,26 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
       </div>
     </div>
     <div>
-      800$
+      800
     </div>
-    <div>
-      <div
-        className="select_quantity"
+    <div
+      className="select_quantity"
+    >
+      <button
+        data-type="increment"
+        onClick={[Function]}
+        type="button"
       >
-        <button
-          data-type="increment"
-          onClick={[Function]}
-          type="button"
-        >
-          +
-        </button>
-        <button
-          data-type="decrement"
-          onClick={[Function]}
-          type="button"
-        >
-          -
-        </button>
-      </div>
+        +
+      </button>
+      1
+      <button
+        data-type="decrement"
+        onClick={[Function]}
+        type="button"
+      >
+        -
+      </button>
     </div>
     <button
       className="item_remove"
@@ -119,11 +118,11 @@ exports[`<ItemInCart /> should match its snapshot 1`] = `
         className="far fa-trash-alt"
       />
     </button>
-    <div
+    <h3
       className="item_total"
     >
-      NaN$
-    </div>
+      800
+    </h3>
   </div>
 </Fragment>
 `;

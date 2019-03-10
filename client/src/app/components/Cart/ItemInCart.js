@@ -70,7 +70,7 @@ class ItemInCart extends Component {
     });
   };
 
-  toggleColor = color => {
+  toggleColors = color => {
     const { _id } = this.item;
     const { updateCartItem } = this.props;
 
@@ -123,8 +123,8 @@ class ItemInCart extends Component {
           tabIndex="0"
           className={color === chosenColor ? styles.active : styles.color}
           style={style}
-          onClick={() => this.toggleColor(color)}
-          onKeyDown={() => this.toggleColor(color)}
+          onClick={() => this.toggleColors(color)}
+          onKeyDown={() => this.toggleColors(color)}
         >
           {color}
         </span>

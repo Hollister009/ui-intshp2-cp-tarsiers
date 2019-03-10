@@ -6,14 +6,19 @@ const products = require('../../../mocks/products.json');
 
 describe('<ItemInCart />', () => {
   let props;
+  const item = {
+    ...products[2],
+    chosenSize: null,
+    chosenColor: null,
+    chosenQuantity: 1,
+    total: products[2].price
+  };
 
   beforeEach(() => {
     props = {
-      item: products[2],
-      setColor: jest.fn(),
-      setSize: jest.fn(),
-      setQuantityAndTotal: jest.fn(),
+      item,
       removeFromCart: jest.fn(),
+      updateCartItem: jest.fn(),
       createNotification: jest.fn()
     };
   });
@@ -55,10 +60,10 @@ describe('<ItemInCart />', () => {
     const size = wrapper.find('.size').at(0);
     const evt = { preventDefault() {}, target: { size, innerText: 'S' } };
 
-    expect(wrapper.state().sizeClicked).toBe('');
+    expect(wrapper.state().chosenSize).toBe(null);
     size.simulate('click', evt);
 
-    expect(wrapper.state().sizeClicked).toBe('s');
+    expect(wrapper.state().chosenSize).toBe('s');
     expect(spy).toHaveBeenCalled();
   });
 
@@ -71,15 +76,14 @@ describe('<ItemInCart />', () => {
       target: { color, innerText: '#171717' }
     };
 
-    expect(wrapper.state().activeColor).toBe('');
+    expect(wrapper.state().chosenColor).toBe(null);
     color.simulate('click', evt);
 
-    expect(wrapper.state().activeColor).toBe('#171717');
+    expect(wrapper.state().chosenColor).toBe('#171717');
     expect(spy).toHaveBeenCalled();
   });
 
   it('should call removeFromCart when inCart is true', () => {
-    const { item } = props;
     const evt = { preventDefault() {} };
     const wrapper = shallow(<ItemInCart {...props} />);
     const btn = wrapper.find('button[data-type="remove-btn"]');
