@@ -239,10 +239,6 @@ section.range-slider {
       height: unset;
     }
   }
-
-  .spin-position {
-    display: none;
-  }
 }
 
 @media screen and (max-width: $media-tablet) {
@@ -264,10 +260,6 @@ section.range-slider {
       height: unset;
     }
   }
-
-  .spin-position {
-    display: none;
-  }
 }
 
 @media screen and (max-width: 631px) {
@@ -283,9 +275,5 @@ section.range-slider {
     i {
       font-size: 45px;
     }
-  }
-
-  .spin-position {
-    display: none;
   }
 }

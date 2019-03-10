@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
+
 import HttpService from '../../utils/http.service';
-// import PayPalButton from '../shared/PayPalButton';
+import Overlay from '../common/Overlay';
 import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
+import '../../styles/pages/checkout.scss';
+
 class CheckoutPage extends Component {
+  state = { redirecting: false };
+
   componentDidMount() {
     const { dispatch } = this.props;
 
@@ -18,27 +23,35 @@ class CheckoutPage extends Component {
     dispatch(TOGGLE_HEADER_AND_FOOTER_VISIBILITY);
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e, validate) => {
     e.preventDefault();
 
-    HttpService.post('/api/payment').then(res => this.extRedirect(res.data));
+    if (validate()) {
+      this.setState({ redirecting: true }, () => {
+        HttpService.post('/api/payment').then(res =>
+          this.extRedirect(res.data)
+        );
+      });
+    }
   };
 
   extRedirect = url => {
     console.log(`redirecting to: ${url}`);
     window.location.assign(url);
-    // TODO: add spinner state to display
   };
 
   render() {
+    const { redirecting } = this.state;
+    const onBlur = redirecting ? 'blur' : '';
+
     return (
-      <section className="checkout container">
-        <h1>Please enter your shipping information bellow:</h1>
-        <CheckoutForm />
-        {/* <form onSubmit={e => this.handleSubmit(e)}>
-          <PayPalButton />
-        </form> */}
-      </section>
+      <React.Fragment>
+        <Overlay show={redirecting} />
+        <section className={`checkout container ${onBlur}`}>
+          <h1>Please enter your shipping information bellow:</h1>
+          <CheckoutForm handleSubmit={this.handleSubmit} />
+        </section>
+      </React.Fragment>
     );
   }
 }

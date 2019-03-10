@@ -146,49 +146,47 @@
 }
 
 .order_buttons {
-  @include d-flex(unset, column);
-
-  align-items: flex-end;
+  @include d-flex(flex-end);
 
   button {
-    padding: 10px;
-    font-size: 20px;
+    outline: none;
+    transition: 0.4s ease;
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    &:hover,
+    &:focus {
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 20px -5px rgba($color-dark, 0.75);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
   }
 
   .clear_cart {
-    background-color: transparent;
-    border: 1px solid $color-main;
-    color: $color-main;
-    border-radius: 10%;
+    color: $color-white;
+    background-color: $color-main;
+    border: 2px solid $color-main;
+    border-radius: 7px;
+    text-transform: capitalize;
+    font-size: 18px;
+    padding: 7px 12px;
 
     &:hover {
-      border-color: $color-dark;
-      color: $color-dark;
-    }
-  }
-
-  .total {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px 0;
-  }
-
-  .payPal_button {
-    @include d-flex();
-
-    background-color: $color-paypal;
-    border-radius: 30%;
-    align-items: center;
-
-    img {
-      margin-right: 5px;
-    }
-
-    &:hover {
+      color: $color-main;
       background-color: $color-white;
-      border-color: $color-main;
     }
   }
+}
+
+.price_total {
+  font-size: 20px;
+  margin: 10px 0;
+  text-align: right;
 }
 
 .empty_cart {
@@ -244,50 +242,5 @@
       right: 0;
       text-align: center;
     }
-  }
-}
-
-@keyframes scale {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
-}
-
-@keyframes wobble {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  15% {
-    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
-  }
-
-  30% {
-    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
-  }
-
-  45% {
-    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
-  }
-
-  60% {
-    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
-  }
-
-  75% {
-    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
-  }
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
   }
 }

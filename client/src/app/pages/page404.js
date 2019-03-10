@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
-import '../../styles/404page.scss';
+
+import '../../styles/pages/page404.scss';
 import appConfig from '../../config/appConfig';
 
 class Page404 extends Component {
