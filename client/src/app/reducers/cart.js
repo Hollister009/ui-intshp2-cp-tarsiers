@@ -5,7 +5,8 @@ import {
   SET_QUANTITY_AND_TOTAL,
   SET_SIZE,
   SET_COMMON_TOTAL,
-  CLEAR_CART
+  CLEAR_CART,
+  UPDATE_CART_ITEM
 } from '../actions';
 
 const initialState = { value: 0, productsInCart: [], total: 0 };
@@ -19,13 +20,7 @@ export default (state = initialState, action) => {
         productsInCart: [
           ...state.productsInCart,
           {
-            _id: action.payload._id,
-            title: action.payload.title,
-            src: action.payload.src,
-            price: action.payload.price,
-            quantity: action.payload.quantity,
-            sizes: action.payload.sizes,
-            colors: action.payload.colors,
+            ...action.payload,
             chosenSize: null,
             chosenColor: null,
             chosenQuantity: 1,
@@ -104,6 +99,16 @@ export default (state = initialState, action) => {
     }
     case CLEAR_CART:
       return { ...initialState };
+    case UPDATE_CART_ITEM:
+      return {
+        ...state,
+        productsInCart: state.productsInCart.map(el => {
+          if (el._id !== action.payload._id) {
+            return el;
+          }
+          return { ...el, ...action.payload.newItem };
+        })
+      };
     default:
       return state;
   }

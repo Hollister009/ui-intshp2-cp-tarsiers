@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { cartType } from '../../types/index';
+// import { cartType } from '../../types/index';
 import PayPalButton from '../../shared/PayPalButton';
 
 import ItemInCart from './ItemInCart';
@@ -9,11 +9,7 @@ import styles from './Cart.module.scss';
 import appConfig from '../../../config/appConfig';
 
 class Cart extends Component {
-  static propTypes = { cart: cartType.isRequired };
-
-  componentDidMount = () => {
-    window.scrollTo(0, 0);
-  };
+  // static propTypes = { cart: cartType.isRequired };
 
   clearCartHandler = e => {
     e.preventDefault();
@@ -27,9 +23,7 @@ class Cart extends Component {
       cart,
       createNotification,
       removeFromCart,
-      setColor,
-      setSize,
-      setQuantityAndTotal,
+      updateCartItem,
       setCommonTotal
     } = this.props;
     const { productsInCart } = cart;
@@ -39,9 +33,7 @@ class Cart extends Component {
         item={item}
         createNotification={createNotification}
         removeFromCart={removeFromCart}
-        setColor={setColor}
-        setSize={setSize}
-        setQuantityAndTotal={setQuantityAndTotal}
+        updateCartItem={updateCartItem}
       />
     ));
     const styleHead = { borderBottom: 'none' };

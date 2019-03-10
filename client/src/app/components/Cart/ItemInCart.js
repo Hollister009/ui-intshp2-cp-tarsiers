@@ -1,75 +1,99 @@
 import React, { Component } from 'react';
 import { Notify } from 'react-redux-notify';
 import NotifyService from '../../../utils/notify.service';
-import styles from './Cart.module.scss';
 import { productType } from '../../types';
 
+import styles from './Cart.module.scss';
+
 class ItemInCart extends Component {
-  static propTypes = {
-    item: productType
-  };
+  static propTypes = { item: productType };
 
   static defaultProps = { item: null };
 
-  state = { sizeClicked: '', activeColor: '' };
+  constructor(props) {
+    super(props);
+    this.item = props.item;
+    this.state = {
+      chosenColor: this.item.chosenColor,
+      chosenSize: this.item.chosenSize,
+      chosenQuantity: this.item.chosenQuantity,
+      total: this.item.price
+    };
+  }
 
   increment = () => {
-    const { createNotification, setQuantityAndTotal, item } = this.props;
-    const { _id, chosenQuantity } = item;
-    const newQuantity = chosenQuantity + 1;
+    const { _id, price } = this.item;
+    const { updateCartItem } = this.props;
 
-    if (chosenQuantity < item.quantity) {
-      setQuantityAndTotal({ _id, newQuantity });
-    } else {
-      createNotification(NotifyService.limitQuantity);
-    }
+    this.setState(
+      state => ({
+        chosenQuantity: state.chosenQuantity + 1,
+        total: (state.chosenQuantity + 1) * price
+      }),
+      () => {
+        const newItem = { ...this.item, ...this.state };
+
+        updateCartItem({ _id, newItem });
+      }
+    );
   };
 
   decrement = () => {
-    const { setQuantityAndTotal, item } = this.props;
-    const { _id, chosenQuantity } = item;
-    const newQuantity = chosenQuantity - 1;
+    const { _id, price } = this.item;
+    const { updateCartItem } = this.props;
+    const { chosenQuantity } = this.state;
 
     if (chosenQuantity > 1) {
-      setQuantityAndTotal({ _id, newQuantity });
+      this.setState(
+        state => ({
+          chosenQuantity: state.chosenQuantity - 1,
+          total: (state.chosenQuantity - 1) * price
+        }),
+        () => {
+          const newItem = { ...this.item, ...this.state };
+
+          updateCartItem({ _id, newItem });
+        }
+      );
     }
   };
 
   toggleSizes = (e, size) => {
     e.preventDefault();
-    const { setSize, item } = this.props;
-    const { _id } = item;
+    const { _id } = this.item;
+    const { updateCartItem } = this.props;
 
-    setSize({ _id, size });
-    this.setState({ sizeClicked: size });
+    this.setState({ chosenSize: size }, () => {
+      const newItem = { ...this.item, ...this.state };
+
+      updateCartItem({ _id, newItem });
+    });
   };
 
-  toggleColors = (e, color) => {
-    e.preventDefault();
-    const { setColor, item } = this.props;
-    const { _id } = item;
+  toggleColor = color => {
+    const { _id } = this.item;
+    const { updateCartItem } = this.props;
 
-    setColor({ _id, color });
-    this.setState({ activeColor: color });
+    this.setState({ chosenColor: color }, () => {
+      const newItem = { ...this.item, ...this.state };
+
+      updateCartItem({ _id, newItem });
+    });
   };
 
-  removeFromCartAction = e => {
-    const { removeFromCart, createNotification, item } = this.props;
+  itemRemove = () => {
+    const { removeFromCart, createNotification } = this.props;
 
-    e.preventDefault();
-    removeFromCart(item);
+    removeFromCart(this.item);
     createNotification(NotifyService.cartRemove);
   };
 
-  render() {
-    const { sizeClicked, activeColor } = this.state;
-    const { item } = this.props;
-    const { _id, chosenQuantity } = item;
-    const sizes = item.sizes.map((element, index, array) => {
+  renderSizes = () => {
+    const { chosenSize } = this.state;
+
+    return this.item.sizes.map((element, index, array) => {
       const active =
-        sizeClicked === element
-          ? `${styles.highlightedSize}`
-          : `${styles.size}`;
+        element === chosenSize ? `${styles.highlightedSize}` : `${styles.size}`;
 
       return (
         <React.Fragment key={element}>
@@ -77,7 +101,6 @@ class ItemInCart extends Component {
             href="/"
             className={active}
             onClick={e => this.toggleSizes(e, element)}
-            // style={active}
           >
             {element}
           </a>
@@ -85,8 +108,12 @@ class ItemInCart extends Component {
         </React.Fragment>
       );
     });
+  };
 
-    const swatches = item.colors.map(color => {
+  renderColors = () => {
+    const { chosenColor } = this.state;
+
+    return this.item.colors.map(color => {
       const style = { backgroundColor: `${color}` };
 
       return (
@@ -94,60 +121,58 @@ class ItemInCart extends Component {
           key={color}
           role="button"
           tabIndex="0"
-          className={color === activeColor ? styles.active : styles.color}
+          className={color === chosenColor ? styles.active : styles.color}
           style={style}
-          onClick={e => this.toggleColors(e, color)}
-          onKeyDown={e => this.toggleColors(e, color)}
+          onClick={() => this.toggleColor(color)}
+          onKeyDown={() => this.toggleColor(color)}
         >
           {color}
         </span>
       );
     });
+  };
+
+  render() {
+    const { chosenQuantity, total } = this.state;
     const quantityButtons = (
       <div className={styles.select_quantity}>
-        <button
-          type="button"
-          onClick={() => this.increment()}
-          data-type="increment"
-        >
+        <button type="button" onClick={this.increment} data-type="increment">
           +
         </button>
         {chosenQuantity}
-        <button
-          type="button"
-          onClick={() => this.decrement()}
-          data-type="decrement"
-        >
+        <button type="button" onClick={this.decrement} data-type="decrement">
           -
         </button>
       </div>
     );
 
-    const total = (item.price * chosenQuantity).toFixed(2);
-
     return (
       <React.Fragment>
         <Notify position={NotifyService.position.topRight} />
         <div className={styles.cart_block}>
-          <img src={item.src} alt={item.title} className={styles.item_image} />
-          <h3 className={styles.item_title}>{item.title}</h3>
+          <img
+            src={this.item.src}
+            alt={this.item.title}
+            className={styles.item_image}
+          />
+          <h3 className={styles.item_title}>{this.item.title}</h3>
           <div className={styles.select_colors}>
-            <div className={styles.scrollColor}>{swatches}</div>
+            <div className={styles.scrollColor}>{this.renderColors()}</div>
           </div>
           <div className={styles.select_sizes}>
-            <div className={styles.scrollSize}>{sizes}</div>
+            <div className={styles.scrollSize}>{this.renderSizes()}</div>
           </div>
-          <div>{`${item.price}$`}</div>
-          <div>{quantityButtons}</div>
+          <div>{this.item.price}</div>
+          {quantityButtons}
           <button
             type="button"
             className={styles.item_remove}
-            onClick={e => this.removeFromCartAction(e, _id)}
+            onClick={this.itemRemove}
             data-type="remove-btn"
           >
             <i className="far fa-trash-alt" />
           </button>
-          <div className={styles.item_total}>{`${total}$`}</div>
+          <h3 className={styles.item_total}>{total}</h3>
         </div>
       </React.Fragment>
     );
