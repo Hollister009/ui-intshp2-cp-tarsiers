@@ -22,7 +22,6 @@ const Cart = props => {
     <CartItem
       key={item._id}
       item={item}
-      styles={styles}
       createNotification={createNotification}
       removeFromCart={removeFromCart}
       updateCartItem={updateCartItem}
@@ -31,13 +30,13 @@ const Cart = props => {
 
   return (
     <section className="cart container">
-      <div className={styles.cart_rows}>
-        <div className={styles.cart_block}>{cellHeadings}</div>
-        <div className={styles.item_in_cart}>{displayedItems}</div>
+      <div className={styles.block}>
+        <div className={styles.columns}>{cellHeadings}</div>
+        <div className={styles.items}>{displayedItems}</div>
       </div>
       <h3 className={styles.price_total}>{`Total: ${total.toFixed(2)}$`}</h3>
       <div className={styles.order_buttons}>
-        <button type="button" className={styles.clear_cart} onClick={clearCart}>
+        <button type="button" className={styles.clear_btn} onClick={clearCart}>
           clear cart
         </button>
         <PayPalButton />

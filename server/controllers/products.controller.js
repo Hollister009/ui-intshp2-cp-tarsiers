@@ -16,8 +16,6 @@ const getProducts = (req, res) => {
     tag = null
   } = req.query;
 
-  console.log(_id, sizes, brands, category, price, available, skip, limit, tag);
-
   const idQuery = _id ? { _id: mongojs.ObjectId(_id) } : {};
   const tagQuery = tag ? { tag } : {};
   const categoryQuery = category ? { category } : {};

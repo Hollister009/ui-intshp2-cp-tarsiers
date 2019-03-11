@@ -1,16 +1,11 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixin';
 
-.cart_rows {
+.block {
   @include d-flex(space-between, column);
 }
 
-.item_in_cart {
-  background-color: $color-white;
-  margin-bottom: 30px;
-}
-
-.cart_block {
+.columns {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   align-items: center;
@@ -27,122 +22,17 @@
   h3 {
     text-align: center;
   }
+}
 
-  .item_image {
-    width: 50%;
-  }
+.items {
+  background-color: $color-white;
+  margin-bottom: 30px;
+}
 
-  .item_title {
-    font-size: 18px;
-    text-align: center;
-  }
-
-  .select_colors {
-    @include d-flex();
-    width: 75px;
-
-    .scrollColor {
-      @include d-flex();
-      overflow-y: scroll;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-
-    .color {
-      font-size: 0px;
-      display: block;
-      min-width: 15px;
-      min-height: 15px;
-      border-radius: 50%;
-      margin: 2px;
-      margin-bottom: 5px;
-      cursor: pointer;
-      outline: none;
-
-      &:hover {
-        animation: scale 0.5s forwards ease;
-      }
-    }
-
-    .active {
-      font-size: 0px;
-      display: block;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      margin: 2px;
-      margin-bottom: 5px;
-      cursor: pointer;
-      outline: none;
-      border: 2px solid $color-main;
-    }
-  }
-
-  .select_sizes {
-    @include d-flex();
-    width: 110px;
-
-    .scrollSize {
-      @include d-flex();
-      overflow-y: scroll;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-
-    .size {
-      color: $color-dark;
-      font-size: 18px;
-      padding: 0 5px;
-      text-decoration: none;
-      text-transform: uppercase;
-      outline: none;
-      height: 18px;
-
-      &:hover {
-        color: $color-main;
-        animation: scale 0.5s forwards ease;
-      }
-    }
-
-    .highlightedSize {
-      color: $color-main;
-      font-size: 18px;
-      padding: 0 5px;
-      text-decoration: none;
-      text-transform: uppercase;
-      outline: none;
-      height: 18px;
-    }
-  }
-
-  .select_quantity {
-    @include d-flex();
-
-    align-items: baseline;
-    color: $color-main;
-
-    button {
-      font-size: 18px;
-      margin: 0 5px;
-    }
-  }
-
-  .item_remove {
-    font-size: 22px;
-
-    &:hover {
-      color: $color-main;
-      animation: wobble 0.5s ease;
-    }
-  }
-
-  .item_total {
-    color: $color-main;
-  }
+.price_total {
+  font-size: 20px;
+  margin: 10px 0;
+  text-align: right;
 }
 
 .order_buttons {
@@ -166,34 +56,29 @@
       transform: translateY(-1px);
     }
   }
-
-  .clear_cart {
-    color: $color-white;
-    background-color: $color-main;
-    border: 2px solid $color-main;
-    border-radius: 7px;
-    text-transform: capitalize;
-    font-size: 18px;
-    padding: 7px 12px;
-
-    &:hover {
-      color: $color-main;
-      background-color: $color-white;
-    }
-  }
 }
 
-.price_total {
-  font-size: 20px;
-  margin: 10px 0;
-  text-align: right;
+.clear_btn {
+  color: $color-white;
+  background-color: $color-main;
+  border: 2px solid $color-main;
+  border-radius: 7px;
+  text-transform: capitalize;
+  font-size: 18px;
+  padding: 7px 12px;
+
+  &:hover {
+    color: $color-main;
+    background-color: $color-white;
+  }
 }
 
 @media screen and (max-width: $media-mobile) {
   h3 {
     display: none;
   }
-  .cart_block {
+
+  .block {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
   }

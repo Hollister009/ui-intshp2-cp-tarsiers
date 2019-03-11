@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Notify } from 'react-redux-notify';
 import NotifyService from '../../../../utils/notify.service';
 import { productType } from '../../../types';
+import CartItemView from './CartItemView';
 
-class ItemInCart extends Component {
+import styles from './CartItem.module.scss';
+
+class CartItem extends Component {
   static propTypes = { item: productType };
 
   static defaultProps = { item: null };
@@ -88,7 +91,6 @@ class ItemInCart extends Component {
 
   renderSizes = () => {
     const { chosenSize } = this.state;
-    const { styles } = this.props;
 
     return this.item.sizes.map((element, index, array) => {
       const active =
@@ -111,7 +113,6 @@ class ItemInCart extends Component {
 
   renderColors = () => {
     const { chosenColor } = this.state;
-    const { styles } = this.props;
 
     return this.item.colors.map(color => {
       const style = { backgroundColor: `${color}` };
@@ -132,11 +133,11 @@ class ItemInCart extends Component {
     });
   };
 
-  render() {
-    const { chosenQuantity, total } = this.state;
-    const { styles } = this.props;
-    const quantityButtons = (
-      <div className={styles.select_quantity}>
+  renderQuantity = () => {
+    const { chosenQuantity } = this.state;
+
+    return (
+      <React.Fragment>
         <button type="button" onClick={this.increment} data-type="increment">
           +
         </button>
@@ -144,40 +145,28 @@ class ItemInCart extends Component {
         <button type="button" onClick={this.decrement} data-type="decrement">
           -
         </button>
-      </div>
+      </React.Fragment>
     );
+  };
+
+  render() {
+    const { total } = this.state;
 
     return (
       <React.Fragment>
         <Notify position={NotifyService.position.topRight} />
-        <div className={styles.cart_block}>
-          <img
-            src={this.item.src}
-            alt={this.item.title}
-            className={styles.item_image}
-          />
-          <h3 className={styles.item_title}>{this.item.title}</h3>
-          <div className={styles.select_colors}>
-            <div className={styles.scrollColor}>{this.renderColors()}</div>
-          </div>
-          <div className={styles.select_sizes}>
-            <div className={styles.scrollSize}>{this.renderSizes()}</div>
-          </div>
-          <div>{this.item.price}</div>
-          {quantityButtons}
-          <button
-            type="button"
-            className={styles.item_remove}
-            onClick={this.itemRemove}
-            data-type="remove-btn"
-          >
-            <i className="far fa-trash-alt" />
-          </button>
-          <h3 className={styles.item_total}>{total}</h3>
-        </div>
+        <CartItemView
+          item={this.item}
+          total={total}
+          styles={styles}
+          sizes={this.renderSizes()}
+          colors={this.renderColors()}
+          quantity={this.renderQuantity()}
+          itemRemove={this.itemRemove}
+        />
       </React.Fragment>
     );
   }
 }
 
-export default ItemInCart;
+export default CartItem;
