@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Footer from './Footer';
 
 const mapStateToProps = state => ({
-  headerFooterVisibility: state.headerFooterVisibility
+  toggleHFVisibility: state.toggleHFVisibility
 });
 
 export default connect(mapStateToProps)(Footer);

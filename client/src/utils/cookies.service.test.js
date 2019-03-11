@@ -1,5 +1,5 @@
 import { Cookies } from 'react-cookie';
-import CookieService from './cookies.services';
+import CookieService from './cookies.service';
 
 describe('get', () => {
   test('should answer on GET', () => {

@@ -1,26 +1,32 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
+import { connect } from 'react-redux';
 
+import { loadCart } from '../actions';
 import appConfig from '../../config/appConfig';
+import httpService from '../../utils/http.service';
+import ls from '../../utils/localStorage.service';
+
 import Promotions from '../components/Promotions/Promotions';
 import NewArrivalsContainer from '../components/NewArrivals/NewArrivalsContainer';
 import AdvertisingArea from '../shared/Advertising';
 import JoinUs from '../components/JoinUs/JoinUs';
 import WishListContainer from '../components/WishList/WishListContainer';
-import httpService from '../../utils/http.service';
 
 class HomePage extends Component {
   componentDidMount() {
-    const { location } = this.props;
+    const { location, loadPrevCart } = this.props;
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.toString();
 
     if (searchParams.get('payment') === 'success') {
       this.callSuccesful(query);
+      ls.clearState();
     }
     if (searchParams.get('payment') === 'cancel') {
       this.callCanceled(query);
+      loadPrevCart(ls.getState('cart'));
     }
   }
 
@@ -59,4 +65,11 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapDispatchToProps = dispatch => ({
+  loadPrevCart: data => dispatch(loadCart(data))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(HomePage);

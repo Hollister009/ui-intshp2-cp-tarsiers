@@ -6,8 +6,8 @@ import appConfig from '../../../config/appConfig';
 import './Footer.scss';
 
 const Footer = props => {
-  const { headerFooterVisibility } = props;
-  const visible = headerFooterVisibility.value;
+  const { toggleHFVisibility } = props;
+  const visible = toggleHFVisibility.value;
 
   const renderLinks = list =>
     list.map(link => {

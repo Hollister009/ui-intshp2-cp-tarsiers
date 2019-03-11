@@ -2,6 +2,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   CLEAR_CART,
+  LOAD_CART,
   UPDATE_CART_ITEM
 } from '../actions';
 
@@ -42,6 +43,8 @@ export default (state = initialState, action) => {
       };
     case CLEAR_CART:
       return { ...initialState };
+    case LOAD_CART:
+      return { ...action.payload };
     default:
       return state;
   }
