@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleHFVisibility } from '../actions';
 
+import ls from '../../utils/localStorage.service';
 import HttpService from '../../utils/http.service';
+
 import Overlay from '../common/Overlay';
 import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
 
@@ -25,6 +27,9 @@ class CheckoutPage extends Component {
 
   handleSubmit = (e, validate) => {
     e.preventDefault();
+    const { cart } = this.props;
+
+    ls.setState('cart', cart);
 
     if (validate()) {
       this.setState({ redirecting: true }, () => {

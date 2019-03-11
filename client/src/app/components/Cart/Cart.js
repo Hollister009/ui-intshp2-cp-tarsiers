@@ -1,9 +1,10 @@
 import React from 'react';
-import PayPalButton from '../../shared/PayPalButton';
+import { Link } from 'react-router-dom';
 
 import CartItem from './CartItem/CartItem';
 import styles from './Cart.module.scss';
 import appConfig from '../../../config/appConfig';
+import ls from '../../../utils/localStorage.service';
 
 const Cart = props => {
   const {
@@ -28,6 +29,11 @@ const Cart = props => {
     />
   ));
 
+  const handleClearCart = () => {
+    clearCart();
+    ls.clearState();
+  };
+
   return (
     <section className="cart container">
       <div className={styles.block}>
@@ -36,10 +42,14 @@ const Cart = props => {
       </div>
       <h3 className={styles.price_total}>{`Total: ${total.toFixed(2)}$`}</h3>
       <div className={styles.order_buttons}>
-        <button type="button" className={styles.clear_btn} onClick={clearCart}>
+        <button
+          type="button"
+          className={styles.clear_btn}
+          onClick={handleClearCart}
+        >
           clear cart
         </button>
-        <PayPalButton />
+        <Link to="/checkout">checkout</Link>
       </div>
     </section>
   );
