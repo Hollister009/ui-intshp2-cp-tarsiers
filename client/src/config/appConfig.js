@@ -57,7 +57,6 @@ const appConfig = {
       }
     ]
   },
-
   footer: {
     links: [
       {
@@ -142,7 +141,6 @@ const appConfig = {
       }
     ]
   },
-
   joinUsSnackbar: {
     message: 'You are registered now :) Have a great shopping!'
   },
@@ -205,7 +203,17 @@ const appConfig = {
       'https://res.cloudinary.com/sofimat/image/upload/v1551793876/empty/click-here-gif-4.gif',
     pageNotFound:
       'https://res.cloudinary.com/sofimat/image/upload/v1551793877/empty/oie_11438wBPVT3CE.gif'
-  }
+  },
+  cartCellHeadings: [
+    'product',
+    'title',
+    'color',
+    'size',
+    'price',
+    'quantity',
+    'remove',
+    'total'
+  ]
 };
 
 export default appConfig;

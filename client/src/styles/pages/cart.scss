@@ -1,0 +1,19 @@
+@import '../mixin';
+@import '../variables';
+
+.cart {
+  position: relative;
+  text-align: center;
+  padding-top: 20px;
+  transition: 0.4s ease-out;
+
+  &-msg {
+    font-size: 2rem;
+    color: $color-main;
+  }
+
+  &-img {
+    margin: 0 auto;
+    width: 450px;
+  }
+}

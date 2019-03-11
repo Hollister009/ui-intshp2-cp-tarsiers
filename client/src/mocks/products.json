@@ -14,7 +14,7 @@
       "#48d250": "https://res.cloudinary.com/so/image/upload/v1548069002/products/reebok%20jacket/green.jpg",
       "#a04ad6": "https://res.cloudinary.com/so/image/upload/v1548069002/products/reebok%20jacket/purple.jpg"
     },
-    "available": false
+    "quantity": 20
   },
   {
     "_id": "5c47312be7179a544940e080",
@@ -32,7 +32,7 @@
       "#631399": "https://res.cloudinary.com/so/image/upload/v1548069124/products/cycling%20tshirt/purple.jpg",
       "#9e1112": "https://res.cloudinary.com/so/image/upload/v1548069124/products/cycling%20tshirt/red.jpg"
     },
-    "available": true
+    "quantity": 7
   },
   {
     "_id": "5c486043e7179a544941a6b2",
@@ -46,7 +46,7 @@
     "colorUrls": {
       "#171717": "https://res.cloudinary.com/so/image/upload/v1548246979/products/cba0707c66f3b196408f9bf6e92cc460--knt-nike.jpg"
     },
-    "available": true
+    "quantity": 12
   },
   {
     "_id": "5c4f22d3e7179a090e0b76e2",
@@ -60,6 +60,6 @@
     "colorUrls": {
       "#28222c": "https://res.cloudinary.com/so/image/upload/v1548689897/products/ski-jacket_2.jpg"
     },
-    "available": true
+    "quantity": 0
   }
 ]
