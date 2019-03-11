@@ -8,7 +8,7 @@ describe('<Header />', () => {
 
   beforeEach(() => {
     props = {
-      headerFooterVisibility: { value: true },
+      toggleHFVisibility: { value: true },
       cart: { productsInCart: [] }
     };
   });
@@ -28,8 +28,8 @@ describe('<Header />', () => {
   it('should be able to render based on props', () => {
     const wrapper = mount(<Header {...props} />);
 
-    expect(wrapper.prop('headerFooterVisibility').value).toBe(true);
-    wrapper.setProps({ headerFooterVisibility: { value: false } });
-    expect(wrapper.prop('headerFooterVisibility').value).toBe(false);
+    expect(wrapper.prop('toggleHFVisibility').value).toBe(true);
+    wrapper.setProps({ toggleHFVisibility: { value: false } });
+    expect(wrapper.prop('toggleHFVisibility').value).toBe(false);
   });
 });
