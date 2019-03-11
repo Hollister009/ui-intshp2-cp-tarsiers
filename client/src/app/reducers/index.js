@@ -1,18 +1,19 @@
 import { combineReducers } from 'redux';
 import notifyReducer from 'react-redux-notify';
-import headerFooterVisibility from './headerFooterVisibility';
+
+import cart from './cart';
+import filter from './filter';
 import products from './products';
 import wishlist from './wishlist';
-import filter from './filter';
-import cart from './cart';
 import filteredProducts from './filteredProducts';
+import toggleHFVisibility from './toggleHFVisibility';
 
 export default combineReducers({
-  headerFooterVisibility,
-  products,
-  wishlist,
   cart,
   filter,
-  notifications: notifyReducer,
-  filteredProducts
+  products,
+  wishlist,
+  filteredProducts,
+  toggleHFVisibility,
+  notifications: notifyReducer
 });

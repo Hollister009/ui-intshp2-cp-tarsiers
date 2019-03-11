@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
+import { toggleHFVisibility } from '../actions';
 
 import '../../styles/pages/page404.scss';
 import appConfig from '../../config/appConfig';
 
 class Page404 extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { toggleHFV } = this.props;
 
-    dispatch(TOGGLE_HEADER_AND_FOOTER_VISIBILITY);
+    toggleHFV();
   }
 
   componentWillUnmount() {
-    const { dispatch } = this.props;
+    const { toggleHFV } = this.props;
 
-    dispatch(TOGGLE_HEADER_AND_FOOTER_VISIBILITY);
+    toggleHFV();
   }
 
   render() {
@@ -44,6 +44,11 @@ class Page404 extends Component {
   }
 }
 
-const mapStateToProps = state => ({ ...state });
+const mapDispatchToProps = dispatch => ({
+  toggleHFV: () => dispatch(toggleHFVisibility())
+});
 
-export default connect(mapStateToProps)(Page404);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Page404);

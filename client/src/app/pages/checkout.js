@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TOGGLE_HEADER_AND_FOOTER_VISIBILITY } from '../actions';
+import { toggleHFVisibility } from '../actions';
 
 import HttpService from '../../utils/http.service';
 import Overlay from '../common/Overlay';
@@ -12,15 +12,15 @@ class CheckoutPage extends Component {
   state = { redirecting: false };
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { toggleHFV } = this.props;
 
-    dispatch(TOGGLE_HEADER_AND_FOOTER_VISIBILITY);
+    toggleHFV();
   }
 
   componentWillUnmount() {
-    const { dispatch } = this.props;
+    const { toggleHFV } = this.props;
 
-    dispatch(TOGGLE_HEADER_AND_FOOTER_VISIBILITY);
+    toggleHFV();
   }
 
   handleSubmit = (e, validate) => {
@@ -56,6 +56,15 @@ class CheckoutPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({ ...state });
+const mapStateToProps = state => ({
+  cart: state.cart
+});
 
-export default connect(mapStateToProps)(CheckoutPage);
+const mapDispatchToProps = dispatch => ({
+  toggleHFV: () => dispatch(toggleHFVisibility())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CheckoutPage);

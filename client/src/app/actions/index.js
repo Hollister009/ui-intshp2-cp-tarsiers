@@ -6,14 +6,12 @@ export const ADD_TO_WISHLIST = 'ADD_TO_WISHLIST';
 export const ADD_ITEMS_TO_FILTERED = 'ADD_ITEMS_TO_FILTERED';
 export const RM_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
 export const UPDATE_FILTERED = 'UPDATE_FILTERED';
-export const TOGGLE_HEADER_AND_FOOTER_VISIBILITY = {
-  type: 'TOGGLE_HEADER_AND_FOOTER_VISIBILITY'
-};
-// Cart
+export const LOAD_CART = 'LOAD_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
-export const CLEAR_CART = 'CLEAR_CART';
+export const TOGGLE_HF_VISIBILITY = 'TOGGLE_HF_VISIBILITY';
 
 export const updateNewArrivals = data =>
   actionHelper(data, UPDATE_NEW_ARRIVALS);
@@ -23,8 +21,9 @@ export const addItemsToFiltered = data =>
   actionHelper(data, ADD_ITEMS_TO_FILTERED);
 export const removeFromWishList = data => actionHelper(data, RM_FROM_WISHLIST);
 export const updateFiltered = data => actionHelper(data, UPDATE_FILTERED);
-// Cart
 export const addToCart = data => actionHelper(data, ADD_TO_CART);
 export const removeFromCart = data => actionHelper(data, REMOVE_FROM_CART);
 export const updateCartItem = data => actionHelper(data, UPDATE_CART_ITEM);
 export const clearCart = () => actionHelper({}, CLEAR_CART);
+export const loadCart = data => actionHelper(data, LOAD_CART);
+export const toggleHFVisibility = () => actionHelper({}, TOGGLE_HF_VISIBILITY);

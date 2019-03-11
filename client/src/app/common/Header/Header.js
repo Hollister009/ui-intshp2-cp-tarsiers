@@ -5,8 +5,8 @@ import HeaderMain from './HeaderMain';
 import appConfig from '../../../config/appConfig';
 
 const Header = props => {
-  const { headerFooterVisibility, cart } = props;
-  const visible = headerFooterVisibility.value;
+  const { toggleHFVisibility, cart } = props;
+  const visible = toggleHFVisibility.value;
   const { contacts, links, pages, options } = appConfig.header;
 
   return (
