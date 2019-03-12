@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Notify } from 'react-redux-notify';
 import NotifyService from '../../../../utils/notify.service';
-
 import { productType } from '../../../types';
 import CartItemView from './CartItemView';
 
