@@ -14,9 +14,13 @@ class CheckoutPage extends Component {
   state = { redirecting: false };
 
   componentDidMount() {
-    const { toggleHFV } = this.props;
+    const { toggleHFV, cart } = this.props;
 
+    ls.setState('cart', cart); // for development
     toggleHFV();
+
+    // console.clear();
+    // console.table(cart.productsInCart);
   }
 
   componentWillUnmount() {
@@ -25,11 +29,13 @@ class CheckoutPage extends Component {
     toggleHFV();
   }
 
+  getTotalPrice = arr => arr.reduce((acc, cur) => acc + cur.total, 0);
+
   handleSubmit = (e, validate) => {
     e.preventDefault();
-    const { cart } = this.props;
+    // const { cart } = this.props;
 
-    ls.setState('cart', cart);
+    // ls.setState('cart', cart);
 
     if (validate()) {
       this.setState({ redirecting: true }, () => {
@@ -46,6 +52,7 @@ class CheckoutPage extends Component {
   };
 
   render() {
+    const { cart } = this.props;
     const { redirecting } = this.state;
     const onBlur = redirecting ? 'blur' : '';
 
@@ -55,6 +62,7 @@ class CheckoutPage extends Component {
         <section className={`checkout container ${onBlur}`}>
           <h1>Please enter your shipping information bellow:</h1>
           <CheckoutForm handleSubmit={this.handleSubmit} />
+          <h2>Total Price: {this.getTotalPrice(cart.productsInCart)}$</h2>
         </section>
       </React.Fragment>
     );

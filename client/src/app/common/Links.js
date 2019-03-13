@@ -2,9 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RouterLink = props => {
-  const { href, children } = props;
+  const { href, children, callback } = props;
 
-  return <Link to={href}>{children}</Link>;
+  return callback ? (
+    <Link to={href} onClick={callback}>
+      {children}
+    </Link>
+  ) : (
+    <Link to={href}>{children}</Link>
+  );
 };
 
 const ExternalLink = props => {

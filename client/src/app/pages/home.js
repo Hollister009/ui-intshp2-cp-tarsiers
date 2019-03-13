@@ -19,14 +19,18 @@ class HomePage extends Component {
     const { location, loadPrevCart } = this.props;
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.toString();
+    const prevState = ls.getState('cart');
 
+    if (prevState) {
+      loadPrevCart(ls.getState('cart'));
+    }
     if (searchParams.get('payment') === 'success') {
       this.callSuccesful(query);
       ls.clearState();
     }
     if (searchParams.get('payment') === 'cancel') {
       this.callCanceled(query);
-      loadPrevCart(ls.getState('cart'));
+      loadPrevCart(prevState);
     }
   }
 

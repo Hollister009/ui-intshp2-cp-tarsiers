@@ -44,11 +44,15 @@ ul {
 }
 
 button {
-  cursor: pointer;
   padding: 5px;
-  // outline: none;
-  // border: none;
-  // background: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:focus,
+  &:hover {
+    box-shadow: $button-shadow;
+  }
 }
 
 .container {

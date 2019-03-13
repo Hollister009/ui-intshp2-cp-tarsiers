@@ -31,7 +31,8 @@ const Cart = props => {
 
   const handleClearCart = () => {
     clearCart();
-    ls.clearState();
+    // ls.clearState();
+    ls.setState('cart', { productsInCart: [] });
   };
 
   return (
