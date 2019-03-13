@@ -68,7 +68,8 @@ class CheckoutPage extends Component {
           <CheckoutForm handleSubmit={this.handleSubmit} />
           <h2>
             Total Price:
-            {this.getTotalPrice(cart.productsInCart)}$
+            {this.getTotalPrice(cart.productsInCart)}
+            {'$'}
           </h2>
         </section>
       </React.Fragment>
