@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import CheckoutForm from './CheckoutForm';
 
 jest.mock('imask');
-describe('<CheckoutForm />', () => {
+xdescribe('<CheckoutForm />', () => {
   it('should match its snapshot', () => {
     const wrapper = shallow(<CheckoutForm />);
 

@@ -71,7 +71,7 @@ function payment(req, res) {
       }
     ]
   };
-  console.log(create_payment_json);
+  // console.log(create_payment_json);
 
   paypal.payment.create(create_payment_json, function(error, payment) {
     if (error) {
@@ -104,7 +104,7 @@ function onSuccess(req, res) {
       }
     ]
   };
-  console.log(execute_payment_json);
+  // console.log(execute_payment_json);
 
   paypal.payment.execute(paymentId, execute_payment_json, function(
     error,

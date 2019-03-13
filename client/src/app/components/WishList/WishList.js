@@ -13,8 +13,6 @@ const message = 'Currently your wishlist is empty. Add products to it first';
 const WishList = props => {
   const { wishlist, cart } = props;
 
-  console.log('wishlist props', props);
-
   const titleArr = title.split(' ');
 
   const list =
@@ -45,7 +43,7 @@ const WishList = props => {
 };
 
 WishList.propTypes = {
-  wishlist: PropTypes.arrayOf(PropTypes.string)
+  wishlist: PropTypes.arrayOf(PropTypes.object)
 };
 
 WishList.defaultProps = {

@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
 import { connect } from 'react-redux';
+import { createNotification, Notify } from 'react-redux-notify';
 
 import { loadCart } from '../actions';
 import appConfig from '../../config/appConfig';
 import httpService from '../../utils/http.service';
+import NotifyService from '../../utils/notify.service';
 import ls from '../../utils/localStorage.service';
 
 import Promotions from '../components/Promotions/Promotions';
@@ -22,37 +24,47 @@ class HomePage extends Component {
     const prevState = ls.getState('cart');
 
     if (searchParams.get('payment') === 'success') {
-      this.callSuccesful(query);
       ls.setState('cart', { productsInCart: [] });
+      this.callSuccesful(query);
     }
     if (searchParams.get('payment') === 'cancel') {
-      this.callCanceled(query);
       loadPrevCart(prevState);
+      this.callCanceled(query);
     }
   }
 
   // TODO: User notifications on success or cancel
+  clearRoute = res => {
+    const { history } = this.props;
+
+    history.push('/');
+    if (res.data === 'Success') {
+      createNotification(NotifyService.paymentSuccess);
+    } else {
+      createNotification(NotifyService.paymentCancel);
+    }
+    console.log(res);
+  };
 
   callSuccesful = query => {
     httpService
       .get(`/api/success?${query}`)
-      .then(res => console.log(res))
+      .then(res => this.clearRoute(res))
       .catch(err => console.log(err));
   };
 
   callCanceled = query => {
     httpService
       .get(`/api/cancel?${query}`)
-      .then(res => console.log(res))
+      .then(res => this.clearRoute(res))
       .catch(err => console.log(err));
   };
-
-  // TODO: write utility function to clear routes
 
   render() {
     return (
       <React.Fragment>
         <Promotions />
+        <Notify position={NotifyService.position.topRight} />
         <NewArrivalsContainer />
         <Flags authorizedFlags={[appConfig.killswitch.advertising]}>
           <AdvertisingArea />
@@ -67,7 +79,8 @@ class HomePage extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadPrevCart: data => dispatch(loadCart(data))
+  loadPrevCart: data => dispatch(loadCart(data)),
+  createNotification: config => dispatch(createNotification(config))
 });
 
 export default connect(
