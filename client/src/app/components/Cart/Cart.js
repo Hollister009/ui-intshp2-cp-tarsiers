@@ -16,7 +16,7 @@ const Cart = props => {
   } = props;
   const { productsInCart } = cart;
   const total = productsInCart.reduce((totalSum, el) => totalSum + el.total, 0);
-  const cellHeadings = appConfig.cartCellHeadings.map(head => (
+  const cellHeadings = appConfig.cart.cellNames.map(head => (
     <h3 key={head}>{head}</h3>
   ));
   const displayedItems = productsInCart.map(item => (
@@ -31,7 +31,6 @@ const Cart = props => {
 
   const handleClearCart = () => {
     clearCart();
-    // ls.clearState();
     ls.setState('cart', { productsInCart: [] });
   };
 

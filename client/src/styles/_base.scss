@@ -51,7 +51,7 @@ button {
 
   &:focus,
   &:hover {
-    box-shadow: $button-shadow;
+    transform: scale(1.2);
   }
 }
 

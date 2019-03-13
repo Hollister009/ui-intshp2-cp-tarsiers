@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import IMask from 'imask';
@@ -55,16 +56,23 @@ class CheckoutForm extends Component {
   }
 
   findAllInputs = () => {
-    const form = this.formRef.current;
-    const formElements = [...form.elements].filter(
-      el => el.nodeName.toLowerCase() === 'input'
-    );
     const formData = ls.getState('form');
 
     if (formData) {
-      formElements.map(el => (el.value = formData[el.id]));
+      const form = this.formRef.current;
+      const formElements = [...form.elements].filter(
+        el => el.nodeName.toLowerCase() === 'input'
+      );
+
+      formElements.forEach(el => {
+        el.value = formData[el.id];
+        if (this.validateField(el, el.id)) {
+          el.classList.add('success');
+        }
+      });
+
+      // this.validateForm();
     }
-    this.validateForm();
   };
 
   handleInputBlur = (e, field) => {
@@ -114,31 +122,52 @@ class CheckoutForm extends Component {
   };
 
   onAcceptAction = e => {
-    e.preventDefault();
-    console.log('yey!');
-    const formElement = this.formRef.current;
+    const { handleSubmit } = this.props;
 
-    if (this.validateForm()) {
-      console.log();
-      // const data = new FormData(formElement);
-      // console.log(data.getAll());
-    }
-    const data = {
-      name: '',
-      email: '',
-      address: '',
-      phoneNumber: ''
-    };
-    // ls.setState('form', )
+    e.preventDefault();
+
+    // if (!this.validateForm()) {
+    // }
+    const data = {};
+    const form = this.formRef.current;
+
+    [...form.elements].forEach(el => {
+      if (el.nodeName.toLowerCase() === 'input') {
+        data[el.getAttribute('id')] = el.value;
+      }
+    });
+
+    ls.setState('form', data);
+
+    handleSubmit(this.validateForm);
   };
 
-  onCancelAction = () => {
-    ls.clearState();
+  onCancelAction = e => {
+    // const { handleSubmit } = this.props;
+    e.preventDefault();
+    const form = this.formRef.current;
+    const formElements = [...form.elements].filter(
+      el => el.nodeName.toLowerCase() === 'input'
+    );
+
+    formElements.map(el => {
+      el.value = '';
+      return el;
+    });
+
+    // clear all data from localStorage and form
+    const data = {
+      name: 'Asterix',
+      email: 'asterix@obelix.com',
+      address: 'Galium',
+      phoneNumber: '+(380)902932123'
+    };
+
+    ls.setState('form', data);
+    // handleSubmit(this.validateForm);
   };
 
   render() {
-    const { handleSubmit } = this.props;
-
     return (
       <div className="container checkout-form">
         <form
@@ -149,8 +178,16 @@ class CheckoutForm extends Component {
           {this.formFields}
           {/* <button type="submit">Proceed</button> */}
           <fieldset>
-            <StyledButton btnClass="accept" callback={this.onAcceptAction} />
-            <StyledButton btnClass="cancel" />
+            <StyledButton
+              type="submit"
+              btnClass="accept"
+              callback={this.onAcceptAction}
+            />
+            <StyledButton
+              type="submit"
+              btnClass="cancel"
+              callback={this.onCancelAction}
+            />
             {/* <StyledButton backward /> */}
           </fieldset>
         </form>

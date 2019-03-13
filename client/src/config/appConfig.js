@@ -204,16 +204,21 @@ const appConfig = {
     pageNotFound:
       'https://res.cloudinary.com/sofimat/image/upload/v1551793877/empty/oie_11438wBPVT3CE.gif'
   },
-  cartCellHeadings: [
-    'product',
-    'title',
-    'color',
-    'size',
-    'price',
-    'quantity',
-    'remove',
-    'total'
-  ]
+  cart: {
+    emptyMsg: 'Your cart is empty! Please order something!',
+    emptyCart:
+      'https://res.cloudinary.com/sofimat/image/upload/v1551793878/empty/cart.gif',
+    cellNames: [
+      'product',
+      'title',
+      'color',
+      'size',
+      'price',
+      'quantity',
+      'remove',
+      'total'
+    ]
+  }
 };
 
 export default appConfig;

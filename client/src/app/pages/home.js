@@ -21,12 +21,9 @@ class HomePage extends Component {
     const query = searchParams.toString();
     const prevState = ls.getState('cart');
 
-    if (prevState) {
-      loadPrevCart(ls.getState('cart'));
-    }
     if (searchParams.get('payment') === 'success') {
       this.callSuccesful(query);
-      ls.clearState();
+      ls.setState('cart', { productsInCart: [] });
     }
     if (searchParams.get('payment') === 'cancel') {
       this.callCanceled(query);
