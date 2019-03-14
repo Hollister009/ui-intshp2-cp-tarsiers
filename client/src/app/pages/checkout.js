@@ -4,6 +4,7 @@ import { toggleHFVisibility, loadCart } from '../actions';
 
 import ls from '../../utils/localStorage.service';
 import HttpService from '../../utils/http.service';
+import { getTotalPrice } from '../../utils/priceFormat.service';
 
 import Overlay from '../common/Overlay';
 import CheckoutForm from '../components/CheckoutForm/CheckoutForm';
@@ -34,8 +35,6 @@ class CheckoutPage extends Component {
 
     toggleHFV();
   }
-
-  getTotalPrice = arr => arr.reduce((acc, cur) => acc + cur.total, 0);
 
   handleSubmit = validate => {
     const { cart } = this.props;
@@ -68,8 +67,7 @@ class CheckoutPage extends Component {
           <CheckoutForm handleSubmit={this.handleSubmit} />
           <h2>
             Total Price:
-            {this.getTotalPrice(cart.productsInCart)}
-            {'$'}
+            {getTotalPrice(cart.productsInCart)}
           </h2>
         </section>
       </React.Fragment>

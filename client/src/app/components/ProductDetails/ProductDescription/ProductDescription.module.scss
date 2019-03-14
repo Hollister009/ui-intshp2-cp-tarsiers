@@ -86,8 +86,8 @@
 
   .select {
     padding: 30px 0;
-    border-top: 2px solid $color-light-2;
-    border-bottom: 2px solid $color-light-2;
+    border-top: $border-light;
+    border-bottom: $border-light;
     flex-wrap: wrap;
     @include d-flex();
     margin: 0 10px;

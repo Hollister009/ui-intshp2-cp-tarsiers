@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import IMask from 'imask';
 
 import { validateForm, validateField } from './validateForm';
@@ -25,26 +24,27 @@ const hints = {
 };
 
 class CheckoutForm extends Component {
+  formFields = Object.entries(inputPairs).map(el => (
+    <label htmlFor={el[0]} key={el[0]}>
+      {el[1]}
+      <input
+        type="text"
+        id={el[0]}
+        onChange={e => this.handleInputChange(e, el[0])}
+        onBlur={e => this.handleInputBlur(e, el[0])}
+        onFocus={this.handleInputFocus}
+      />
+      <div className="tooltip" id={`${el[0]}-tooltip`}>
+        {hints[el[0]]}
+      </div>
+    </label>
+  ));
+
   constructor(props) {
     super(props);
     this.validateForm = validateForm.bind(this);
     this.validateField = validateField.bind(this);
     this.formRef = React.createRef();
-    this.formFields = Object.entries(inputPairs).map(element => (
-      <label htmlFor={element[0]} key={element[0]}>
-        {element[1]}
-        <input
-          type="text"
-          id={element[0]}
-          onChange={e => this.handleInputChange(e, element[0])}
-          onBlur={e => this.handleInputBlur(e, element[0])}
-          onFocus={this.handleInputFocus}
-        />
-        <div className="tooltip" id={`${element[0]}-tooltip`}>
-          {hints[element[0]]}
-        </div>
-      </label>
-    ));
   }
 
   componentDidMount() {
@@ -176,4 +176,4 @@ class CheckoutForm extends Component {
   }
 }
 
-export default withRouter(CheckoutForm);
+export default CheckoutForm;
