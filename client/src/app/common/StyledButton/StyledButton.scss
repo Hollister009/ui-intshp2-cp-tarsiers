@@ -1,0 +1,71 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.styled-btn {
+  display: inline-block;
+  vertical-align: baseline;
+  background: transparent;
+  border-radius: 3px;
+  min-width: 120px;
+  border: 2px solid $color-main;
+  margin: 0 0.5em;
+  padding: 0.25em 1em;
+  outline: none;
+  font: inherit;
+  font-size: 16px;
+  color: $color-main;
+  cursor: pointer;
+  line-height: 1.8em;
+  transition: 0.4s ease;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-3px);
+    box-shadow: 0px 0px 5px $color-main;
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  &.accept {
+    border-color: $color-success;
+    color: $color-success;
+
+    &:hover,
+    &:focus {
+      color: $color-white;
+      background-color: $color-success;
+      box-shadow: 0px 0px 5px $color-success;
+    }
+  }
+
+  &.backward {
+    border-color: $color-warn;
+    color: $color-warn;
+
+    &:hover,
+    &:focus {
+      color: $color-black;
+      background-color: $color-warn;
+      box-shadow: 0px 0px 5px $color-warn;
+    }
+  }
+
+  &.cancel {
+    border-color: $color-alert;
+    color: $color-alert;
+
+    &:hover,
+    &:focus {
+      color: $color-white;
+      background-color: $color-alert;
+      box-shadow: 0px 0px 5px $color-alert;
+    }
+  }
+
+  & > span {
+    display: inline-block;
+    margin-left: 5px;
+  }
+}

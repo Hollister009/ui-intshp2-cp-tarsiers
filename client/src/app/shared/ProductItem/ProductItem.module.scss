@@ -101,7 +101,7 @@
   &__swatches {
     margin: 15px auto;
     overflow-y: scroll;
-    @include d-flex(center);
+    @include d-flex();
     padding: 5px;
     width: 80px;
 

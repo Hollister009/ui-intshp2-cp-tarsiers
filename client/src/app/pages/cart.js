@@ -7,17 +7,14 @@ import CartContainer from '../components/Cart/CartContainer';
 
 import '../../styles/pages/cart.scss';
 
-const CartPage = props => {
-  const { cart } = props;
-  const msg = 'Your cart is empty! Please order something!';
-
+const CartPage = ({ cart }) => {
   if (cart.productsInCart.length === 0) {
     return (
       <section className="cart container">
-        <h2 className="cart-msg">{msg}</h2>
+        <h2 className="cart-msg">{appConfig.cart.emptyMsg}</h2>
         <Link to="/products">
           <img
-            src={appConfig.imageRes.emptyCart}
+            src={appConfig.cart.emptyCart}
             alt="Empty cart"
             className="cart-img"
           />

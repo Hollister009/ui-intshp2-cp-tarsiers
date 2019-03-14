@@ -16,9 +16,25 @@ function getHostUrl(req) {
   });
 }
 
+let subtotal = 0;
+function createPaymentData(data) {
+  return data.map(item => {
+    subtotal += item.total;
+    return {
+      name: item.brand,
+      sku: item._id,
+      description: item.title,
+      price: item.total.toFixed(2),
+      currency: 'USD',
+      quantity: item.chosenQuantity
+    };
+  });
+}
+
 function payment(req, res) {
-  // TODO: pass data to payment in POST
   let hostname;
+  const params = req.body;
+  const newPaymentInfo = createPaymentData(params);
 
   if (process.env.NODE_ENV === 'production') {
     hostname = getHostUrl(req);
@@ -39,25 +55,17 @@ function payment(req, res) {
       payment_method: 'paypal'
     },
     redirect_urls: {
-      return_url: return_url,
-      cancel_url: cancel_url
+      return_url,
+      cancel_url
     },
     transactions: [
       {
         item_list: {
-          items: [
-            {
-              name: 'item',
-              sku: 'item',
-              price: '10.00',
-              currency: 'USD',
-              quantity: 1
-            }
-          ]
+          items: newPaymentInfo
         },
         amount: {
           currency: 'USD',
-          total: '10.00'
+          total: subtotal.toFixed(2)
         },
         description: 'This is the payment description.'
       }
@@ -90,7 +98,7 @@ function onSuccess(req, res) {
       {
         amount: {
           currency: 'USD',
-          total: '10.00'
+          total: subtotal.toFixed(2)
         }
       }
     ]

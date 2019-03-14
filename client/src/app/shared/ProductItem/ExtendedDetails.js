@@ -47,8 +47,6 @@ class ViewDetailsFull extends Component {
   toggleWishList = (e, item) => {
     const { wished } = this.props;
 
-    console.log('ed id argument', item);
-
     e.preventDefault();
     const cb = !wished ? this.addItem : this.removeItem;
 

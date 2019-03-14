@@ -3,7 +3,6 @@ $main-font-italic: 'HarmoniaSansProCyr-italic';
 $main-font-regular: 'HarmoniaSansProCyr-regular';
 
 $color-main: #ff5912;
-$color-alert: #ff3612;
 $color-white: #fff;
 $color-black: #000;
 $color-dark: #34404b;
@@ -11,7 +10,11 @@ $color-light-1: #f4f6f8;
 $color-light-2: #edeff2;
 $color-grey-1: #495662;
 $color-grey-2: #444;
-$color-paypal: #f6bc2d;
+
+//info
+$color-warn: #f6bc2d;
+$color-alert: #ff3612;
+$color-success: #28a745;
 
 //paypal
 $paypal-gold: #ffc439;
@@ -31,3 +34,6 @@ $media-medium: 1024px;
 $media-tablet: 768px;
 $media-mobile: 475px;
 $media-smallest: 320px;
+
+$button-shadow: 5px 5px 20px -5px rgba($color-dark, 0.75);
+$border-light: 2px solid $color-light-2;

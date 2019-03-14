@@ -15,11 +15,12 @@ class HeaderMain extends Component {
     }
   };
 
-  renderLinks = list =>
-    list.map(link => {
+  renderLinks = list => {
+    const { cart } = this.props;
+    const cartValue = cart.productsInCart.length;
+
+    return list.map(link => {
       const { id, icon, href, desc, value } = link;
-      const { cart } = this.props;
-      const cartValue = cart.productsInCart.length;
       const headerIcon =
         desc === 'cart' ? (
           <div className="cart-icon">
@@ -32,12 +33,13 @@ class HeaderMain extends Component {
 
       return (
         <li key={id} className="navbar-link">
-          <RouterLink href={href} onClick={this.navToggle}>
+          <RouterLink href={href} callback={this.navToggle}>
             {icon ? headerIcon : value}
           </RouterLink>
         </li>
       );
     });
+  };
 
   render() {
     const { isHidden } = this.state;

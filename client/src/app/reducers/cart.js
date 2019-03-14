@@ -17,8 +17,8 @@ export default (state = initialState, action) => {
           ...state.productsInCart,
           {
             ...action.payload,
-            chosenSize: null,
-            chosenColor: null,
+            chosenSize: action.payload.sizes[0],
+            chosenColor: action.payload.colors[0],
             chosenQuantity: 1,
             total: action.payload.price
           }

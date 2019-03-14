@@ -11,10 +11,6 @@
   align-items: center;
   padding: 15px 0;
 
-  &:nth-child(n + 1):not(:last-child) {
-    border-bottom: 1px dashed $color-dark;
-  }
-
   & > * {
     justify-self: center;
   }
@@ -49,7 +45,6 @@
     &:hover,
     &:focus {
       transform: translateY(-3px);
-      box-shadow: 5px 5px 20px -5px rgba($color-dark, 0.75);
     }
 
     &:active {
