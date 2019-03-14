@@ -8,6 +8,10 @@
   padding: 15px 0;
   border-bottom: $border-light;
 
+  button {
+    background-color: transparent;
+  }
+
   & > * {
     justify-self: center;
   }
@@ -27,7 +31,7 @@
   }
 
   .scrollbar {
-    overflow-y: scroll;
+    overflow-y: auto;
     @include d-flex() {
       align-items: flex-start;
     }

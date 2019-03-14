@@ -82,17 +82,17 @@ class NotifyService {
   };
 
   paymentSuccess = {
-    message: 'Your payment was successful!',
+    message: 'Payment Success!',
     type: NOTIFICATION_TYPE_SUCCESS,
-    duration: 800,
+    duration: 2000,
     canDismiss: true,
     icon: <i className="fa fa-check" />
   };
 
   paymentCancel = {
-    message: 'Your payment was canceled!',
+    message: 'Payment Canceled!',
     type: NOTIFICATION_TYPE_WARNING,
-    duration: 800,
+    duration: 2000,
     canDismiss: true,
     icon: <i className="fa fa-times" />
   };
