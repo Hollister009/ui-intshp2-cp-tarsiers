@@ -48,11 +48,6 @@ button {
   outline: none;
   cursor: pointer;
   transition: 0.4s;
-
-  &:focus,
-  &:hover {
-    transform: scale(1.2);
-  }
 }
 
 .container {

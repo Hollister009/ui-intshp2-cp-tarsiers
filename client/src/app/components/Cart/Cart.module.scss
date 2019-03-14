@@ -11,10 +11,6 @@
   align-items: center;
   padding: 15px 0;
 
-  &:nth-child(n + 1):not(:last-child) {
-    border-bottom: 1px dashed $color-dark;
-  }
-
   & > * {
     justify-self: center;
   }

@@ -6,10 +6,7 @@
   grid-template-columns: repeat(8, 1fr);
   align-items: center;
   padding: 15px 0;
-
-  &:nth-child(n + 1):not(:last-child) {
-    border-bottom: 1px dashed $color-dark;
-  }
+  border-bottom: 1px solid #eaeaea;
 
   & > * {
     justify-self: center;
@@ -30,6 +27,7 @@
   }
 
   .scrollbar {
+    align-items: unset;
     @include d-flex();
     overflow-y: scroll;
 
@@ -113,8 +111,8 @@
 .active {
   font-size: 0px;
   display: block;
-  width: 15px;
-  height: 15px;
+  min-width: 15px;
+  min-height: 15px;
   border-radius: 50%;
   margin: 2px;
   margin-bottom: 5px;

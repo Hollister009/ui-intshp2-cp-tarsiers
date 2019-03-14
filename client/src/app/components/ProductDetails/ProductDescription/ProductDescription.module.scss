@@ -105,7 +105,7 @@
     }
 
     .scrollBoxColor {
-      @include d-flex(center);
+      @include d-flex();
 
       width: 75px;
     }
@@ -169,6 +169,7 @@
       align-items: baseline;
 
       .iconButton {
+        border: none;
         background: none;
         padding: 0 10px;
         color: $color-dark;
