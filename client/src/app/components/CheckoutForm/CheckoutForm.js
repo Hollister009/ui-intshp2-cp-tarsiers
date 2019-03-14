@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import IMask from 'imask';
@@ -49,7 +50,6 @@ class CheckoutForm extends Component {
   componentDidMount() {
     const element = document.getElementById('phoneNumber');
     const maskOptions = { mask: '+({38\\0})000000000' };
-    // eslint-disable-next-line no-unused-vars
     const mask = new IMask(element, maskOptions);
 
     this.findAllInputs();
@@ -60,18 +60,15 @@ class CheckoutForm extends Component {
 
     if (formData) {
       const form = this.formRef.current;
-      const formElements = [...form.elements].filter(
-        el => el.nodeName.toLowerCase() === 'input'
-      );
 
-      formElements.forEach(el => {
-        el.value = formData[el.id];
-        if (this.validateField(el, el.id)) {
-          el.classList.add('success');
+      [...form.elements].forEach(el => {
+        if (el.nodeName.toLowerCase() === 'input') {
+          el.value = formData[el.id];
+          if (this.validateField(el, el.id)) {
+            el.classList.add('success');
+          }
         }
       });
-
-      // this.validateForm();
     }
   };
 
@@ -126,57 +123,41 @@ class CheckoutForm extends Component {
 
     e.preventDefault();
 
-    // if (!this.validateForm()) {
-    // }
-    const data = {};
-    const form = this.formRef.current;
+    if (this.validateForm()) {
+      const form = this.formRef.current;
+      const data = {};
 
-    [...form.elements].forEach(el => {
-      if (el.nodeName.toLowerCase() === 'input') {
-        data[el.getAttribute('id')] = el.value;
-      }
-    });
+      [...form.elements].forEach(el => {
+        if (el.nodeName.toLowerCase() === 'input') {
+          data[el.getAttribute('id')] = el.value;
+        }
+      });
 
-    ls.setState('form', data);
+      ls.setState('form', data);
+    }
 
     handleSubmit(this.validateForm);
   };
 
   onCancelAction = e => {
-    // const { handleSubmit } = this.props;
     e.preventDefault();
     const form = this.formRef.current;
-    const formElements = [...form.elements].filter(
-      el => el.nodeName.toLowerCase() === 'input'
-    );
 
-    formElements.map(el => {
-      el.value = '';
-      return el;
+    [...form.elements].forEach(el => {
+      if (el.nodeName.toLowerCase() === 'input') {
+        el.value = '';
+      }
     });
 
-    // clear all data from localStorage and form
-    const data = {
-      name: 'Asterix',
-      email: 'asterix@obelix.com',
-      address: 'Galium',
-      phoneNumber: '+(380)902932123'
-    };
-
-    ls.setState('form', data);
-    // handleSubmit(this.validateForm);
+    ls.setState('form');
+    this.validateForm();
   };
 
   render() {
     return (
       <div className="container checkout-form">
-        <form
-          ref={this.formRef}
-          autoComplete="off"
-          // onSubmit={e => handleSubmit(e, this.validateForm)}
-        >
+        <form ref={this.formRef} autoComplete="off">
           {this.formFields}
-          {/* <button type="submit">Proceed</button> */}
           <fieldset>
             <StyledButton
               type="submit"
@@ -188,7 +169,6 @@ class CheckoutForm extends Component {
               btnClass="cancel"
               callback={this.onCancelAction}
             />
-            {/* <StyledButton backward /> */}
           </fieldset>
         </form>
       </div>
