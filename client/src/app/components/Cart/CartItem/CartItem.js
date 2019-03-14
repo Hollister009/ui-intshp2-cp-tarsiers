@@ -139,11 +139,11 @@ class CartItem extends Component {
     return (
       <React.Fragment>
         <button type="button" onClick={this.increment} data-type="increment">
-          +
+          {String.fromCharCode(43)}
         </button>
-        {chosenQuantity}
+        <span>{chosenQuantity}</span>
         <button type="button" onClick={this.decrement} data-type="decrement">
-          -
+          {String.fromCharCode(8722)}
         </button>
       </React.Fragment>
     );

@@ -37,7 +37,7 @@ const Footer = props => {
         <nav className="footer__block row">
           <div className="footer__copyright col-3">
             <img src={logo} alt="" />
-            <span>Shopy &copy; 2018</span>
+            <span>Shopy &copy; 2019</span>
           </div>
           <div className="footer__links col-6">{footerLinks}</div>
           <div className="footer__payments col-2">

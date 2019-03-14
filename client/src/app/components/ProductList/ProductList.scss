@@ -14,9 +14,19 @@
 }
 
 .products {
+  margin-left: 30px;
   @include d-flex(unset, column);
 
-  margin-left: 30px;
+  & > button {
+    border: none;
+    background: transparent;
+
+    &:hover,
+    &:focus {
+      box-shadow: $box-shadow1;
+      transform: translateY(-2px);
+    }
+  }
 }
 
 .product_list {

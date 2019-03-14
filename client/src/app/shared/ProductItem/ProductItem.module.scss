@@ -12,7 +12,7 @@
   text-align: center;
   color: $color-dark;
   background-color: $color-white;
-  box-shadow: 0 0 10px rgba($color-dark, 0.2);
+  box-shadow: $box-shadow1;
 
   img {
     margin: 0 auto;
@@ -40,7 +40,7 @@
     font-size: 22px;
     color: inherit;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 
     &:nth-child(2) {
       margin: 0 25px;
@@ -55,6 +55,11 @@
     &:focus {
       color: $color-main;
       outline: none;
+      transform: scale(1.2);
+    }
+
+    &:active {
+      transform: scale(1);
     }
   }
 

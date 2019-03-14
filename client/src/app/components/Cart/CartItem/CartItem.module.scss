@@ -53,8 +53,15 @@
     color: $color-main;
 
     button {
-      font-size: 18px;
+      font-size: 20px;
       margin: 0 5px;
+      transition: 0.15s;
+
+      &:hover,
+      &:focus {
+        color: inherit;
+        transform: rotate(-180deg);
+      }
     }
   }
 
