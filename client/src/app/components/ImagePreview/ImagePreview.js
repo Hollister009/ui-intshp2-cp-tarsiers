@@ -54,7 +54,9 @@ class ImagePreview extends Component {
       activeElementSiblings.forEach(element => {
         element.classList.remove('active');
       });
-      activeElement.classList.add('active');
+      if (activeElement.tagName === 'DIV') {
+        activeElement.classList.add('active');
+      }
 
       this.setState(state => ({
         mainImgURL: newMainUrl,

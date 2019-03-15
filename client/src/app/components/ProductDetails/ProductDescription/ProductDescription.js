@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
 import { Notify } from 'react-redux-notify';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { productType } from '../../../types';
 import appConfig from '../../../../config/appConfig';
@@ -13,24 +13,26 @@ import styles from './ProductDescription.module.scss';
 
 const CartButton = props => {
   const { inCart, item, addToCart, createNotification } = props;
-  const cartAction = e => {
-    e.preventDefault();
-    addToCart(item);
-    createNotification(NotifyService.cartAdd);
+  const cartAction = () => {
+    if (!inCart) {
+      addToCart(item);
+      createNotification(NotifyService.cartAdd);
+    }
   };
 
-  return !inCart ? (
-    <button
-      type="button"
-      className={styles.btn_add}
-      onClick={e => cartAction(e, item)}
+  return (
+    <Link
+      to={inCart ? '/cart' : `/products/${item._id}`}
+      className={styles.btn_cart}
+      onClick={cartAction}
       data-type="cart-btn"
     >
-      Add to Cart
-    </button>
-  ) : (
-    <Link to="/cart" type="button" className={styles.btn_go} data-type="go-btn">
-      Go to Cart
+      <span className={inCart ? styles.btn_visible : styles.btn_invisible}>
+        Go to Cart
+      </span>
+      <span className={!inCart ? styles.btn_visible : styles.btn_invisible}>
+        Add to Cart
+      </span>
     </Link>
   );
 };
