@@ -24,7 +24,7 @@ function createPaymentData(data) {
       name: item.brand,
       sku: item._id,
       description: item.title,
-      price: item.total.toFixed(2),
+      price: item.price.toFixed(2),
       currency: 'USD',
       quantity: item.chosenQuantity
     };
@@ -50,7 +50,7 @@ function payment(req, res) {
   console.log(`Cancel:  ${cancel_url}`);
 
   const create_payment_json = {
-    intent: 'sale',
+    intent: 'order',
     payer: {
       payment_method: 'paypal'
     },

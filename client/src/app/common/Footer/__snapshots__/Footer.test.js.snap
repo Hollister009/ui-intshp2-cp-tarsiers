@@ -18,7 +18,7 @@ exports[`<Footer /> should match its snapshot 1`] = `
           src=""
         />
         <span>
-          Shopy © 2018
+          Shopy © 2019
         </span>
       </div>
       <div
