@@ -18,7 +18,7 @@ class CartItem extends Component {
       chosenColor: this.item.chosenColor,
       chosenSize: this.item.chosenSize,
       chosenQuantity: this.item.chosenQuantity,
-      total: this.item.price
+      total: this.item.price * this.item.chosenQuantity
     };
   }
 
