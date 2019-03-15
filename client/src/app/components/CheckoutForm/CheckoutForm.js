@@ -32,7 +32,7 @@ class CheckoutForm extends Component {
         id={el[0]}
         onChange={e => this.handleInputChange(e, el[0])}
         onBlur={e => this.handleInputBlur(e, el[0])}
-        onFocus={this.handleInputFocus}
+        onFocus={e => this.handleInputFocus(e)}
       />
       <div className="tooltip" id={`${el[0]}-tooltip`}>
         {hints[el[0]]}
