@@ -57,8 +57,8 @@ const Cart = props => {
           <Link to="/checkout" className={styles.paypal_btn}>
             <i className={styles.logo} />
             <p className={styles.paypal_txt}>
-              <span>pay</span>
-              <span>pal</span>
+              <span>Pay</span>
+              <span>Pal</span>
             </p>
           </Link>
         </li>
