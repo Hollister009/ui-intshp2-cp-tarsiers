@@ -165,9 +165,6 @@ class CartItem extends Component {
           item={this.item}
           total={total}
           styles={styles}
-          // sizes={this.renderSizes()}
-          // colors={this.renderColors()}
-          // quantity={this.renderQuantity()}
           markup={markupFields}
           itemRemove={this.itemRemove}
         />
