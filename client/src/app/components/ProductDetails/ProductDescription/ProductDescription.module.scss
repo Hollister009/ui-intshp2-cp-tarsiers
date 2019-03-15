@@ -156,13 +156,14 @@
 
   .order {
     padding: 30px 0;
-    @include d-flex();
-
-    align-items: center;
+    @include d-flex() {
+      align-items: center;
+    }
 
     & > .buttons_row {
-      @include d-flex();
-      align-items: baseline;
+      @include d-flex() {
+        align-items: center;
+      }
 
       .iconButton {
         border: none;
@@ -176,30 +177,43 @@
         }
       }
 
-      .btn_add {
+      .btn_cart {
         display: block;
         color: $color-white;
         background-color: $color-main;
-        border-radius: 30px;
+        border-radius: 10rem;
         padding: 7px 14px;
         font-size: 16px;
-        width: 120px;
+        min-width: 135px;
         text-align: center;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-weight: light;
+        transition: all 0.3s ease;
+        will-change: auto;
+        position: relative;
 
         &:hover {
           background-color: $color-dark;
         }
-      }
 
-      .btn_go {
-        color: $color-white;
-        background-color: $color-main;
-        border-radius: 30px;
-        padding: 16px 33px;
-        font-size: 16px;
+        & > span {
+          display: inline-block;
+        }
 
-        &:hover {
-          background-color: $color-dark;
+        span.btn_visible {
+          position: static;
+          visibility: visible;
+          opacity: 1;
+        }
+
+        span.btn_invisible {
+          position: absolute;
+          visibility: hidden;
+          opacity: 0;
+          left: 0;
+          right: 0;
+          bottom: -50px;
         }
       }
     }

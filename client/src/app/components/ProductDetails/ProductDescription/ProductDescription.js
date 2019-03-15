@@ -13,8 +13,7 @@ import styles from './ProductDescription.module.scss';
 
 const CartButton = props => {
   const { inCart, item, addToCart, createNotification } = props;
-  const cartAction = e => {
-    e.preventDefault();
+  const cartAction = () => {
     if (!inCart) {
       addToCart(item);
       createNotification(NotifyService.cartAdd);
@@ -24,11 +23,16 @@ const CartButton = props => {
   return (
     <Link
       to={inCart ? '/cart' : `/products/${item._id}`}
-      className={styles.btn_add}
+      className={styles.btn_cart}
       onClick={cartAction}
       data-type="cart-btn"
     >
-      {inCart ? <span>Go to Cart</span> : <span>Add to Cart</span>}
+      <span className={inCart ? styles.btn_visible : styles.btn_invisible}>
+        Go to Cart
+      </span>
+      <span className={!inCart ? styles.btn_visible : styles.btn_invisible}>
+        Add to Cart
+      </span>
     </Link>
   );
 };
@@ -41,8 +45,6 @@ class ProductDescription extends Component {
   };
 
   static defaultProps = { item: null, wished: false, inCart: false };
-
-  state = { redirecting: false };
 
   addItem = addItem.bind(this);
 
