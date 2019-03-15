@@ -31,16 +31,12 @@
   text-align: right;
 }
 
-.order_buttons {
+.order_list {
   @include d-flex(flex-end);
 
-  button {
-    outline: none;
-    transition: 0.4s ease;
-
-    &:first-child {
-      margin-right: 20px;
-    }
+  .list_item {
+    display: block;
+    transition: all 0.4s ease;
 
     &:hover,
     &:focus {
@@ -50,6 +46,19 @@
     &:active {
       transform: translateY(-1px);
     }
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    a {
+      display: block;
+      outline: none;
+      text-transform: capitalize;
+      height: 100%;
+      line-height: 30px;
+      will-change: auto;
+    }
   }
 }
 
@@ -58,13 +67,63 @@
   background-color: $color-main;
   border: 2px solid $color-main;
   border-radius: 7px;
-  text-transform: capitalize;
   font-size: 18px;
   padding: 7px 12px;
+
+  span {
+    display: inline-block;
+    margin-left: 7px;
+  }
 
   &:hover {
     color: $color-main;
     background-color: $color-white;
+  }
+}
+
+.paypal_btn {
+  background: $paypal-gold;
+  border: 2px solid $paypal-gold;
+  padding: 6px 15px;
+  border-radius: 7px;
+
+  .logo {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 26px;
+    background: url('./pp-logo-sm.svg') no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .paypal_txt {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    font-family: $main-font-bold;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+
+    span:nth-child(1) {
+      color: $paypal-dark;
+    }
+
+    span:nth-child(2) {
+      color: $paypal-blue;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: darken($paypal-gold, 10%);
+    border-color: darken($paypal-gold, 10%);
+  }
+
+  &:active {
+    background-color: darken($paypal-gold, 15%);
+    border-color: darken($paypal-gold, 15%);
   }
 }
 

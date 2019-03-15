@@ -33,9 +33,8 @@ class HomePage extends Component {
     }
   }
 
-  // TODO: User notifications on success or cancel
   clearRoute = res => {
-    const { history } = this.props;
+    const { history, createNotification } = this.props;
 
     history.push('/');
     if (res.data === 'Success') {
@@ -63,8 +62,8 @@ class HomePage extends Component {
   render() {
     return (
       <React.Fragment>
-        <Promotions />
         <Notify position={NotifyService.position.topRight} />
+        <Promotions />
         <NewArrivalsContainer />
         <Flags authorizedFlags={[appConfig.killswitch.advertising]}>
           <AdvertisingArea />

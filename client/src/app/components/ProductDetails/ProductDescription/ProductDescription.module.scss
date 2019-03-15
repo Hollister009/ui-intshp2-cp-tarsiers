@@ -100,14 +100,10 @@
 
     .scrollBoxSize {
       @include d-flex();
-
-      width: 110px;
     }
 
     .scrollBoxColor {
-      @include d-flex();
-
-      width: 75px;
+      @include d-flex(flex-end, row);
     }
 
     .sizes {

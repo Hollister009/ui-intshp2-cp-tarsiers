@@ -29,7 +29,8 @@ const Cart = props => {
     />
   ));
 
-  const handleClearCart = () => {
+  const handleClearCart = e => {
+    e.preventDefault();
     clearCart();
     ls.setState('cart', { productsInCart: [] });
   };
@@ -41,16 +42,27 @@ const Cart = props => {
         <div className={styles.items}>{displayedItems}</div>
       </div>
       <h3 className={styles.price_total}>{`Total: ${total.toFixed(2)}$`}</h3>
-      <div className={styles.order_buttons}>
-        <button
-          type="button"
-          className={styles.clear_btn}
-          onClick={handleClearCart}
-        >
-          clear cart
-        </button>
-        <Link to="/checkout">checkout</Link>
-      </div>
+      <ul className={styles.order_list}>
+        <li className={styles.list_item}>
+          <Link
+            to="/cart"
+            className={styles.clear_btn}
+            onClick={handleClearCart}
+          >
+            <i className="fa fa-times" />
+            <span>clear cart</span>
+          </Link>
+        </li>
+        <li className={styles.list_item}>
+          <Link to="/checkout" className={styles.paypal_btn}>
+            <i className={styles.logo} />
+            <p className={styles.paypal_txt}>
+              <span>Pay</span>
+              <span>Pal</span>
+            </p>
+          </Link>
+        </li>
+      </ul>
     </section>
   );
 };

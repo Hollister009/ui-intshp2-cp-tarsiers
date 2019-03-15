@@ -8,12 +8,19 @@
   padding: 15px 0;
   border-bottom: $border-light;
 
+  button {
+    border: none;
+    appearance: none;
+    background-color: transparent;
+  }
+
   & > * {
     justify-self: center;
   }
 
   .image {
     width: 50%;
+    margin: 0 auto;
   }
 
   .title {
@@ -27,7 +34,7 @@
   }
 
   .scrollbar {
-    overflow-y: scroll;
+    overflow-y: auto;
     @include d-flex() {
       align-items: flex-start;
     }
@@ -49,8 +56,15 @@
     color: $color-main;
 
     button {
-      font-size: 18px;
+      font-size: 20px;
       margin: 0 5px;
+      transition: 0.15s;
+
+      &:hover,
+      &:focus {
+        color: inherit;
+        transform: rotate(-180deg);
+      }
     }
   }
 
@@ -86,6 +100,7 @@
 .highlightedSize {
   color: $color-main;
   font-size: 18px;
+  font-weight: bold;
   padding: 0 5px;
   text-decoration: none;
   text-transform: uppercase;

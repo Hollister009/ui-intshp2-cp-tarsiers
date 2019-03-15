@@ -1,9 +1,11 @@
+/* eslint-disable import/prefer-default-export */
 import { number, bool, string, shape, arrayOf, objectOf } from 'prop-types';
 
-export const productType = shape({
+const productType = shape({
   available: bool,
   brand: string,
   category: string,
+  quantity: number,
   colorUrls: objectOf(string),
   colors: arrayOf(string).isRequired,
   price: number.isRequired,
@@ -13,7 +15,4 @@ export const productType = shape({
   _id: string.isRequired
 });
 
-export const cartType = shape({
-  value: number.isRequired,
-  productsInCart: arrayOf(Object).isRequired
-});
+export { productType };

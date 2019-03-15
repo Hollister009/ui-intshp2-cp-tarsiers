@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Spinner from '../../shared/Spinner';
-import { cartType } from '../../types';
+import { productType } from '../../types';
 import {
   isAddedToCart,
   isAddedToWishList
@@ -18,11 +18,13 @@ const { products } = appConfig.apiResources;
 class ProductDetails extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    wishlist: PropTypes.arrayOf(PropTypes.string),
-    cart: cartType.isRequired
+    wishlist: PropTypes.arrayOf(productType),
+    cart: PropTypes.shape({
+      productsInCart: PropTypes.arrayOf(productType)
+    })
   };
 
-  static defaultProps = { wishlist: [] };
+  static defaultProps = { wishlist: [], cart: { productsInCart: [] } };
 
   state = { item: null };
 
