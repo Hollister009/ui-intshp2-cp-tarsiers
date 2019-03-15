@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Flags } from 'react-feature-flags';
 import { Notify } from 'react-redux-notify';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { productType } from '../../../types';
 import appConfig from '../../../../config/appConfig';
@@ -15,22 +15,20 @@ const CartButton = props => {
   const { inCart, item, addToCart, createNotification } = props;
   const cartAction = e => {
     e.preventDefault();
-    addToCart(item);
-    createNotification(NotifyService.cartAdd);
+    if (!inCart) {
+      addToCart(item);
+      createNotification(NotifyService.cartAdd);
+    }
   };
 
-  return !inCart ? (
-    <button
-      type="button"
+  return (
+    <Link
+      to={inCart ? '/cart' : `/products/${item._id}`}
       className={styles.btn_add}
-      onClick={e => cartAction(e, item)}
+      onClick={cartAction}
       data-type="cart-btn"
     >
-      Add to Cart
-    </button>
-  ) : (
-    <Link to="/cart" type="button" className={styles.btn_go} data-type="go-btn">
-      Go to Cart
+      {inCart ? <span>Go to Cart</span> : <span>Add to Cart</span>}
     </Link>
   );
 };
@@ -43,6 +41,8 @@ class ProductDescription extends Component {
   };
 
   static defaultProps = { item: null, wished: false, inCart: false };
+
+  state = { redirecting: false };
 
   addItem = addItem.bind(this);
 

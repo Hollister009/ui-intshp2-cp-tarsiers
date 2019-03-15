@@ -18,7 +18,7 @@ describe('<ProductDetails />', () => {
     };
   });
 
-  xit('should match its snapshot', () => {
+  it('should match its snapshot', () => {
     const wrapper = shallow(<ProductDetails {...props} />);
 
     expect(wrapper).toMatchSnapshot();
