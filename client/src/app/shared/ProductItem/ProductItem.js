@@ -42,7 +42,7 @@ class ProductItem extends Component {
       removeFromCart,
       createNotification
     } = this.props;
-    const { src, title, price, _id } = data;
+    const { src, title, price } = data;
 
     const fullItem = showDetails ? (
       <ViewDetailsFull
@@ -74,12 +74,12 @@ class ProductItem extends Component {
         onMouseEnter={this.showDetails}
         onMouseLeave={this.showFront}
       >
-        <Link to={`/products/${_id}`}>
+        <Link to={`/products/${data._id}`}>
           <img src={src} alt="" className="small-pi-image" />
         </Link>
         {showDetails ? (
           <ViewCartSmall
-            id={_id}
+            data={data}
             styles={styles}
             title={title}
             addToCart={addToCart}

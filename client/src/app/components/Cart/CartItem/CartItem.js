@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Notify } from 'react-redux-notify';
 import NotifyService from '../../../../utils/notify.service';
+
 import { productType } from '../../../types';
 import CartItemView from './CartItemView';
 
@@ -151,6 +152,11 @@ class CartItem extends Component {
 
   render() {
     const { total } = this.state;
+    const markupFields = {
+      sizes: this.renderSizes(),
+      colors: this.renderColors(),
+      quantity: this.renderQuantity()
+    };
 
     return (
       <React.Fragment>
@@ -159,9 +165,10 @@ class CartItem extends Component {
           item={this.item}
           total={total}
           styles={styles}
-          sizes={this.renderSizes()}
-          colors={this.renderColors()}
-          quantity={this.renderQuantity()}
+          // sizes={this.renderSizes()}
+          // colors={this.renderColors()}
+          // quantity={this.renderQuantity()}
+          markup={markupFields}
           itemRemove={this.itemRemove}
         />
       </React.Fragment>

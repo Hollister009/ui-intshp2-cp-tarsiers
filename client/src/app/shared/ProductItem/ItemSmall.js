@@ -1,10 +1,11 @@
 import React from 'react';
 import { Notify } from 'react-redux-notify';
 import NotifyService from '../../../utils/notify.service';
+import { currencyFormatter } from '../../../utils/priceFormat.service';
 
 const ViewCartSmall = props => {
   const {
-    id,
+    data,
     title,
     styles,
     inCart,
@@ -23,7 +24,7 @@ const ViewCartSmall = props => {
       createNotification(NotifyService.cartRemove);
     }
 
-    cb(id);
+    cb(data);
   };
 
   const addToCartText = 'Add to cart';
@@ -39,7 +40,7 @@ const ViewCartSmall = props => {
         onClick={e => toggleCart(e)}
       >
         {!inCart ? (
-          <span className>
+          <span>
             <i className="fas fa-cart-plus" />
             {addToCartText}
           </span>
@@ -66,7 +67,9 @@ const ViewInfoSmall = props => {
           <i className="fa fa-star" />
           <i className="fa fa-star" />
         </div>
-        <span className={`${styles.price} highlighted`}>{`${price} $`}</span>
+        <span className={`${styles.price} highlighted`}>
+          {currencyFormatter(price)}
+        </span>
       </div>
     </div>
   );

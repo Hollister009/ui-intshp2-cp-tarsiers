@@ -18,6 +18,7 @@
 
   .image {
     width: 50%;
+    margin: 0 auto;
   }
 
   .title {
@@ -97,6 +98,7 @@
 .highlightedSize {
   color: $color-main;
   font-size: 18px;
+  font-weight: bold;
   padding: 0 5px;
   text-decoration: none;
   text-transform: uppercase;
