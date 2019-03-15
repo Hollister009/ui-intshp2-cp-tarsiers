@@ -11,8 +11,8 @@ const PayPalButton = ({ handleClick }) => (
   >
     <i className={styles.logo_alt} />
     <p className={styles.paypal_txt}>
-      <span>pay</span>
-      <span>pal</span>
+      <span>Pay</span>
+      <span>Pal</span>
     </p>
   </button>
 );
