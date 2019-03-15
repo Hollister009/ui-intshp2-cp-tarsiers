@@ -1,0 +1,12 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixin';
+
+.related-products .section_heading {
+  padding: 115px 0 70px 0;
+  margin: 0 auto;
+  text-align: center;
+
+  h2 {
+    font-size: 28px;
+  }
+}

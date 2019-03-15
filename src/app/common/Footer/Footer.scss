@@ -1,0 +1,119 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.footer {
+  position: relative;
+  padding: 60px 0 44px;
+  background-color: $color-white;
+
+  ul {
+    list-style: none;
+    & > li {
+      font-size: 14px;
+      line-height: 2;
+    }
+  }
+
+  &__block {
+    padding-top: 30px;
+  }
+
+  &__copyright {
+    padding-bottom: 25px;
+
+    & > span {
+      padding-top: 20px;
+      display: inline-block;
+    }
+  }
+
+  &__payments {
+    margin-left: auto;
+  }
+
+  &__links {
+    & > ul {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-template-rows: auto;
+    }
+  }
+
+  div.payments-wrap {
+    & > p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: $color-main;
+      padding-bottom: 5px;
+      white-space: nowrap;
+    }
+
+    & > ul {
+      @include d-flex();
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      & > li {
+        font-size: 0;
+        height: 27px;
+        width: 17%;
+        max-width: 30px;
+
+        &:nth-child(1) {
+          @include icon-bg($icon-payment1);
+        }
+        &:nth-child(2) {
+          @include icon-bg($icon-payment2);
+        }
+        &:nth-child(3) {
+          @include icon-bg($icon-payment3);
+        }
+        &:nth-child(4) {
+          @include icon-bg($icon-payment4);
+        }
+        &:nth-child(5) {
+          @include icon-bg($icon-payment5);
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 476px) and (max-width: $media-tablet) {
+    &__links {
+      order: 1;
+    }
+  }
+  @media screen and (max-width: $media-tablet) {
+    &__block {
+      padding: 0 5%;
+    }
+    &__payments {
+      margin: 0 auto;
+    }
+  }
+  @media screen and (max-width: $media-mobile) {
+    &__copyright {
+      text-align: center;
+      & > img {
+        margin: 0 auto;
+      }
+    }
+    &__links {
+      flex-direction: column;
+      padding: 0 20px 20px;
+      padding-left: 34%;
+
+      & > ul {
+        display: block;
+      }
+    }
+    div.payments-wrap {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+  }
+}

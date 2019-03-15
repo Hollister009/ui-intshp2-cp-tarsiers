@@ -1,0 +1,62 @@
+@import '../../../styles/variables';
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+  transition: 0.7s;
+  width: fit-content;
+  margin: 0 auto;
+
+  &__wrapper {
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    min-width: 100%;
+  }
+
+  &__button {
+    outline: none;
+    background-color: transparent;
+    appearance: none;
+    border: none;
+    z-index: 1;
+    position: absolute;
+    top: 40%;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+
+    & > i {
+      font-size: 40px;
+      transition: 0.4s;
+    }
+
+    &--prev {
+      left: 0;
+    }
+    &--next {
+      right: 0;
+    }
+
+    &:hover:enabled {
+      & > i {
+        color: $color-main;
+      }
+    }
+
+    &:disabled {
+      & > i {
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+  & > div {
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

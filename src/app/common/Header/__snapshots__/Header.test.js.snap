@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should match its snapshot 1`] = `
+<header
+  className="header"
+>
+  <HeaderTop
+    contacts={
+      Object {
+        "email": "info@shopy.com",
+        "phone": "453 - 5553 - 996",
+      }
+    }
+    links={
+      Array [
+        Object {
+          "href": "https://twitter.com/griddynamics",
+          "icon": "fab fa-twitter",
+          "id": 1,
+        },
+        Object {
+          "href": "https://www.linkedin.com/company/grid-dynamics",
+          "icon": "fab fa-linkedin-in",
+          "id": 2,
+        },
+        Object {
+          "href": "https://www.instagram.com/griddynamics_ua/",
+          "icon": "fab fa-instagram",
+          "id": 3,
+        },
+        Object {
+          "href": "https://www.facebook.com/griddynamics",
+          "icon": "fab fa-facebook-f",
+          "id": 4,
+        },
+        Object {
+          "href": "https://plus.google.com/115302417170674279390",
+          "icon": "fab fa-google-plus-g",
+          "id": 5,
+        },
+      ]
+    }
+  />
+  <HeaderMain
+    cart={
+      Object {
+        "value": 0,
+      }
+    }
+    options={
+      Array [
+        Object {
+          "desc": "search",
+          "href": "/",
+          "icon": "fa fa-search",
+          "id": 11,
+        },
+        Object {
+          "desc": "user",
+          "href": "/",
+          "icon": "fa fa-user",
+          "id": 12,
+        },
+        Object {
+          "desc": "cart",
+          "href": "/",
+          "icon": "fas fa-shopping-basket",
+          "id": 13,
+        },
+      ]
+    }
+    pages={
+      Array [
+        Object {
+          "href": "/",
+          "id": 6,
+          "value": "Home",
+        },
+        Object {
+          "href": "/products",
+          "id": 7,
+          "value": "Products",
+        },
+        Object {
+          "href": "/hot-deals",
+          "id": 8,
+          "value": "Hot Deals",
+        },
+        Object {
+          "href": "/about",
+          "id": 9,
+          "value": "About",
+        },
+        Object {
+          "href": "/contacts",
+          "id": 10,
+          "value": "Contact",
+        },
+      ]
+    }
+  />
+</header>
+`;

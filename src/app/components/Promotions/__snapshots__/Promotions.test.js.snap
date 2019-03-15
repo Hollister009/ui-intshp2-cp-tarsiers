@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Promotions /> should match its snapshot 1`] = `
+<section
+  className="promotions"
+  style={
+    Object {
+      "height": "40vw",
+    }
+  }
+>
+  <Spinner />
+</section>
+`;

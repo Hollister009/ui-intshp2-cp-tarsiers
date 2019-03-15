@@ -1,0 +1,174 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.joinus {
+  @include d-flex();
+
+  width: 100%;
+  background-color: $color-white;
+  padding: 38px 42px 38px 54px;
+  margin-top: 100px;
+
+  &__info {
+    position: relative;
+    @include d-flex(flex-start) {
+      align-items: center;
+    }
+
+    & > h2 {
+      color: $color-main;
+      font-family: $main-font-bold;
+      font-size: 18px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    & > p {
+      color: $color-dark;
+      font-family: $main-font-italic;
+      font-size: 14px;
+      padding-left: 23px;
+      text-align: center;
+    }
+  }
+
+  &__fieldset {
+    @include d-flex();
+  }
+
+  &__subscribe {
+    .mailfield {
+      width: 200px;
+      @include d-flex(center) {
+        align-items: center;
+      }
+
+      & > i {
+        color: $color-main;
+        padding: 10px;
+      }
+    }
+
+    input {
+      border: none;
+      line-height: 2;
+      padding: 5px 10px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $color-dark;
+        font-family: $main-font-italic;
+        font-size: 14px;
+        opacity: 0.5;
+      }
+
+      &.error {
+        border-bottom: 1px dotted $color-main;
+      }
+    }
+    .msg {
+      visibility: hidden;
+      display: none;
+      color: $color-dark;
+      font-family: $main-font-italic;
+      font-size: 10px;
+      padding-top: 10px;
+
+      &.showerror {
+        visibility: visible;
+        display: block;
+      }
+    }
+
+    button {
+      width: 100px;
+      line-height: 50px;
+      background-color: $color-main;
+      border: none;
+      color: $color-white;
+      font-family: $main-font-bold;
+      font-size: 14px;
+
+      &:disabled {
+        background-color: $color-dark;
+        opacity: 0.2;
+        cursor: not-allowed;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $media-large) {
+  .joinus {
+    width: 90%;
+
+    &__subscribe {
+      // width: 40%;
+      flex-basis: 40%;
+    }
+  }
+}
+
+@media screen and (max-width: $media-medium) {
+  .joinus {
+    padding: 38px;
+    // padding-right: 25px;
+    justify-content: flex-start;
+
+    &__info {
+      flex-direction: column;
+    }
+
+    &__subscribe {
+      flex-basis: 50%;
+
+      button {
+        line-height: 40px;
+        width: 80px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $media-tablet) {
+  .joinus {
+    flex-direction: column;
+
+    &__info {
+      margin-bottom: 20px;
+    }
+
+    &__subscribe {
+      align-self: center;
+      flex-basis: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: $media-mobile) {
+  .joinus {
+    padding: 10px;
+
+    &__fieldset {
+      justify-content: center;
+    }
+
+    &__subscribe {
+      input,
+      .mailfield {
+        width: 150px;
+      }
+
+      .mailfield > i {
+        display: none;
+      }
+    }
+  }
+}

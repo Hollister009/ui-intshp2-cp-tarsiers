@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Advertising /> should match its snapshot 1`] = `
+<section
+  className="advert"
+>
+  <Dynamic
+    html=""
+  />
+</section>
+`;

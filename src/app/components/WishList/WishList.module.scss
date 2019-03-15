@@ -1,0 +1,66 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixin';
+
+.wishlist {
+  padding-top: 60px;
+  padding-bottom: 120px;
+  color: $color-dark;
+  text-align: center;
+
+  .wishlist-title {
+    padding-bottom: 20px;
+    font-size: 40px;
+    color: $color-main;
+    font-family: $main-font-bold;
+    text-transform: uppercase;
+    span {
+      color: $color-dark;
+    }
+  }
+}
+
+.wishlist-block {
+  @include d-flex(space-around);
+  justify-content: unset;
+  transition: 0.7s;
+  .item {
+    margin: 0 15px;
+    display: flex;
+    min-width: 370px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: $color-white;
+
+    &:first-child {
+      margin: 0 15px 0 0;
+    }
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .item-pic img {
+      padding: 36px;
+      width: 150px;
+      max-width: initial;
+    }
+
+    .item-info {
+      margin: 0 auto;
+      padding: 5px;
+      @include d-flex(center, column);
+    }
+
+    &__display {
+      margin: 0 auto;
+      text-align: center;
+      @include d-flex() {
+        align-items: center;
+      }
+    }
+
+    &__block {
+      @include d-flex(space-around);
+      justify-content: unset;
+      transition: 0.7s;
+    }
+  }
+}
