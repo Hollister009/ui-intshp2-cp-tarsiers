@@ -5,6 +5,7 @@ import { FlagsProvider } from 'react-feature-flags';
 
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
+import ls from '../utils/localStorage.service';
 
 import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
 import Header from './common/Header/HeaderContainer';
@@ -20,8 +21,10 @@ export default class App extends Component {
 
   componentDidMount() {
     const { updateNewArrivals, getWishListItems, updateFiltered } = this.props;
-
     const params = { skip: 0, limit: 9 };
+
+    ls.setState('cart', { productsInCart: [] });
+    ls.setState('form');
 
     HttpService.get(products, { params })
       .then(res => {
