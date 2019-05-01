@@ -20,12 +20,21 @@ export default class App extends Component {
   state = { featureFlags: [], isFlagsReady: false };
 
   componentDidMount() {
-    const { updateNewArrivals, getWishListItems, updateFiltered } = this.props;
+    const {
+      updateNewArrivals,
+      getWishListItems,
+      updateFiltered,
+      loadPrevCart
+    } = this.props;
     const params = { skip: 0, limit: 9 };
 
-    // Setting the record in localStorage if it wasn't previously defined:
-    if (!ls.getState('cart')) {
+    // Syncronizing state.cart with LocalStorage:
+    const cartState = ls.getState('cart');
+
+    if (!cartState) {
       ls.setState('cart', { productsInCart: [] });
+    } else if (cartState.productsInCart.length !== 0) {
+      loadPrevCart(cartState);
     }
 
     HttpService.get(products, { params })
