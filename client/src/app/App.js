@@ -23,8 +23,10 @@ export default class App extends Component {
     const { updateNewArrivals, getWishListItems, updateFiltered } = this.props;
     const params = { skip: 0, limit: 9 };
 
-    ls.setState('cart', { productsInCart: [] });
-    ls.setState('form');
+    // Setting the record in localStorage if it wasn't previously defined:
+    if (!ls.getState('cart')) {
+      ls.setState('cart', { productsInCart: [] });
+    }
 
     HttpService.get(products, { params })
       .then(res => {
