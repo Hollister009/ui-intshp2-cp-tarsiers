@@ -4,11 +4,10 @@ import { Flags } from 'react-feature-flags';
 import { connect } from 'react-redux';
 import { createNotification, Notify } from 'react-redux-notify';
 
-import { loadCart } from '../actions';
+import { clearCart } from '../actions';
 import appConfig from '../../config/appConfig';
 import httpService from '../../utils/http.service';
 import NotifyService from '../../utils/notify.service';
-import ls from '../../utils/localStorage.service';
 
 import Promotions from '../components/Promotions/Promotions';
 import NewArrivalsContainer from '../components/NewArrivals/NewArrivalsContainer';
@@ -18,17 +17,22 @@ import WishListContainer from '../components/WishList/WishListContainer';
 
 class HomePage extends Component {
   componentDidMount() {
-    const { location, loadPrevCart } = this.props;
+    const { location } = this.props;
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.toString();
-    const prevState = ls.getState('cart');
 
+    /**
+     * Checking payment type:
+     *
+     * 1 payment successful - call clearCart() to cleanup state.cart
+     * 2 payment canceled - loadPrevCart() is handled in App.js
+     * We have subscribed LocalStorage to state.cart in Header.js
+     *
+     */
     if (searchParams.get('payment') === 'success') {
-      ls.setState('cart', { productsInCart: [] });
+      clearCart();
       this.callSuccesful(query);
-    }
-    if (searchParams.get('payment') === 'cancel') {
-      loadPrevCart(prevState);
+    } else if (searchParams.get('payment') === 'cancel') {
       this.callCanceled(query);
     }
   }
@@ -78,7 +82,7 @@ class HomePage extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadPrevCart: data => dispatch(loadCart(data)),
+  clearCart: () => dispatch(clearCart()),
   createNotification: config => dispatch(createNotification(config))
 });
 

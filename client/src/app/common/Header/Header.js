@@ -20,9 +20,9 @@ class Header extends PureComponent {
   };
 
   componentDidUpdate() {
+    // If state.cart changes update LocalStorage record:
     const { cart } = this.props;
 
-    // If cart state changed update localStorage record:
     ls.setState('cart', cart);
   }
 
