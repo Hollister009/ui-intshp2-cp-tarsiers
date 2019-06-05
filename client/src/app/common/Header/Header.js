@@ -1,28 +1,45 @@
-import React from 'react';
-import './Header.scss';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
 import HeaderTop from './HeaderTop';
 import HeaderMain from './HeaderMain';
+import { productType } from '../../types';
 import appConfig from '../../../config/appConfig';
+import ls from '../../../utils/localStorage.service';
 
-const Header = props => {
-  const { toggleHFVisibility, cart } = props;
-  const visible = toggleHFVisibility.value;
-  const { contacts, links, pages, options } = appConfig.header;
+import './Header.scss';
 
-  return (
-    visible && (
-      <header className="header">
-        <HeaderTop contacts={contacts} links={links} />
-        <HeaderMain pages={pages} options={options} cart={cart} />
-      </header>
-    )
-  );
-};
+class Header extends PureComponent {
+  static propTypes = {
+    cart: PropTypes.shape({
+      productsInCart: PropTypes.arrayOf(productType)
+    }).isRequired,
+    toggleHFVisibility: PropTypes.shape({
+      value: PropTypes.bool
+    }).isRequired
+  };
 
-Header.defaultProps = {
-  cart: {
-    value: 0
+  componentDidUpdate() {
+    // If state.cart changes update LocalStorage record:
+    const { cart } = this.props;
+
+    ls.setState('cart', cart);
   }
-};
+
+  render() {
+    const { toggleHFVisibility, cart } = this.props;
+    const visible = toggleHFVisibility.value;
+    const { contacts, links, pages, options } = appConfig.header;
+
+    return (
+      visible && (
+        <header className="header">
+          <HeaderTop contacts={contacts} links={links} />
+          <HeaderMain pages={pages} options={options} cart={cart} />
+        </header>
+      )
+    );
+  }
+}
 
 export default Header;

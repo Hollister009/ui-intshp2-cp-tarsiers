@@ -5,6 +5,7 @@ import { FlagsProvider } from 'react-feature-flags';
 
 import appConfig from '../config/appConfig';
 import HttpService from '../utils/http.service';
+import ls from '../utils/localStorage.service';
 
 import ErrorHandler from './shared/ErrorHandler/ErrorHandler';
 import Header from './common/Header/HeaderContainer';
@@ -19,9 +20,22 @@ export default class App extends Component {
   state = { featureFlags: [], isFlagsReady: false };
 
   componentDidMount() {
-    const { updateNewArrivals, getWishListItems, updateFiltered } = this.props;
-
+    const {
+      updateNewArrivals,
+      getWishListItems,
+      updateFiltered,
+      loadPrevCart
+    } = this.props;
     const params = { skip: 0, limit: 9 };
+
+    // Syncronizing state.cart with LocalStorage:
+    const cartState = ls.getState('cart');
+
+    if (!cartState) {
+      ls.setState('cart', { productsInCart: [] });
+    } else if (cartState.productsInCart.length !== 0) {
+      loadPrevCart(cartState);
+    }
 
     HttpService.get(products, { params })
       .then(res => {

@@ -21,9 +21,10 @@ export const addItemsToFiltered = data =>
   actionHelper(data, ADD_ITEMS_TO_FILTERED);
 export const removeFromWishList = data => actionHelper(data, RM_FROM_WISHLIST);
 export const updateFiltered = data => actionHelper(data, UPDATE_FILTERED);
+export const toggleHFVisibility = () => actionHelper({}, TOGGLE_HF_VISIBILITY);
+// Cart actions
 export const addToCart = data => actionHelper(data, ADD_TO_CART);
 export const removeFromCart = data => actionHelper(data, REMOVE_FROM_CART);
 export const updateCartItem = data => actionHelper(data, UPDATE_CART_ITEM);
 export const clearCart = () => actionHelper({}, CLEAR_CART);
 export const loadCart = data => actionHelper(data, LOAD_CART);
-export const toggleHFVisibility = () => actionHelper({}, TOGGLE_HF_VISIBILITY);
