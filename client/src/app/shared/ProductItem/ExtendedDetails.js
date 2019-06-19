@@ -131,9 +131,6 @@ class ViewDetailsFull extends Component {
           <hr className="separate" />
           <div className="social_buttons">
             <Notify position={NotifyService.position.topRight} />
-            <button type="button" title="Share with others">
-              <i className="fas fa-share-alt" />
-            </button>
             <button
               type="button"
               title="Add to shopping-cart"
