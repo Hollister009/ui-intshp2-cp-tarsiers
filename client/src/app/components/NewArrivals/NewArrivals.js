@@ -36,10 +36,7 @@ const NewArrivals = props => {
           &nbsp;
           {titleArr[1]}
         </h2>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry
-        </p>
+        <p>Here you will find our latest goods!</p>
       </div>
       <div className={styles.arrivals__display}>
         <Carousel data={newArrivals} extended>
