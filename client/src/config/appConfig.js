@@ -32,25 +32,11 @@ const appConfig = {
     pages: [
       { id: 6, value: 'Home', href: '/' },
       { id: 7, value: 'Products', href: '/products' },
-      { id: 8, value: 'Hot Deals', href: '/hot-deals' },
-      { id: 9, value: 'About', href: '/about' },
-      { id: 10, value: 'Contact', href: '/contacts' }
+      { id: 8, value: 'About', href: '/about' }
     ],
     options: [
       {
-        id: 11,
-        icon: 'fa fa-search',
-        href: '/',
-        desc: 'search'
-      },
-      {
-        id: 12,
-        icon: 'fa fa-user',
-        href: '/',
-        desc: 'user'
-      },
-      {
-        id: 13,
+        id: 14,
         icon: 'fas fa-shopping-basket',
         href: '/cart',
         desc: 'cart'
@@ -60,49 +46,49 @@ const appConfig = {
   footer: {
     links: [
       {
-        id: 14,
+        id: 15,
         value: 'about us',
         href: 'https://www.google.com',
         isOrigin: false
       },
       {
-        id: 15,
+        id: 16,
         value: 'our products',
         href: '/products',
         isOrigin: true
       },
       {
-        id: 16,
+        id: 17,
         value: 'join us',
         href: '/',
         isOrigin: true
       },
       {
-        id: 17,
+        id: 18,
         value: 'contact us',
         href: '/',
         isOrigin: true
       },
       {
-        id: 18,
+        id: 19,
         value: 'terms and conditions',
         href: '/',
         isOrigin: true
       },
       {
-        id: 19,
+        id: 20,
         value: 'live support',
         href: '/',
         isOrigin: true
       },
       {
-        id: 20,
+        id: 21,
         value: 'support',
         href: '/',
         isOrigin: true
       },
       {
-        id: 21,
+        id: 22,
         value: 'our privacy',
         href: '/',
         isOrigin: true
@@ -110,31 +96,31 @@ const appConfig = {
     ],
     payments: [
       {
-        id: 22,
+        id: 23,
         value: 'amex',
         href: 'https://www.americanexpress.com/',
         isOrigin: false
       },
       {
-        id: 23,
+        id: 24,
         value: 'discover',
         href: 'https://www.discover.com/',
         isOrigin: false
       },
       {
-        id: 24,
+        id: 25,
         value: 'visa',
         href: 'https://usa.visa.com/',
         isOrigin: false
       },
       {
-        id: 25,
+        id: 26,
         value: 'mastercard',
         href: 'https://www.mastercard.us',
         isOrigin: false
       },
       {
-        id: 26,
+        id: 27,
         value: 'credit',
         href: 'https://www.paypal.com',
         isOrigin: false
@@ -192,9 +178,7 @@ const appConfig = {
     advertising: 'showAdvertisingArea'
   },
   productDescription: {
-    subheader: 'Lorem Ipsum is simply dummy text',
-    description:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry'
+    subheader: 'This good is selected right for your specific needs!'
   },
   imageRes: {
     emptyCart:

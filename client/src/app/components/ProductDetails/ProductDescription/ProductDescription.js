@@ -104,9 +104,7 @@ class ProductDescription extends Component {
                 <h3 className={styles.subtitle}>
                   {appConfig.productDescription.subheader}
                 </h3>
-                <p className={styles.text}>
-                  {appConfig.productDescription.description}
-                </p>
+                <p className={styles.text}>{item.description}</p>
               </div>
               <div className={styles.select}>
                 <div className={styles.flex_row}>
